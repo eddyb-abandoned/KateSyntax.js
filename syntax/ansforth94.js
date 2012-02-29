@@ -105,7 +105,7 @@ HL.prototype._singleComment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(^|\s+)(FIXME|TODO|NOTE)($|\s+)/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -127,7 +127,7 @@ HL.prototype._parseString = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ' ' && this.hl(' ', 'dsKeyword')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -135,7 +135,7 @@ HL.prototype._word = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ' ' && this.hl(' ', 'dsFunction')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsFunction')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsFunction');
     }
 };
@@ -143,7 +143,7 @@ HL.prototype._char = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ' ' && this.hl(' ', 'dsChar')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsChar')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsChar');
     }
 };
@@ -151,7 +151,7 @@ HL.prototype._constant = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ' ' && this.hl(' ', 'dsDataType')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDataType')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsDataType');
     }
 };
@@ -159,7 +159,7 @@ HL.prototype._variable = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ' ' && this.hl(' ', 'dsDataType')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDataType')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsDataType');
     }
 };
@@ -167,7 +167,7 @@ HL.prototype._local = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '|' && this.hl('|', 'dsKeyword')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDataType')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsDataType');
     }
 };

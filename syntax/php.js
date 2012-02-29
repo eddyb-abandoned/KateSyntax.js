@@ -46,12 +46,12 @@ HL.prototype._phpsource = function() {
         if(/^?>/.exec(this.str)) return;
         if(this.str[0] == '?' && this.hl('?', 'dsOthers')) {this._ternary();continue;}
         if((m = /^(case|default)(\s|:|$)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._case();continue;}
-        if(this.str[0] == '::' && this.hl('::', 'dsNormal')) continue;
+        if(this.str[0] == ':' && this.str[1] == ':' && this.hl('::', 'dsNormal')) continue;
         if(this.str[0] == ':' && this.hl(':', 'dsNormal')) continue;
         if((m = /^endif|endwhile|endfor|endforeach|endswitch/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._onelinecomment();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._onelinecomment();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._twolinecomment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._onelinecomment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._twolinecomment();continue;}
         if((m = /^(?:$HTTP_SERVER_VARS|$HTTP_SESSION_VARS|$HTTP_ENV_VARS|$HTTP_POST_FILES|$HTTP_COOKIE_VARS|$HTTP_POST_VARS|$HTTP_GET_VARS|$DOCUMENT_ROOT|call_user_method|call_user_method_array|ereg|ereg_replace|eregi|eregi_replace|mcrypt_ecb|mime_content_type|mysql_create_db|mysql_dbname|mysql_drop_db|mysql_fieldflags|mysql_fieldlen|mysql_fieldname|mysql_fieldtable|mysql_fieldtype|mysql_freeresult|mysql_list_fields|mysql_list_tables|mysql_listdbs|mysql_listfields|mysql_listtables|mysql_numfields|mysql_numrows|mysql_selectdb|mysql_tablename|mysqli_disable_reads_from_master|mysqli_disable_rpl_parse|mysqli_enable_reads_from_master|mysqli_enable_rpl_parse|mysqli_master_query|mysqli_rpl_parse_enabled|mysqli_rpl_probe|mysqli_rpl_query_type|mysqli_send_query|mysqli_slave_query|ocifetchinto|ora_bind|ora_close|ora_columnname|ora_columnsize|ora_columntype|ora_commit|ora_commitoff|ora_commiton|ora_do|ora_error|ora_errorcode|ora_exec|ora_fetch|ora_fetch_into|ora_getcolumn|ora_logoff|ora_logon|ora_numcols|ora_numrows|ora_open|ora_parse|ora_plogon|ora_rollback|php_check_syntax|split|spliti|sql_regcase|var|OCI_DEFAULT|OCI_D_FILE|OCI_D_LOB|OCI_D_ROWID|OCI_EXACT_FETCH|OCI_SYSDATE)\b/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         if((m = /^(?:as|case|default|if|else|elseif|while|do|for|foreach|break|continue|switch|declare|return|require|include|require_once|include_once|endif|endwhile|endfor|endforeach|endswitch)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:abstract|catch|class|clone|const|exception|extends|final|function|global|implements|instanceof|interface|new|self|static|parent|private|protected|public|throw|try|and|or|xor|var|namespace|use)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -87,18 +87,18 @@ HL.prototype._phpsource = function() {
 HL.prototype._ternary = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '::' && this.hl('::', 'dsNormal')) continue;
+        if(this.str[0] == ':' && this.str[1] == ':' && this.hl('::', 'dsNormal')) continue;
         if(this.str[0] == ':' && this.hl(':', 'dsOthers')) return;
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(/^?>/.exec(this.str)) return;
         if(this.str[0] == '?' && this.hl('?', 'dsOthers')) {this._ternary();continue;}
         if((m = /^(case|default)(\s|:|$)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._case();continue;}
-        if(this.str[0] == '::' && this.hl('::', 'dsNormal')) continue;
+        if(this.str[0] == ':' && this.str[1] == ':' && this.hl('::', 'dsNormal')) continue;
         if(this.str[0] == ':' && this.hl(':', 'dsNormal')) continue;
         if((m = /^endif|endwhile|endfor|endforeach|endswitch/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._onelinecomment();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._onelinecomment();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._twolinecomment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._onelinecomment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._twolinecomment();continue;}
         if((m = /^(?:$HTTP_SERVER_VARS|$HTTP_SESSION_VARS|$HTTP_ENV_VARS|$HTTP_POST_FILES|$HTTP_COOKIE_VARS|$HTTP_POST_VARS|$HTTP_GET_VARS|$DOCUMENT_ROOT|call_user_method|call_user_method_array|ereg|ereg_replace|eregi|eregi_replace|mcrypt_ecb|mime_content_type|mysql_create_db|mysql_dbname|mysql_drop_db|mysql_fieldflags|mysql_fieldlen|mysql_fieldname|mysql_fieldtable|mysql_fieldtype|mysql_freeresult|mysql_list_fields|mysql_list_tables|mysql_listdbs|mysql_listfields|mysql_listtables|mysql_numfields|mysql_numrows|mysql_selectdb|mysql_tablename|mysqli_disable_reads_from_master|mysqli_disable_rpl_parse|mysqli_enable_reads_from_master|mysqli_enable_rpl_parse|mysqli_master_query|mysqli_rpl_parse_enabled|mysqli_rpl_probe|mysqli_rpl_query_type|mysqli_send_query|mysqli_slave_query|ocifetchinto|ora_bind|ora_close|ora_columnname|ora_columnsize|ora_columntype|ora_commit|ora_commitoff|ora_commiton|ora_do|ora_error|ora_errorcode|ora_exec|ora_fetch|ora_fetch_into|ora_getcolumn|ora_logoff|ora_logon|ora_numcols|ora_numrows|ora_open|ora_parse|ora_plogon|ora_rollback|php_check_syntax|split|spliti|sql_regcase|var|OCI_DEFAULT|OCI_D_FILE|OCI_D_LOB|OCI_D_ROWID|OCI_EXACT_FETCH|OCI_SYSDATE)\b/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         if((m = /^(?:as|case|default|if|else|elseif|while|do|for|foreach|break|continue|switch|declare|return|require|include|require_once|include_once|endif|endwhile|endfor|endforeach|endswitch)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:abstract|catch|class|clone|const|exception|extends|final|function|global|implements|instanceof|interface|new|self|static|parent|private|protected|public|throw|try|and|or|xor|var|namespace|use)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -134,18 +134,18 @@ HL.prototype._ternary = function() {
 HL.prototype._case = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '::' && this.hl('::', 'dsNormal')) continue;
+        if(this.str[0] == ':' && this.str[1] == ':' && this.hl('::', 'dsNormal')) continue;
         if(this.str[0] == ':' && this.hl(':', 'dsOthers')) return;
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(/^?>/.exec(this.str)) return;
         if(this.str[0] == '?' && this.hl('?', 'dsOthers')) {this._ternary();continue;}
         if((m = /^(case|default)(\s|:|$)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._case();continue;}
-        if(this.str[0] == '::' && this.hl('::', 'dsNormal')) continue;
+        if(this.str[0] == ':' && this.str[1] == ':' && this.hl('::', 'dsNormal')) continue;
         if(this.str[0] == ':' && this.hl(':', 'dsNormal')) continue;
         if((m = /^endif|endwhile|endfor|endforeach|endswitch/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._onelinecomment();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._onelinecomment();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._twolinecomment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._onelinecomment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._twolinecomment();continue;}
         if((m = /^(?:$HTTP_SERVER_VARS|$HTTP_SESSION_VARS|$HTTP_ENV_VARS|$HTTP_POST_FILES|$HTTP_COOKIE_VARS|$HTTP_POST_VARS|$HTTP_GET_VARS|$DOCUMENT_ROOT|call_user_method|call_user_method_array|ereg|ereg_replace|eregi|eregi_replace|mcrypt_ecb|mime_content_type|mysql_create_db|mysql_dbname|mysql_drop_db|mysql_fieldflags|mysql_fieldlen|mysql_fieldname|mysql_fieldtable|mysql_fieldtype|mysql_freeresult|mysql_list_fields|mysql_list_tables|mysql_listdbs|mysql_listfields|mysql_listtables|mysql_numfields|mysql_numrows|mysql_selectdb|mysql_tablename|mysqli_disable_reads_from_master|mysqli_disable_rpl_parse|mysqli_enable_reads_from_master|mysqli_enable_rpl_parse|mysqli_master_query|mysqli_rpl_parse_enabled|mysqli_rpl_probe|mysqli_rpl_query_type|mysqli_send_query|mysqli_slave_query|ocifetchinto|ora_bind|ora_close|ora_columnname|ora_columnsize|ora_columntype|ora_commit|ora_commitoff|ora_commiton|ora_do|ora_error|ora_errorcode|ora_exec|ora_fetch|ora_fetch_into|ora_getcolumn|ora_logoff|ora_logon|ora_numcols|ora_numrows|ora_open|ora_parse|ora_plogon|ora_rollback|php_check_syntax|split|spliti|sql_regcase|var|OCI_DEFAULT|OCI_D_FILE|OCI_D_LOB|OCI_D_ROWID|OCI_EXACT_FETCH|OCI_SYSDATE)\b/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         if((m = /^(?:as|case|default|if|else|elseif|while|do|for|foreach|break|continue|switch|declare|return|require|include|require_once|include_once|endif|endwhile|endfor|endforeach|endswitch)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:abstract|catch|class|clone|const|exception|extends|final|function|global|implements|instanceof|interface|new|self|static|parent|private|protected|public|throw|try|and|or|xor|var|namespace|use)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -182,27 +182,27 @@ HL.prototype._onelinecomment = function() {
     var m;
     while(this.pos < this.len) {
         if(/^?>/.exec(this.str)) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._twolinecomment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._doublebackquotestringcommon = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsKeyword')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) continue;
-        if(this.str[0] == '\r' && this.hl('\r', 'dsKeyword')) continue;
-        if(this.str[0] == '\t' && this.hl('\t', 'dsKeyword')) continue;
-        if(this.str[0] == '\v' && this.hl('\v', 'dsKeyword')) continue;
-        if(this.str[0] == '\f' && this.hl('\f', 'dsKeyword')) continue;
-        if(this.str[0] == '\$' && this.hl('\$', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'n' && this.hl('\n', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'r' && this.hl('\r', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 't' && this.hl('\t', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'v' && this.hl('\v', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'f' && this.hl('\f', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == '$' && this.hl('\$', 'dsKeyword')) continue;
         if((m = /^\\[0-7]{1,3}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\\x[0-9A-Fa-f]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -214,19 +214,19 @@ HL.prototype._doublebackquotestringcommon = function() {
 HL.prototype._backquotestring = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsKeyword')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) continue;
-        if(this.str[0] == '\r' && this.hl('\r', 'dsKeyword')) continue;
-        if(this.str[0] == '\t' && this.hl('\t', 'dsKeyword')) continue;
-        if(this.str[0] == '\v' && this.hl('\v', 'dsKeyword')) continue;
-        if(this.str[0] == '\f' && this.hl('\f', 'dsKeyword')) continue;
-        if(this.str[0] == '\$' && this.hl('\$', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'n' && this.hl('\n', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'r' && this.hl('\r', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 't' && this.hl('\t', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'v' && this.hl('\v', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'f' && this.hl('\f', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == '$' && this.hl('\$', 'dsKeyword')) continue;
         if((m = /^\\[0-7]{1,3}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\\x[0-9A-Fa-f]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\$\{[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*\}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\{\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[([0-9]*|"[^"]*"|\$[a-zA-Z]*)|'[^']*'|\])*(->[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*(\[([0-9]*|"[a-zA-Z_]*")|'[a-zA-Z_]*'|\])*)*\}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if(this.str[0] == '\`' && this.hl('\`', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == '`' && this.hl('\`', 'dsKeyword')) continue;
         if(this.str[0] == '`' && this.hl('`', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
@@ -234,19 +234,19 @@ HL.prototype._backquotestring = function() {
 HL.prototype._doublequotestring = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsKeyword')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) continue;
-        if(this.str[0] == '\r' && this.hl('\r', 'dsKeyword')) continue;
-        if(this.str[0] == '\t' && this.hl('\t', 'dsKeyword')) continue;
-        if(this.str[0] == '\v' && this.hl('\v', 'dsKeyword')) continue;
-        if(this.str[0] == '\f' && this.hl('\f', 'dsKeyword')) continue;
-        if(this.str[0] == '\$' && this.hl('\$', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'n' && this.hl('\n', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'r' && this.hl('\r', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 't' && this.hl('\t', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'v' && this.hl('\v', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'f' && this.hl('\f', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == '$' && this.hl('\$', 'dsKeyword')) continue;
         if((m = /^\\[0-7]{1,3}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\\x[0-9A-Fa-f]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\$\{[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*\}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\{\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[([0-9]*|"[^"]*"|\$[a-zA-Z]*)|'[^']*'|\])*(->[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*(\[([0-9]*|"[a-zA-Z_]*")|'[a-zA-Z_]*'|\])*)*\}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if(this.str[0] == '\"' && this.hl('\"', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsKeyword')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
@@ -254,8 +254,8 @@ HL.prototype._doublequotestring = function() {
 HL.prototype._singlequotestring = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\'' && this.hl('\'', 'dsKeyword')) continue;
-        if(this.str[0] == '\\' && this.hl('\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == ''' && this.hl('\'', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }

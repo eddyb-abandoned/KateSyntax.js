@@ -47,7 +47,7 @@ HL.prototype._oneliners = function() {
         if((m = /^\[KCrash Handler]/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         if((m = /^Thread/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._thread();continue;}
         if((m = /^\[Current thread/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._thread();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -77,14 +77,13 @@ HL.prototype._file = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ':' && this.hl(':', 'dsNormal')) {this._#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDataType')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsDataType');
     }
 };
 HL.prototype._thread = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsBaseN')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsBaseN');
     }
 };

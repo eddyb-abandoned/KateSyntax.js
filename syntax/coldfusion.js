@@ -168,14 +168,14 @@ HL.prototype._ctxCFComment = function() {
 HL.prototype._ctxCStyleComment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._ctxOneLineComment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -183,15 +183,15 @@ HL.prototype._ctxHTMLEntities = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ';' && this.hl(';', 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._ctxCFSCRIPTBlock = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._ctxCStyleComment();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._ctxOneLineComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._ctxCStyleComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._ctxOneLineComment();continue;}
         if((m = /^"[^"]*"/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^'[^']*'/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -207,8 +207,8 @@ HL.prototype._ctxCFSCRIPTBlock = function() {
 HL.prototype._ctxSCRIPTBlock = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._ctxCStyleComment();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._ctxOneLineComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._ctxCStyleComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._ctxOneLineComment();continue;}
         if((m = /^"[^"]*"/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^'[^']*'/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -225,7 +225,7 @@ HL.prototype._ctxSCRIPTBlock = function() {
 HL.prototype._ctxSTYLEBlock = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._ctxCStyleComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._ctxCStyleComment();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) {this._ctxStyleProperties();continue;}
         if((m = /^</[sS][tT][yY][lL][eE]>/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsNormal');
@@ -235,7 +235,7 @@ HL.prototype._ctxStyleProperties = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) return;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._ctxCStyleComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._ctxCStyleComment();continue;}
         if(this.str[0] == ':' && this.hl(':', 'dsNormal')) {this._ctxStyleValues();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -250,7 +250,7 @@ HL.prototype._ctxStyleValues = function() {
         if((m = /^#([0-9a-fA-F]{3})|([0-9a-fA-F]{6})/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^"[^"]*"/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^'[^']*'/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };

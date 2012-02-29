@@ -68,7 +68,7 @@ HL.prototype._normalText = function() {
         if((m = /^(?:GET|\*ABBR|ABBRES|ABBSAV|\*AFUN|\*ASK|\*CFCLOS|\*CFOPEN|\*CFWRITE|\*CREATE|\*CYCLE|\*DEL|\/DFLAB|\*DIM|\/DIRECTORY|\*DO|\*DOWHILE|\*ELSE|\*ELSEIF|\*END|\*ENDDO|\*ENDIF|\*EXIT|\*GET|\*GO|\*IF|\/INQUIRE|\/MAIL|\*MFOURI|\*MFUN|\*MOPER|\*MSG|\*MWRITE|PARRES|PARSAV|\/PMACRO|\/PSEARCH|\*REPEAT|\*RETURN|\*SET|\*SREAD|\*STATUS|\*TAXIS|\/TEE|\*TOPER|\*TREAD|\/UCMD|\*ULIB|\*USE|\*VABS|\*VCOL|\*VCUM|\*VEDIT|\*VFACT|\*VFILL|\*VFUN|\*VGET|\*VITRP|\*VLEN|\*VMASK|\*VOPER|\*VPLOT|\*VPUT|\*VREAD|\*VSCFUN|\*VSTAT|\*VWRITE|\/WAIT)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -84,7 +84,7 @@ HL.prototype._functions = function() {
     while(this.pos < this.len) {
         if((m = /^\(.*?\)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         if(this.str[0] == '(' && this.hl('(', 'dsError')) {this._open_parentesis();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -92,14 +92,14 @@ HL.prototype._open_parentesis = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ')' && this.hl(')', 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsRegionMarker')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsRegionMarker');
     }
 };
 HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -108,7 +108,7 @@ HL.prototype._functions_arg = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '(' && this.hl('(', 'dsKeyword')) continue;
         if(this.str[0] == ')' && this.hl(')', 'dsKeyword')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsFloat')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsFloat');
     }
 };

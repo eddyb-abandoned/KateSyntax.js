@@ -46,7 +46,7 @@ HL.prototype._normalText = function() {
         if(this.str[0] == '(' && this.hl('(', 'dsChar')) {this._inparenthesis();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsChar')) return;
         if((m = /^[+*/%\|=\!<>!^&~-]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };

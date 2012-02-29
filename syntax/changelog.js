@@ -44,7 +44,7 @@ HL.prototype._line = function() {
     while(this.pos < this.len) {
         if((m = /^(\w\s*)+/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^<.*>\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -52,7 +52,7 @@ HL.prototype._entry = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^.*:/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };

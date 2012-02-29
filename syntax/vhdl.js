@@ -34,7 +34,7 @@ HL.prototype.hl = function hl(m,s) {
 HL.prototype._start = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -50,7 +50,7 @@ HL.prototype._package = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^%2/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -70,7 +70,7 @@ HL.prototype._packagebody = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^%2/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -89,7 +89,7 @@ HL.prototype._packagebody = function() {
 HL.prototype._architecture_main = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -112,7 +112,7 @@ HL.prototype._architecture_main = function() {
 HL.prototype._arch_decl = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -148,7 +148,7 @@ HL.prototype._detect_arch_parts = function() {
 HL.prototype._generate1 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -169,7 +169,7 @@ HL.prototype._generate1 = function() {
 HL.prototype._generate2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -191,7 +191,7 @@ HL.prototype._generate2 = function() {
 HL.prototype._process1 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -233,13 +233,13 @@ HL.prototype._proc_rules = function() {
 HL.prototype._instance = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^\b%1\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\b%2\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if(this.str[0] == ');' && this.hl(');', 'dsNormal')) return;
+        if(this.str[0] == ')' && this.str[1] == ';' && this.hl(');', 'dsNormal')) return;
         if((m = /^(?:bit|bit_vector|character|boolean|boolean_vector|integer|integer_vector|real|real_vector|time|time_vector|delay_length|string|severity_level|positive|natural|file_open_kind|file_open_status|signed|unsigned|unresolved_unsigned|unresolved_signed|line|text|side|width|std_logic|std_logic_vector|std_ulogic|std_ulogic_vector|x01|x01z|ux01|ux01z|qsim_state|qsim_state_vector|qsim_12state|qsim_12state_vector|qsim_strength|mux_bit|mux_vector|reg_bit|reg_vector|wor_bit|wor_vector)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^(?:signal|variable|constant|type)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._signal();continue;}
         if((m = /^(?:to|downto|others)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -272,7 +272,7 @@ HL.prototype._forOrWhile = function() {
 HL.prototype._if_start = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -290,7 +290,7 @@ HL.prototype._if_start = function() {
 HL.prototype._if = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -313,7 +313,7 @@ HL.prototype._if = function() {
 HL.prototype._case1 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -325,7 +325,7 @@ HL.prototype._case1 = function() {
 HL.prototype._case2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -348,7 +348,7 @@ HL.prototype._case2 = function() {
 HL.prototype._caseWhen = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -371,7 +371,7 @@ HL.prototype._caseWhen = function() {
 HL.prototype._entity = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -389,7 +389,7 @@ HL.prototype._entity = function() {
 HL.prototype._entity_main = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -410,7 +410,7 @@ HL.prototype._entity_main = function() {
 HL.prototype._preDetection = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
@@ -433,7 +433,7 @@ HL.prototype._generalDetection = function() {
 HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -451,7 +451,7 @@ HL.prototype._attribute = function() {
         if(this.str[0] == ' ' && this.hl(' ', 'dsNormal')) return;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) return;
         if((m = /^[()=<>]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsBaseN')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsBaseN');
     }
 };
@@ -465,7 +465,7 @@ HL.prototype._quotInAtt = function() {
 HL.prototype._signal = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}

@@ -35,15 +35,15 @@ HL.prototype._rawDocumentation = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^^<<.*>>=(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) {this._codeSection();continue;}
-        if(this.str[0] == '@[' && this.hl('@[', 'dsNormal')) continue;
-        if(this.str[0] == '[[' && this.hl('[[', 'dsRegionMarker')) {this._codeQuote();continue;}
+        if(this.str[0] == '@' && this.str[1] == '[' && this.hl('@[', 'dsNormal')) continue;
+        if(this.str[0] == '[' && this.str[1] == '[' && this.hl('[[', 'dsRegionMarker')) {this._codeQuote();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._codeQuote = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '@]' && this.hl('@]', 'dsNormal')) continue;
+        if(this.str[0] == '@' && this.str[1] == ']' && this.hl('@]', 'dsNormal')) continue;
         if((m = /^\]\](?!\])/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) return;
         if((m = /^@<</.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^<<.*[^@]>>(?!=)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;

@@ -48,21 +48,21 @@ HL.prototype._normal = function() {
 HL.prototype._commentar1 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._commentar2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._preprocessor = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'undefined')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'undefined');
     }
 };
@@ -72,14 +72,14 @@ HL.prototype._string = function() {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._someContext();continue;}
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
 HL.prototype._someContext = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };

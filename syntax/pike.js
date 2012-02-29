@@ -47,9 +47,9 @@ HL.prototype._normal = function() {
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._lineComment();continue;}
-        if(this.str[0] == '#!' && this.hl('#!', 'dsComment')) {this._lineComment();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._blockComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._lineComment();continue;}
+        if(this.str[0] == '#' && this.str[1] == '!' && this.hl('#!', 'dsComment')) {this._lineComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._blockComment();continue;}
         if((m = /^#\s*if\s+0/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._outscoped();continue;}
         if(this.str[0] == '#' && this.hl('#', 'dsOthers')) {this._preprocessor();continue;}
         this.hl(this.str[0], 'dsNormal');
@@ -62,7 +62,7 @@ HL.prototype._string = function() {
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -70,14 +70,14 @@ HL.prototype._lineComment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(FIXME|TODO|NOT(IC)?E):?/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._blockComment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         if((m = /^(FIXME|TODO|NOT(IC)?E):?/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         this.hl(this.str[0], 'dsComment');
     }
@@ -87,10 +87,10 @@ HL.prototype._preprocessor = function() {
     while(this.pos < this.len) {
         if((m = /^".*?"/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^<.*?>/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._lineComment();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._blockComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._lineComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._blockComment();continue;}
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsOthers')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -98,7 +98,7 @@ HL.prototype._outscoped = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(FIXME|TODO|NOT(IC)?E):?/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._blockComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._blockComment();continue;}
         if((m = /^#\s*if/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._outscopedIntern();continue;}
         if((m = /^#\s*(endif|elif|else)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) return;
         this.hl(this.str[0], 'dsComment');
@@ -107,7 +107,7 @@ HL.prototype._outscoped = function() {
 HL.prototype._outscopedIntern = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._blockComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._blockComment();continue;}
         if((m = /^#\s*if/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._outscopedIntern();continue;}
         if((m = /^#\s*endif/.exec(this.str)) && this.hl(m[0], 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');

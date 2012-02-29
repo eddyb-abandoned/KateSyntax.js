@@ -91,14 +91,14 @@ HL.prototype._asp_onelinecomment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^%>/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._doublequotestring = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '""' && this.hl('""', 'dsKeyword')) continue;
+        if(this.str[0] == '"' && this.str[1] == '"' && this.hl('""', 'dsKeyword')) continue;
         if((m = /^\\[0-7]{1,3}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\\x[0-9A-Fa-f]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
@@ -108,7 +108,7 @@ HL.prototype._doublequotestring = function() {
 HL.prototype._singlequotestring = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '''' && this.hl('''', 'dsKeyword')) continue;
+        if(this.str[0] == ''' && this.str[1] == ''' && this.hl('''', 'dsKeyword')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
@@ -116,7 +116,7 @@ HL.prototype._singlequotestring = function() {
 HL.prototype._htmltag = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) return;
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) return;
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) return;
         if((m = /^<%/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._aspsource();continue;}
         if((m = /^<%/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._aspsource();continue;}
@@ -164,8 +164,8 @@ HL.prototype._types2 = function() {
 HL.prototype._scripts = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._scripts_onelinecomment();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._twolinecomment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._scripts_onelinecomment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._twolinecomment();continue;}
         if((m = /^(?:select|case|end select|if|then|else|elseif|end if|while|do|until|loop|wend|for|each|to|in|next|exit|continue)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:dim|redim|preserve|const|erase|nothing|set|new|me|function|sub|call|class|private|public|with|randomize|open|close|movenext|execute|eof|not|true|false|or|and|xor)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:response|write|redirect|end|request|form|querystring|servervariables|cookies|session|server|createobject|abs|array|asc|atn|cbool|cbyte|ccur|cdate|cdbl|chr|cint|clng|cos|csng|cstr|date|dateadd|DateDiff|DatePart|DateSerial|DateValue|Date|Day|Exp|Filter|Fix|FormatCurrency|FormatDateTime|FormatNumber|FormatPercent|GetObject|Hex|Hour|InputBox|InStr|InStrRev|Int|IsArray|IsDate|IsEmpty|IsNull|IsNumeric|IsObject|Join|LBound|LCase|Left|Len|LoadPicture|Log|LTrim|Mid|Minute|Month|MonthName|MsgBox|Now|Oct|Replace|RGB|Right|Rnd|Round|RTrim|ScriptEngine|ScriptEngineBuildVersion|ScriptEngineMajorVersion|ScriptEngineMinorVersion|Second|Sgn|Sin|Space|Split|Sqr|StrComp|StrReverse|String|Tan|Time|Timer|TimeSerial|TimeValue|Trim|TypeName|UBound|UCase|VarType|Weekday|WeekdayName|Year|Add|AddFolders|BuildPath|Clear|Close|Copy|CopyFile|CopyFolder|CreateFolder|CreateTextFile|Delete|DeleteFile|DeleteFolder|DriveExists|Exists|FileExists|FolderExists|GetAbsolutePathName|GetBaseName|GetDrive|GetDriveName|GetExtensionName|GetFile|GetFileName|GetFolder|GetParentFolderName|GetSpecialFolder|GetTempName|Items|item|Keys|Move|MoveFile|MoveFolder|OpenAsTextStream|OpenTextFile|Raise|Read|ReadAll|ReadLine|Remove|RemoveAll|Skip|SkipLine|Write|WriteBlankLines|WriteLine)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -187,14 +187,14 @@ HL.prototype._scripts_onelinecomment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^<\s*\/\s*script\s*>/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._twolinecomment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };

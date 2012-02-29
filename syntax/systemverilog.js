@@ -123,8 +123,8 @@ HL.prototype._normal = function() {
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^[^\w$]\.[a-zA-Z]+[\w$]*/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
         if((m = /^[!%&()+,\-<=+/:;>?[\]\^{|}~@]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(this.str[0] == '`' && this.hl('`', 'dsOthers')) {this._preprocessor();continue;}
         if((m = /^\`[a-zA-Z_]+\w*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -142,7 +142,7 @@ HL.prototype._externContext = function() {
         if((m = /^(?:constraint|solve|before|dist|inside|with)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:function)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
         if((m = /^(?:task)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'undefined')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'undefined');
     }
 };
@@ -153,7 +153,7 @@ HL.prototype._typedefContext = function() {
         if((m = /^(?:parameter|localparam|specparam|input|output|inout|ref|byte|shortint|int|integer|longint|time|bit|logic|reg|supply0|supply1|tri|triand|trior|trireg|tri0|tri1|wire|uwire|wand|wor|signed|unsigned|shortreal|real|realtime|type|void|struct|union|tagged|const|var|automatic|static|packed|vectored|scalared|typedef|enum|string|chandle|event|null)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
         if((m = /^(?:modport)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
         if((m = /^(?:sync_accept_on|reject_on|accept_on|sync_reject_on|restrict|let|until|until_with|unique0|eventually|s_until|s_always|s_eventually|s_nexttime|s_until_with|global|untyped|implies|weak|strong|nexttime)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'undefined')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'undefined');
     }
 };
@@ -163,7 +163,7 @@ HL.prototype._string = function() {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -173,7 +173,7 @@ HL.prototype._commentar1 = function() {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -181,7 +181,7 @@ HL.prototype._commentar2 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         this.hl(this.str[0], 'dsComment');
     }
@@ -192,9 +192,9 @@ HL.prototype._preprocessor = function() {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^".*?"/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^<.*?>/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentarPreprocessor();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsOthers')) return;
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentarPreprocessor();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -202,7 +202,7 @@ HL.prototype._define = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsOthers')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -210,7 +210,7 @@ HL.prototype._commentarPreprocessor = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         this.hl(this.str[0], 'dsComment');
     }
@@ -221,8 +221,8 @@ HL.prototype._outscoped = function() {
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
         if((m = /^#\s*if/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._outscopedIntern();continue;}
         if((m = /^#\s*el(?:se|if)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) return;
         if((m = /^#\s*endif/.exec(this.str)) && this.hl(m[0], 'dsOthers')) return;
@@ -235,8 +235,8 @@ HL.prototype._outscopedIntern = function() {
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
         if((m = /^#\s*if/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._outscopedIntern();continue;}
         if((m = /^#\s*endif/.exec(this.str)) && this.hl(m[0], 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
@@ -246,7 +246,7 @@ HL.prototype._blockName = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[^ ]+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDataType')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsDataType');
     }
 };

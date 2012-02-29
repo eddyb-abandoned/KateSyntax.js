@@ -63,9 +63,9 @@ HL.prototype._normal = function() {
         if((m = /^"""/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleQString();continue;}
         if((m = /^u"""/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleQString();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleAString();continue;}
-        if(this.str[0] == 'u'' && this.hl('u'', 'dsString')) {this._singleAString();continue;}
+        if(this.str[0] == 'u' && this.str[1] == ''' && this.hl('u'', 'dsString')) {this._singleAString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._singleQString();continue;}
-        if(this.str[0] == 'u"' && this.hl('u"', 'dsString')) {this._singleQString();continue;}
+        if(this.str[0] == 'u' && this.str[1] == '"' && this.hl('u"', 'dsString')) {this._singleQString();continue;}
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) {this._parenthesised();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsNormal')) return;
         if((m = /^[+*/%\|=;\!<>!\^&~\-]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -81,7 +81,7 @@ HL.prototype._checkForString = function() {
         if((m = /^u'''/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleAString();continue;}
         if((m = /^"""/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleQString();continue;}
         if((m = /^u"""/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleQString();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -117,9 +117,9 @@ HL.prototype._parenthesised = function() {
         if((m = /^"""/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleQString();continue;}
         if((m = /^u"""/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleQString();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleAString();continue;}
-        if(this.str[0] == 'u'' && this.hl('u'', 'dsString')) {this._singleAString();continue;}
+        if(this.str[0] == 'u' && this.str[1] == ''' && this.hl('u'', 'dsString')) {this._singleAString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._singleQString();continue;}
-        if(this.str[0] == 'u"' && this.hl('u"', 'dsString')) {this._singleQString();continue;}
+        if(this.str[0] == 'u' && this.str[1] == '"' && this.hl('u"', 'dsString')) {this._singleQString();continue;}
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) {this._parenthesised();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsNormal')) return;
         if((m = /^[+*/%\|=;\!<>!\^&~\-]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -130,7 +130,7 @@ HL.prototype._parenthesised = function() {
 HL.prototype._hashComment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };

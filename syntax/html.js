@@ -149,7 +149,7 @@ HL.prototype._cDATA = function() {
 HL.prototype._pI = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '?>' && this.hl('?>', 'dsKeyword')) return;
+        if(this.str[0] == '?' && this.str[1] == '>' && this.hl('?>', 'dsKeyword')) return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -206,7 +206,7 @@ HL.prototype._doctypeMarkupdeclSQ = function() {
 HL.prototype._elOpen = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) return;
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) return;
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) return;
         if((m = /^&name;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^\s+&name;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -242,7 +242,7 @@ HL.prototype._elClose3 = function() {
 HL.prototype._cSS = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) return;
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) return;
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) {this._cSSContent();continue;}
         if((m = /^&name;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^\s+&name;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -261,7 +261,7 @@ HL.prototype._cSSContent = function() {
 HL.prototype._jS = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) return;
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) return;
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) {this._jSContent();continue;}
         if((m = /^&name;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^\s+&name;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -282,7 +282,7 @@ HL.prototype._jSCommentClose = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^</script\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._elClose3();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -302,7 +302,6 @@ HL.prototype._valueNQ = function() {
         if((m = /^[&<]/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         if((m = /^/(?!>)/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^[^/><"'\s]/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };

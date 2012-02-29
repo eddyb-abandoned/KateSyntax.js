@@ -44,7 +44,6 @@ HL.prototype._mount_point = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '#' && this.hl('#', 'dsDataType')) {this._comment();continue;}
         if((m = /^[\s]*/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this.__type();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDataType')) {this._device();continue;}
         this.hl(this.str[0], 'dsDataType');
     }
 };
@@ -53,7 +52,6 @@ HL.prototype.__type = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '#' && this.hl('#', 'dsNormal')) {this._comment();continue;}
         if((m = /^[\S]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._type();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._device();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -62,7 +60,6 @@ HL.prototype._type = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '#' && this.hl('#', 'dsFunction')) {this._comment();continue;}
         if((m = /^[\s]*/.exec(this.str)) && this.hl(m[0], 'dsFunction')) {this._options();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsFunction')) {this._device();continue;}
         this.hl(this.str[0], 'dsFunction');
     }
 };
@@ -71,7 +68,6 @@ HL.prototype._options = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '#' && this.hl('#', 'dsKeyword')) {this._comment();continue;}
         if((m = /^[\s]*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._dump();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) {this._device();continue;}
         this.hl(this.str[0], 'dsKeyword');
     }
 };
@@ -80,7 +76,6 @@ HL.prototype._dump = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '#' && this.hl('#', 'dsDecVal')) {this._comment();continue;}
         if((m = /^[\s]*/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {this._pass();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDecVal')) {this._device();continue;}
         this.hl(this.str[0], 'dsDecVal');
     }
 };
@@ -89,7 +84,6 @@ HL.prototype._pass = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '#' && this.hl('#', 'dsDecVal')) {this._comment();continue;}
         if((m = /^[\s]*/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {this.___error();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDecVal')) {this._device();continue;}
         this.hl(this.str[0], 'dsDecVal');
     }
 };
@@ -98,21 +92,19 @@ HL.prototype.___error = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '#' && this.hl('#', 'dsDecVal')) {this._comment();continue;}
         if((m = /^[\S]*/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {this._error();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDecVal')) {this._device();continue;}
         this.hl(this.str[0], 'dsDecVal');
     }
 };
 HL.prototype._error = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsError')) {this._device();continue;}
         this.hl(this.str[0], 'dsError');
     }
 };
 HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };

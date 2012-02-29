@@ -51,9 +51,9 @@ HL.prototype._normalText = function() {
         if((m = /^[()[\]{}]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^[_a-zA-Z]\w*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._singleLineComment();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._multiLineComment();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._singleLineComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._multiLineComment();continue;}
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -71,7 +71,7 @@ HL.prototype._singleLineComment = function() {
     while(this.pos < this.len) {
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -79,7 +79,7 @@ HL.prototype._multiLineComment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         this.hl(this.str[0], 'dsComment');
     }

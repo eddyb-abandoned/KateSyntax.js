@@ -53,7 +53,7 @@ HL.prototype._normalText = function() {
         if(this.str[0] == '%' && this.hl('%', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^(\+|\-|\*|\/|\=|\:\=)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if(this.str[0] == '..' && this.hl('..', 'dsKeyword')) continue;
+        if(this.str[0] == '.' && this.str[1] == '.' && this.hl('..', 'dsKeyword')) continue;
         if((m = /^0[0-7]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^0x[\da-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
@@ -84,8 +84,8 @@ HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '\"' && this.hl('\"', 'dsString')) continue;
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
@@ -108,14 +108,14 @@ HL.prototype._contrSeq = function() {
         if(this.str[0] == '×' && this.hl('×', 'dsNormal')) continue;
         if((m = /^[a-zA-Z]+(\+?|\*{0,3})/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         if((m = /^[^a-zA-Z]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._toEndOfLine = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -123,7 +123,6 @@ HL.prototype._verb = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(.)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._verbEnd();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'undefined')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'undefined');
     }
 };
@@ -133,7 +132,6 @@ HL.prototype._verbEnd = function() {
         if((m = /^%1/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._#pop#pop#pop();continue;}
         if(this.str[0] == '×' && this.hl('×', 'undefined')) continue;
         if((m = /^[^%1\xd7]*/.exec(this.str)) && this.hl(m[0], 'undefined')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'undefined')) {this._#pop#pop#pop();continue;}
         this.hl(this.str[0], 'undefined');
     }
 };
@@ -143,8 +141,8 @@ HL.prototype._mathMode = function() {
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._mathContrSeq();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) return;
-        if(this.str[0] == '\)' && this.hl('\)', 'dsNormal')) return;
-        if(this.str[0] == '\]' && this.hl('\]', 'dsAlert')) continue;
+        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsNormal')) return;
+        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsAlert')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -154,7 +152,7 @@ HL.prototype._mathContrSeq = function() {
         if(this.str[0] == '×' && this.hl('×', 'dsNormal')) continue;
         if((m = /^[a-zA-Z]+\*?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         if((m = /^[^a-zA-Z]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -163,7 +161,7 @@ HL.prototype._comment = function() {
     while(this.pos < this.len) {
         if((m = /^(FIXME|TODO):?/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if(this.str[0] == '×' && this.hl('×', 'dsComment')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };

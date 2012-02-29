@@ -47,7 +47,7 @@ HL.prototype._default = function() {
         if((m = /^\bcharacter[*][0-9]+\b/i.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^\b(type|integer|complex|character|logical|intent|dimension)\b\s*[(]/i.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._find_paren();continue;}
         if((m = /^\b(type|integer|complex|character|logical|intent|dimension)\b/i.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if(this.str[0] == '::' && this.hl('::', 'dsDataType')) continue;
+        if(this.str[0] == ':' && this.str[1] == ':' && this.hl('::', 'dsDataType')) continue;
         if((m = /^(?:allocate|break|call|case|common|continue|cycle|deallocate|default|forall|where|elsewhere|equivalence|exit|external|for|go|goto|if|implicit|include|interface|intrinsic|namelist|none|nullify|operator|assignment|pause|procedure|pure|elemental|record|recursive|result|return|select|selectcase|stop|to|use|only|entry|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:abs|cabs|dabs|iabs|aimag|aint|dint|anint|dnint|ceiling|cmplx|dcmplx|dimag|floor|nint|idnint|int|idint|ifix|real|float|sngl|dble|dreal|aprime|dconjg|dfloat|ddmim|rand|modulo|conjg|dprod|dim|ddim|idim|max|amax0|amax1|max0|max1|dmax1|min|amin0|amin1|min0|min1|dmin1|mod|amod|dmod|sign|dsign|isign|acos|dacos|asin|dasin|atan|datan|atan2|datan2|cos|ccos|dcos|cosh|dcosh|exp|cexp|dexp|log|alog|dlog|clog|log10|alog10|dlog10|sin|csin|dsin|sinh|dsinh|sqrt|csqrt|dsqrt|tan|dtan|tanh|dtanh|achar|char|iachar|ichar|lge|lgt|lle|llt|adjustl|adjustr|index|len_trim|scan|verify|logical|exponent|fraction|nearest|rrspacing|scale|set_exponent|spacing|btest|iand|ibclr|ibits|ibset|ieor|ior|ishft|ishftc|not|mvbits|merge)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:associated|present|kind|len|digits|epsilon|huge|maxexponent|minexponent|precision|radix|range|tiny|bit_size|allocated|lbound|ubound|shape|size)\b/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
@@ -70,9 +70,9 @@ HL.prototype._default = function() {
         if((m = /^(#|cDEC\$|CDEC\$).*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^[cC\*].*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if((m = /^!.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '**' && this.hl('**', 'dsKeyword')) continue;
-        if(this.str[0] == '(/' && this.hl('(/', 'dsKeyword')) continue;
-        if(this.str[0] == '/)' && this.hl('/)', 'dsKeyword')) continue;
+        if(this.str[0] == '*' && this.str[1] == '*' && this.hl('**', 'dsKeyword')) continue;
+        if(this.str[0] == '(' && this.str[1] == '/' && this.hl('(/', 'dsKeyword')) continue;
+        if(this.str[0] == '/' && this.str[1] == ')' && this.hl('/)', 'dsKeyword')) continue;
         if((m = /^[&+\-*/=?[\]\^{|}~]/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^[(),]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\bmodule\s+procedure\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -117,9 +117,9 @@ HL.prototype._find_comments = function() {
 HL.prototype._find_symbols = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '**' && this.hl('**', 'dsKeyword')) continue;
-        if(this.str[0] == '(/' && this.hl('(/', 'dsKeyword')) continue;
-        if(this.str[0] == '/)' && this.hl('/)', 'dsKeyword')) continue;
+        if(this.str[0] == '*' && this.str[1] == '*' && this.hl('**', 'dsKeyword')) continue;
+        if(this.str[0] == '(' && this.str[1] == '/' && this.hl('(/', 'dsKeyword')) continue;
+        if(this.str[0] == '/' && this.str[1] == ')' && this.hl('/)', 'dsKeyword')) continue;
         if((m = /^[&+\-*/=?[\]\^{|}~]/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^[(),]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         this.hl(this.str[0], 'dsNormal');
@@ -178,9 +178,9 @@ HL.prototype._find_io_paren = function() {
         if((m = /^\b[0-9]+[de][+-]?[0-9]+([_]([0-9]+|[a-z][\w_]*))?/i.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^\b[0-9]+([_]([0-9]+|[a-zA-Z][\w_]*))?/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^\b[bozx](['][0-9a-f]+[']|["][0-9a-f]+["])/i.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == '**' && this.hl('**', 'dsKeyword')) continue;
-        if(this.str[0] == '(/' && this.hl('(/', 'dsKeyword')) continue;
-        if(this.str[0] == '/)' && this.hl('/)', 'dsKeyword')) continue;
+        if(this.str[0] == '*' && this.str[1] == '*' && this.hl('**', 'dsKeyword')) continue;
+        if(this.str[0] == '(' && this.str[1] == '/' && this.hl('(/', 'dsKeyword')) continue;
+        if(this.str[0] == '/' && this.str[1] == ')' && this.hl('/)', 'dsKeyword')) continue;
         if((m = /^[&+\-*/=?[\]\^{|}~]/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^[(),]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         this.hl(this.str[0], 'dsNormal');
@@ -195,9 +195,9 @@ HL.prototype._format_stmnt = function() {
         if((m = /^[:]/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string_1();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string_2();continue;}
-        if(this.str[0] == '**' && this.hl('**', 'dsKeyword')) continue;
-        if(this.str[0] == '(/' && this.hl('(/', 'dsKeyword')) continue;
-        if(this.str[0] == '/)' && this.hl('/)', 'dsKeyword')) continue;
+        if(this.str[0] == '*' && this.str[1] == '*' && this.hl('**', 'dsKeyword')) continue;
+        if(this.str[0] == '(' && this.str[1] == '/' && this.hl('(/', 'dsKeyword')) continue;
+        if(this.str[0] == '/' && this.str[1] == ')' && this.hl('/)', 'dsKeyword')) continue;
         if((m = /^[&+\-*/=?[\]\^{|}~]/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^[(),]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         this.hl(this.str[0], 'dsNormal');
@@ -247,7 +247,7 @@ HL.prototype._find_decls = function() {
         if((m = /^\bcharacter[*][0-9]+\b/i.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^\b(type|integer|complex|character|logical|intent|dimension)\b\s*[(]/i.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._find_paren();continue;}
         if((m = /^\b(type|integer|complex|character|logical|intent|dimension)\b/i.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if(this.str[0] == '::' && this.hl('::', 'dsDataType')) continue;
+        if(this.str[0] == ':' && this.str[1] == ':' && this.hl('::', 'dsDataType')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -256,7 +256,7 @@ HL.prototype._find_paren = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '(' && this.hl('(', 'dsDataType')) {this._find_paren();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsDataType')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDataType')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsDataType');
     }
 };

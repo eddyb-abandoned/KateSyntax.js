@@ -34,13 +34,13 @@ HL.prototype.hl = function hl(m,s) {
 HL.prototype._normal = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '(*' && this.hl('(*', 'dsComment')) {this._multilineComment();continue;}
+        if(this.str[0] == '(' && this.str[1] == '*' && this.hl('(*', 'dsComment')) {this._multilineComment();continue;}
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) continue;
         if(this.str[0] == ')' && this.hl(')', 'dsNormal')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) continue;
-        if(this.str[0] == '[|' && this.hl('[|', 'dsNormal')) continue;
-        if(this.str[0] == '|]' && this.hl('|]', 'dsNormal')) continue;
+        if(this.str[0] == '[' && this.str[1] == '|' && this.hl('[|', 'dsNormal')) continue;
+        if(this.str[0] == '|' && this.str[1] == ']' && this.hl('|]', 'dsNormal')) continue;
         if(this.str[0] == '[' && this.hl('[', 'dsNormal')) continue;
         if(this.str[0] == ']' && this.hl(']', 'dsNormal')) continue;
         if((m = /^(?:do)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -56,7 +56,7 @@ HL.prototype._normal = function() {
         if((m = /^#&IDENT;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringConstant();continue;}
         if((m = /^'(&ESC;|[^'])'/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == '<<' && this.hl('<<', 'dsString')) {this._camlp4QuotationConstant();continue;}
+        if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsString')) {this._camlp4QuotationConstant();continue;}
         if((m = /^<:&IDENT;</.exec(this.str)) && this.hl(m[0], 'dsString')) {this._camlp4QuotationConstant();continue;}
         if((m = /^(?:and|as|assert|asr|class|closed|constraint|downto|else|exception|external|false|for|fun|function|functor|if|in|inherit|initializer|land|lazy|let|lor|lsl|lsr|lxor|match|method|mod|mutable|new|of|or|parser|private|rec|then|to|true|try|type|val|virtual|when|while|with)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:declare|value|where)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -73,8 +73,8 @@ HL.prototype._normal = function() {
 HL.prototype._multilineComment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*)' && this.hl('*)', 'dsComment')) return;
-        if(this.str[0] == '(*' && this.hl('(*', 'dsComment')) {this._multilineComment();continue;}
+        if(this.str[0] == '*' && this.str[1] == ')' && this.hl('*)', 'dsComment')) return;
+        if(this.str[0] == '(' && this.str[1] == '*' && this.hl('(*', 'dsComment')) {this._multilineComment();continue;}
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -91,13 +91,13 @@ HL.prototype._block = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(?:end)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
-        if(this.str[0] == '(*' && this.hl('(*', 'dsComment')) {this._multilineComment();continue;}
+        if(this.str[0] == '(' && this.str[1] == '*' && this.hl('(*', 'dsComment')) {this._multilineComment();continue;}
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) continue;
         if(this.str[0] == ')' && this.hl(')', 'dsNormal')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) continue;
-        if(this.str[0] == '[|' && this.hl('[|', 'dsNormal')) continue;
-        if(this.str[0] == '|]' && this.hl('|]', 'dsNormal')) continue;
+        if(this.str[0] == '[' && this.str[1] == '|' && this.hl('[|', 'dsNormal')) continue;
+        if(this.str[0] == '|' && this.str[1] == ']' && this.hl('|]', 'dsNormal')) continue;
         if(this.str[0] == '[' && this.hl('[', 'dsNormal')) continue;
         if(this.str[0] == ']' && this.hl(']', 'dsNormal')) continue;
         if((m = /^(?:do)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -113,7 +113,7 @@ HL.prototype._block = function() {
         if((m = /^#&IDENT;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringConstant();continue;}
         if((m = /^'(&ESC;|[^'])'/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == '<<' && this.hl('<<', 'dsString')) {this._camlp4QuotationConstant();continue;}
+        if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsString')) {this._camlp4QuotationConstant();continue;}
         if((m = /^<:&IDENT;</.exec(this.str)) && this.hl(m[0], 'dsString')) {this._camlp4QuotationConstant();continue;}
         if((m = /^(?:and|as|assert|asr|class|closed|constraint|downto|else|exception|external|false|for|fun|function|functor|if|in|inherit|initializer|land|lazy|let|lor|lsl|lsr|lxor|match|method|mod|mutable|new|of|or|parser|private|rec|then|to|true|try|type|val|virtual|when|while|with)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:declare|value|where)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -131,13 +131,13 @@ HL.prototype._sig = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(?:end)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
-        if(this.str[0] == '(*' && this.hl('(*', 'dsComment')) {this._multilineComment();continue;}
+        if(this.str[0] == '(' && this.str[1] == '*' && this.hl('(*', 'dsComment')) {this._multilineComment();continue;}
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) continue;
         if(this.str[0] == ')' && this.hl(')', 'dsNormal')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) continue;
-        if(this.str[0] == '[|' && this.hl('[|', 'dsNormal')) continue;
-        if(this.str[0] == '|]' && this.hl('|]', 'dsNormal')) continue;
+        if(this.str[0] == '[' && this.str[1] == '|' && this.hl('[|', 'dsNormal')) continue;
+        if(this.str[0] == '|' && this.str[1] == ']' && this.hl('|]', 'dsNormal')) continue;
         if(this.str[0] == '[' && this.hl('[', 'dsNormal')) continue;
         if(this.str[0] == ']' && this.hl(']', 'dsNormal')) continue;
         if((m = /^(?:do)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -153,7 +153,7 @@ HL.prototype._sig = function() {
         if((m = /^#&IDENT;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringConstant();continue;}
         if((m = /^'(&ESC;|[^'])'/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == '<<' && this.hl('<<', 'dsString')) {this._camlp4QuotationConstant();continue;}
+        if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsString')) {this._camlp4QuotationConstant();continue;}
         if((m = /^<:&IDENT;</.exec(this.str)) && this.hl(m[0], 'dsString')) {this._camlp4QuotationConstant();continue;}
         if((m = /^(?:and|as|assert|asr|class|closed|constraint|downto|else|exception|external|false|for|fun|function|functor|if|in|inherit|initializer|land|lazy|let|lor|lsl|lsr|lxor|match|method|mod|mutable|new|of|or|parser|private|rec|then|to|true|try|type|val|virtual|when|while|with)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:declare|value|where)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -171,13 +171,13 @@ HL.prototype._struct = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(?:end)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
-        if(this.str[0] == '(*' && this.hl('(*', 'dsComment')) {this._multilineComment();continue;}
+        if(this.str[0] == '(' && this.str[1] == '*' && this.hl('(*', 'dsComment')) {this._multilineComment();continue;}
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) continue;
         if(this.str[0] == ')' && this.hl(')', 'dsNormal')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) continue;
-        if(this.str[0] == '[|' && this.hl('[|', 'dsNormal')) continue;
-        if(this.str[0] == '|]' && this.hl('|]', 'dsNormal')) continue;
+        if(this.str[0] == '[' && this.str[1] == '|' && this.hl('[|', 'dsNormal')) continue;
+        if(this.str[0] == '|' && this.str[1] == ']' && this.hl('|]', 'dsNormal')) continue;
         if(this.str[0] == '[' && this.hl('[', 'dsNormal')) continue;
         if(this.str[0] == ']' && this.hl(']', 'dsNormal')) continue;
         if((m = /^(?:do)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -193,7 +193,7 @@ HL.prototype._struct = function() {
         if((m = /^#&IDENT;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringConstant();continue;}
         if((m = /^'(&ESC;|[^'])'/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == '<<' && this.hl('<<', 'dsString')) {this._camlp4QuotationConstant();continue;}
+        if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsString')) {this._camlp4QuotationConstant();continue;}
         if((m = /^<:&IDENT;</.exec(this.str)) && this.hl(m[0], 'dsString')) {this._camlp4QuotationConstant();continue;}
         if((m = /^(?:and|as|assert|asr|class|closed|constraint|downto|else|exception|external|false|for|fun|function|functor|if|in|inherit|initializer|land|lazy|let|lor|lsl|lsr|lxor|match|method|mod|mutable|new|of|or|parser|private|rec|then|to|true|try|type|val|virtual|when|while|with)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:declare|value|where)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -211,13 +211,13 @@ HL.prototype._object = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(?:end)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
-        if(this.str[0] == '(*' && this.hl('(*', 'dsComment')) {this._multilineComment();continue;}
+        if(this.str[0] == '(' && this.str[1] == '*' && this.hl('(*', 'dsComment')) {this._multilineComment();continue;}
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) continue;
         if(this.str[0] == ')' && this.hl(')', 'dsNormal')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) continue;
-        if(this.str[0] == '[|' && this.hl('[|', 'dsNormal')) continue;
-        if(this.str[0] == '|]' && this.hl('|]', 'dsNormal')) continue;
+        if(this.str[0] == '[' && this.str[1] == '|' && this.hl('[|', 'dsNormal')) continue;
+        if(this.str[0] == '|' && this.str[1] == ']' && this.hl('|]', 'dsNormal')) continue;
         if(this.str[0] == '[' && this.hl('[', 'dsNormal')) continue;
         if(this.str[0] == ']' && this.hl(']', 'dsNormal')) continue;
         if((m = /^(?:do)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -233,7 +233,7 @@ HL.prototype._object = function() {
         if((m = /^#&IDENT;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringConstant();continue;}
         if((m = /^'(&ESC;|[^'])'/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == '<<' && this.hl('<<', 'dsString')) {this._camlp4QuotationConstant();continue;}
+        if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsString')) {this._camlp4QuotationConstant();continue;}
         if((m = /^<:&IDENT;</.exec(this.str)) && this.hl(m[0], 'dsString')) {this._camlp4QuotationConstant();continue;}
         if((m = /^(?:and|as|assert|asr|class|closed|constraint|downto|else|exception|external|false|for|fun|function|functor|if|in|inherit|initializer|land|lazy|let|lor|lsl|lsr|lxor|match|method|mod|mutable|new|of|or|parser|private|rec|then|to|true|try|type|val|virtual|when|while|with)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:declare|value|where)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -268,8 +268,8 @@ HL.prototype._moduleEnv2 = function() {
 HL.prototype._camlp4QuotationConstant = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '>>' && this.hl('>>', 'dsString')) return;
-        if(this.str[0] == '<<' && this.hl('<<', 'dsString')) {this._camlp4QuotationConstant();continue;}
+        if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsString')) return;
+        if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsString')) {this._camlp4QuotationConstant();continue;}
         if((m = /^<:&IDENT;</.exec(this.str)) && this.hl(m[0], 'dsString')) {this._camlp4QuotationConstant();continue;}
         if((m = /^\\(\\|>>|<<)/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^\\<:&IDENT;</.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;

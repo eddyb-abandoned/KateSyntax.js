@@ -59,7 +59,7 @@ HL.prototype._normal = function() {
 HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -70,7 +70,7 @@ HL.prototype._systemvarcontext = function() {
         if(this.str[0] == '.' && this.hl('.', 'dsChar')) return;
         if(this.str[0] == ' ' && this.hl(' ', 'dsDecVal')) return;
         if((m = /^(?:dpi|dtor|map|pi|radeg|values|err|error_state|error|err_string|except|mouse|msg_prefix|syserror|syserr_string|warn|dir|dlm_path|edit_input|help_path|journal|more|path|prompt|quiet|version|c|d|order|p|x|y|z|stime)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsChar')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsChar');
     }
 };

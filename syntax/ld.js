@@ -44,7 +44,7 @@ HL.prototype._normal = function() {
         if((m = /^(COMMON|\/DISCARD\/)/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) continue;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -52,7 +52,7 @@ HL.prototype._normal = function() {
 HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };

@@ -46,7 +46,7 @@ HL.prototype._normal = function() {
 HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -54,7 +54,7 @@ HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };

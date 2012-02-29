@@ -36,8 +36,8 @@ HL.prototype._start = function() {
     while(this.pos < this.len) {
         if((m = /^\{%\s*end[a-z]+\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         if((m = /^\{%\s*comment\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._templateComment();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
-        if(this.str[0] == '{%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^<!--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
@@ -65,8 +65,8 @@ HL.prototype._inBlock = function() {
     while(this.pos < this.len) {
         if(/^\{%\s*end[a-z]+\s*%\}/.exec(this.str)) return;
         if((m = /^\{%\s*comment\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._templateComment();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
-        if(this.str[0] == '{%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^<!--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
@@ -93,8 +93,8 @@ HL.prototype._findTemplate = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\{%\s*comment\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._templateComment();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
-        if(this.str[0] == '{%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -108,23 +108,23 @@ HL.prototype._templateComment = function() {
 HL.prototype._templateVar = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '}}' && this.hl('}}', 'dsFunction')) return;
+        if(this.str[0] == '}' && this.str[1] == '}' && this.hl('}}', 'dsFunction')) return;
         if(this.str[0] == '|' && this.hl('|', 'dsOthers')) {this._templateFilter();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsError')) continue;
-        if(this.str[0] == '{%' && this.hl('{%', 'dsError')) continue;
-        if(this.str[0] == '%}' && this.hl('%}', 'dsError')) continue;
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsError')) continue;
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsError')) continue;
+        if(this.str[0] == '%' && this.str[1] == '}' && this.hl('%}', 'dsError')) continue;
         this.hl(this.str[0], 'dsFunction');
     }
 };
 HL.prototype._templateFilter = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '}}' && this.hl('}}', 'dsFunction')) {this._#pop#pop();continue;}
+        if(this.str[0] == '}' && this.str[1] == '}' && this.hl('}}', 'dsFunction')) {this._#pop#pop();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleAString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._singleQString();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsError')) continue;
-        if(this.str[0] == '{%' && this.hl('{%', 'dsError')) continue;
-        if(this.str[0] == '%}' && this.hl('%}', 'dsError')) continue;
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsError')) continue;
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsError')) continue;
+        if(this.str[0] == '%' && this.str[1] == '}' && this.hl('%}', 'dsError')) continue;
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -148,13 +148,13 @@ HL.prototype._inBlockTag = function() {
     while(this.pos < this.len) {
         if((m = /^\{%\s*end%1\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsFunction')) {this._#pop#pop#pop();continue;}
         if(/^\{%\s*end[a-z]+\s*%\}/.exec(this.str)) {this._nonMatchingTag();continue;}
-        if(this.str[0] == '%}' && this.hl('%}', 'dsFunction')) {this._inBlock();continue;}
-        if(this.str[0] == '%}' && this.hl('%}', 'dsFunction')) {this._#pop#pop();continue;}
+        if(this.str[0] == '%' && this.str[1] == '}' && this.hl('%}', 'dsFunction')) {this._inBlock();continue;}
+        if(this.str[0] == '%' && this.str[1] == '}' && this.hl('%}', 'dsFunction')) {this._#pop#pop();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleAString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._singleQString();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsError')) continue;
-        if(this.str[0] == '{%' && this.hl('{%', 'dsError')) continue;
-        if(this.str[0] == '}}' && this.hl('}}', 'dsError')) continue;
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsError')) continue;
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsError')) continue;
+        if(this.str[0] == '}' && this.str[1] == '}' && this.hl('}}', 'dsError')) continue;
         this.hl(this.str[0], 'dsFunction');
     }
 };
@@ -169,12 +169,12 @@ HL.prototype._nonMatchingTag = function() {
 HL.prototype._inTemplateTag = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '%}' && this.hl('%}', 'dsFunction')) {this._#pop#pop();continue;}
+        if(this.str[0] == '%' && this.str[1] == '}' && this.hl('%}', 'dsFunction')) {this._#pop#pop();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleAString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._singleQString();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsError')) continue;
-        if(this.str[0] == '{%' && this.hl('{%', 'dsError')) continue;
-        if(this.str[0] == '}}' && this.hl('}}', 'dsError')) continue;
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsError')) continue;
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsError')) continue;
+        if(this.str[0] == '}' && this.str[1] == '}' && this.hl('}}', 'dsError')) continue;
         this.hl(this.str[0], 'dsFunction');
     }
 };
@@ -257,8 +257,8 @@ HL.prototype._comment = function() {
     while(this.pos < this.len) {
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if((m = /^\{%\s*comment\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._templateComment();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
-        if(this.str[0] == '{%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if((m = /^-->/.exec(this.str)) && this.hl(m[0], 'dsComment')) return;
         if((m = /^-(-(?!->))+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
@@ -278,7 +278,7 @@ HL.prototype._cDATA = function() {
 HL.prototype._pI = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '?>' && this.hl('?>', 'dsKeyword')) return;
+        if(this.str[0] == '?' && this.str[1] == '>' && this.hl('?>', 'dsKeyword')) return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -335,14 +335,14 @@ HL.prototype._doctypeMarkupdeclSQ = function() {
 HL.prototype._elOpen = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) return;
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) return;
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) return;
         if((m = /^&name;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^\s+&name;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '=' && this.hl('=', 'dsOthers')) {this._value();continue;}
         if((m = /^\{%\s*comment\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._templateComment();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
-        if(this.str[0] == '{%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
         if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -374,14 +374,14 @@ HL.prototype._elClose3 = function() {
 HL.prototype._cSS = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) return;
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) return;
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) {this._cSSContent();continue;}
         if((m = /^&name;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^\s+&name;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '=' && this.hl('=', 'dsOthers')) {this._value();continue;}
         if((m = /^\{%\s*comment\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._templateComment();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
-        if(this.str[0] == '{%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
         if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -391,19 +391,19 @@ HL.prototype._cSSContent = function() {
     while(this.pos < this.len) {
         if((m = /^</style\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._elClose2();continue;}
         if((m = /^\{%\s*comment\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._templateComment();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
-        if(this.str[0] == '{%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._jS = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) return;
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) return;
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) {this._jSContent();continue;}
         if((m = /^\{%\s*comment\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._templateComment();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
-        if(this.str[0] == '{%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
         if((m = /^&name;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^\s+&name;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '=' && this.hl('=', 'dsOthers')) {this._value();continue;}
@@ -417,8 +417,8 @@ HL.prototype._jSContent = function() {
         if((m = /^</script\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._elClose2();continue;}
         if((m = /^//(?=.*</script\b)/i.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jSCommentClose();continue;}
         if((m = /^\{%\s*comment\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._templateComment();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
-        if(this.str[0] == '{%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -427,9 +427,9 @@ HL.prototype._jSCommentClose = function() {
     while(this.pos < this.len) {
         if((m = /^</script\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._elClose3();continue;}
         if((m = /^\{%\s*comment\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._templateComment();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
-        if(this.str[0] == '{%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -448,11 +448,10 @@ HL.prototype._valueNQ = function() {
         if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^[&<]/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         if((m = /^\{%\s*comment\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._templateComment();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
-        if(this.str[0] == '{%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
         if((m = /^/(?!>)/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^[^/><"'\s]/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -461,8 +460,8 @@ HL.prototype._valueDQ = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._#pop#pop();continue;}
         if((m = /^\{%\s*comment\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._templateComment();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
-        if(this.str[0] == '{%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
         if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^[&<]/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         this.hl(this.str[0], 'dsString');
@@ -473,8 +472,8 @@ HL.prototype._valueSQ = function() {
     while(this.pos < this.len) {
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._#pop#pop();continue;}
         if((m = /^\{%\s*comment\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._templateComment();continue;}
-        if(this.str[0] == '{{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
-        if(this.str[0] == '{%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
+        if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
+        if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}
         if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^[&<]/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         this.hl(this.str[0], 'dsString');

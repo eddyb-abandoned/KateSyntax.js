@@ -51,7 +51,6 @@ HL.prototype._2XMLDeclVersionEq = function() {
     while(this.pos < this.len) {
         if((m = /^\s*=\s*/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._3XMLDeclVersion();continue;}
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsError')) {this._5XMLDeclEncodingEq();continue;}
         this.hl(this.str[0], 'dsError');
     }
 };
@@ -155,14 +154,14 @@ HL.prototype._12CommentAfterXMLDecl = function() {
     while(this.pos < this.len) {
         if((m = /^--->/.exec(this.str)) && this.hl(m[0], 'dsError')) return;
         if((m = /^-->/.exec(this.str)) && this.hl(m[0], 'dsComment')) return;
-        if(this.str[0] == '--' && this.hl('--', 'dsError')) continue;
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsError')) continue;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._13PIAfterXMLDecl = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '?>' && this.hl('?>', 'dsKeyword')) return;
+        if(this.str[0] == '?' && this.str[1] == '>' && this.hl('?>', 'dsKeyword')) return;
         this.hl(this.str[0], 'undefined');
     }
 };
@@ -257,7 +256,7 @@ HL.prototype._23DoctypeDeclIS = function() {
         if((m = /^\s*<\?xml-stylesheet(\s+|$)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._78PIInsideIS();continue;}
         if((m = /^\s*<\??[xX][mM][lL]/.exec(this.str)) && this.hl(m[0], 'dsError')) {this._78PIInsideIS();continue;}
         if((m = /^\s*<\?[a-zA-Z_][a-zA-Z0-9_-]*(:[a-zA-Z0-9_-]*)?(\s+|$)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._78PIInsideIS();continue;}
-        if(this.str[0] == ']>' && this.hl(']>', 'dsKeyword')) {this._79Outside();continue;}
+        if(this.str[0] == ']' && this.str[1] == '>' && this.hl(']>', 'dsKeyword')) {this._79Outside();continue;}
         this.hl(this.str[0], 'dsError');
     }
 };
@@ -310,7 +309,7 @@ HL.prototype._29MixedLongEndOrContinue = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '|' && this.hl('|', 'dsKeyword')) return;
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._#pop#pop();continue;}
-        if(this.str[0] == ')*' && this.hl(')*', 'dsKeyword')) {this._37ElementEnd();continue;}
+        if(this.str[0] == ')' && this.str[1] == '*' && this.hl(')*', 'dsKeyword')) {this._37ElementEnd();continue;}
         this.hl(this.str[0], 'dsError');
     }
 };
@@ -742,14 +741,14 @@ HL.prototype._77CommentInsideIS = function() {
     while(this.pos < this.len) {
         if((m = /^--->/.exec(this.str)) && this.hl(m[0], 'dsError')) {this._23DoctypeDeclIS();continue;}
         if((m = /^-->/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._23DoctypeDeclIS();continue;}
-        if(this.str[0] == '--' && this.hl('--', 'dsError')) continue;
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsError')) continue;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._78PIInsideIS = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '?>' && this.hl('?>', 'dsKeyword')) {this._23DoctypeDeclIS();continue;}
+        if(this.str[0] == '?' && this.str[1] == '>' && this.hl('?>', 'dsKeyword')) {this._23DoctypeDeclIS();continue;}
         this.hl(this.str[0], 'undefined');
     }
 };
@@ -779,7 +778,7 @@ HL.prototype._79Outside = function() {
 HL.prototype._80STag = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) {this._79Outside();continue;}
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) {this._79Outside();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) {this._79Outside();continue;}
         if((m = /^(xmlns:(\w|[_.-])*|xmlns|xml:(lang|base|space))/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._81STagAttribute();continue;}
         if((m = /^[xX][mM][lL](\w|[_.-])*(:(\w|[_.-])+)?/.exec(this.str)) && this.hl(m[0], 'dsError')) {this._81STagAttribute();continue;}
@@ -850,14 +849,14 @@ HL.prototype._87CommentInsideIS = function() {
     while(this.pos < this.len) {
         if((m = /^--->/.exec(this.str)) && this.hl(m[0], 'dsError')) {this._79Outside();continue;}
         if((m = /^-->/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._79Outside();continue;}
-        if(this.str[0] == '--' && this.hl('--', 'dsError')) continue;
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsError')) continue;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._88PIInsideIS = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '?>' && this.hl('?>', 'dsKeyword')) {this._79Outside();continue;}
+        if(this.str[0] == '?' && this.str[1] == '>' && this.hl('?>', 'dsKeyword')) {this._79Outside();continue;}
         this.hl(this.str[0], 'undefined');
     }
 };

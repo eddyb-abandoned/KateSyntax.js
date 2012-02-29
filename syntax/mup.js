@@ -40,7 +40,7 @@ HL.prototype._normal = function() {
         if((m = /^\bnew(score|page)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^\bmultirest\s+[0-9]+\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^\bunset\b/.exec(this.str)) && this.hl(m[0], 'dsFloat')) {this._unset();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^\\(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:print|left|right|center|title|paragraph|postscript)\b/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) {this._printCommand();continue;}
@@ -81,7 +81,7 @@ HL.prototype._parameter = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '=' && this.hl('=', 'dsNormal')) {this._value();continue;}
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsChar')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsChar');
     }
 };
@@ -107,7 +107,7 @@ HL.prototype._value = function() {
         if((m = /^[A-Z][A-Z0-9_]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '@' && this.hl('@', 'dsOthers')) continue;
         if((m = /^[a-z][a-z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsFloat')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsFloat');
     }
 };
@@ -117,7 +117,7 @@ HL.prototype._unset = function() {
         if((m = /^(?:aboveorder|addtranspose|barstyle|beamslope|beamstyle|beloworder|betweenorder|bottommargin|brace|bracket|cancelkey|chorddist|clef|crescdist|defoct|dist|division|dyndist|endingstyle|firstpage|font|fontfamily|gridfret|gridsatend|gridscale|gridswhereused|key|label|label2|leftmargin|lyricsalign|lyricsfont|lyricsfontfamily|lyricssize|measnum|measnumfont|measnumfontfamily|measnumsize|noteheads|numbermrpt|ontheline|packexp|packfact|pad|pageheight|pagewidth|panelsperpage|pedstyle|printmultnum|rehstyle|release|restcombine|restsymmult|rightmargin|scale|scorepad|scoresep|size|stafflines|staffpad|staffs|staffscale|staffsep|stemlen|swingunit|sylposition|tabwhitebox|time|timeunit|topmargin|transpose|units|visible|vscheme|warn)\b/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^[\s,]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\w+/.exec(this.str)) && this.hl(m[0], 'dsError')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsChar')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsChar');
     }
 };
@@ -128,7 +128,7 @@ HL.prototype._printCommand = function() {
         if((m = /^(?:rom|bold|ital|boldital)\b/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\bnl\b/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\([0-9]+\)/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsBaseN')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsBaseN');
     }
 };
@@ -149,7 +149,7 @@ HL.prototype._barline = function() {
         if((m = /^[A-Z][A-Z0-9_]*(?=\.[xynews]\b)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._macroLocation();continue;}
         if((m = /^[A-Z][A-Z0-9_]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '@' && this.hl('@', 'dsOthers')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDecVal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsDecVal');
     }
 };
@@ -166,7 +166,7 @@ HL.prototype._barRehearsal = function() {
         if((m = /^[A-Z][A-Z0-9_]*(?=\.[xynews]\b)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._macroLocation();continue;}
         if((m = /^[A-Z][A-Z0-9_]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '@' && this.hl('@', 'dsOthers')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDecVal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsDecVal');
     }
 };
@@ -186,7 +186,7 @@ HL.prototype._note = function() {
         if((m = /^[A-Z][A-Z0-9_]*(?=\.[xynews]\b)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._macroLocation();continue;}
         if((m = /^[A-Z][A-Z0-9_]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '@' && this.hl('@', 'dsOthers')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -207,7 +207,7 @@ HL.prototype._bracket = function() {
         if((m = /^[A-Z][A-Z0-9_]*(?=\.[xynews]\b)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._macroLocation();continue;}
         if((m = /^[A-Z][A-Z0-9_]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '@' && this.hl('@', 'dsOthers')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -223,7 +223,7 @@ HL.prototype._bracketWith = function() {
         if((m = /^[A-Z][A-Z0-9_]*(?=\.[xynews]\b)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._macroLocation();continue;}
         if((m = /^[A-Z][A-Z0-9_]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '@' && this.hl('@', 'dsOthers')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -237,7 +237,7 @@ HL.prototype._bracketHs = function() {
         if((m = /^[A-Z][A-Z0-9_]*(?=\.[xynews]\b)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._macroLocation();continue;}
         if((m = /^[A-Z][A-Z0-9_]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '@' && this.hl('@', 'dsOthers')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -245,7 +245,7 @@ HL.prototype._noteProbably = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[a-grs]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -253,7 +253,7 @@ HL.prototype._tuplet = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\s*(above|below)?\s*[0-9]{1,2}(y|n|num)?(\s*,\s*[0-9]{1,2}\.?([+][0-9]{1,2}\.?)*)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -269,7 +269,7 @@ HL.prototype._location = function() {
         if((m = /^[A-Z][A-Z0-9_]*(?=\.[xynews]\b)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._macroLocation();continue;}
         if((m = /^[A-Z][A-Z0-9_]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '@' && this.hl('@', 'dsOthers')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -277,14 +277,14 @@ HL.prototype._locationProbably = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[h-qt-z]|_[a-z][a-z_0-9]*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'undefined')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'undefined');
     }
 };
 HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -358,7 +358,7 @@ HL.prototype._macro = function() {
         if((m = /^[A-Z][A-Z0-9_]*(?=\.[xynews]\b)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._macroLocation();continue;}
         if((m = /^[A-Z][A-Z0-9_]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '@' && this.hl('@', 'dsOthers')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsOthers')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -366,7 +366,7 @@ HL.prototype._macroLocation = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^../.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsKeyword');
     }
 };

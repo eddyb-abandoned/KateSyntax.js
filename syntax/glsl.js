@@ -43,8 +43,8 @@ HL.prototype._normal = function() {
         if((m = /^0[0-7]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^0x[\da-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) continue;
         if(this.str[0] == '#' && this.hl('#', 'dsOthers')) {this._preprocessor();continue;}
@@ -58,7 +58,7 @@ HL.prototype._member = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\b[_\w][_\w\d]*(?=[\s]*)/.exec(this.str)) && this.hl(m[0], 'dsFunction')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -66,14 +66,14 @@ HL.prototype._commentar1 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(?:FIXME|TODO|BUG)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._commentar2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         if((m = /^(?:FIXME|TODO|BUG)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         this.hl(this.str[0], 'dsComment');
     }
@@ -81,7 +81,7 @@ HL.prototype._commentar2 = function() {
 HL.prototype._preprocessor = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsOthers')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsOthers');
     }
 };

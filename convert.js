@@ -76,8 +76,6 @@ httpGetFile('http://kate-editor.org/syntax/update-3.7.xml', function(data) {
                         contexts[ctxName].lineEndContext = ctx.attr('lineEndContext');
                         if(contexts[ctxName].lineEndContext == '#stay')
                             delete contexts[ctxName].lineEndContext;
-                        else
-                            contexts[ctxName].lineEndContext = ctxAction(contexts[ctxName].lineEndContext);
                         contexts[ctxName].childs = ctx.childs();
                         contexts[ctxName].rules = [];
                     }
@@ -92,8 +90,8 @@ httpGetFile('http://kate-editor.org/syntax/update-3.7.xml', function(data) {
                                 var c = '\''+rule.attr('char')+'\'';
                                 ret.match = ret.matchHL = 'this.str[0] == '+c, ret.hl = c;
                             } else if(name == 'detect2chars') {
-                                var c = '\''+rule.attr('char')+rule.attr('char1')+'\'';
-                                ret.match = ret.matchHL = 'this.str[0] == '+c, ret.hl = c;
+                                var c1 = rule.attr('char'), c2 = rule.attr('char1');
+                                ret.match = ret.matchHL = 'this.str[0] == \''+c1+'\' && this.str[1] == \''+c2+'\'', ret.hl = '\''+c1+c2+'\'';
                             } else if(name == 'anychar')
                                 regex = '[' + rule.attr('string').replace(/[\]^-]/g, '\\$&') + ']';
                             else if(name == 'stringdetect')
@@ -185,8 +183,12 @@ httpGetFile('http://kate-editor.org/syntax/update-3.7.xml', function(data) {
                             else
                                 code += '\t\tif('+rule.matchHL+' && this.hl('+rule.hl+', \''+rule.style+'\')) '+rule.action+'\n';
                         }
-                        if(contexts[ctxName].lineEndContext)
-                            code += '\t\tif(this.str[0] == \'\\n\' && this.hl(\'\\n\', \''+contexts[ctxName].style+'\')) '+contexts[ctxName].lineEndContext+'\n';
+                        if(contexts[ctxName].lineEndContext) {
+                            if(contexts[ctxName].lineEndContext == '#pop')
+                                code += '\t\tif(this.str[0] == \'\\n\') return;\n';
+                            else
+                                console.error('TODO: lineEndContext='+contexts[ctxName].lineEndContext);
+                        }
                         code += '\t\tthis.hl(this.str[0], \''+contexts[ctxName].style+'\');\n'+
                         '\t}\n'+
                         '};\n';

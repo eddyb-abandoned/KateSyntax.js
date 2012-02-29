@@ -37,7 +37,7 @@ HL.prototype._normal = function() {
         if((m = /^\/\//.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._singleLineComment();continue;}
         if((m = /^\/\*/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._multiLineComment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._normalString();continue;}
-        if(this.str[0] == '$"' && this.hl('$"', 'dsString')) {this._stringInterpolation();continue;}
+        if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringInterpolation();continue;}
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^(?:abstract|def|delegate|event|extern|internal|mutable|override|public|private|protected|sealed|static|volatile|virtual|new)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -50,8 +50,8 @@ HL.prototype._normal = function() {
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '(' && this.hl('(', 'dsKeyword')) continue;
         if(this.str[0] == ')' && this.hl(')', 'dsKeyword')) continue;
-        if(this.str[0] == '<[' && this.hl('<[', 'dsChar')) continue;
-        if(this.str[0] == ']>' && this.hl(']>', 'dsChar')) continue;
+        if(this.str[0] == '<' && this.str[1] == '[' && this.hl('<[', 'dsChar')) continue;
+        if(this.str[0] == ']' && this.str[1] == '>' && this.hl(']>', 'dsChar')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -59,7 +59,7 @@ HL.prototype._singleLineComment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\/\//.exec(this.str)) && this.hl(m[0], 'dsComment')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -75,10 +75,10 @@ HL.prototype._normalString = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         if((m = /^\{[0-9]+\}/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
-        if(this.str[0] == '\"' && this.hl('\"', 'dsBaseN')) continue;
-        if(this.str[0] == '\\' && this.hl('\\', 'dsBaseN')) continue;
-        if(this.str[0] == '\t' && this.hl('\t', 'dsBaseN')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsBaseN')) continue;
+        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsBaseN')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsBaseN')) continue;
+        if(this.str[0] == '\' && this.str[1] == 't' && this.hl('\t', 'dsBaseN')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'n' && this.hl('\n', 'dsBaseN')) continue;
         if((m = /^\\u0008/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\\u000D/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\\u000d/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
@@ -93,10 +93,10 @@ HL.prototype._stringInterpolation = function() {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         if((m = /^\{[0-9]+\}/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\$(\S)+\s/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
-        if(this.str[0] == '\"' && this.hl('\"', 'dsBaseN')) continue;
-        if(this.str[0] == '\\' && this.hl('\\', 'dsBaseN')) continue;
-        if(this.str[0] == '\t' && this.hl('\t', 'dsBaseN')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsBaseN')) continue;
+        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsBaseN')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsBaseN')) continue;
+        if(this.str[0] == '\' && this.str[1] == 't' && this.hl('\t', 'dsBaseN')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'n' && this.hl('\n', 'dsBaseN')) continue;
         if((m = /^\\u0008/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\\u000D/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\\u000d/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;

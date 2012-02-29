@@ -70,7 +70,7 @@ HL.prototype._top_Level = function() {
 HL.prototype._commentary = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -86,7 +86,6 @@ HL.prototype._code_Folding = function() {
         if((m = /^\b(fi)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\b(function)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\b(end)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._top_Level();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };

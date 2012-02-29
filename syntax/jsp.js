@@ -40,7 +40,7 @@ HL.prototype._normal = function() {
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
         if((m = /^<!--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._htmlComment();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         if((m = /^<\s*\/?\s*\$?[a-zA-Z0-9_]*:\$?[a-zA-Z0-9_]*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._jspCustomTag();continue;}
         if((m = /^<!\[CDATA\[/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^]]>/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -51,11 +51,11 @@ HL.prototype._normal = function() {
 HL.prototype._jspStandardDirective = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '%>' && this.hl('%>', 'dsNormal')) return;
+        if(this.str[0] == '%' && this.str[1] == '>' && this.hl('%>', 'dsNormal')) return;
         if((m = /^\s*=\s*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspStandardDirectiveValue();continue;}
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         if((m = /^<\s*\/?\s*\$?\w*:\$?\w*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._jspCustomTag();continue;}
         this.hl(this.str[0], 'dsOthers');
     }
@@ -67,7 +67,7 @@ HL.prototype._jspXmlDirective = function() {
         if((m = /^\s*=\s*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspXmlDirectiveValue();continue;}
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -85,7 +85,7 @@ HL.prototype._jspCustomTag = function() {
         if((m = /^\s*=\s*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspCustomTagValue();continue;}
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -94,10 +94,10 @@ HL.prototype._jspStandardDirectiveValue = function() {
     while(this.pos < this.len) {
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._jspDoubleQuotedParamValue();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._jspSingleQuotedParamValue();continue;}
-        if(this.str[0] == '%>' && this.hl('%>', 'dsNormal')) {this._#pop#pop();continue;}
+        if(this.str[0] == '%' && this.str[1] == '>' && this.hl('%>', 'dsNormal')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -106,7 +106,7 @@ HL.prototype._jspXmlDirectiveValue = function() {
     while(this.pos < this.len) {
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._jspDoubleQuotedParamValue();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._jspSingleQuotedParamValue();continue;}
         if((m = /^\s*\/?\s*>/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._#pop#pop();continue;}
@@ -118,7 +118,7 @@ HL.prototype._jspCustomTagValue = function() {
     while(this.pos < this.len) {
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsDataType')) {this._jspDoubleQuotedCustomTagValue();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsDataType')) {this._jspSingleQuotedCustomTagValue();continue;}
         if((m = /^\/?>/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._#pop#pop();continue;}
@@ -131,7 +131,7 @@ HL.prototype._jspDoubleQuotedParamValue = function() {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._#pop#pop();continue;}
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -141,7 +141,7 @@ HL.prototype._jspSingleQuotedParamValue = function() {
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._#pop#pop();continue;}
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -151,7 +151,7 @@ HL.prototype._jspDoubleQuotedCustomTagValue = function() {
         if(this.str[0] == '"' && this.hl('"', 'dsDataType')) {this._#pop#pop();continue;}
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         this.hl(this.str[0], 'dsDataType');
     }
 };
@@ -161,14 +161,14 @@ HL.prototype._jspSingleQuotedCustomTagValue = function() {
         if(this.str[0] == ''' && this.hl(''', 'dsDataType')) {this._#pop#pop();continue;}
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         this.hl(this.str[0], 'dsDataType');
     }
 };
 HL.prototype._jspScriptlet = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '%>' && this.hl('%>', 'dsNormal')) return;
+        if(this.str[0] == '%' && this.str[1] == '>' && this.hl('%>', 'dsNormal')) return;
         if((m = /^<\s*jsp:(declaration|expression|scriptlet)\s*>/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
         if((m = /^(?:abstract|assert|break|case|catch|class|continue|default|do|else|extends|false|finally|for|goto|if|implements|import|instanceof|interface|native|new|null|package|private|protected|public|return|super|strictfp|switch|synchronized|this|throws|throw|transient|true|try|volatile|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:and|eq|gt|true|instanceof|or|ne|le|false|empty|not|lt|ge|null|div|mod)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -185,8 +185,8 @@ HL.prototype._jspScriptlet = function() {
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) continue;
         if((m = /^[!%&()+,\-<=>?[\]\^{|}~]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._javaSingleLineComment();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._javaMultiLineComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._javaSingleLineComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._javaMultiLineComment();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -212,21 +212,21 @@ HL.prototype._jspExpression = function() {
 HL.prototype._javaSingleLineComment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._javaMultiLineComment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._javaString = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\"' && this.hl('\"', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
@@ -238,7 +238,7 @@ HL.prototype._htmlAttribute = function() {
         if((m = /^\s*=\s*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._htmlValue();continue;}
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -247,7 +247,7 @@ HL.prototype._htmlValue = function() {
     while(this.pos < this.len) {
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         if((m = /^<\s*\/?\s*\$?\w*:\$?\w*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._jspCustomTag();continue;}
         if((m = /^("|&quot;|&#34;)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._htmlDoubleQuotedValue();continue;}
         if((m = /^('|&#39;)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._htmlSingleQuotedValue();continue;}
@@ -261,7 +261,7 @@ HL.prototype._htmlDoubleQuotedValue = function() {
     while(this.pos < this.len) {
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         if((m = /^<\s*\/?\s*\$?\w*:\$?\w*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._jspCustomTag();continue;}
         if((m = /^("|&quot;|&#34;)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsDataType');
@@ -272,7 +272,7 @@ HL.prototype._htmlSingleQuotedValue = function() {
     while(this.pos < this.len) {
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         if((m = /^<\s*\/?\s*\$?\w*:\$?\w*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._jspCustomTag();continue;}
         if((m = /^('|&#39;)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsDataType');
@@ -283,7 +283,7 @@ HL.prototype._htmlUnquotedValue = function() {
     while(this.pos < this.len) {
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         if((m = /^<\s*\/?\s*\$?\w*:\$?\w*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._jspCustomTag();continue;}
         if((m = /^\/?>/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._#pop#pop#pop();continue;}
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._#pop#pop();continue;}
@@ -295,7 +295,7 @@ HL.prototype._htmlComment = function() {
     while(this.pos < this.len) {
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         if((m = /^\/*-->/.exec(this.str)) && this.hl(m[0], 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }

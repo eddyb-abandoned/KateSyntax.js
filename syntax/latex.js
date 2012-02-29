@@ -96,7 +96,7 @@ HL.prototype._sectioningContrSeq = function() {
         if(this.str[0] == '×' && this.hl('×', 'dsNormal')) continue;
         if((m = /^[a-zA-Z]+(\+?|\*{0,3})/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         if((m = /^[^a-zA-Z]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -105,8 +105,8 @@ HL.prototype._sectioningMathMode = function() {
     while(this.pos < this.len) {
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) return;
-        if(this.str[0] == '\)' && this.hl('\)', 'dsNormal')) return;
-        if(this.str[0] == '\]' && this.hl('\]', 'dsAlert')) continue;
+        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsNormal')) return;
+        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsAlert')) continue;
         if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._sectioningMathContrSeq();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '×' && this.hl('×', 'dsNormal')) continue;
@@ -119,7 +119,7 @@ HL.prototype._sectioningMathContrSeq = function() {
         if(this.str[0] == '×' && this.hl('×', 'dsNormal')) continue;
         if((m = /^[a-zA-Z]+\*?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         if((m = /^[^a-zA-Z]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -171,12 +171,12 @@ HL.prototype._footnotingMathMode = function() {
     while(this.pos < this.len) {
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) return;
-        if(this.str[0] == '\)' && this.hl('\)', 'dsNormal')) return;
-        if(this.str[0] == '\]' && this.hl('\]', 'dsAlert')) continue;
+        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsNormal')) return;
+        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsAlert')) continue;
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) return;
-        if(this.str[0] == '\)' && this.hl('\)', 'dsNormal')) return;
-        if(this.str[0] == '\]' && this.hl('\]', 'dsAlert')) continue;
+        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsNormal')) return;
+        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsAlert')) continue;
         if((m = /^\\(begin|end)\s*\{(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|flalign|alignat|xalignat|xxalignat|IEEEeqnarray)\*?\}/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if((m = /^\\begin(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\end(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -233,14 +233,14 @@ HL.prototype._contrSeq = function() {
         if(this.str[0] == '×' && this.hl('×', 'dsNormal')) continue;
         if((m = /^[a-zA-Z@]+(\+?|\*{0,3})/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         if((m = /^[^a-zA-Z]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._toEndOfLine = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -248,7 +248,6 @@ HL.prototype._verb = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(.)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._verbEnd();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -258,7 +257,6 @@ HL.prototype._verbEnd = function() {
         if((m = /^%1/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._#pop#pop#pop();continue;}
         if(this.str[0] == '×' && this.hl('×', 'dsNormal')) continue;
         if((m = /^[^%1\xd7]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._#pop#pop#pop();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -399,7 +397,7 @@ HL.prototype._verbatimEnv = function() {
 HL.prototype._verbatimEnvParam = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '}[' && this.hl('}[', 'dsNormal')) continue;
+        if(this.str[0] == '}' && this.str[1] == '[' && this.hl('}[', 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) {this._verbatim();continue;}
         if(this.str[0] == ']' && this.hl(']', 'dsNormal')) {this._verbatim();continue;}
         this.hl(this.str[0], 'dsNormal');
@@ -419,7 +417,7 @@ HL.prototype._verbFindEnd = function() {
         if((m = /^\s*\{/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^(verbatim|lstlisting|boxedverbatim|(B|L)?Verbatim)\*?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) {this._#pop#pop#pop#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -449,7 +447,7 @@ HL.prototype._commFindEnd = function() {
         if((m = /^\s*\{/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^comment\*?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) {this._#pop#pop#pop#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -514,7 +512,7 @@ HL.prototype._mathFindEnd = function() {
         if((m = /^\s*\{/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|flalign|alignat|xalignat|xxalignat|IEEEeqnarray|IEEEeqnarraybox|smallmatrix|pmatrix|bmatrix|Bmatrix|vmatrix|Vmatrix)\*?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) {this._#pop#pop#pop#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -576,7 +574,7 @@ HL.prototype._tabFindEnd = function() {
         if((m = /^\s*\{/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^(tabularx|tabular|supertabular|mpsupertabular|xtabular|mpxtabular|longtable)\*?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) {this._#pop#pop#pop#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -585,8 +583,8 @@ HL.prototype._mathMode = function() {
     while(this.pos < this.len) {
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) return;
-        if(this.str[0] == '\)' && this.hl('\)', 'dsNormal')) return;
-        if(this.str[0] == '\]' && this.hl('\]', 'dsAlert')) continue;
+        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsNormal')) return;
+        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsAlert')) continue;
         if((m = /^\\(begin|end)\s*\{(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|flalign|alignat|xalignat|xxalignat|IEEEeqnarray)\*?\}/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if((m = /^\\begin(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\end(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -604,8 +602,8 @@ HL.prototype._mathModeDisplay = function() {
     while(this.pos < this.len) {
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         if(this.str[0] == '$' && this.hl('$', 'dsAlert')) continue;
-        if(this.str[0] == '\]' && this.hl('\]', 'dsAlert')) continue;
-        if(this.str[0] == '\)' && this.hl('\)', 'dsAlert')) continue;
+        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsAlert')) continue;
+        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsAlert')) continue;
         if((m = /^\\(begin|end)\s*\{(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|flalign|alignat|xalignat|xxalignat|IEEEeqnarray)\*?\}/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if((m = /^\\begin(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\end(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -621,10 +619,10 @@ HL.prototype._mathModeDisplay = function() {
 HL.prototype._mathModeEquation = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\]' && this.hl('\]', 'dsNormal')) return;
+        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsNormal')) return;
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if(this.str[0] == '$' && this.hl('$', 'dsAlert')) continue;
-        if(this.str[0] == '\)' && this.hl('\)', 'dsAlert')) continue;
+        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsAlert')) continue;
         if((m = /^\\(begin|end)\s*\{(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|flalign|alignat|xalignat|xxalignat|IEEEeqnarray)\*?\}/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if((m = /^\\begin(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\end(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -675,7 +673,7 @@ HL.prototype._mathContrSeq = function() {
         if(this.str[0] == '×' && this.hl('×', 'dsNormal')) continue;
         if((m = /^[a-zA-Z]+\*?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         if((m = /^[^a-zA-Z]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -723,7 +721,7 @@ HL.prototype._comment = function() {
         if((m = /^(FIXME|TODO):?/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if((m = /^\\KileResetHL/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._normalText();continue;}
         if((m = /^\\KateResetHL/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._normalText();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };

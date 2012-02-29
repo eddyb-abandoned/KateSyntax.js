@@ -111,14 +111,14 @@ HL.prototype._base = function() {
         if((m = /^\*=/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^".*?"/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^[\-+<>=;]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._commentar2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };

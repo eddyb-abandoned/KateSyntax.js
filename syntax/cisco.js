@@ -42,7 +42,7 @@ HL.prototype._base = function() {
         if((m = /^\bcase\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\besac\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^[^()]+\)/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if(this.str[0] == ';;' && this.hl(';;', 'dsKeyword')) continue;
+        if(this.str[0] == ';' && this.str[1] == ';' && this.hl(';;', 'dsKeyword')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if((m = /^(?:aaa|access-list|address|alias|arp|async-bootp|banner|boot|bridge|buffers|busy-message|call-history-mib|cdp|chat-script|class-map|clock|cns|config-register|controller|crypto|default|default-value|dialer|dialer-list|dnsix-dmdp|dnsix-nat|downward-compatible-config|enable|end|exception|exit|file|frame-relay|help|hostname|interface|ip|isdn|isdn-mib|kerberos|key|line|logging|login-string|map-class|map-list|memory-size|menu|modemcap|multilink|netbios|no|ntp|partition|policy-map|priority-list|privilege|process-max-time|prompt|queue-list|resume-string|rlogin|rmon|route-map|router|rtr|scheduler|service|snmp-server|sntp|stackmaker|state-machine|subscriber-policy|tacacs-server|template|terminal-queue|tftp-server|time-range|username|virtual-profile|virtual-template|vpdn|vpdn-group|x25|x29)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -54,7 +54,7 @@ HL.prototype._base = function() {
         if((m = /^[|<>=;]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleQuote();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsOthers')) {this._substitution();continue;}
-        if(this.str[0] == '\#' && this.hl('\#', 'dsNormal')) continue;
+        if(this.str[0] == '\' && this.str[1] == '#' && this.hl('\#', 'dsNormal')) continue;
         if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -62,8 +62,8 @@ HL.prototype._base = function() {
 HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
-        if(this.str[0] == '\"' && this.hl('\"', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
@@ -71,8 +71,8 @@ HL.prototype._string = function() {
 HL.prototype._singleQuote = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
-        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == ''' && this.hl('\'', 'dsString')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
@@ -80,8 +80,8 @@ HL.prototype._singleQuote = function() {
 HL.prototype._substitution = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
-        if(this.str[0] == '\`' && this.hl('\`', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '`' && this.hl('\`', 'dsString')) continue;
         if(this.str[0] == '`' && this.hl('`', 'dsOthers')) return;
         this.hl(this.str[0], 'dsOthers');
     }

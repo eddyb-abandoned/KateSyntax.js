@@ -49,7 +49,7 @@ HL.prototype._base = function() {
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -69,7 +69,7 @@ HL.prototype._findRuleSets = function() {
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -95,7 +95,7 @@ HL.prototype._findComments = function() {
     while(this.pos < this.len) {
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -107,7 +107,7 @@ HL.prototype._media = function() {
         if(this.str[0] == ',' && this.hl(',', 'dsDecVal')) continue;
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
         if((m = /^\S+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -129,7 +129,7 @@ HL.prototype._media2 = function() {
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -146,7 +146,7 @@ HL.prototype._selPseudo = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(?:hover|link|visited|active|focus|first-child|last-child|only-child|first-of-type|last-of-type|only-of-type|first-letter|first-line|before|after|selection|root|empty|target|enabled|disabled|checked|indeterminate|nth-child|nth-last-child|nth-of-type|nth-last-of-type|not)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDecVal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsDecVal');
     }
 };
@@ -162,7 +162,7 @@ HL.prototype._import = function() {
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -170,7 +170,7 @@ HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         this.hl(this.str[0], 'dsComment');
     }
@@ -183,7 +183,7 @@ HL.prototype._ruleSet = function() {
         if((m = /^-?[A-Za-z_-]+(?=\s*:)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._rule();continue;}
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
         if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -213,7 +213,7 @@ HL.prototype._rule2 = function() {
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -223,7 +223,7 @@ HL.prototype._propParen = function() {
         if(this.str[0] == '(' && this.hl('(', 'dsDataType')) {this._propParen2();continue;}
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
         if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -239,7 +239,7 @@ HL.prototype._propParen2 = function() {
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };

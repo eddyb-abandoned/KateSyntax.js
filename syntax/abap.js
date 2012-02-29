@@ -46,7 +46,7 @@ HL.prototype._comment = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsComment')) return;
         if(this.str[0] == '*' && this.hl('*', 'dsComment')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };

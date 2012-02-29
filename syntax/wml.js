@@ -75,7 +75,7 @@ HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(?:wmllint|wmlindent|wmlscope|po)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -123,7 +123,6 @@ HL.prototype._section = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ']' && this.hl(']', 'dsKeyword')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) {this._error();continue;}
         this.hl(this.str[0], 'dsKeyword');
     }
 };
@@ -131,21 +130,21 @@ HL.prototype._value = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '=' && this.hl('=', 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDataType')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsDataType');
     }
 };
 HL.prototype._preprocessor = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsOthers')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsOthers');
     }
 };
 HL.prototype._error = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsError')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsError');
     }
 };
@@ -156,7 +155,7 @@ HL.prototype._variableSubstitution = function() {
         if(this.str[0] == '$' && this.hl('$', 'dsDecVal')) {this._variableSubstitution();continue;}
         if(this.str[0] == '[' && this.hl('[', 'dsBaseN')) {this._variableSubscript();continue;}
         if(/^[^A-Za-z0-9_\.]/.exec(this.str)) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDecVal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsDecVal');
     }
 };
@@ -164,7 +163,6 @@ HL.prototype._variableSubscript = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ']' && this.hl(']', 'dsBaseN')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsBaseN')) {this._error();continue;}
         this.hl(this.str[0], 'dsBaseN');
     }
 };
@@ -172,7 +170,7 @@ HL.prototype._variableSubstitutionRule = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '$' && this.hl('$', 'dsDecVal')) {this._variableSubstitution();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDecVal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsDecVal');
     }
 };

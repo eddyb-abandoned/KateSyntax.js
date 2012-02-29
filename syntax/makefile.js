@@ -39,10 +39,10 @@ HL.prototype._normal = function() {
         if((m = /^[_\w\d-]*\s*:/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^^[.].*:/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == '${' && this.hl('${', 'dsChar')) {this._varFromNormal{();continue;}
-        if(this.str[0] == '$(' && this.hl('$(', 'dsChar')) {this._varFromNormal(();continue;}
-        if(this.str[0] == '\#' && this.hl('\#', 'dsFloat')) continue;
-        if(this.str[0] == '\\' && this.hl('\\', 'dsFloat')) continue;
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsChar')) {this._varFromNormal{();continue;}
+        if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsChar')) {this._varFromNormal(();continue;}
+        if(this.str[0] == '\' && this.str[1] == '#' && this.hl('\#', 'dsFloat')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsFloat')) continue;
         if((m = /^[+*=%$():\;]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^[@\-]/.exec(this.str)) && this.hl(m[0], 'dsChar')) {this._commands();continue;}
         if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
@@ -54,7 +54,7 @@ HL.prototype._string = function() {
     while(this.pos < this.len) {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -62,11 +62,11 @@ HL.prototype._value = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == '${' && this.hl('${', 'dsChar')) {this._varFromValue{();continue;}
-        if(this.str[0] == '$(' && this.hl('$(', 'dsChar')) {this._varFromValue(();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsChar')) {this._varFromValue{();continue;}
+        if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsChar')) {this._varFromValue(();continue;}
         if((m = /^@[-_\d\w]*@/.exec(this.str)) && this.hl(m[0], 'dsFloat')) return;
         if(this.str[0] == ';' && this.hl(';', 'dsChar')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -103,8 +103,8 @@ HL.prototype._varFromNormal{ = function() {
 HL.prototype._functionCall( = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '${' && this.hl('${', 'dsChar')) {this._varFromNormal{();continue;}
-        if(this.str[0] == '$(' && this.hl('$(', 'dsChar')) {this._varFromNormal(();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsChar')) {this._varFromNormal{();continue;}
+        if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsChar')) {this._varFromNormal(();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsChar')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
     }
@@ -112,8 +112,8 @@ HL.prototype._functionCall( = function() {
 HL.prototype._functionCall{ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '${' && this.hl('${', 'dsChar')) {this._varFromNormal{();continue;}
-        if(this.str[0] == '$(' && this.hl('$(', 'dsChar')) {this._varFromNormal(();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsChar')) {this._varFromNormal{();continue;}
+        if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsChar')) {this._varFromNormal(();continue;}
         if(this.str[0] == '}' && this.hl('}', 'dsChar')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
     }
@@ -121,10 +121,10 @@ HL.prototype._functionCall{ = function() {
 HL.prototype._commands = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '${' && this.hl('${', 'dsChar')) {this._varFromNormal{();continue;}
-        if(this.str[0] == '$(' && this.hl('$(', 'dsChar')) {this._varFromNormal(();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsChar')) {this._varFromNormal{();continue;}
+        if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsChar')) {this._varFromNormal(();continue;}
         if((m = /^[_\w-]*\b/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };

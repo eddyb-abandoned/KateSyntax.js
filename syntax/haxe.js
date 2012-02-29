@@ -43,12 +43,12 @@ HL.prototype._normal = function() {
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._rawString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentLine();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentBlock();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentLine();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentBlock();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) continue;
         if((m = /^\.\.\./.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(this.str[0] == '..' && this.hl('..', 'dsNormal')) continue;
+        if(this.str[0] == '.' && this.str[1] == '.' && this.hl('..', 'dsNormal')) continue;
         if((m = /^[\d][\d]*(\.(?!\.)[\d]*([eE][-+]?[\d]+)?)/.exec(this.str)) && this.hl(m[0], 'dsFloat')) return;
         if((m = /^\.[\d][\d]*([eE][-+]?[\d]+)?/.exec(this.str)) && this.hl(m[0], 'dsFloat')) return;
         if((m = /^0[xX][\da-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) return;
@@ -59,8 +59,8 @@ HL.prototype._normal = function() {
 HL.prototype._moduleName = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentLine();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentBlock();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentLine();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentBlock();continue;}
         if((m = /^[^\s\w.:,]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -75,7 +75,7 @@ HL.prototype._rawString = function() {
 HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\"' && this.hl('\"', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\\(u[\da-fA-F]{4}|U[\da-fA-F]{8}|&[a-zA-Z]\w+;)/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
@@ -85,14 +85,14 @@ HL.prototype._string = function() {
 HL.prototype._commentLine = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._commentBlock = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };

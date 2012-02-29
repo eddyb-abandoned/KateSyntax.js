@@ -47,16 +47,16 @@ HL.prototype._normal = function() {
         if((m = /^([ \t,][0-1]+B)/i.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^'(\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})|[^\a\b\e\f\n\r\t\v])'/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == 'A'' && this.hl('A'', 'dsChar')) {this._aSCIIChar();continue;}
-        if(this.str[0] == 'a'' && this.hl('a'', 'dsChar')) {this._aSCIIChar();continue;}
-        if(this.str[0] == 'B'' && this.hl('B'', 'dsBaseN')) {this._binaryDigits();continue;}
-        if(this.str[0] == 'b'' && this.hl('b'', 'dsBaseN')) {this._binaryDigits();continue;}
-        if(this.str[0] == 'H'' && this.hl('H'', 'dsBaseN')) {this._hexDigits();continue;}
-        if(this.str[0] == 'h'' && this.hl('h'', 'dsBaseN')) {this._hexDigits();continue;}
-        if(this.str[0] == 'O'' && this.hl('O'', 'dsBaseN')) {this._octDigits();continue;}
-        if(this.str[0] == 'o'' && this.hl('o'', 'dsBaseN')) {this._octDigits();continue;}
-        if(this.str[0] == 'D'' && this.hl('D'', 'dsBaseN')) {this._decimalDigits();continue;}
-        if(this.str[0] == 'd'' && this.hl('d'', 'dsBaseN')) {this._decimalDigits();continue;}
+        if(this.str[0] == 'A' && this.str[1] == ''' && this.hl('A'', 'dsChar')) {this._aSCIIChar();continue;}
+        if(this.str[0] == 'a' && this.str[1] == ''' && this.hl('a'', 'dsChar')) {this._aSCIIChar();continue;}
+        if(this.str[0] == 'B' && this.str[1] == ''' && this.hl('B'', 'dsBaseN')) {this._binaryDigits();continue;}
+        if(this.str[0] == 'b' && this.str[1] == ''' && this.hl('b'', 'dsBaseN')) {this._binaryDigits();continue;}
+        if(this.str[0] == 'H' && this.str[1] == ''' && this.hl('H'', 'dsBaseN')) {this._hexDigits();continue;}
+        if(this.str[0] == 'h' && this.str[1] == ''' && this.hl('h'', 'dsBaseN')) {this._hexDigits();continue;}
+        if(this.str[0] == 'O' && this.str[1] == ''' && this.hl('O'', 'dsBaseN')) {this._octDigits();continue;}
+        if(this.str[0] == 'o' && this.str[1] == ''' && this.hl('o'', 'dsBaseN')) {this._octDigits();continue;}
+        if(this.str[0] == 'D' && this.str[1] == ''' && this.hl('D'', 'dsBaseN')) {this._decimalDigits();continue;}
+        if(this.str[0] == 'd' && this.str[1] == ''' && this.hl('d'', 'dsBaseN')) {this._decimalDigits();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == ';' && this.hl(';', 'dsComment')) {this._comment();continue;}
         if((m = /^[\-/*%+=><&|\^!~]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -72,7 +72,7 @@ HL.prototype._string = function() {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -81,7 +81,7 @@ HL.prototype._comment = function() {
     while(this.pos < this.len) {
         if((m = /^(INPUT|OUTPUT|PARAMETERS|AUTHOR|EMAIL)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(FIXME|TODO)/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -90,7 +90,7 @@ HL.prototype._decimalDigits = function() {
     while(this.pos < this.len) {
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) return;
         if((m = /^\D/.exec(this.str)) && this.hl(m[0], 'dsError')) {this._quotedNumError();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsBaseN')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsBaseN');
     }
 };
@@ -99,7 +99,7 @@ HL.prototype._binaryDigits = function() {
     while(this.pos < this.len) {
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) return;
         if((m = /^[^0-1]/.exec(this.str)) && this.hl(m[0], 'dsError')) {this._quotedNumError();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsBaseN')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsBaseN');
     }
 };
@@ -108,7 +108,7 @@ HL.prototype._hexDigits = function() {
     while(this.pos < this.len) {
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) return;
         if((m = /^[^0-9A-Fa-f]/.exec(this.str)) && this.hl(m[0], 'dsError')) {this._quotedNumError();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsBaseN')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsBaseN');
     }
 };
@@ -117,7 +117,7 @@ HL.prototype._octDigits = function() {
     while(this.pos < this.len) {
         if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) return;
         if((m = /^[^0-7]/.exec(this.str)) && this.hl(m[0], 'dsError')) {this._quotedNumError();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsBaseN')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsBaseN');
     }
 };
@@ -126,7 +126,7 @@ HL.prototype._aSCIIChar = function() {
     while(this.pos < this.len) {
         if(this.str[0] == ''' && this.hl(''', 'dsChar')) return;
         if((m = /^.[^']/.exec(this.str)) && this.hl(m[0], 'dsError')) {this._quotedNumError();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsChar')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsChar');
     }
 };
@@ -134,7 +134,6 @@ HL.prototype._quotedNumError = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ''' && this.hl(''', 'dsError')) {this._#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsError')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsError');
     }
 };

@@ -38,8 +38,8 @@ HL.prototype._hTML = function() {
         if((m = /^<%method>/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._embeddedPerl();continue;}
         if((m = /^<%doc>/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._documentation();continue;}
         if((m = /^<%perl>/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._embeddedPerl();continue;}
-        if(this.str[0] == '<%' && this.hl('<%', 'dsKeyword')) {this._embeddedPerl();continue;}
-        if(this.str[0] == '<&' && this.hl('<&', 'dsKeyword')) {this._methodCall();continue;}
+        if(this.str[0] == '<' && this.str[1] == '%' && this.hl('<%', 'dsKeyword')) {this._embeddedPerl();continue;}
+        if(this.str[0] == '<' && this.str[1] == '&' && this.hl('<&', 'dsKeyword')) {this._methodCall();continue;}
         if((m = /^^%/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._perlOneLiner();continue;}
         this.hl(this.str[0], 'dsString');
     }
@@ -47,7 +47,7 @@ HL.prototype._hTML = function() {
 HL.prototype._embeddedPerl = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '%>' && this.hl('%>', 'dsKeyword')) return;
+        if(this.str[0] == '%' && this.str[1] == '>' && this.hl('%>', 'dsKeyword')) return;
         if((m = /^<\/%perl>/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
         if((m = /^<\/%method>/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
         if((m = /^(?:sub|bless|caller|cmp|print|echo|die|import|lt|le|local|last|!||||eq|ne|use|elsif|my|foreach|wantarray|push|pop|dbmclose|dbmopen|dump|each|ge|gt|split|open|close|eval|chomp|chop|unless|undef|next|unlink|new|and|not|no|ref|redo|require|tied|tie|untie|or|xor|continue|do|else|for|goto|if|return|switch|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -59,9 +59,9 @@ HL.prototype._embeddedPerl = function() {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string2();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsChar')) {this._string();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
-        if(this.str[0] == 's/' && this.hl('s/', 'dsOthers')) {this._pattern2();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
+        if(this.str[0] == 's' && this.str[1] == '/' && this.hl('s/', 'dsOthers')) {this._pattern2();continue;}
         if(this.str[0] == '/' && this.hl('/', 'dsOthers')) {this._pattern();continue;}
         if((m = /^[!%&()+,\-<=>?[\]\^{|}~]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\$[0-9]+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -85,14 +85,14 @@ HL.prototype._string = function() {
 HL.prototype._commentar1 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._commentar2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -134,7 +134,7 @@ HL.prototype._string2 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) continue;
+        if(this.str[0] == '\' && this.str[1] == ''' && this.hl('\'', 'dsChar')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
@@ -151,15 +151,15 @@ HL.prototype._perlOneLiner = function() {
         if((m = /^"[^"]*"/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^'[^']*'/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if(this.str[0] == '`' && this.hl('`', 'dsChar')) {this._something();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
-        if(this.str[0] == 's/' && this.hl('s/', 'dsOthers')) {this._pattern2();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
+        if(this.str[0] == 's' && this.str[1] == '/' && this.hl('s/', 'dsOthers')) {this._pattern2();continue;}
         if((m = /^[!%&()+,\-<=>?[\]\^{|}~]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\$[0-9]+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^\$\#?[a-zA-Z_]+[a-zA-Z0-9_]*/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^\s+\:/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^\#.*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -173,7 +173,7 @@ HL.prototype._documentation = function() {
 HL.prototype._methodCall = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '&>' && this.hl('&>', 'dsKeyword')) return;
+        if(this.str[0] == '&' && this.str[1] == '>' && this.hl('&>', 'dsKeyword')) return;
         this.hl(this.str[0], 'dsKeyword');
     }
 };

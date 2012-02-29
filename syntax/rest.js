@@ -56,7 +56,7 @@ HL.prototype._field = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ':' && this.hl(':', 'dsFunction')) return;
-        if(this.str[0] == '\:' && this.hl('\:', 'dsFunction')) continue;
+        if(this.str[0] == '\' && this.str[1] == ':' && this.hl('\:', 'dsFunction')) continue;
         this.hl(this.str[0], 'dsFunction');
     }
 };

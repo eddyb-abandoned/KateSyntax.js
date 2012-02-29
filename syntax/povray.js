@@ -53,8 +53,8 @@ HL.prototype._normal = function() {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^//\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^//\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) continue;
         if((m = /^[:!%&()+,\-/.*<=>?[\]{|}~\^;]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -67,7 +67,7 @@ HL.prototype._declaration = function() {
         if((m = /^\w+/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._declare_Keyword();continue;}
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^[=[(]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsKeyword');
     }
 };
@@ -77,7 +77,7 @@ HL.prototype._macro = function() {
         if((m = /^\w+/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._declare_Macro();continue;}
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) {this._#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsKeyword');
     }
 };
@@ -86,7 +86,7 @@ HL.prototype._declare_Keyword = function() {
     while(this.pos < this.len) {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^[=[(]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsKeyword');
     }
 };
@@ -95,7 +95,7 @@ HL.prototype._declare_Macro = function() {
     while(this.pos < this.len) {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) {this._#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsKeyword');
     }
 };
@@ -105,7 +105,7 @@ HL.prototype._string = function() {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -113,7 +113,7 @@ HL.prototype._commentar1 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(?:FIXME|TODO|###)\b/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -121,14 +121,14 @@ HL.prototype._commentar2 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(?:FIXME|TODO|###)\b/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._commentar = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };

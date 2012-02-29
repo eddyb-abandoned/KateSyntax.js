@@ -427,7 +427,6 @@ HL.prototype._variable = function() {
         if((m = /^\)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         if((m = /^\[/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._variableRange();continue;}
         if((m = /^:/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._variableAttribute();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._error();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -436,7 +435,6 @@ HL.prototype._variableRange = function() {
     while(this.pos < this.len) {
         if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._variable();continue;}
         if((m = /^]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._error();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -445,7 +443,6 @@ HL.prototype._variableAttribute = function() {
     while(this.pos < this.len) {
         if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._variable();continue;}
         if(/^\)/.exec(this.str)) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._error();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -453,7 +450,7 @@ HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(FIXME|TODO)/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -461,7 +458,7 @@ HL.prototype._commentTitle = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(FIXME|TODO)/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -472,7 +469,6 @@ HL.prototype._string = function() {
         if((m = /^\\"/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\\/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) {this._error();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };

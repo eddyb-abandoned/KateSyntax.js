@@ -34,10 +34,10 @@ HL.prototype.hl = function hl(m,s) {
 HL.prototype._preStart = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == '%{' && this.hl('%{', 'dsBaseN')) {this._cDeclarations();continue;}
+        if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsBaseN')) {this._cDeclarations();continue;}
         if(/^./.exec(this.str)) {this._declarations();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -45,20 +45,20 @@ HL.prototype._preStart = function() {
 HL.prototype._cDeclarations = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
-        if(this.str[0] == '%}' && this.hl('%}', 'dsBaseN')) return;
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
+        if(this.str[0] == '%' && this.str[1] == '}' && this.hl('%}', 'dsBaseN')) return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._declarations = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
         if((m = /^%union/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._unionStart();continue;}
-        if(this.str[0] == '%%' && this.hl('%%', 'dsBaseN')) {this._rules();continue;}
-        if(this.str[0] == '%{' && this.hl('%{', 'dsBaseN')) {this._cDeclarations();continue;}
+        if(this.str[0] == '%' && this.str[1] == '%' && this.hl('%%', 'dsBaseN')) {this._rules();continue;}
+        if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsBaseN')) {this._cDeclarations();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsKeyword')) {this._percentCommand();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -66,8 +66,8 @@ HL.prototype._declarations = function() {
 HL.prototype._unionStart = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) {this._unionIn();continue;}
         if((m = /^./.exec(this.str)) && this.hl(m[0], 'dsAlert')) return;
@@ -93,9 +93,9 @@ HL.prototype._unionInIn = function() {
 HL.prototype._rules = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
-        if(this.str[0] == '%%' && this.hl('%%', 'dsBaseN')) {this._userCode();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
+        if(this.str[0] == '%' && this.str[1] == '%' && this.hl('%%', 'dsBaseN')) {this._userCode();continue;}
         if(this.str[0] == ':' && this.hl(':', 'dsNormal')) {this._ruleIn();continue;}
         this.hl(this.str[0], 'dsString');
     }
@@ -103,8 +103,8 @@ HL.prototype._rules = function() {
 HL.prototype._ruleIn = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
         if(this.str[0] == ';' && this.hl(';', 'dsNormal')) return;
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) {this._normalCBloc();continue;}
         if(this.str[0] == '|' && this.hl('|', 'dsNormal')) continue;
@@ -122,10 +122,10 @@ HL.prototype._userCode = function() {
 HL.prototype._percentCommand = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
         if(/^\W/.exec(this.str)) {this._percentCommandIn();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsKeyword');
     }
 };
@@ -135,7 +135,6 @@ HL.prototype._percentCommandIn = function() {
         if(this.str[0] == ''' && this.hl(''', 'dsChar')) {this._char();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == '<' && this.hl('<', 'dsDataType')) {this._pCType();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -143,23 +142,21 @@ HL.prototype._pCType = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '>' && this.hl('>', 'dsDataType')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDataType')) {this._#pop#pop#pop();continue;}
         this.hl(this.str[0], 'dsDataType');
     }
 };
 HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) continue;
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentStar();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentSlash();continue;}
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._commentStar = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -175,7 +172,6 @@ HL.prototype._stringOrChar = function() {
     while(this.pos < this.len) {
         if(this.str[0] == ''' && this.hl(''', 'dsChar')) {this._char();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -184,7 +180,7 @@ HL.prototype._string = function() {
     while(this.pos < this.len) {
         if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -193,7 +189,7 @@ HL.prototype._char = function() {
     while(this.pos < this.len) {
         if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsChar')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsChar')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsChar');
     }
 };
@@ -210,7 +206,6 @@ HL.prototype._dol = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^<[^>]+>/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._dolEnd();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -219,7 +214,6 @@ HL.prototype._dolEnd = function() {
     while(this.pos < this.len) {
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._#pop#pop();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsKeyword')) {this._#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
 };

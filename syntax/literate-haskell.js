@@ -45,7 +45,7 @@ HL.prototype._normal = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\{-[^#]/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comments'();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'undefined')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'undefined');
     }
 };
@@ -60,8 +60,7 @@ HL.prototype._normals = function() {
 HL.prototype._comments' = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '-}' && this.hl('-}', 'dsComment')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) {this._uncomments();continue;}
+        if(this.str[0] == '-' && this.str[1] == '}' && this.hl('-}', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -76,8 +75,8 @@ HL.prototype._uncomments = function() {
 HL.prototype._recomments = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '-}' && this.hl('-}', 'dsComment')) {this._#pop#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '-' && this.str[1] == '}' && this.hl('-}', 'dsComment')) {this._#pop#pop#pop();continue;}
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };

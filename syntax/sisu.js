@@ -55,7 +55,7 @@ HL.prototype._normalText = function() {
         if((m = /^^(_[12]|_\*|_[12]\*)\s/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^~\^/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^^%+\s.+(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -194,21 +194,21 @@ HL.prototype._insert = function() {
 HL.prototype._endnote = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._boldline = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._indent = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };

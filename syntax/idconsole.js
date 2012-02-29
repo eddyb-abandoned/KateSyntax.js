@@ -44,14 +44,13 @@ HL.prototype._normalText = function() {
         if((m = /^alias/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._aliasPhrase();continue;}
         if((m = /^(?:echo|say_team|say)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._echo();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsOthers')) continue;
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._comment();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) {this._normalText();continue;}
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -59,7 +58,6 @@ HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._normalText();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -70,9 +68,8 @@ HL.prototype._argArea = function() {
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if(this.str[0] == ';' && this.hl(';', 'dsOthers')) return;
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsOthers')) {this._normalText();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._normalText();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -81,9 +78,8 @@ HL.prototype._argAreaInSubPhrase = function() {
     while(this.pos < this.len) {
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == ';' && this.hl(';', 'dsOthers')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._normalText();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -98,11 +94,10 @@ HL.prototype._subPhrase = function() {
         if((m = /^(?:set|seta|setu|sets)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._normalText();continue;}
         if((m = /^(?:echo|say_team|say)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._echo();continue;}
         if((m = /^alias/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._aliasPhrase();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == ';' && this.hl(';', 'dsOthers')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if(this.str[0] == ';' && this.hl(';', 'dsOthers')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._normalText();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -110,7 +105,6 @@ HL.prototype._bindPhrase = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(?:\*|\[|]|\\|\/|'|=|-|\+|,|\.|`|~|1|2|3|4|5|6|7|8|9|0|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|x|w|y|z|ALT|AUX1|AUX10|AUX11|AUX12|AUX13|AUX14|AUX15|AUX16|AUX17|AUX18|AUX2|AUX20|AUX21|AUX22|AUX23|AUX24|AUX25|AUX26|AUX27|AUX28|AUX29|AUX3|AUX30|AUX31|AUX32|AUX4|AUX5|AUX6|AUX7|AUX8|AUX9|BACKSPACE|CTRL|DEL|DOWNARROW|END|ENTER|ESCAPE|F1|F10|F11|F12|F2|F3|F4|F5|F6|F7|F8|F9|HOME|INS|JOY1|JOY2|JOY3|JOY4|KP_SLASH|KP_5|KP_UPARROW|KP_LEFTARROW|KP_RIGHTARROW|KP_DOWNARROW|KP_HOME|KP_END|KP_PGUP|KP_PGDN|KP_INS|KP_DEL|LEFTARROW|MOUSE1|MOUSE2|MOUSE3|MWHEELDOWN|MWHEELUP|PAUSE|PGDN|PGUP|RIGHTARROW|SEMICOLON|CAPSLOCK|SHIFT|SPACE|TAB|UPARROW)\b/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) {this._subPhrase();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._normalText();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -118,7 +112,6 @@ HL.prototype._aliasPhrase = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ' ' && this.hl(' ', 'dsDataType')) {this._subPhrase();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDataType')) {this._normalText();continue;}
         this.hl(this.str[0], 'dsDataType');
     }
 };
@@ -126,8 +119,7 @@ HL.prototype._echo = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ';' && this.hl(';', 'dsOthers')) return;
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._normalText();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._comment();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };

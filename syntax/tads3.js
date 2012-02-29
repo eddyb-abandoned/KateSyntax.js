@@ -40,8 +40,8 @@ HL.prototype._normal = function() {
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._valString();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._shortComment();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._longComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._shortComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._longComment();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) continue;
         if((m = /^[!%&()+,\-<=>?[\]\^{|}~]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -52,16 +52,16 @@ HL.prototype._normal = function() {
 HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\"' && this.hl('\"', 'dsKeyword')) continue;
-        if(this.str[0] == '\\' && this.hl('\\', 'dsKeyword')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) continue;
-        if(this.str[0] == '\r' && this.hl('\r', 'dsKeyword')) continue;
-        if(this.str[0] == '\t' && this.hl('\t', 'dsKeyword')) continue;
-        if(this.str[0] == '\b' && this.hl('\b', 'dsKeyword')) continue;
-        if(this.str[0] == '\^' && this.hl('\^', 'dsKeyword')) continue;
-        if(this.str[0] == '\v' && this.hl('\v', 'dsKeyword')) continue;
-        if(this.str[0] == '\ ' && this.hl('\ ', 'dsKeyword')) continue;
-        if(this.str[0] == '<<' && this.hl('<<', 'dsNormal')) {this._embedded();continue;}
+        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'n' && this.hl('\n', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'r' && this.hl('\r', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 't' && this.hl('\t', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'b' && this.hl('\b', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == '^' && this.hl('\^', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'v' && this.hl('\v', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == ' ' && this.hl('\ ', 'dsKeyword')) continue;
+        if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsNormal')) {this._embedded();continue;}
         if(this.str[0] == '<' && this.hl('<', 'dsKeyword')) {this._htmltag();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
@@ -70,15 +70,15 @@ HL.prototype._string = function() {
 HL.prototype._valString = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\'' && this.hl('\'', 'dsKeyword')) continue;
-        if(this.str[0] == '\\' && this.hl('\\', 'dsKeyword')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) continue;
-        if(this.str[0] == '\r' && this.hl('\r', 'dsKeyword')) continue;
-        if(this.str[0] == '\t' && this.hl('\t', 'dsKeyword')) continue;
-        if(this.str[0] == '\b' && this.hl('\b', 'dsKeyword')) continue;
-        if(this.str[0] == '\^' && this.hl('\^', 'dsKeyword')) continue;
-        if(this.str[0] == '\v' && this.hl('\v', 'dsKeyword')) continue;
-        if(this.str[0] == '\ ' && this.hl('\ ', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == ''' && this.hl('\'', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'n' && this.hl('\n', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'r' && this.hl('\r', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 't' && this.hl('\t', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'b' && this.hl('\b', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == '^' && this.hl('\^', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == 'v' && this.hl('\v', 'dsKeyword')) continue;
+        if(this.str[0] == '\' && this.str[1] == ' ' && this.hl('\ ', 'dsKeyword')) continue;
         if(this.str[0] == '<' && this.hl('<', 'dsKeyword')) {this._htmltag();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
@@ -88,7 +88,7 @@ HL.prototype._shortComment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(FIXME|TODO)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -96,7 +96,7 @@ HL.prototype._longComment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(FIXME|TODO)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -106,9 +106,9 @@ HL.prototype._preprocessor = function() {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^".*?"/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^<.*?>/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._shortComment();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._longCommentPreprocessor();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsOthers')) return;
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._shortComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._longCommentPreprocessor();continue;}
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -116,21 +116,21 @@ HL.prototype._longCommentPreprocessor = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(FIXME|TODO)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._embedded = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '>>' && this.hl('>>', 'dsNormal')) return;
+        if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsNormal')) return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._htmltag = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) return;
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) return;
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) return;
         this.hl(this.str[0], 'dsKeyword');
     }

@@ -59,7 +59,7 @@ HL.prototype._tagname = function() {
 HL.prototype._attributes = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) {this._#pop#pop();continue;}
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) {this._#pop#pop();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) {this._#pop#pop();continue;}
         if((m = /^\s*=\s*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._attrValue();continue;}
         this.hl(this.str[0], 'dsOthers');
@@ -68,7 +68,7 @@ HL.prototype._attributes = function() {
 HL.prototype._attrValue = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsError')) {this._#pop#pop#pop();continue;}
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsError')) {this._#pop#pop#pop();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsError')) {this._#pop#pop#pop();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         this.hl(this.str[0], 'dsError');

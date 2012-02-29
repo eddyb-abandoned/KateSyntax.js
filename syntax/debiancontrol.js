@@ -56,8 +56,8 @@ HL.prototype._field = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^<.*@.*>/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == '${' && this.hl('${', 'dsKeyword')) {this._variable();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDataType')) return;
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsKeyword')) {this._variable();continue;}
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsDataType');
     }
 };
@@ -65,7 +65,7 @@ HL.prototype._variable = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsOthers')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -73,18 +73,18 @@ HL.prototype._dependencyField = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^<.*@.*>/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == '${' && this.hl('${', 'dsKeyword')) {this._variable();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsKeyword')) {this._variable();continue;}
         if((m = /^[,\|]/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if(this.str[0] == '(' && this.hl('(', 'dsKeyword')) {this._constrain();continue;}
         if(this.str[0] == '[' && this.hl('[', 'dsKeyword')) {this._constrain();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsDataType')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsDataType');
     }
 };
 HL.prototype._constrain = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '${' && this.hl('${', 'dsKeyword')) {this._variable();continue;}
+        if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsKeyword')) {this._variable();continue;}
         if((m = /^[!<=>]/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if(this.str[0] == ')' && this.hl(')', 'dsKeyword')) return;
         if(this.str[0] == ']' && this.hl(']', 'dsKeyword')) return;

@@ -82,7 +82,7 @@ HL.prototype._class = function() {
 HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -105,7 +105,7 @@ HL.prototype._richString = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '#{' && this.hl('#{', 'dsChar')) {this._embedding();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsChar')) {this._embedding();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
@@ -122,7 +122,7 @@ HL.prototype._richHeredoc = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '#{' && this.hl('#{', 'dsChar')) {this._embedding();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsChar')) {this._embedding();continue;}
         if((m = /^"""/.exec(this.str)) && this.hl(m[0], 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }

@@ -41,22 +41,22 @@ HL.prototype._keyword = function() {
         if((m = /^\{\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\.\-]*(\[([0-9]*|"[a-zA-Z_]*")|'[a-zA-Z_]*'|\])*(->[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*(\[([0-9]*|"[a-zA-Z_]*")|'[a-zA-Z_]*'|\])*)*\}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\-]*(\[[a-zA-Z0-9_]*\])*\.[a-zA-Z0-9_\x7f-\xff\-]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^[(),[\]]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == '##' && this.hl('##', 'dsComment')) {this._singlelineComment();continue;}
-        if(this.str[0] == '#*' && this.hl('#*', 'dsComment')) {this._multilinecomment();continue;}
+        if(this.str[0] == '#' && this.str[1] == '#' && this.hl('##', 'dsComment')) {this._singlelineComment();continue;}
+        if(this.str[0] == '#' && this.str[1] == '*' && this.hl('#*', 'dsComment')) {this._multilinecomment();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._singlelineComment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._multilinecomment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*#' && this.hl('*#', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '#' && this.hl('*#', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };

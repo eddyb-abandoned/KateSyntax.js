@@ -52,7 +52,7 @@ HL.prototype._cControlLevel = function() {
         if((m = /^[A|a][N|n]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cIndicators();continue;}
         if((m = /^[L|l|S|s][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cIndicators();continue;}
         if((m = /^.{2}/.exec(this.str)) && this.hl(m[0], 'dsAlert')) {this._cIndicators();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -71,7 +71,6 @@ HL.prototype._cIndicators = function() {
         if((m = /^[\ |N|n][O|o][V|v]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cFactor1();continue;}
         if((m = /^[\ |N|n][H|h][1-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cFactor1();continue;}
         if((m = /^.{3}/.exec(this.str)) && this.hl(m[0], 'dsAlert')) {this._cFactor1();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -79,7 +78,6 @@ HL.prototype._cFactor1 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^.{14}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._findOC();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._#pop#pop#pop();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -101,7 +99,6 @@ HL.prototype._findOC = function() {
         if((m = /^[O|o][N|n]-([E|e][R|r]{2}|[O|o][R|r])/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._evalOC8();continue;}
         if((m = /^\ {10}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cFactor2();continue;}
         if((m = /^.{10}/.exec(this.str)) && this.hl(m[0], 'dsAlert')) {this._cFactor2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._#pop#pop#pop#pop();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -109,7 +106,6 @@ HL.prototype._nonEvalOC2 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\ {8}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cFactor2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -117,7 +113,6 @@ HL.prototype._nonEvalOC3 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\ {7}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cFactor2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -125,7 +120,6 @@ HL.prototype._nonEvalOC4 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\ {6}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cFactor2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -133,7 +127,6 @@ HL.prototype._nonEvalOC5 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\ {5}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cFactor2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -141,7 +134,6 @@ HL.prototype._nonEvalOC6 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\ {4}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cFactor2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -149,7 +141,6 @@ HL.prototype._nonEvalOC7 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\ {3}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cFactor2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -197,7 +188,6 @@ HL.prototype._cFactor2 = function() {
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -205,7 +195,6 @@ HL.prototype._evalOC2 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\ {8}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cExFactor2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -213,7 +202,6 @@ HL.prototype._evalOC3 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\ {7}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cExFactor2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -221,7 +209,6 @@ HL.prototype._evalOC4 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\ {6}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cExFactor2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -229,7 +216,6 @@ HL.prototype._evalOC5 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\ {5}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cExFactor2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -237,7 +223,6 @@ HL.prototype._evalOC6 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\ {4}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cExFactor2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -245,7 +230,6 @@ HL.prototype._evalOC8 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\ {2}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._cExFactor2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -293,7 +277,6 @@ HL.prototype._cExFactor2 = function() {
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -350,7 +333,7 @@ HL.prototype._comments = function() {
         if((m = /^\(*(FIXME|TODO)\)*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\(*(NOTE:)\)*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^-|=/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -358,7 +341,7 @@ HL.prototype._stringConstants = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ''' && this.hl(''', 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -368,7 +351,6 @@ HL.prototype._directives = function() {
         if((m = /^[F|f][R|r][E|e][E|e]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._free();continue;}
         if((m = /^[E|e][X|x][E|e][C|c]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._exec();continue;}
         if((m = /^(?:FREE|END-FREE|TITLE|EJECT|SPACE|COPY|INCLUDE|DEFINE|UNDEFINE|IF|ELSE|EXEC|END-EXEC|ELSEIF|ENDIF|EOF)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._directives2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -376,7 +358,6 @@ HL.prototype._directives2 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(?:NOT|DEFINED)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._directives3();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -384,7 +365,6 @@ HL.prototype._directives3 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(?:DEFINED)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -450,7 +430,7 @@ HL.prototype._biffs = function() {
     while(this.pos < this.len) {
         if((m = /^(?:ABS|ADDR|ALLOC|BITAND|BITNOT|BITOR|BITXOR|CHAR|CHECK|CHECKR|DATE|DAYS|DEC|DECH|DECPOS|DIFF|DIV|EDITC|EDITFLT|EDITW|ELEM|EOF|EQUAL|ERROR|FIELDS|FLOAT|FOUND|GRAPH|HOURS|INT|INTH|KDS|LEN|LOOKUP|LOOKUPLT|LOOKUPLE|LOOKUPGT|LOOKUPGE|MINUTES|MONTHS|MSECONDS|NULLIND|OCCUR|OPEN|PADDR|PARMS|REALLOC|REM|REPLACE|SCAN|SECONDS|SHTDN|SIZE|SQRT|STATUS|STR|SUBARR|SUBDT|SUBST|THIS|TIME|TIMESTAMP|TLOOKUP|TLOOKUPLT|TLOOKUPLE|TLOOKUPGT|TLOOKUPGE|TRIM|TRIML|TRIMR|UCS2|UNS|UNSH|XFOOT|XLATE|YEARS)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
         if((m = /^./.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsKeyword');
     }
 };
@@ -591,7 +571,7 @@ HL.prototype._anyCode = function() {
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -646,7 +626,7 @@ HL.prototype._d = function() {
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -701,7 +681,7 @@ HL.prototype._p = function() {
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };

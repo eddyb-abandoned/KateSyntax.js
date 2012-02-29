@@ -45,8 +45,8 @@ HL.prototype._normal = function() {
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringLiteral();continue;}
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._singlelinePLSQLStyleComment();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._multilineCStyleComment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._singlelinePLSQLStyleComment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._multilineCStyleComment();continue;}
         if((m = /^^rem\b/i.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._sQLPlusRemarkDirective();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsOthers')) {this._userDefinedIdentifier();continue;}
         if((m = /^(:|&&?)\w+/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
@@ -58,10 +58,10 @@ HL.prototype._normal = function() {
 HL.prototype._stringLiteral = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
+        if(this.str[0] == '\' && this.str[1] == ''' && this.hl('\'', 'dsString')) return;
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^&&?\w+/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == '''' && this.hl('''', 'dsChar')) continue;
+        if(this.str[0] == ''' && this.str[1] == ''' && this.hl('''', 'dsChar')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
@@ -69,21 +69,21 @@ HL.prototype._stringLiteral = function() {
 HL.prototype._singlelinePLSQLStyleComment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._multilineCStyleComment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._sQLPlusRemarkDirective = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -91,14 +91,14 @@ HL.prototype._userDefinedIdentifier = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsOthers')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsOthers')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsOthers');
     }
 };
 HL.prototype._sQLPlusDirectiveToIncludeFile = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsOthers')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsOthers');
     }
 };

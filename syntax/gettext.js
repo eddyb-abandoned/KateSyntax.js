@@ -51,7 +51,7 @@ HL.prototype._translatorComment = function() {
     while(this.pos < this.len) {
         if((m = /^\{\+/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._stringDiffNewComment();continue;}
         if((m = /^\{-/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._stringDiffOldComment();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -60,7 +60,7 @@ HL.prototype._automaticComment = function() {
     while(this.pos < this.len) {
         if((m = /^\{\+/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._stringDiffNewComment();continue;}
         if((m = /^\{-/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._stringDiffOldComment();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -69,7 +69,7 @@ HL.prototype._references = function() {
     while(this.pos < this.len) {
         if((m = /^\{\+/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._stringDiffNewComment();continue;}
         if((m = /^\{-/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._stringDiffOldComment();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -79,7 +79,7 @@ HL.prototype._flags = function() {
         if((m = /^fuzzy/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if((m = /^\{\+/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._stringDiffNewComment();continue;}
         if((m = /^\{-/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._stringDiffOldComment();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -87,7 +87,7 @@ HL.prototype._stringDiffNewComment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\+\}/.exec(this.str)) && this.hl(m[0], 'dsString')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -95,7 +95,7 @@ HL.prototype._stringDiffOldComment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^-\}/.exec(this.str)) && this.hl(m[0], 'dsString')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -163,7 +163,7 @@ HL.prototype._previous = function() {
         if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringPrevious();continue;}
         if((m = /^\[\d+\]/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };

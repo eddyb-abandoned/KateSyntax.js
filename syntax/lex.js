@@ -42,10 +42,10 @@ HL.prototype._definitions = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^^\s/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._indentedC();continue;}
-        if(this.str[0] == '%{' && this.hl('%{', 'dsBaseN')) {this._lexCBloc();continue;}
-        if(this.str[0] == '%%' && this.hl('%%', 'dsBaseN')) {this._rules();continue;}
+        if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsBaseN')) {this._lexCBloc();continue;}
+        if(this.str[0] == '%' && this.str[1] == '%' && this.hl('%%', 'dsBaseN')) {this._rules();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsKeyword')) {this._percentCommand();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
         if((m = /^[A-Za-z_]\w*\s+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._definitionRegExpr();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -54,8 +54,8 @@ HL.prototype._rules = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^^\s/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._indentedC();continue;}
-        if(this.str[0] == '%{' && this.hl('%{', 'dsBaseN')) {this._lexCBloc();continue;}
-        if(this.str[0] == '%%' && this.hl('%%', 'dsBaseN')) {this._userCode();continue;}
+        if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsBaseN')) {this._lexCBloc();continue;}
+        if(this.str[0] == '%' && this.str[1] == '%' && this.hl('%%', 'dsBaseN')) {this._userCode();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -68,14 +68,14 @@ HL.prototype._userCode = function() {
 HL.prototype._percentCommand = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsKeyword');
     }
 };
 HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -89,7 +89,7 @@ HL.prototype._definitionRegExpr = function() {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._regExprQ();continue;}
         if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^.*/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -104,7 +104,7 @@ HL.prototype._ruleRegExpr = function() {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._regExprQ();continue;}
         if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._action();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -171,8 +171,8 @@ HL.prototype._action = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\|\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if(this.str[0] == '%{' && this.hl('%{', 'dsBaseN')) {this._lexRuleCBloc();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsBaseN')) {this._lexRuleCBloc();continue;}
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -180,28 +180,28 @@ HL.prototype._detectC = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^^\s/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._indentedC();continue;}
-        if(this.str[0] == '%{' && this.hl('%{', 'dsBaseN')) {this._lexCBloc();continue;}
+        if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsBaseN')) {this._lexCBloc();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._indentedC = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._lexCBloc = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '%}' && this.hl('%}', 'dsBaseN')) return;
+        if(this.str[0] == '%' && this.str[1] == '}' && this.hl('%}', 'dsBaseN')) return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._lexRuleCBloc = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '%}' && this.hl('%}', 'dsBaseN')) return;
+        if(this.str[0] == '%' && this.str[1] == '}' && this.hl('%}', 'dsBaseN')) return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -218,7 +218,7 @@ HL.prototype._actionC = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) {this._normalCBloc();continue;}
         if(this.str[0] == '}' && this.hl('}', 'dsAlert')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };

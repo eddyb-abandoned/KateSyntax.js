@@ -49,7 +49,7 @@ HL.prototype._value = function() {
     while(this.pos < this.len) {
         if((m = /^\s*".*"/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };

@@ -54,7 +54,7 @@ HL.prototype._code = function() {
         if(this.str[0] == ''' && this.hl(''', 'dsChar')) {this._char();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsOthers')) {this._infix();continue;}
-        if(this.str[0] == '..' && this.hl('..', 'dsOthers')) continue;
+        if(this.str[0] == '.' && this.str[1] == '.' && this.hl('..', 'dsOthers')) continue;
         if((m = /^[‥]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -62,14 +62,14 @@ HL.prototype._code = function() {
 HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._comments = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '-}' && this.hl('-}', 'dsComment')) return;
+        if(this.str[0] == '-' && this.str[1] == '}' && this.hl('-}', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -78,7 +78,7 @@ HL.prototype._char = function() {
     while(this.pos < this.len) {
         if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsChar')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsChar')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsChar');
     }
 };

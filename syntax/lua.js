@@ -37,7 +37,7 @@ HL.prototype._normal = function() {
         if((m = /^(?:table\.foreach|table\.foreachi|foreach|foreachi)\b/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^--\[(=*)\[/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._blockComment();continue;}
-        if(this.str[0] == '--' && this.hl('--', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if((m = /^\[(=*)\[/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._string_block();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string_single();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string_double();continue;}
@@ -58,11 +58,11 @@ HL.prototype._normal = function() {
         if((m = /^\b[a-zA-Z_][a-zA-Z0-9_]*(?=\s*([({'"]|\[\[))\b/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\b[A-Z_][A-Z0-9_]*\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\b[a-zA-Z_][a-zA-Z0-9_]*\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if(this.str[0] == '!=' && this.hl('!=', 'dsError')) continue;
-        if(this.str[0] == '-=' && this.hl('-=', 'dsError')) continue;
-        if(this.str[0] == '+=' && this.hl('+=', 'dsError')) continue;
-        if(this.str[0] == '++' && this.hl('++', 'dsError')) continue;
-        if(this.str[0] == '.=' && this.hl('.=', 'dsError')) continue;
+        if(this.str[0] == '!' && this.str[1] == '=' && this.hl('!=', 'dsError')) continue;
+        if(this.str[0] == '-' && this.str[1] == '=' && this.hl('-=', 'dsError')) continue;
+        if(this.str[0] == '+' && this.str[1] == '=' && this.hl('+=', 'dsError')) continue;
+        if(this.str[0] == '+' && this.str[1] == '+' && this.hl('++', 'dsError')) continue;
+        if(this.str[0] == '.' && this.str[1] == '=' && this.hl('.=', 'dsError')) continue;
         if((m = /^[[\]().=~+\-*/\^><#;]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -70,9 +70,9 @@ HL.prototype._normal = function() {
 HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '--' && this.hl('--', 'dsAlert')) continue;
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsAlert')) continue;
         if((m = /^(?:TODO|FIXME|NOTE)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -80,7 +80,7 @@ HL.prototype._blockComment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\]%1\]/.exec(this.str)) && this.hl(m[0], 'dsComment')) return;
-        if(this.str[0] == '--' && this.hl('--', 'dsAlert')) continue;
+        if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsAlert')) continue;
         if((m = /^(?:TODO|FIXME|NOTE)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         this.hl(this.str[0], 'dsComment');
     }
@@ -90,7 +90,6 @@ HL.prototype._string_single = function() {
     while(this.pos < this.len) {
         if((m = /^\\(a|b|f|n|r|t|v|\\|"|\'|[|])/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) {this._error();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -99,7 +98,6 @@ HL.prototype._string_double = function() {
     while(this.pos < this.len) {
         if((m = /^\\[abfnrtv'"\\\[\]]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) {this._error();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };

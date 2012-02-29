@@ -45,14 +45,14 @@ HL.prototype._detectDirective = function() {
         if((m = /^(?:HP|IP|LP|P|PD|PP|RE|RS|TP)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._directive();continue;}
         if((m = /^(?:B|BI|BR|I|IB|IR|RB|RI|SM|SB)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._directive();continue;}
         if((m = /^(?:DT)\b/.exec(this.str)) && this.hl(m[0], 'dsFunction')) {this._directive();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsFunction')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsFunction');
     }
 };
 HL.prototype._directive = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };

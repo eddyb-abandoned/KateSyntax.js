@@ -56,7 +56,7 @@ HL.prototype._normal = function() {
         if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if((m = /^^\s*u?'''/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._trippleAComment();continue;}
         if((m = /^^\s*u?"""/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._trippleQComment();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentSlashSlash();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentSlashSlash();continue;}
         if((m = /^'''/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleAString();continue;}
         if((m = /^"""/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleQString();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleAString();continue;}
@@ -95,7 +95,7 @@ HL.prototype._parenthesised = function() {
         if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if((m = /^^\s*u?'''/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._trippleAComment();continue;}
         if((m = /^^\s*u?"""/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._trippleQComment();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentSlashSlash();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentSlashSlash();continue;}
         if((m = /^'''/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleAString();continue;}
         if((m = /^"""/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleQString();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleAString();continue;}
@@ -134,7 +134,7 @@ HL.prototype._quasiQuotation = function() {
         if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if((m = /^^\s*u?'''/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._trippleAComment();continue;}
         if((m = /^^\s*u?"""/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._trippleQComment();continue;}
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentSlashSlash();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentSlashSlash();continue;}
         if((m = /^'''/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleAString();continue;}
         if((m = /^"""/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleQString();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleAString();continue;}
@@ -207,7 +207,7 @@ HL.prototype._commentSlashSlash = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };

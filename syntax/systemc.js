@@ -34,7 +34,7 @@ HL.prototype.hl = function hl(m,s) {
 HL.prototype._normal = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
         if((m = /^(?:sensitive)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:dont_initialize|gen_unique_name|name|next_trigger|sc_assert_fail|sc_copyright|sc_cycle|sc_initialize|sc_simulation_time|sc_start|sc_stop|sc_get_default_time_unit|sc_get_default_time_resolution|sc_time_stamp|sc_version|timed_out|wait|sc_trace|sc_create_vcd_trace_file|sc_close_vcd_trace_file)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:SC_MODULE|SC_CTOR|SC_METHOD|SC_THREAD)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -46,7 +46,7 @@ HL.prototype._commentar2 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         this.hl(this.str[0], 'dsComment');
     }

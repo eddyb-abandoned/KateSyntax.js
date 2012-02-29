@@ -34,8 +34,8 @@ HL.prototype.hl = function hl(m,s) {
 HL.prototype._default = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._ccomment();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._cppcomment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._ccomment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._cppcomment();continue;}
         if((m = /^focus/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(graph|edge|node|region|backedge|(left|right|)(bent|)nearedge):/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^loc *:/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -104,7 +104,7 @@ HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._default();continue;}
-        if(this.str[0] == '\"' && this.hl('\"', 'dsChar')) continue;
+        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsChar')) continue;
         if((m = /^\\(n|a|t|b)/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^\\fi(0|1|2)[0-9][0-9]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^\\f(u|I|b|B|n|[0-9][0-9])/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
@@ -122,14 +122,13 @@ HL.prototype._scaling = function() {
 HL.prototype._ccomment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) {this._default();continue;}
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._cppcomment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) {this._default();continue;}
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) {this._default();continue;}
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -202,7 +201,6 @@ HL.prototype._longint = function() {
     while(this.pos < this.len) {
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {this._longint();continue;}
         if((m = /^\ /.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._default();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -210,7 +208,6 @@ HL.prototype._centry = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[0-9][0-9]?/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._cecolon();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._default();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };

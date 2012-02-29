@@ -34,7 +34,7 @@ HL.prototype.hl = function hl(m,s) {
 HL.prototype._normal = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '(*' && this.hl('(*', 'dsComment')) {this._multilineInlineComment();continue;}
+        if(this.str[0] == '(' && this.str[1] == '*' && this.hl('(*', 'dsComment')) {this._multilineInlineComment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^(?:abstype|and|andalso|as|case|do|datatype|else|end|eqtype|exception|false|fn|fun|functor|handle|if|in|include|infix|infixr|let|local|nonfix|of|op|open|orelse|raise|rec|sharing|sig|signature|struct|structure|then|true|type|val|where|with|withtype|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:unit|int|real|char|string|substring|word|ref|array|vector|bool|list|option|order)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
@@ -47,7 +47,7 @@ HL.prototype._normal = function() {
 HL.prototype._multilineInlineComment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*)' && this.hl('*)', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == ')' && this.hl('*)', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };

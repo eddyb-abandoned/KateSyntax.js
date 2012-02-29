@@ -51,8 +51,8 @@ HL.prototype._normal = function() {
         if((m = /^[0123456789]*[.][0123456789]+x/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[0123456789]*[.][0123456789]+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == '//' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentar1();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
         if((m = /^(?:abs|acos|all|any|asin|atan|atan2|ceil|clamp|cos|cosh|cross|degrees|determinant|dot|exp|exp2|floor|fmod|frac|frexp|isfinite|isinf|isnan|ldexp|lerp|lit|log|log2|log10|max|min|modf|mul|noise|pow|radians|round|rsqrt|saturate|sign|sin|sincos|sinh|smoothstep|step|sqrt|tan|tanh|transpose|distance|faceforward|length|normalize|reflect|refract|tex1D|tex1Dproj|tex2D|tex2Dproj|texRECT|texRECTproj|tex3D|tex3Dproj|texCUBE|texCUBEproj|ddx|ddy|debug|pack_2half|unpack_2half|pack_2ushort|unpack_2ushort|pack_4byte|unpack_4byte|pack_4ubyte|unpack_4ubyte)\b/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
         if((m = /^\b[_\w][_\w\d]*(?=[\s]*[(])/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
         if((m = /^[.]{1,1}[rgbaxyzw]+(?=[\s/*-+<>])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -65,7 +65,7 @@ HL.prototype._member = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\b[_\w][_\w\d]*(?=[\s]*)/.exec(this.str)) && this.hl(m[0], 'dsFunction')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -73,14 +73,14 @@ HL.prototype._commentar1 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(?:FIXME|TODO|BUG)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._commentar2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         if((m = /^(?:FIXME|TODO|BUG)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         this.hl(this.str[0], 'dsComment');
     }
@@ -88,14 +88,14 @@ HL.prototype._commentar2 = function() {
 HL.prototype._commentarPreprocessor = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._outscoped = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
         if((m = /^(?:FIXME|TODO|BUG)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if((m = /^#\s*if/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._outscopedIntern();continue;}
         if((m = /^#\s*(endif|else|elif)/.exec(this.str)) && this.hl(m[0], 'dsComment')) return;
@@ -105,7 +105,7 @@ HL.prototype._outscoped = function() {
 HL.prototype._outscopedIntern = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
+        if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar2();continue;}
         if((m = /^#\s*if/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._outscopedIntern();continue;}
         if((m = /^#\s*endif/.exec(this.str)) && this.hl(m[0], 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');

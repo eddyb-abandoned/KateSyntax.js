@@ -105,7 +105,7 @@ HL.prototype._funcdef = function() {
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if((m = /^[%&()+\-<=>{|}~]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
-        if(this.str[0] == '];' && this.hl('];', 'dsFunction')) return;
+        if(this.str[0] == ']' && this.str[1] == ';' && this.hl('];', 'dsFunction')) return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -119,7 +119,6 @@ HL.prototype._classDecl = function() {
         if(this.str[0] == ',' && this.hl(',', 'dsBaseN')) return;
         if((m = /^\$[0-9a-fA-F]{1,4}/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._classDecl_1();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -137,7 +136,7 @@ HL.prototype._word = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsString')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -206,7 +205,7 @@ HL.prototype._has_decl = function() {
 HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };

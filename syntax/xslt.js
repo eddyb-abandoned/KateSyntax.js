@@ -56,7 +56,7 @@ HL.prototype._cDATA = function() {
 HL.prototype._pI = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '?>' && this.hl('?>', 'dsKeyword')) return;
+        if(this.str[0] == '?' && this.str[1] == '>' && this.hl('?>', 'dsKeyword')) return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -139,7 +139,7 @@ HL.prototype._tagname = function() {
 HL.prototype._attributes = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) {this._#pop#pop();continue;}
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) {this._#pop#pop();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) {this._#pop#pop();continue;}
         if((m = /^\s*=\s*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._attrValue();continue;}
         this.hl(this.str[0], 'dsOthers');
@@ -148,7 +148,7 @@ HL.prototype._attributes = function() {
 HL.prototype._attrValue = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsError')) {this._#pop#pop#pop();continue;}
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsError')) {this._#pop#pop#pop();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsError')) {this._#pop#pop#pop();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._sqstring();continue;}
@@ -158,7 +158,7 @@ HL.prototype._attrValue = function() {
 HL.prototype._xattributes = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) {this._#pop#pop();continue;}
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) {this._#pop#pop();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) {this._#pop#pop();continue;}
         if((m = /^select\s*=\s*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._xattrValue();continue;}
         if((m = /^test\s*=\s*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._xattrValue();continue;}
@@ -170,7 +170,7 @@ HL.prototype._xattributes = function() {
 HL.prototype._xattrValue = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsError')) {this._#pop#pop#pop();continue;}
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsError')) {this._#pop#pop#pop();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsError')) {this._#pop#pop#pop();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsOthers')) {this._xpath();continue;}
         if(this.str[0] == ''' && this.hl(''', 'dsOthers')) {this._sqxpath();continue;}

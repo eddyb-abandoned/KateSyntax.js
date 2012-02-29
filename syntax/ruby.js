@@ -53,7 +53,7 @@ HL.prototype._normal = function() {
         if((m = /^\bend\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\b(else|elsif|rescue|ensure)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\.\.\./.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == '..' && this.hl('..', 'dsNormal')) continue;
+        if(this.str[0] == '.' && this.str[1] == '.' && this.hl('..', 'dsNormal')) continue;
         if((m = /^\.[_a-z][_a-zA-Z0-9]*(\?|\!|\b)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._check_div_2();continue;}
         if((m = /^\s\?(\\M\-)?(\\C\-)?\\?\S/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {this._check_div_1();continue;}
         if((m = /^(?:BEGIN|END|and|begin|break|case|defined?|do|else|elsif|end|ensure|for|if|in|include|next|not|or|redo|rescue|retry|return|then|unless|until|when|yield)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -79,14 +79,14 @@ HL.prototype._normal = function() {
         if((m = /^\s*<<-(?=\w+|["'])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._find_indented_heredoc();continue;}
         if((m = /^\s*<<(?=\w+|["'])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._find_heredoc();continue;}
         if(this.str[0] == '.' && this.hl('.', 'dsNormal')) continue;
-        if(this.str[0] == '&&' && this.hl('&&', 'dsNormal')) continue;
-        if(this.str[0] == '||' && this.hl('||', 'dsNormal')) continue;
+        if(this.str[0] == '&' && this.str[1] == '&' && this.hl('&&', 'dsNormal')) continue;
+        if(this.str[0] == '|' && this.str[1] == '|' && this.hl('||', 'dsNormal')) continue;
         if((m = /^\s[\?\:\%]\s/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^[|&<>\^\+*~\-=]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\s!/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^/=\s/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^%=/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == '::' && this.hl('::', 'dsNormal')) {this._memberAccess();continue;}
+        if(this.str[0] == ':' && this.str[1] == ':' && this.hl('::', 'dsNormal')) {this._memberAccess();continue;}
         if((m = /^:(@{1,2}|\$)?[a-zA-Z_][a-zA-Z0-9_]*[=?!]?/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._check_div_1();continue;}
         if((m = /^:\[\]=?/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._quotedString();continue;}
@@ -114,7 +114,7 @@ HL.prototype._check_div_1 = function() {
     while(this.pos < this.len) {
         if((m = /^\s*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^[/%]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -123,7 +123,6 @@ HL.prototype._check_div_1_pop = function() {
     while(this.pos < this.len) {
         if((m = /^\s*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^[/%]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -132,7 +131,7 @@ HL.prototype._check_div_2 = function() {
     while(this.pos < this.len) {
         if((m = /^[/%]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._check_div_2_internal();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -140,7 +139,6 @@ HL.prototype._check_div_2_internal = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[/%](?=\s)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -149,7 +147,6 @@ HL.prototype._check_div_2_pop = function() {
     while(this.pos < this.len) {
         if((m = /^[/%]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._#pop#pop();continue;}
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._check_div_2_pop_internal();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -158,7 +155,6 @@ HL.prototype._check_div_2_pop_internal = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._#pop#pop#pop();continue;}
         if((m = /^/(?=\s)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._#pop#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) {this._#pop#pop#pop();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -186,7 +182,7 @@ HL.prototype._lineContinue = function() {
         if((m = /^\bend\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\b(else|elsif|rescue|ensure)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\.\.\./.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == '..' && this.hl('..', 'dsNormal')) continue;
+        if(this.str[0] == '.' && this.str[1] == '.' && this.hl('..', 'dsNormal')) continue;
         if((m = /^\.[_a-z][_a-zA-Z0-9]*(\?|\!|\b)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._check_div_2();continue;}
         if((m = /^\s\?(\\M\-)?(\\C\-)?\\?\S/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {this._check_div_1();continue;}
         if((m = /^(?:BEGIN|END|and|begin|break|case|defined?|do|else|elsif|end|ensure|for|if|in|include|next|not|or|redo|rescue|retry|return|then|unless|until|when|yield)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -212,14 +208,14 @@ HL.prototype._lineContinue = function() {
         if((m = /^\s*<<-(?=\w+|["'])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._find_indented_heredoc();continue;}
         if((m = /^\s*<<(?=\w+|["'])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._find_heredoc();continue;}
         if(this.str[0] == '.' && this.hl('.', 'dsNormal')) continue;
-        if(this.str[0] == '&&' && this.hl('&&', 'dsNormal')) continue;
-        if(this.str[0] == '||' && this.hl('||', 'dsNormal')) continue;
+        if(this.str[0] == '&' && this.str[1] == '&' && this.hl('&&', 'dsNormal')) continue;
+        if(this.str[0] == '|' && this.str[1] == '|' && this.hl('||', 'dsNormal')) continue;
         if((m = /^\s[\?\:\%]\s/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^[|&<>\^\+*~\-=]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\s!/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^/=\s/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^%=/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == '::' && this.hl('::', 'dsNormal')) {this._memberAccess();continue;}
+        if(this.str[0] == ':' && this.str[1] == ':' && this.hl('::', 'dsNormal')) {this._memberAccess();continue;}
         if((m = /^:(@{1,2}|\$)?[a-zA-Z_][a-zA-Z0-9_]*[=?!]?/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._check_div_1();continue;}
         if((m = /^:\[\]=?/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._quotedString();continue;}
@@ -239,7 +235,7 @@ HL.prototype._lineContinue = function() {
         if((m = /^\s*[%](?=[QqxwW]?[^\s])/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._find_gdl_input();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsNormal')) {this._check_div_1();continue;}
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._check_div_2();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -266,7 +262,7 @@ HL.prototype._findClosingBlockBrace = function() {
         if((m = /^\bend\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\b(else|elsif|rescue|ensure)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\.\.\./.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == '..' && this.hl('..', 'dsNormal')) continue;
+        if(this.str[0] == '.' && this.str[1] == '.' && this.hl('..', 'dsNormal')) continue;
         if((m = /^\.[_a-z][_a-zA-Z0-9]*(\?|\!|\b)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._check_div_2();continue;}
         if((m = /^\s\?(\\M\-)?(\\C\-)?\\?\S/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {this._check_div_1();continue;}
         if((m = /^(?:BEGIN|END|and|begin|break|case|defined?|do|else|elsif|end|ensure|for|if|in|include|next|not|or|redo|rescue|retry|return|then|unless|until|when|yield)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -292,14 +288,14 @@ HL.prototype._findClosingBlockBrace = function() {
         if((m = /^\s*<<-(?=\w+|["'])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._find_indented_heredoc();continue;}
         if((m = /^\s*<<(?=\w+|["'])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._find_heredoc();continue;}
         if(this.str[0] == '.' && this.hl('.', 'dsNormal')) continue;
-        if(this.str[0] == '&&' && this.hl('&&', 'dsNormal')) continue;
-        if(this.str[0] == '||' && this.hl('||', 'dsNormal')) continue;
+        if(this.str[0] == '&' && this.str[1] == '&' && this.hl('&&', 'dsNormal')) continue;
+        if(this.str[0] == '|' && this.str[1] == '|' && this.hl('||', 'dsNormal')) continue;
         if((m = /^\s[\?\:\%]\s/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^[|&<>\^\+*~\-=]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\s!/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^/=\s/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^%=/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == '::' && this.hl('::', 'dsNormal')) {this._memberAccess();continue;}
+        if(this.str[0] == ':' && this.str[1] == ':' && this.hl('::', 'dsNormal')) {this._memberAccess();continue;}
         if((m = /^:(@{1,2}|\$)?[a-zA-Z_][a-zA-Z0-9_]*[=?!]?/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._check_div_1();continue;}
         if((m = /^:\[\]=?/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._quotedString();continue;}
@@ -328,7 +324,7 @@ HL.prototype._quotedString = function() {
         if((m = /^\\\\/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\\\"/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._check_div_1_pop();continue;}
         this.hl(this.str[0], 'dsString');
     }
@@ -348,7 +344,7 @@ HL.prototype._commandString = function() {
         if((m = /^\\\\/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\\\`/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsString')) {this._check_div_1_pop();continue;}
         this.hl(this.str[0], 'dsString');
     }
@@ -365,7 +361,7 @@ HL.prototype._regEx1 = function() {
     while(this.pos < this.len) {
         if((m = /^\\\//.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if((m = /^/[uiomxn]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._check_div_1_pop();continue;}
         this.hl(this.str[0], 'dsOthers');
     }
@@ -393,7 +389,7 @@ HL.prototype._subst = function() {
         if((m = /^\bend\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\b(else|elsif|rescue|ensure)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\.\.\./.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == '..' && this.hl('..', 'dsNormal')) continue;
+        if(this.str[0] == '.' && this.str[1] == '.' && this.hl('..', 'dsNormal')) continue;
         if((m = /^\.[_a-z][_a-zA-Z0-9]*(\?|\!|\b)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._check_div_2();continue;}
         if((m = /^\s\?(\\M\-)?(\\C\-)?\\?\S/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {this._check_div_1();continue;}
         if((m = /^(?:BEGIN|END|and|begin|break|case|defined?|do|else|elsif|end|ensure|for|if|in|include|next|not|or|redo|rescue|retry|return|then|unless|until|when|yield)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -419,14 +415,14 @@ HL.prototype._subst = function() {
         if((m = /^\s*<<-(?=\w+|["'])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._find_indented_heredoc();continue;}
         if((m = /^\s*<<(?=\w+|["'])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._find_heredoc();continue;}
         if(this.str[0] == '.' && this.hl('.', 'dsNormal')) continue;
-        if(this.str[0] == '&&' && this.hl('&&', 'dsNormal')) continue;
-        if(this.str[0] == '||' && this.hl('||', 'dsNormal')) continue;
+        if(this.str[0] == '&' && this.str[1] == '&' && this.hl('&&', 'dsNormal')) continue;
+        if(this.str[0] == '|' && this.str[1] == '|' && this.hl('||', 'dsNormal')) continue;
         if((m = /^\s[\?\:\%]\s/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^[|&<>\^\+*~\-=]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\s!/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^/=\s/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^%=/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == '::' && this.hl('::', 'dsNormal')) {this._memberAccess();continue;}
+        if(this.str[0] == ':' && this.str[1] == ':' && this.hl('::', 'dsNormal')) {this._memberAccess();continue;}
         if((m = /^:(@{1,2}|\$)?[a-zA-Z_][a-zA-Z0-9_]*[=?!]?/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._check_div_1();continue;}
         if((m = /^:\[\]=?/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._quotedString();continue;}
@@ -454,7 +450,7 @@ HL.prototype._shortSubst = function() {
     while(this.pos < this.len) {
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^\w(?!\w)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsOthers')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -467,13 +463,13 @@ HL.prototype._memberAccess = function() {
         if((m = /^[A-Z]+_*([0-9]|[a-z])\w*/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[_A-Z][_A-Z0-9]*(?=[^\w\d\.\:])/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._check_div_2_pop();continue;}
         if((m = /^[_A-Z][_A-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if(this.str[0] == '::' && this.hl('::', 'dsNormal')) continue;
+        if(this.str[0] == ':' && this.str[1] == ':' && this.hl('::', 'dsNormal')) continue;
         if(this.str[0] == '.' && this.hl('.', 'dsNormal')) continue;
         if((m = /^[=+\-*/%|&[\]{}~]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) return;
         if((m = /^[()\]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         if((m = /^\W/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -481,21 +477,21 @@ HL.prototype._commentLine = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\w\:\:\s/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._rDocLabel();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._generalComment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
 HL.prototype._rDocLabel = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsOthers')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -504,7 +500,7 @@ HL.prototype._find_heredoc = function() {
     while(this.pos < this.len) {
         if((m = /^'(\w+)'/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._apostrophed_normal_heredoc();continue;}
         if((m = /^"?(\w+)"?/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._normal_heredoc();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -513,7 +509,7 @@ HL.prototype._find_indented_heredoc = function() {
     while(this.pos < this.len) {
         if((m = /^'(\w+)'/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._apostrophed_indented_heredoc();continue;}
         if((m = /^"?(\w+)"?/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._indented_heredoc();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -522,7 +518,7 @@ HL.prototype._indented_heredoc = function() {
     while(this.pos < this.len) {
         if((m = /^%1(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._#pop#pop();continue;}
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -538,7 +534,7 @@ HL.prototype._normal_heredoc = function() {
     while(this.pos < this.len) {
         if((m = /^%1(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._#pop#pop();continue;}
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -553,7 +549,7 @@ HL.prototype._heredoc_rules = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -590,17 +586,17 @@ HL.prototype._find_gdl_input = function() {
         if((m = /^Q?\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._gdl_dq_string_3();continue;}
         if((m = /^Q?</.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._gdl_dq_string_4();continue;}
         if((m = /^Q?([^\s\w])/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._gdl_dq_string_5();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsNormal')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
 HL.prototype._gdl_dq_string_1 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
-        if(this.str[0] == '\)' && this.hl('\)', 'dsString')) continue;
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsString')) continue;
         if(this.str[0] == '(' && this.hl('(', 'dsString')) {this._gdl_dq_string_1_nested();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -609,9 +605,9 @@ HL.prototype._gdl_dq_string_1 = function() {
 HL.prototype._gdl_dq_string_1_nested = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if(this.str[0] == '(' && this.hl('(', 'dsString')) {this._gdl_dq_string_1_nested();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
@@ -620,10 +616,10 @@ HL.prototype._gdl_dq_string_1_nested = function() {
 HL.prototype._gdl_dq_string_2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
-        if(this.str[0] == '\}' && this.hl('\}', 'dsString')) continue;
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '\' && this.str[1] == '}' && this.hl('\}', 'dsString')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsOthers')) {this._#pop#pop();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsString')) {this._gdl_dq_string_2_nested();continue;}
         this.hl(this.str[0], 'dsString');
@@ -634,19 +630,19 @@ HL.prototype._gdl_dq_string_2_nested = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '{' && this.hl('{', 'dsString')) {this._gdl_dq_string_2_nested();continue;}
         if(this.str[0] == '}' && this.hl('}', 'dsString')) return;
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };
 HL.prototype._gdl_dq_string_3 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
-        if(this.str[0] == '\]' && this.hl('\]', 'dsString')) continue;
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsString')) continue;
         if(this.str[0] == '[' && this.hl('[', 'dsString')) {this._gdl_dq_string_3_nested();continue;}
         if(this.str[0] == ']' && this.hl(']', 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -657,19 +653,19 @@ HL.prototype._gdl_dq_string_3_nested = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '[' && this.hl('[', 'dsString')) {this._gdl_dq_string_3_nested();continue;}
         if(this.str[0] == ']' && this.hl(']', 'dsString')) return;
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };
 HL.prototype._gdl_dq_string_4 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
-        if(this.str[0] == '\>' && this.hl('\>', 'dsString')) continue;
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '\' && this.str[1] == '>' && this.hl('\>', 'dsString')) continue;
         if(this.str[0] == '<' && this.hl('<', 'dsString')) {this._gdl_dq_string_4_nested();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -680,18 +676,18 @@ HL.prototype._gdl_dq_string_4_nested = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '<' && this.hl('<', 'dsString')) {this._gdl_dq_string_4_nested();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsString')) return;
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };
 HL.prototype._gdl_dq_string_5 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if((m = /^\\%1/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\s*%1/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -700,9 +696,9 @@ HL.prototype._gdl_dq_string_5 = function() {
 HL.prototype._dq_string_rules = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -710,7 +706,7 @@ HL.prototype._gdl_token_array_1 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\\\/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '\)' && this.hl('\)', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsString')) continue;
         if(this.str[0] == '(' && this.hl('(', 'dsString')) {this._gdl_token_array_1_nested();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -729,7 +725,7 @@ HL.prototype._gdl_token_array_2 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\\\/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '\}' && this.hl('\}', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '}' && this.hl('\}', 'dsString')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsOthers')) {this._#pop#pop();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsString')) {this._gdl_token_array_2_nested();continue;}
         this.hl(this.str[0], 'dsString');
@@ -748,7 +744,7 @@ HL.prototype._gdl_token_array_3 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\\\/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '\]' && this.hl('\]', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsString')) continue;
         if(this.str[0] == '[' && this.hl('[', 'dsString')) {this._gdl_token_array_3_nested();continue;}
         if(this.str[0] == ']' && this.hl(']', 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -767,7 +763,7 @@ HL.prototype._gdl_token_array_4 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\\\/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '\>' && this.hl('\>', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '>' && this.hl('\>', 'dsString')) continue;
         if(this.str[0] == '<' && this.hl('<', 'dsString')) {this._gdl_token_array_4_nested();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -801,8 +797,8 @@ HL.prototype._token_array_rules = function() {
 HL.prototype._gdl_apostrophed_1 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
-        if(this.str[0] == '\)' && this.hl('\)', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsString')) continue;
         if(this.str[0] == '(' && this.hl('(', 'dsString')) {this._gdl_apostrophed_1_nested();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -811,7 +807,7 @@ HL.prototype._gdl_apostrophed_1 = function() {
 HL.prototype._gdl_apostrophed_1_nested = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if(this.str[0] == '(' && this.hl('(', 'dsString')) {this._gdl_apostrophed_1_nested();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
@@ -820,8 +816,8 @@ HL.prototype._gdl_apostrophed_1_nested = function() {
 HL.prototype._gdl_apostrophed_2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
-        if(this.str[0] == '\}' && this.hl('\}', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '}' && this.hl('\}', 'dsString')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsOthers')) {this._#pop#pop();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsString')) {this._gdl_apostrophed_2_nested();continue;}
         this.hl(this.str[0], 'dsString');
@@ -830,7 +826,7 @@ HL.prototype._gdl_apostrophed_2 = function() {
 HL.prototype._gdl_apostrophed_2_nested = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsString')) {this._gdl_apostrophed_2_nested();continue;}
         if(this.str[0] == '}' && this.hl('}', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
@@ -839,8 +835,8 @@ HL.prototype._gdl_apostrophed_2_nested = function() {
 HL.prototype._gdl_apostrophed_3 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
-        if(this.str[0] == '\]' && this.hl('\]', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsString')) continue;
         if(this.str[0] == '[' && this.hl('[', 'dsString')) {this._gdl_apostrophed_3_nested();continue;}
         if(this.str[0] == ']' && this.hl(']', 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -849,7 +845,7 @@ HL.prototype._gdl_apostrophed_3 = function() {
 HL.prototype._gdl_apostrophed_3_nested = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if(this.str[0] == '[' && this.hl('[', 'dsString')) {this._gdl_apostrophed_3_nested();continue;}
         if(this.str[0] == ']' && this.hl(']', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
@@ -858,8 +854,8 @@ HL.prototype._gdl_apostrophed_3_nested = function() {
 HL.prototype._gdl_apostrophed_4 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
-        if(this.str[0] == '\>' && this.hl('\>', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '>' && this.hl('\>', 'dsString')) continue;
         if(this.str[0] == '<' && this.hl('<', 'dsString')) {this._gdl_apostrophed_4_nested();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -868,7 +864,7 @@ HL.prototype._gdl_apostrophed_4 = function() {
 HL.prototype._gdl_apostrophed_4_nested = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if(this.str[0] == '<' && this.hl('<', 'dsString')) {this._gdl_apostrophed_4_nested();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
@@ -877,7 +873,7 @@ HL.prototype._gdl_apostrophed_4_nested = function() {
 HL.prototype._gdl_apostrophed_5 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^\\%1/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\s*%1/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -886,17 +882,17 @@ HL.prototype._gdl_apostrophed_5 = function() {
 HL.prototype._apostrophed_rules = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         this.hl(this.str[0], 'dsString');
     }
 };
 HL.prototype._gdl_shell_command_1 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
-        if(this.str[0] == '\)' && this.hl('\)', 'dsString')) continue;
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsString')) continue;
         if(this.str[0] == '(' && this.hl('(', 'dsString')) {this._gdl_shell_command_1_nested();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -905,9 +901,9 @@ HL.prototype._gdl_shell_command_1 = function() {
 HL.prototype._gdl_shell_command_1_nested = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if(this.str[0] == '(' && this.hl('(', 'dsString')) {this._gdl_shell_command_1_nested();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
@@ -916,10 +912,10 @@ HL.prototype._gdl_shell_command_1_nested = function() {
 HL.prototype._gdl_shell_command_2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
-        if(this.str[0] == '\}' && this.hl('\}', 'dsString')) continue;
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '\' && this.str[1] == '}' && this.hl('\}', 'dsString')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsOthers')) {this._#pop#pop();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsString')) {this._gdl_shell_command_2_nested();continue;}
         this.hl(this.str[0], 'dsString');
@@ -928,9 +924,9 @@ HL.prototype._gdl_shell_command_2 = function() {
 HL.prototype._gdl_shell_command_2_nested = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsString')) {this._gdl_shell_command_2_nested();continue;}
         if(this.str[0] == '}' && this.hl('}', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
@@ -939,10 +935,10 @@ HL.prototype._gdl_shell_command_2_nested = function() {
 HL.prototype._gdl_shell_command_3 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
-        if(this.str[0] == '\]' && this.hl('\]', 'dsString')) continue;
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsString')) continue;
         if(this.str[0] == '[' && this.hl('[', 'dsString')) {this._gdl_shell_command_3_nested();continue;}
         if(this.str[0] == ']' && this.hl(']', 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -951,9 +947,9 @@ HL.prototype._gdl_shell_command_3 = function() {
 HL.prototype._gdl_shell_command_3_nested = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if(this.str[0] == '[' && this.hl('[', 'dsString')) {this._gdl_shell_command_3_nested();continue;}
         if(this.str[0] == ']' && this.hl(']', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
@@ -962,10 +958,10 @@ HL.prototype._gdl_shell_command_3_nested = function() {
 HL.prototype._gdl_shell_command_4 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
-        if(this.str[0] == '\>' && this.hl('\>', 'dsString')) continue;
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '\' && this.str[1] == '>' && this.hl('\>', 'dsString')) continue;
         if(this.str[0] == '<' && this.hl('<', 'dsString')) {this._gdl_shell_command_4_nested();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -974,9 +970,9 @@ HL.prototype._gdl_shell_command_4 = function() {
 HL.prototype._gdl_shell_command_4_nested = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if(this.str[0] == '<' && this.hl('<', 'dsString')) {this._gdl_shell_command_4_nested();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
@@ -985,9 +981,9 @@ HL.prototype._gdl_shell_command_4_nested = function() {
 HL.prototype._gdl_shell_command_5 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if((m = /^\\%1/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\s*%1/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
@@ -996,19 +992,19 @@ HL.prototype._gdl_shell_command_5 = function() {
 HL.prototype._shell_command_rules = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };
 HL.prototype._gdl_regexpr_1 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsOthers')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsOthers')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
-        if(this.str[0] == '\)' && this.hl('\)', 'dsOthers')) continue;
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsOthers')) continue;
         if(this.str[0] == '(' && this.hl('(', 'dsOthers')) {this._gdl_regexpr_1_nested();continue;}
         if((m = /^\)[uiomxn]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsOthers');
@@ -1017,9 +1013,9 @@ HL.prototype._gdl_regexpr_1 = function() {
 HL.prototype._gdl_regexpr_1_nested = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsOthers')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsOthers')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if(this.str[0] == '(' && this.hl('(', 'dsOthers')) {this._gdl_regexpr_1_nested();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsOthers')) return;
         this.hl(this.str[0], 'dsOthers');
@@ -1028,10 +1024,10 @@ HL.prototype._gdl_regexpr_1_nested = function() {
 HL.prototype._gdl_regexpr_2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsOthers')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsOthers')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
-        if(this.str[0] == '\}' && this.hl('\}', 'dsOthers')) continue;
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '\' && this.str[1] == '}' && this.hl('\}', 'dsOthers')) continue;
         if((m = /^\}[uiomxn]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._#pop#pop();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsOthers')) {this._gdl_regexpr_2_nested();continue;}
         this.hl(this.str[0], 'dsOthers');
@@ -1040,9 +1036,9 @@ HL.prototype._gdl_regexpr_2 = function() {
 HL.prototype._gdl_regexpr_2_nested = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsOthers')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsOthers')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsOthers')) {this._gdl_regexpr_2_nested();continue;}
         if(this.str[0] == '}' && this.hl('}', 'dsOthers')) return;
         this.hl(this.str[0], 'dsOthers');
@@ -1051,10 +1047,10 @@ HL.prototype._gdl_regexpr_2_nested = function() {
 HL.prototype._gdl_regexpr_3 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsOthers')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsOthers')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
-        if(this.str[0] == '\]' && this.hl('\]', 'dsOthers')) continue;
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsOthers')) continue;
         if(this.str[0] == '[' && this.hl('[', 'dsOthers')) {this._gdl_regexpr_3_nested();continue;}
         if((m = /^\][uiomxn]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsOthers');
@@ -1063,9 +1059,9 @@ HL.prototype._gdl_regexpr_3 = function() {
 HL.prototype._gdl_regexpr_3_nested = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsOthers')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsOthers')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if(this.str[0] == '[' && this.hl('[', 'dsOthers')) {this._gdl_regexpr_3_nested();continue;}
         if(this.str[0] == ']' && this.hl(']', 'dsOthers')) return;
         this.hl(this.str[0], 'dsOthers');
@@ -1074,10 +1070,10 @@ HL.prototype._gdl_regexpr_3_nested = function() {
 HL.prototype._gdl_regexpr_4 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsOthers')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsOthers')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
-        if(this.str[0] == '\>' && this.hl('\>', 'dsOthers')) continue;
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '\' && this.str[1] == '>' && this.hl('\>', 'dsOthers')) continue;
         if(this.str[0] == '<' && this.hl('<', 'dsOthers')) {this._gdl_regexpr_4_nested();continue;}
         if((m = /^>[uiomxn]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsOthers');
@@ -1086,9 +1082,9 @@ HL.prototype._gdl_regexpr_4 = function() {
 HL.prototype._gdl_regexpr_4_nested = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsOthers')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsOthers')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if(this.str[0] == '<' && this.hl('<', 'dsOthers')) {this._gdl_regexpr_4_nested();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsOthers')) return;
         this.hl(this.str[0], 'dsOthers');
@@ -1097,9 +1093,9 @@ HL.prototype._gdl_regexpr_4_nested = function() {
 HL.prototype._gdl_regexpr_5 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsOthers')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsOthers')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         if((m = /^\\%1/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^\s*%1[uiomxn]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsOthers');
@@ -1108,9 +1104,9 @@ HL.prototype._gdl_regexpr_5 = function() {
 HL.prototype._regexpr_rules = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.hl('\\', 'dsOthers')) continue;
+        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsOthers')) continue;
         if((m = /^#@{1,2}/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._shortSubst();continue;}
-        if(this.str[0] == '#{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
+        if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsOthers')) {this._subst();continue;}
         this.hl(this.str[0], 'dsOthers');
     }
 };

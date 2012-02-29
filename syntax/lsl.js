@@ -34,7 +34,7 @@ HL.prototype.hl = function hl(m,s) {
 HL.prototype._default = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '//' && this.hl('//', 'dsNormal')) {this._comment();continue;}
+        if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsNormal')) {this._comment();continue;}
         if((m = /^(?:integer|float|string|key|vector|quaternion|rotation|list)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^(?:default|state|event|jump|return|if|else|for|do|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:state_entry|state_exit|touch_start|touch|touch_end|collision_start|collision|collision_end|land_collision_start|land_collision|land_collision_end|timer|listen|sensor|no_sensor|control|print|at_target|not_at_target|at_rot_target|not_at_rot_target|money|email|run_time_permissions|changed|attach|dataserver|moving_start|moving_end|link_message|on_rez|object_rez|remote_data|http_response)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -63,7 +63,7 @@ HL.prototype._comment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^(?:FIXME|TODO|BUG|HACK|XXX)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };

@@ -46,7 +46,7 @@ HL.prototype._normalText = function() {
 HL.prototype._comments = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -61,7 +61,7 @@ HL.prototype._nodeNames = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '{') return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsOthers')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsOthers');
     }
 };
@@ -69,7 +69,7 @@ HL.prototype._definitions = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '=') {this._#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsFunction')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsFunction');
     }
 };

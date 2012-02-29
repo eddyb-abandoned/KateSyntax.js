@@ -50,7 +50,7 @@ HL.prototype._findJavadoc = function() {
 HL.prototype._javadocFSar = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) return;
         if((m = /^(!|\?)/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._javadocar();continue;}
         if((m = /^(\.\s*$)/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._javadocar();continue;}
         if((m = /^(\.\s)(?![\da-z])/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._javadocar();continue;}
@@ -74,7 +74,7 @@ HL.prototype._javadocFSar = function() {
 HL.prototype._javadocar = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) {this._#pop#pop();continue;}
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) {this._#pop#pop();continue;}
         if((m = /^\*+(?!/)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if((m = /^@author /.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^@deprecated /.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -122,7 +122,7 @@ HL.prototype._javadocParam = function() {
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         if((m = /^\S*(?=\*/)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._#pop#pop();continue;}
         if((m = /^\S*(\s|$)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
-        if(this.str[0] == '\n' && this.hl('\n', 'dsComment')) return;
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -130,8 +130,7 @@ HL.prototype._inlineTagar = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return;
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) {this._#pop#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) continue;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) {this._#pop#pop#pop();continue;}
         this.hl(this.str[0], 'dsKeyword');
     }
 };
@@ -139,16 +138,15 @@ HL.prototype._literalTagar = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return;
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) {this._#pop#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) continue;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) {this._#pop#pop#pop();continue;}
         this.hl(this.str[0], 'dsKeyword');
     }
 };
 HL.prototype._seeTag = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '*/' && this.hl('*/', 'dsComment')) {this._#pop#pop#pop();continue;}
-        if(this.str[0] == '\n' && this.hl('\n', 'dsKeyword')) return;
+        if(this.str[0] == '*' && this.str[1] == '/' && this.hl('*/', 'dsComment')) {this._#pop#pop#pop();continue;}
+        if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsKeyword');
     }
 };

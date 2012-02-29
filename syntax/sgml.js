@@ -42,7 +42,7 @@ HL.prototype._normalText = function() {
 HL.prototype._attribute = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) return;
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) return;
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) return;
         if((m = /^\s*=\s*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._value();continue;}
         this.hl(this.str[0], 'dsOthers');
@@ -51,7 +51,7 @@ HL.prototype._attribute = function() {
 HL.prototype._value = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) {this._#pop#pop();continue;}
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) {this._#pop#pop();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) {this._#pop#pop();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsDataType')) {this._value2();continue;}
         this.hl(this.str[0], 'dsDataType');

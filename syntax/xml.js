@@ -101,7 +101,7 @@ HL.prototype._cDATA = function() {
 HL.prototype._pI = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '?>' && this.hl('?>', 'dsKeyword')) return;
+        if(this.str[0] == '?' && this.str[1] == '>' && this.hl('?>', 'dsKeyword')) return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -158,7 +158,7 @@ HL.prototype._doctypeMarkupdeclSQ = function() {
 HL.prototype._element = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '/>' && this.hl('/>', 'dsKeyword')) return;
+        if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword')) return;
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) {this._elContent();continue;}
         if((m = /^^&name;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._attribute();continue;}
         if((m = /^\s+&name;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._attribute();continue;}
