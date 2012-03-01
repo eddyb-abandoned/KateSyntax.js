@@ -105,7 +105,7 @@ HL.prototype._comment = function() {
 HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsChar')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsChar')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         if(this.str[0] == '%' && this.str[1] == '%' && this.hl('%%', 'dsChar')) continue;
         if((m = /^([%!])[^%\s!]+\1/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;

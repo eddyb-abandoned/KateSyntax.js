@@ -120,7 +120,7 @@ HL.prototype._templateFilter = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '}' && this.str[1] == '}' && this.hl('}}', 'dsFunction')) {this._#pop#pop();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleAString();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._singleAString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._singleQString();continue;}
         if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsError')) continue;
         if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsError')) continue;
@@ -150,7 +150,7 @@ HL.prototype._inBlockTag = function() {
         if(/^\{%\s*end[a-z]+\s*%\}/.exec(this.str)) {this._nonMatchingTag();continue;}
         if(this.str[0] == '%' && this.str[1] == '}' && this.hl('%}', 'dsFunction')) {this._inBlock();continue;}
         if(this.str[0] == '%' && this.str[1] == '}' && this.hl('%}', 'dsFunction')) {this._#pop#pop();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleAString();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._singleAString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._singleQString();continue;}
         if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsError')) continue;
         if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsError')) continue;
@@ -170,7 +170,7 @@ HL.prototype._inTemplateTag = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '%' && this.str[1] == '}' && this.hl('%}', 'dsFunction')) {this._#pop#pop();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleAString();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._singleAString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._singleQString();continue;}
         if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsError')) continue;
         if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsError')) continue;
@@ -182,7 +182,7 @@ HL.prototype._singleAString = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -308,7 +308,7 @@ HL.prototype._doctypeMarkupdecl = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '>' && this.hl('>', 'dsDataType')) return;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._doctypeMarkupdeclDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._doctypeMarkupdeclSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._doctypeMarkupdeclSQ();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -325,7 +325,7 @@ HL.prototype._doctypeMarkupdeclDQ = function() {
 HL.prototype._doctypeMarkupdeclSQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^%&name;;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^[&%]/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
@@ -437,7 +437,7 @@ HL.prototype._value = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._valueDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._valueSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._valueSQ();continue;}
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -470,7 +470,7 @@ HL.prototype._valueDQ = function() {
 HL.prototype._valueSQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._#pop#pop();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._#pop#pop();continue;}
         if((m = /^\{%\s*comment\s*%\}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._templateComment();continue;}
         if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsFunction')) {this._templateVar();continue;}
         if(this.str[0] == '{' && this.str[1] == '%' && this.hl('{%', 'dsFunction')) {this._templateTag();continue;}

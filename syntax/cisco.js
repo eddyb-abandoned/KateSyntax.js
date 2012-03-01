@@ -52,9 +52,9 @@ HL.prototype._base = function() {
         if((m = /^\$[A-Za-z0-9_?{}!]+/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^".*?"/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^[|<>=;]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleQuote();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._singleQuote();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsOthers')) {this._substitution();continue;}
-        if(this.str[0] == '\' && this.str[1] == '#' && this.hl('\#', 'dsNormal')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsNormal')) continue;
         if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -62,8 +62,8 @@ HL.prototype._base = function() {
 HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
@@ -71,17 +71,17 @@ HL.prototype._string = function() {
 HL.prototype._singleQuote = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
-        if(this.str[0] == '\' && this.str[1] == ''' && this.hl('\'', 'dsString')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\'' && this.hl('\\\'', 'dsString')) continue;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
 };
 HL.prototype._substitution = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
-        if(this.str[0] == '\' && this.str[1] == '`' && this.hl('\`', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '`' && this.hl('\\`', 'dsString')) continue;
         if(this.str[0] == '`' && this.hl('`', 'dsOthers')) return;
         this.hl(this.str[0], 'dsOthers');
     }

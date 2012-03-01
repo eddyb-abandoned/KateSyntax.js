@@ -34,7 +34,7 @@ HL.prototype.hl = function hl(m,s) {
 HL.prototype._out_comment = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '<' && this.str[1] == ''' && this.hl('<'', 'dsComment')) {this._normal();continue;}
+        if(this.str[0] == '<' && this.str[1] == '\'' && this.hl('<\'', 'dsComment')) {this._normal();continue;}
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -46,7 +46,7 @@ HL.prototype._normal = function() {
         if((m = /^0x[\da-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^0[0-7]+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == ''' && this.str[1] == '>' && this.hl(''>', 'dsNormal')) {this._out_comment();continue;}
+        if(this.str[0] == '\'' && this.str[1] == '>' && this.hl('\'>', 'dsNormal')) {this._out_comment();continue;}
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}

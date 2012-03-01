@@ -35,13 +35,13 @@ HL.prototype._normal = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '.' && this.hl('.', 'dsFunction')) {this._detectDirective();continue;}
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\') {this._detectEscape();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\') {this._detectEscape();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -50,8 +50,8 @@ HL.prototype._detectComments = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -59,9 +59,9 @@ HL.prototype._detectOthers = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\') {this._detectEscape();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\') {this._detectEscape();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -73,7 +73,7 @@ HL.prototype._detectEscape = function() {
         if((m = /^\\[fF]&roffid;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) return;
         if((m = /^\\f([0-9]|\([0-9][0-9]|\[[0-9]+\])/.exec(this.str)) && this.hl(m[0], 'dsOthers')) return;
         if((m = /^\\s(\[([1-3][0-9]|[04-9])\]|[04-9]|[+-][0-9]|([+-]?\(|\([+-])[0-9][0-9])/.exec(this.str)) && this.hl(m[0], 'dsOthers')) return;
-        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsChar')) return;
+        if(this.str[0] == '\\\' && this.str[1] == '\\\' && this.hl('\\\\\\', 'dsChar')) return;
         if((m = /^\\(\$[0-9*@]|[.:% |^{}_!?@)/,&:~0acdeEprtu])/.exec(this.str)) && this.hl(m[0], 'dsChar')) return;
         if((m = /^\\[AbBDowXZ]&argsep1;/.exec(this.str)) && this.hl(m[0], 'dsChar')) {this._argument();continue;}
         if((m = /^\\[gkmMVYz]&roffid;/.exec(this.str)) && this.hl(m[0], 'dsChar')) return;
@@ -85,7 +85,7 @@ HL.prototype._detectEscape = function() {
         if((m = /^\\N&argsep2;[0-9]+\1/.exec(this.str)) && this.hl(m[0], 'dsOthers')) return;
         if((m = /^\\&roffid;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) return;
         if((m = /^\\(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsChar')) return;
-        if(this.str[0] == '\\' && this.hl('\\', 'dsError')) return;
+        if(this.str[0] == '\\\' && this.hl('\\\', 'dsError')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsError');
     }
@@ -123,11 +123,11 @@ HL.prototype._directive = function() {
     while(this.pos < this.len) {
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\') {this._detectEscape();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\') {this._detectEscape();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
@@ -136,12 +136,12 @@ HL.prototype._directive = function() {
 HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsChar')) continue;
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsChar')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\') {this._detectEscape();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\') {this._detectEscape();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
@@ -157,8 +157,8 @@ HL.prototype._literalSL = function() {
 HL.prototype._literalIL = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsChar')) continue;
-        if(this.str[0] == '\\' && this.str[1] == '?' && this.hl('\\?', 'dsChar')) return;
+        if(this.str[0] == '\\\' && this.str[1] == '\\\' && this.hl('\\\\\\', 'dsChar')) continue;
+        if(this.str[0] == '\\\' && this.str[1] == '?' && this.hl('\\\?', 'dsChar')) return;
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -167,9 +167,9 @@ HL.prototype._argument = function() {
     while(this.pos < this.len) {
         if((m = /^%1/.exec(this.str)) && this.hl(m[0], 'dsChar')) {this._#pop#pop();continue;}
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\') {this._detectEscape();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\') {this._detectEscape();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         this.hl(this.str[0], 'dsString');
     }
@@ -199,13 +199,13 @@ HL.prototype._deBody = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '.' && this.str[1] == '.' && this.hl('..', 'dsFunction')) {this._#pop#pop();continue;}
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '.' && this.hl('.', 'dsFunction')) {this._detectDirective();continue;}
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\') {this._detectEscape();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\') {this._detectEscape();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -220,16 +220,16 @@ HL.prototype._diBody = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\.\s*di\b/.exec(this.str)) && this.hl(m[0], 'dsFunction')) {this._#pop#pop();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '!' && this.hl('\\!', 'dsChar')) {this._literalSL();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '?' && this.hl('\\?', 'dsChar')) {this._literalIL();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '!' && this.hl('\\\!', 'dsChar')) {this._literalSL();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '?' && this.hl('\\\?', 'dsChar')) {this._literalIL();continue;}
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '.' && this.hl('.', 'dsFunction')) {this._detectDirective();continue;}
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\') {this._detectEscape();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\') {this._detectEscape();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -244,16 +244,16 @@ HL.prototype._daBody = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\.\s*da\b/.exec(this.str)) && this.hl(m[0], 'dsFunction')) {this._#pop#pop();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '!' && this.hl('\\!', 'dsChar')) {this._literalSL();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '?' && this.hl('\\?', 'dsChar')) {this._literalIL();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '!' && this.hl('\\\!', 'dsChar')) {this._literalSL();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '?' && this.hl('\\\?', 'dsChar')) {this._literalIL();continue;}
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '.' && this.hl('.', 'dsFunction')) {this._detectDirective();continue;}
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\') {this._detectEscape();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\') {this._detectEscape();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -263,12 +263,12 @@ HL.prototype._dsDirective = function() {
     while(this.pos < this.len) {
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._dsString();continue;}
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\') {this._detectEscape();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\') {this._detectEscape();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
@@ -278,9 +278,9 @@ HL.prototype._dsString = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\.\s*\\"/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsComment')) {this._comment();continue;}
-        if(this.str[0] == '\\') {this._detectEscape();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '"' && this.hl('\\\"', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\' && this.str[1] == '#' && this.hl('\\\#', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\\\') {this._detectEscape();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');

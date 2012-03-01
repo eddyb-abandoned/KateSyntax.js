@@ -67,7 +67,7 @@ HL.prototype._commandSection = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == '\' && this.hl('\', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.hl('\\', 'dsKeyword')) continue;
         if(/^[%$]/.exec(this.str)) {this._handle_percent();continue;}
         if(/^[ \t]*#/.exec(this.str)) {this._comment();continue;}
         this.hl(this.str[0], 'dsNormal');
@@ -342,7 +342,7 @@ HL.prototype._macroDefinationContent = function() {
     while(this.pos < this.len) {
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.hl('\', 'dsError')) continue;
+        if(this.str[0] == '\\' && this.hl('\\', 'dsError')) continue;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }

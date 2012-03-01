@@ -46,7 +46,7 @@ HL.prototype._base = function() {
         if((m = /^:lang\([\w_-]+\)/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if(this.str[0] == ':' && this.hl(':', 'dsDecVal')) {this._selPseudo();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
@@ -66,7 +66,7 @@ HL.prototype._findRuleSets = function() {
         if((m = /^:lang\([\w_-]+\)/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if(this.str[0] == ':' && this.hl(':', 'dsDecVal')) {this._selPseudo();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
@@ -86,7 +86,7 @@ HL.prototype._findStrings = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -126,7 +126,7 @@ HL.prototype._media2 = function() {
         if((m = /^:lang\([\w_-]+\)/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if(this.str[0] == ':' && this.hl(':', 'dsDecVal')) {this._selPseudo();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
@@ -138,7 +138,7 @@ HL.prototype._selAttr = function() {
     while(this.pos < this.len) {
         if(this.str[0] == ']' && this.hl(']', 'dsChar')) return;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         this.hl(this.str[0], 'dsChar');
     }
 };
@@ -159,7 +159,7 @@ HL.prototype._import = function() {
         if((m = /^[-+]?[0-9.]+[%]?/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[\w\-]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
@@ -210,7 +210,7 @@ HL.prototype._rule2 = function() {
         if((m = /^[-+]?[0-9.]+[%]?/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[\w\-]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
@@ -236,7 +236,7 @@ HL.prototype._propParen2 = function() {
         if((m = /^[-+]?[0-9.]+[%]?/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[\w\-]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if((m = /^/\*BEGIN.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^/\*END.*\*//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._comment();continue;}
@@ -255,7 +255,7 @@ HL.prototype._stringDQ = function() {
 HL.prototype._stringSQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         if((m = /^\\["']/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         this.hl(this.str[0], 'dsString');

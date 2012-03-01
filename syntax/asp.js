@@ -47,9 +47,9 @@ HL.prototype._aspsource = function() {
     while(this.pos < this.len) {
         if((m = /^%>/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
         if((m = /^<\s*\/\s*script\s*>/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
-        if(this.str[0] == ''' && this.hl(''', 'dsComment')) {this._asp_onelinecomment();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsComment')) {this._asp_onelinecomment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._doublequotestring();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singlequotestring();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._singlequotestring();continue;}
         if(this.str[0] == '&' && this.hl('&', 'dsKeyword')) continue;
         if(undefined && this.hl(undefined, 'dsString')) continue;
         if((m = /^[0123456789]*\.\.\.[0123456789]*/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
@@ -108,8 +108,8 @@ HL.prototype._doublequotestring = function() {
 HL.prototype._singlequotestring = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.str[1] == ''' && this.hl('''', 'dsKeyword')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.str[1] == '\'' && this.hl('\'\'', 'dsKeyword')) continue;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -138,7 +138,7 @@ HL.prototype._identifiers = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\s*#?[a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString')) return;
-        if(this.str[0] == ''' && this.hl(''', 'dsDataType')) {this._types1();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsDataType')) {this._types1();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsDataType')) {this._types2();continue;}
         this.hl(this.str[0], 'dsOthers');
     }
@@ -148,7 +148,7 @@ HL.prototype._types1 = function() {
     while(this.pos < this.len) {
         if((m = /^<%/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._aspsource();continue;}
         if((m = /^<%/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._aspsource();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsDataType')) {this._#pop#pop();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsDataType')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsDataType');
     }
 };
@@ -172,7 +172,7 @@ HL.prototype._scripts = function() {
         if((m = /^<%/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._aspsource();continue;}
         if((m = /^<\s*\/\s*script\s*>/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._doublequotestring();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singlequotestring();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._singlequotestring();continue;}
         if((m = /^0[0-7]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^0x[\da-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;

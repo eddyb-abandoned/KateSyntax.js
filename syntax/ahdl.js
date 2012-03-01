@@ -65,7 +65,7 @@ HL.prototype._normal = function() {
 HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsChar')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsChar')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }

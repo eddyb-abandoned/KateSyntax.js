@@ -47,16 +47,16 @@ HL.prototype._normal = function() {
         if((m = /^([ \t,][0-1]+B)/i.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^'(\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})|[^\a\b\e\f\n\r\t\v])'/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == 'A' && this.str[1] == ''' && this.hl('A'', 'dsChar')) {this._aSCIIChar();continue;}
-        if(this.str[0] == 'a' && this.str[1] == ''' && this.hl('a'', 'dsChar')) {this._aSCIIChar();continue;}
-        if(this.str[0] == 'B' && this.str[1] == ''' && this.hl('B'', 'dsBaseN')) {this._binaryDigits();continue;}
-        if(this.str[0] == 'b' && this.str[1] == ''' && this.hl('b'', 'dsBaseN')) {this._binaryDigits();continue;}
-        if(this.str[0] == 'H' && this.str[1] == ''' && this.hl('H'', 'dsBaseN')) {this._hexDigits();continue;}
-        if(this.str[0] == 'h' && this.str[1] == ''' && this.hl('h'', 'dsBaseN')) {this._hexDigits();continue;}
-        if(this.str[0] == 'O' && this.str[1] == ''' && this.hl('O'', 'dsBaseN')) {this._octDigits();continue;}
-        if(this.str[0] == 'o' && this.str[1] == ''' && this.hl('o'', 'dsBaseN')) {this._octDigits();continue;}
-        if(this.str[0] == 'D' && this.str[1] == ''' && this.hl('D'', 'dsBaseN')) {this._decimalDigits();continue;}
-        if(this.str[0] == 'd' && this.str[1] == ''' && this.hl('d'', 'dsBaseN')) {this._decimalDigits();continue;}
+        if(this.str[0] == 'A' && this.str[1] == '\'' && this.hl('A\'', 'dsChar')) {this._aSCIIChar();continue;}
+        if(this.str[0] == '\a' && this.str[1] == '\'' && this.hl('\a\'', 'dsChar')) {this._aSCIIChar();continue;}
+        if(this.str[0] == 'B' && this.str[1] == '\'' && this.hl('B\'', 'dsBaseN')) {this._binaryDigits();continue;}
+        if(this.str[0] == 'b' && this.str[1] == '\'' && this.hl('b\'', 'dsBaseN')) {this._binaryDigits();continue;}
+        if(this.str[0] == 'H' && this.str[1] == '\'' && this.hl('H\'', 'dsBaseN')) {this._hexDigits();continue;}
+        if(this.str[0] == 'h' && this.str[1] == '\'' && this.hl('h\'', 'dsBaseN')) {this._hexDigits();continue;}
+        if(this.str[0] == 'O' && this.str[1] == '\'' && this.hl('O\'', 'dsBaseN')) {this._octDigits();continue;}
+        if(this.str[0] == 'o' && this.str[1] == '\'' && this.hl('o\'', 'dsBaseN')) {this._octDigits();continue;}
+        if(this.str[0] == 'D' && this.str[1] == '\'' && this.hl('D\'', 'dsBaseN')) {this._decimalDigits();continue;}
+        if(this.str[0] == 'd' && this.str[1] == '\'' && this.hl('d\'', 'dsBaseN')) {this._decimalDigits();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == ';' && this.hl(';', 'dsComment')) {this._comment();continue;}
         if((m = /^[\-/*%+=><&|\^!~]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -88,7 +88,7 @@ HL.prototype._comment = function() {
 HL.prototype._decimalDigits = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) return;
         if((m = /^\D/.exec(this.str)) && this.hl(m[0], 'dsError')) {this._quotedNumError();continue;}
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsBaseN');
@@ -97,7 +97,7 @@ HL.prototype._decimalDigits = function() {
 HL.prototype._binaryDigits = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) return;
         if((m = /^[^0-1]/.exec(this.str)) && this.hl(m[0], 'dsError')) {this._quotedNumError();continue;}
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsBaseN');
@@ -106,7 +106,7 @@ HL.prototype._binaryDigits = function() {
 HL.prototype._hexDigits = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) return;
         if((m = /^[^0-9A-Fa-f]/.exec(this.str)) && this.hl(m[0], 'dsError')) {this._quotedNumError();continue;}
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsBaseN');
@@ -115,7 +115,7 @@ HL.prototype._hexDigits = function() {
 HL.prototype._octDigits = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) return;
         if((m = /^[^0-7]/.exec(this.str)) && this.hl(m[0], 'dsError')) {this._quotedNumError();continue;}
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsBaseN');
@@ -124,7 +124,7 @@ HL.prototype._octDigits = function() {
 HL.prototype._aSCIIChar = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) return;
         if((m = /^.[^']/.exec(this.str)) && this.hl(m[0], 'dsError')) {this._quotedNumError();continue;}
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsChar');
@@ -133,7 +133,7 @@ HL.prototype._aSCIIChar = function() {
 HL.prototype._quotedNumError = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsError')) {this._#pop#pop();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsError')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsError');
     }
 };

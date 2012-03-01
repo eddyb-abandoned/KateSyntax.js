@@ -46,7 +46,7 @@ HL.prototype._normal = function() {
         if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentRegion();continue;}
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string2();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string2();continue;}
         if((m = /^[~!\^*()\-+=[\]|\:;,./?&<>]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -68,7 +68,7 @@ HL.prototype._string = function() {
 HL.prototype._string2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
 };

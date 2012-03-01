@@ -63,9 +63,9 @@ HL.prototype._start = function() {
         if((m = /^(<<?|>>?&?!?)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^([|&])\1?/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^&funcname;\s*\(\)/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -117,9 +117,9 @@ HL.prototype._findAll = function() {
         if((m = /^(<<?|>>?&?!?)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^([|&])\1?/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^&funcname;\s*\(\)/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -144,9 +144,9 @@ HL.prototype._findMost = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._comment();continue;}
         if((m = /^[\s;](?=#)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._comment();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -262,9 +262,9 @@ HL.prototype._findOthers = function() {
 HL.prototype._findStrings = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -305,9 +305,9 @@ HL.prototype._exprDblParen = function() {
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) {this._exprSubParen();continue;}
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._comment();continue;}
         if((m = /^[\s;](?=#)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._comment();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -334,9 +334,9 @@ HL.prototype._exprDblParenSubst = function() {
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) {this._exprSubParen();continue;}
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._comment();continue;}
         if((m = /^[\s;](?=#)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._comment();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -363,9 +363,9 @@ HL.prototype._exprSubParen = function() {
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) {this._exprSubParen();continue;}
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._comment();continue;}
         if((m = /^[\s;](?=#)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._comment();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -399,9 +399,9 @@ HL.prototype._exprBracket = function() {
         if((m = /^([!=]~|[!><]=)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._comment();continue;}
         if((m = /^[\s;](?=#)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._comment();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -435,9 +435,9 @@ HL.prototype._exprDblBracket = function() {
         if((m = /^([!=]~|[!><]=)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._comment();continue;}
         if((m = /^[\s;](?=#)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._comment();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -490,9 +490,9 @@ HL.prototype._group = function() {
         if((m = /^(<<?|>>?&?!?)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^([|&])\1?/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^&funcname;\s*\(\)/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -545,9 +545,9 @@ HL.prototype._subShell = function() {
         if((m = /^(<<?|>>?&?!?)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^([|&])\1?/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^&funcname;\s*\(\)/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -571,9 +571,9 @@ HL.prototype._assign = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '(' && this.hl('(', 'dsOthers')) {this._assignArray();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -603,9 +603,9 @@ HL.prototype._assignArray = function() {
         if(this.str[0] == '=' && this.hl('=', 'dsOthers')) {this._assign();continue;}
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._comment();continue;}
         if((m = /^[\s;](?=#)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._comment();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -631,9 +631,9 @@ HL.prototype._assignSubscr = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '[' && this.hl('[', 'dsOthers')) {this._subscript();continue;}
         if(this.str[0] == '=' && this.hl('=', 'dsOthers')) {this._assign();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -658,9 +658,9 @@ HL.prototype._subscript = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == ']' && this.hl(']', 'dsOthers')) return;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -692,12 +692,12 @@ HL.prototype._cmdSetEnv = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\b&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) return;
-        if(this.str[0] == '\s' && this.hl('\s', 'dsOthers')) {this._assign();continue;}
+        if(this.str[0] == '\\s' && this.hl('\\s', 'dsOthers')) {this._assign();continue;}
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._comment();continue;}
         if((m = /^[\s;](?=#)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._comment();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -728,9 +728,9 @@ HL.prototype._varName = function() {
         if(this.str[0] == '=' && this.hl('=', 'dsOthers')) {this._assign();continue;}
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._comment();continue;}
         if((m = /^[\s;](?=#)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._comment();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -785,9 +785,9 @@ HL.prototype._processSubst = function() {
         if((m = /^(<<?|>>?&?!?)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^([|&])\1?/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^&funcname;\s*\(\)/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -810,7 +810,7 @@ HL.prototype._processSubst = function() {
 HL.prototype._stringSQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -836,7 +836,7 @@ HL.prototype._stringDQ = function() {
 HL.prototype._stringEsc = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         if((m = /^\\[abefnrtv\\']/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^\\([0-7]{1,3}|x[A-Fa-f0-9]{1,2}|c.)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         this.hl(this.str[0], 'dsString');
@@ -847,9 +847,9 @@ HL.prototype._varBrace = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '}' && this.hl('}', 'dsOthers')) return;
         if(this.str[0] == '[' && this.hl('[', 'dsOthers')) {this._subscript();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -871,9 +871,9 @@ HL.prototype._substFile = function() {
         if(this.str[0] == ')' && this.hl(')', 'dsKeyword')) return;
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._commentParen();continue;}
         if((m = /^[\s;](?=#)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._commentParen();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -926,9 +926,9 @@ HL.prototype._substCommand = function() {
         if((m = /^(<<?|>>?&?!?)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^([|&])\1?/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^&funcname;\s*\(\)/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -981,9 +981,9 @@ HL.prototype._substBackq = function() {
         if((m = /^(<<?|>>?&?!?)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^([|&])\1?/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^&funcname;\s*\(\)/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -1011,9 +1011,9 @@ HL.prototype._switch = function() {
         if((m = /^\bendsw(?=$|[\s;)])/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._comment();continue;}
         if((m = /^[\s;](?=#)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._comment();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -1039,9 +1039,9 @@ HL.prototype._switchCase = function() {
         if(this.str[0] == ':' && this.hl(':', 'dsKeyword')) {this._switchExpr();continue;}
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._comment();continue;}
         if((m = /^[\s;](?=#)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._comment();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -1102,9 +1102,9 @@ HL.prototype._switchExpr = function() {
         if((m = /^(<<?|>>?&?!?)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^([|&])\1?/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^&funcname;\s*\(\)/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -1171,9 +1171,9 @@ HL.prototype._hereDocRemainder = function() {
         if((m = /^(<<?|>>?&?!?)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^([|&])\1?/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^&funcname;\s*\(\)/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringSQ();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._stringDQ();continue;}
-        if(this.str[0] == '$' && this.str[1] == ''' && this.hl('$'', 'dsString')) {this._stringEsc();continue;}
+        if(this.str[0] == '$' && this.str[1] == '\'' && this.hl('$\'', 'dsString')) {this._stringEsc();continue;}
         if(this.str[0] == '$' && this.str[1] == '"' && this.hl('$"', 'dsString')) {this._stringDQ();continue;}
         if((m = /^\$&varname;\[/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._subscript();continue;}
         if((m = /^\$&varname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;

@@ -49,7 +49,7 @@ HL.prototype._normalText = function() {
         if((m = /^\\\[/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeEquation();continue;}
         if((m = /^\\iffalse/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._multilineComment();continue;}
         if((m = /^\\ensuremath\{/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeEnsure();continue;}
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._contrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._contrSeq();continue;}
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeDisplay();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) {this._mathMode();continue;}
         if((m = /^%\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
@@ -83,7 +83,7 @@ HL.prototype._sectioningInside = function() {
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) {this._sectioningInside();continue;}
         if(this.str[0] == '}' && this.hl('}', 'dsNormal')) return;
         if((m = /^\\\(/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._sectioningMathMode();continue;}
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._sectioningContrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._sectioningContrSeq();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) {this._sectioningMathMode();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '×' && this.hl('×', 'dsNormal')) continue;
@@ -105,9 +105,9 @@ HL.prototype._sectioningMathMode = function() {
     while(this.pos < this.len) {
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) return;
-        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsNormal')) return;
-        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsAlert')) continue;
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._sectioningMathContrSeq();continue;}
+        if(this.str[0] == '\\' && this.str[1] == ')' && this.hl('\\)', 'dsNormal')) return;
+        if(this.str[0] == '\\' && this.str[1] == ']' && this.hl('\\]', 'dsAlert')) continue;
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._sectioningMathContrSeq();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '×' && this.hl('×', 'dsNormal')) continue;
         this.hl(this.str[0], 'dsNormal');
@@ -156,7 +156,7 @@ HL.prototype._footnotingInside = function() {
         if((m = /^\\\[/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeEquation();continue;}
         if((m = /^\\iffalse/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._multilineComment();continue;}
         if((m = /^\\ensuremath\{/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeEnsure();continue;}
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._contrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._contrSeq();continue;}
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeDisplay();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) {this._mathMode();continue;}
         if((m = /^%\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
@@ -171,17 +171,17 @@ HL.prototype._footnotingMathMode = function() {
     while(this.pos < this.len) {
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) return;
-        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsNormal')) return;
-        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsAlert')) continue;
+        if(this.str[0] == '\\' && this.str[1] == ')' && this.hl('\\)', 'dsNormal')) return;
+        if(this.str[0] == '\\' && this.str[1] == ']' && this.hl('\\]', 'dsAlert')) continue;
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) return;
-        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsNormal')) return;
-        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsAlert')) continue;
+        if(this.str[0] == '\\' && this.str[1] == ')' && this.hl('\\)', 'dsNormal')) return;
+        if(this.str[0] == '\\' && this.str[1] == ']' && this.hl('\\]', 'dsAlert')) continue;
         if((m = /^\\(begin|end)\s*\{(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|flalign|alignat|xalignat|xxalignat|IEEEeqnarray)\*?\}/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if((m = /^\\begin(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\end(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\(text|intertext|mbox)\s*(?=\{)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeText();continue;}
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._mathContrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._mathContrSeq();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsComment')) {this._comment();continue;}
         if((m = /^%\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^%\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
@@ -273,7 +273,7 @@ HL.prototype._labelOption = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\\(/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathMode();continue;}
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._contrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._contrSeq();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) {this._mathMode();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '×' && this.hl('×', 'dsNormal')) continue;
@@ -310,7 +310,7 @@ HL.prototype._fancyLabelRoundBrackets = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\\(/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathMode();continue;}
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._contrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._contrSeq();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) {this._mathMode();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '×' && this.hl('×', 'dsNormal')) continue;
@@ -496,7 +496,7 @@ HL.prototype._mathModeEnv = function() {
         if((m = /^\\\)/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if((m = /^\\]/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if((m = /^\\(text|intertext|mbox)\s*(?=\{)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeText();continue;}
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._mathContrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._mathContrSeq();continue;}
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if(this.str[0] == '$' && this.hl('$', 'dsAlert')) continue;
         if(this.str[0] == '%' && this.hl('%', 'dsComment')) {this._comment();continue;}
@@ -549,7 +549,7 @@ HL.prototype._tab = function() {
         if((m = /^\\\[/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeEquation();continue;}
         if((m = /^\\iffalse/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._multilineComment();continue;}
         if((m = /^\\ensuremath\{/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeEnsure();continue;}
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._contrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._contrSeq();continue;}
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeDisplay();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) {this._mathMode();continue;}
         if((m = /^%\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
@@ -583,13 +583,13 @@ HL.prototype._mathMode = function() {
     while(this.pos < this.len) {
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) return;
-        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsNormal')) return;
-        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsAlert')) continue;
+        if(this.str[0] == '\\' && this.str[1] == ')' && this.hl('\\)', 'dsNormal')) return;
+        if(this.str[0] == '\\' && this.str[1] == ']' && this.hl('\\]', 'dsAlert')) continue;
         if((m = /^\\(begin|end)\s*\{(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|flalign|alignat|xalignat|xxalignat|IEEEeqnarray)\*?\}/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if((m = /^\\begin(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\end(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\(text|intertext|mbox)\s*(?=\{)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeText();continue;}
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._mathContrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._mathContrSeq();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsComment')) {this._comment();continue;}
         if((m = /^%\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^%\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
@@ -602,13 +602,13 @@ HL.prototype._mathModeDisplay = function() {
     while(this.pos < this.len) {
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
         if(this.str[0] == '$' && this.hl('$', 'dsAlert')) continue;
-        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsAlert')) continue;
-        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsAlert')) continue;
+        if(this.str[0] == '\\' && this.str[1] == ']' && this.hl('\\]', 'dsAlert')) continue;
+        if(this.str[0] == '\\' && this.str[1] == ')' && this.hl('\\)', 'dsAlert')) continue;
         if((m = /^\\(begin|end)\s*\{(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|flalign|alignat|xalignat|xxalignat|IEEEeqnarray)\*?\}/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if((m = /^\\begin(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\end(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\(text|intertext|mbox)\s*(?=\{)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeText();continue;}
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._mathContrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._mathContrSeq();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsComment')) {this._comment();continue;}
         if((m = /^%\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^%\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
@@ -619,15 +619,15 @@ HL.prototype._mathModeDisplay = function() {
 HL.prototype._mathModeEquation = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsNormal')) return;
+        if(this.str[0] == '\\' && this.str[1] == ']' && this.hl('\\]', 'dsNormal')) return;
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if(this.str[0] == '$' && this.hl('$', 'dsAlert')) continue;
-        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsAlert')) continue;
+        if(this.str[0] == '\\' && this.str[1] == ')' && this.hl('\\)', 'dsAlert')) continue;
         if((m = /^\\(begin|end)\s*\{(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|flalign|alignat|xalignat|xxalignat|IEEEeqnarray)\*?\}/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
         if((m = /^\\begin(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\end(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\(text|intertext|mbox)\s*(?=\{)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeText();continue;}
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._mathContrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._mathContrSeq();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsComment')) {this._comment();continue;}
         if((m = /^%\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^%\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
@@ -644,7 +644,7 @@ HL.prototype._mathModeEnsure = function() {
         if((m = /^\\begin(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\end(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\(text|intertext|mbox)\s*(?=\{)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeText();continue;}
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._mathContrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._mathContrSeq();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsComment')) {this._comment();continue;}
         if((m = /^%\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^%\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
@@ -659,7 +659,7 @@ HL.prototype._mathModeCommon = function() {
         if((m = /^\\begin(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\end(?=[^a-zA-Z])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\(text|intertext|mbox)\s*(?=\{)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathModeText();continue;}
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._mathContrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._mathContrSeq();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsComment')) {this._comment();continue;}
         if((m = /^%\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
         if((m = /^%\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;

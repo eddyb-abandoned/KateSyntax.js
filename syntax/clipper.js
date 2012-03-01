@@ -63,7 +63,7 @@ HL.prototype._normal = function() {
         if((m = /^[!%&()+,\-<:=>[\]\^~]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._preprocessor();continue;}
         if(this.str[0] == '{' && this.str[1] == '|' && this.hl('{|', 'dsOthers')) {this._evalBlock();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string2();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string2();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -120,7 +120,7 @@ HL.prototype._string2 = function() {
     while(this.pos < this.len) {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }

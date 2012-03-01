@@ -90,8 +90,8 @@ HL.prototype._string1 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
@@ -101,8 +101,8 @@ HL.prototype._string2 = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');

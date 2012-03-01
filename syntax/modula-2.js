@@ -40,7 +40,7 @@ HL.prototype._normal = function() {
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string1();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string2();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string2();continue;}
         if((m = /^\(\*$/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._prep1();continue;}
         if(this.str[0] == '(' && this.str[1] == '*' && this.hl('(*', 'dsComment')) {this._comment2();continue;}
         this.hl(this.str[0], 'dsNormal');
@@ -57,7 +57,7 @@ HL.prototype._string1 = function() {
 HL.prototype._string2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }

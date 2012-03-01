@@ -52,7 +52,7 @@ HL.prototype._normal = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '!' && this.hl('!', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._word();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._word();continue;}
         if((m = /^(?:#ifdef|#else|#ifndef|#endif)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^--?>/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^(?:if|for|else|box|break|continue|do|until|font|give|inversion|jump|on|to|move|new_line|objectloop|print|print_ret|quit|read|remove|restore|return|rtrue|rfalse|save|spaces|spring|style|switch)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -76,7 +76,7 @@ HL.prototype._propDefValRules = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '!' && this.hl('!', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._word();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._word();continue;}
         if(this.str[0] == '[' && this.hl('[', 'dsFunction')) {this._prop_func_def();continue;}
         if(this.str[0] == ',' && this.hl(',', 'dsBaseN')) return;
         if((m = /^\$[0-9a-fA-F]{1,4}/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -89,7 +89,7 @@ HL.prototype._funcdef = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '!' && this.hl('!', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._word();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._word();continue;}
         if((m = /^(?:#ifdef|#else|#ifndef|#endif)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^--?>/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^(?:if|for|else|box|break|continue|do|until|font|give|inversion|jump|on|to|move|new_line|objectloop|print|print_ret|quit|read|remove|restore|return|rtrue|rfalse|save|spaces|spring|style|switch)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -114,7 +114,7 @@ HL.prototype._classDecl = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '!' && this.hl('!', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._word();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._word();continue;}
         if(this.str[0] == '[' && this.hl('[', 'dsFunction')) {this._prop_func_def();continue;}
         if(this.str[0] == ',' && this.hl(',', 'dsBaseN')) return;
         if((m = /^\$[0-9a-fA-F]{1,4}/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -135,7 +135,7 @@ HL.prototype._classDecl_1 = function() {
 HL.prototype._word = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
@@ -153,7 +153,7 @@ HL.prototype._prop_func_def = function() {
         if(this.str[0] == ']' && this.hl(']', 'dsFunction')) return;
         if(this.str[0] == '!' && this.hl('!', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._word();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._word();continue;}
         if((m = /^(?:#ifdef|#else|#ifndef|#endif)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
         if((m = /^--?>/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^(?:if|for|else|box|break|continue|do|until|font|give|inversion|jump|on|to|move|new_line|objectloop|print|print_ret|quit|read|remove|restore|return|rtrue|rfalse|save|spaces|spring|style|switch)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -180,7 +180,7 @@ HL.prototype._prop_def = function() {
         if(this.str[0] == '[' && this.hl('[', 'dsFunction')) {this._prop_func_def();continue;}
         if(this.str[0] == '!' && this.hl('!', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._word();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._word();continue;}
         if(this.str[0] == '[' && this.hl('[', 'dsFunction')) {this._prop_func_def();continue;}
         if(this.str[0] == ',' && this.hl(',', 'dsBaseN')) return;
         if((m = /^\$[0-9a-fA-F]{1,4}/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -194,7 +194,7 @@ HL.prototype._has_decl = function() {
         if(this.str[0] == ';' && this.hl(';', 'dsOthers')) {this._#pop#pop#pop();continue;}
         if(this.str[0] == '!' && this.hl('!', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._word();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._word();continue;}
         if(this.str[0] == '[' && this.hl('[', 'dsFunction')) {this._prop_func_def();continue;}
         if(this.str[0] == ',' && this.hl(',', 'dsBaseN')) return;
         if((m = /^\$[0-9a-fA-F]{1,4}/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;

@@ -51,7 +51,7 @@ HL.prototype._code = function() {
         if((m = /^([A-Z][a-zA-Z0-9_']*\.)*[A-Z][a-zA-Z0-9_']*/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^\d+\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) {this._char();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) {this._char();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsOthers')) {this._infix();continue;}
         if(this.str[0] == '.' && this.str[1] == '.' && this.hl('..', 'dsOthers')) continue;
@@ -77,7 +77,7 @@ HL.prototype._char = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsChar');
     }

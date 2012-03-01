@@ -37,7 +37,7 @@ HL.prototype._normal = function() {
         if((m = /^(?:Option|Explicit|Strict|Imports|Inherits|As|New|Dim|Redim|Private|Friend|Public|Const|ReadOnly|WriteOnly|Default|Shared|Shadows|Protected|Overloads|Overrides|NotOverridable|NotInheritable|MustInherit|MustOverride|MyBase|MyClass|Me|Delegate|Catch|Finaly|When|Throw|To|Step|Then|Else|True|False|Nothing|Call|ByVal|ByRef|Optional|ParamArray|Return|Declare|WithEvents|Event|RaiseEvent|AddHandler|And|Or|Not|Xor|AndAlso|OrElse|Goto|On|Error|Resume)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:Boolean|Char|String|Integer|Long|Double|Object|Exception|Date|DateTime|Int16|Int32|Int64|ParamArray|TimeSpan|Byte|Decimal|IntPtr|Single|Guid)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsComment')) {this._comment();continue;}
         if((m = /^\b(Namespace)([\s]|$)/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^End.Namespace.*(?=$|\n)/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\b(Module)([\s]|$)/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;

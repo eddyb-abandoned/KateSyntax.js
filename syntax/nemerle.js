@@ -75,10 +75,10 @@ HL.prototype._normalString = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         if((m = /^\{[0-9]+\}/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsBaseN')) continue;
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsBaseN')) continue;
-        if(this.str[0] == '\' && this.str[1] == 't' && this.hl('\t', 'dsBaseN')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'n' && this.hl('\n', 'dsBaseN')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsBaseN')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsBaseN')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 't' && this.hl('\\t', 'dsBaseN')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'n' && this.hl('\\n', 'dsBaseN')) continue;
         if((m = /^\\u0008/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\\u000D/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\\u000d/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
@@ -93,10 +93,10 @@ HL.prototype._stringInterpolation = function() {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         if((m = /^\{[0-9]+\}/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\$(\S)+\s/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsBaseN')) continue;
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsBaseN')) continue;
-        if(this.str[0] == '\' && this.str[1] == 't' && this.hl('\t', 'dsBaseN')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'n' && this.hl('\n', 'dsBaseN')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsBaseN')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsBaseN')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 't' && this.hl('\\t', 'dsBaseN')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'n' && this.hl('\\n', 'dsBaseN')) continue;
         if((m = /^\\u0008/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\\u000D/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\\u000d/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;

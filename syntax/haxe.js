@@ -41,7 +41,7 @@ HL.prototype._normal = function() {
         if((m = /^(?:Array|Void|Bool|Int|UInt|Float|Dynamic|String|List|Error|Unknown|Type)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._rawString();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._rawString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentLine();continue;}
         if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentBlock();continue;}
@@ -68,14 +68,14 @@ HL.prototype._moduleName = function() {
 HL.prototype._rawString = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
 };
 HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\\(u[\da-fA-F]{4}|U[\da-fA-F]{8}|&[a-zA-Z]\w+;)/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;

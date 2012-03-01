@@ -39,7 +39,7 @@ HL.prototype._normal = function() {
         if((m = /^0x[\da-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._valString();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._valString();continue;}
         if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._shortComment();continue;}
         if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._longComment();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
@@ -52,15 +52,15 @@ HL.prototype._normal = function() {
 HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'n' && this.hl('\n', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'r' && this.hl('\r', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 't' && this.hl('\t', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'b' && this.hl('\b', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == '^' && this.hl('\^', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'v' && this.hl('\v', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == ' ' && this.hl('\ ', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'n' && this.hl('\\n', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'r' && this.hl('\\r', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 't' && this.hl('\\t', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'b' && this.hl('\\b', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '^' && this.hl('\\^', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'v' && this.hl('\\v', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == ' ' && this.hl('\\ ', 'dsKeyword')) continue;
         if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsNormal')) {this._embedded();continue;}
         if(this.str[0] == '<' && this.hl('<', 'dsKeyword')) {this._htmltag();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
@@ -70,17 +70,17 @@ HL.prototype._string = function() {
 HL.prototype._valString = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == ''' && this.hl('\'', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'n' && this.hl('\n', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'r' && this.hl('\r', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 't' && this.hl('\t', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'b' && this.hl('\b', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == '^' && this.hl('\^', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'v' && this.hl('\v', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == ' ' && this.hl('\ ', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\'' && this.hl('\\\'', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'n' && this.hl('\\n', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'r' && this.hl('\\r', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 't' && this.hl('\\t', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'b' && this.hl('\\b', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '^' && this.hl('\\^', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'v' && this.hl('\\v', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == ' ' && this.hl('\\ ', 'dsKeyword')) continue;
         if(this.str[0] == '<' && this.hl('<', 'dsKeyword')) {this._htmltag();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
 };

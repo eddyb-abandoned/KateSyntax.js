@@ -63,7 +63,7 @@ HL.prototype._normal = function() {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^^\s*;+\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^^\s*;+\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsComment')) {this._comment1();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsComment')) {this._comment1();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };

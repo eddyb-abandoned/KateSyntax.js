@@ -46,7 +46,7 @@ HL.prototype._normal = function() {
         if((m = /^0x[\da-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string2();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsString')) {this._name();continue;}
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._singleLineComment();continue;}
@@ -66,7 +66,7 @@ HL.prototype._string = function() {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsString')) return;
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if(this.str[0] == '&' && this.hl('&', 'dsChar')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
 };

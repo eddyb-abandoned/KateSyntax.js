@@ -43,8 +43,8 @@ HL.prototype._normal = function() {
         if((m = /^\$\$\{[^\}]*\}/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^\$\$\[[^\]]*\]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^\$\$\([^\)]*\)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsKeyword')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -52,8 +52,8 @@ HL.prototype._normal = function() {
 HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsKeyword')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }

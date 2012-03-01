@@ -188,7 +188,7 @@ HL.prototype._16DoctypeDeclPublicID = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._17DoctypeDeclPublicIDQq();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._18DoctypeDeclPublicIDQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._18DoctypeDeclPublicIDQ();continue;}
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         this.hl(this.str[0], 'dsError');
     }
@@ -196,7 +196,7 @@ HL.prototype._16DoctypeDeclPublicID = function() {
 HL.prototype._17DoctypeDeclPublicIDQq = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '"(\s+|$)' && this.hl('"(\s+|$)', 'dsString')) {this._19DoctypeDeclSystemID();continue;}
+        if(this.str[0] == '"(\\s+|$)' && this.hl('"(\\s+|$)', 'dsString')) {this._19DoctypeDeclSystemID();continue;}
         if((m = /^[ 
 a-zA-Z0-9'()+,./:=?;!*#@$_%-]/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         this.hl(this.str[0], 'dsError');
@@ -205,7 +205,7 @@ a-zA-Z0-9'()+,./:=?;!*#@$_%-]/.exec(this.str)) && this.hl(m[0], 'dsString')) con
 HL.prototype._18DoctypeDeclPublicIDQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''(\s+|$)' && this.hl(''(\s+|$)', 'dsString')) {this._19DoctypeDeclSystemID();continue;}
+        if(this.str[0] == '\'(\s+|$)' && this.hl('\'(\s+|$)', 'dsString')) {this._19DoctypeDeclSystemID();continue;}
         if((m = /^[ 
 a-zA-Z0-9()+,./:=?;!*#@$_%-]/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         this.hl(this.str[0], 'dsString');
@@ -215,7 +215,7 @@ HL.prototype._19DoctypeDeclSystemID = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._20DoctypeDeclSystemIDQq();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._21DoctypeDeclSystemIDQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._21DoctypeDeclSystemIDQ();continue;}
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         this.hl(this.str[0], 'dsError');
     }
@@ -230,7 +230,7 @@ HL.prototype._20DoctypeDeclSystemIDQq = function() {
 HL.prototype._21DoctypeDeclSystemIDQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._22DoctypeDeclISOrEnd();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._22DoctypeDeclISOrEnd();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -543,7 +543,7 @@ HL.prototype._54GEDeclEntityValueQ = function() {
         if(this.str[0] == '&' && this.hl('&', 'dsError')) continue;
         if(this.str[0] == '%' && this.hl('%', 'dsError')) continue;
         if(this.str[0] == '<' && this.hl('<', 'dsError')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._69GEDeclEndOrNDATA();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._69GEDeclEndOrNDATA();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -551,7 +551,7 @@ HL.prototype._55GEDeclPublicID = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._56GEDeclPublicIDQq();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._57GEDeclPublicIDQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._57GEDeclPublicIDQ();continue;}
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         this.hl(this.str[0], 'dsError');
     }
@@ -559,7 +559,7 @@ HL.prototype._55GEDeclPublicID = function() {
 HL.prototype._56GEDeclPublicIDQq = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '"(\s+|$)' && this.hl('"(\s+|$)', 'dsString')) {this._58GEDeclSystemID();continue;}
+        if(this.str[0] == '"(\\s+|$)' && this.hl('"(\\s+|$)', 'dsString')) {this._58GEDeclSystemID();continue;}
         if((m = /^[ 
 a-zA-Z0-9'()+,./:=?;!*#@$_%-]/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         this.hl(this.str[0], 'dsError');
@@ -568,7 +568,7 @@ a-zA-Z0-9'()+,./:=?;!*#@$_%-]/.exec(this.str)) && this.hl(m[0], 'dsString')) con
 HL.prototype._57GEDeclPublicIDQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''(\s+|$)' && this.hl(''(\s+|$)', 'dsString')) {this._58GEDeclSystemID();continue;}
+        if(this.str[0] == '\'(\s+|$)' && this.hl('\'(\s+|$)', 'dsString')) {this._58GEDeclSystemID();continue;}
         if((m = /^[ 
 a-zA-Z0-9()+,./:=?;!*#@$_%-]/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         this.hl(this.str[0], 'dsString');
@@ -578,7 +578,7 @@ HL.prototype._58GEDeclSystemID = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._59GEDeclSystemIDQq();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._60GEDeclSystemIDQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._60GEDeclSystemIDQ();continue;}
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         this.hl(this.str[0], 'dsError');
     }
@@ -593,7 +593,7 @@ HL.prototype._59GEDeclSystemIDQq = function() {
 HL.prototype._60GEDeclSystemIDQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._69GEDeclEndOrNDATA();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._69GEDeclEndOrNDATA();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -619,7 +619,7 @@ HL.prototype._63PEDeclPublicID = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._64PEDeclPublicIDQq();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._65PEDeclPublicIDQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._65PEDeclPublicIDQ();continue;}
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         this.hl(this.str[0], 'dsError');
     }
@@ -627,7 +627,7 @@ HL.prototype._63PEDeclPublicID = function() {
 HL.prototype._64PEDeclPublicIDQq = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '"(\s+|$)' && this.hl('"(\s+|$)', 'dsString')) {this._66PEDeclSystemID();continue;}
+        if(this.str[0] == '"(\\s+|$)' && this.hl('"(\\s+|$)', 'dsString')) {this._66PEDeclSystemID();continue;}
         if((m = /^[ 
 a-zA-Z0-9'()+,./:=?;!*#@$_%-]/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         this.hl(this.str[0], 'dsError');
@@ -636,7 +636,7 @@ a-zA-Z0-9'()+,./:=?;!*#@$_%-]/.exec(this.str)) && this.hl(m[0], 'dsString')) con
 HL.prototype._65PEDeclPublicIDQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''(\s+|$)' && this.hl(''(\s+|$)', 'dsString')) {this._66PEDeclSystemID();continue;}
+        if(this.str[0] == '\'(\s+|$)' && this.hl('\'(\s+|$)', 'dsString')) {this._66PEDeclSystemID();continue;}
         if((m = /^[ 
 a-zA-Z0-9()+,./:=?;!*#@$_%-]/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         this.hl(this.str[0], 'dsString');
@@ -646,7 +646,7 @@ HL.prototype._66PEDeclSystemID = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._67PEDeclSystemIDQq();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._68PEDeclSystemIDQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._68PEDeclSystemIDQ();continue;}
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         this.hl(this.str[0], 'dsError');
     }
@@ -661,7 +661,7 @@ HL.prototype._67PEDeclSystemIDQq = function() {
 HL.prototype._68PEDeclSystemIDQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._37ElementEnd();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._37ElementEnd();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -703,7 +703,7 @@ HL.prototype._73NotationDeclPublicID = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._74NotationDeclPublicIDQq();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._75NotationDeclPublicIDQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._75NotationDeclPublicIDQ();continue;}
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         this.hl(this.str[0], 'dsError');
     }
@@ -711,7 +711,7 @@ HL.prototype._73NotationDeclPublicID = function() {
 HL.prototype._74NotationDeclPublicIDQq = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '"(\s+|$)' && this.hl('"(\s+|$)', 'dsString')) {this._76NotationDeclSystemIDOrEnd();continue;}
+        if(this.str[0] == '"(\\s+|$)' && this.hl('"(\\s+|$)', 'dsString')) {this._76NotationDeclSystemIDOrEnd();continue;}
         if((m = /^[ 
 a-zA-Z0-9'()+,./:=?;!*#@$_%-]/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         this.hl(this.str[0], 'dsError');
@@ -720,7 +720,7 @@ a-zA-Z0-9'()+,./:=?;!*#@$_%-]/.exec(this.str)) && this.hl(m[0], 'dsString')) con
 HL.prototype._75NotationDeclPublicIDQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''(\s+|$)' && this.hl(''(\s+|$)', 'dsString')) {this._76NotationDeclSystemIDOrEnd();continue;}
+        if(this.str[0] == '\'(\s+|$)' && this.hl('\'(\s+|$)', 'dsString')) {this._76NotationDeclSystemIDOrEnd();continue;}
         if((m = /^[ 
 a-zA-Z0-9()+,./:=?;!*#@$_%-]/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         this.hl(this.str[0], 'dsString');
@@ -730,7 +730,7 @@ HL.prototype._76NotationDeclSystemIDOrEnd = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._67PEDeclSystemIDQq();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._68PEDeclSystemIDQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._68PEDeclSystemIDQ();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) {this._23DoctypeDeclIS();continue;}
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         this.hl(this.str[0], 'dsError');
@@ -800,7 +800,7 @@ HL.prototype._82STagAttributeValue = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._83STagValueQq();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._84STagValueQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._84STagValueQ();continue;}
         if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         this.hl(this.str[0], 'dsError');
     }

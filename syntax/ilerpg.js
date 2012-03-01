@@ -184,7 +184,7 @@ HL.prototype._cFactor2 = function() {
         if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._stringConstants();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._stringConstants();continue;}
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -273,7 +273,7 @@ HL.prototype._cExFactor2 = function() {
         if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._stringConstants();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._stringConstants();continue;}
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -320,7 +320,7 @@ HL.prototype._evalOCCont = function() {
         if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._stringConstants();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._stringConstants();continue;}
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -340,7 +340,7 @@ HL.prototype._comments = function() {
 HL.prototype._stringConstants = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -408,7 +408,7 @@ HL.prototype._free = function() {
         if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._stringConstants();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._stringConstants();continue;}
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -473,7 +473,7 @@ HL.prototype._commonCode = function() {
         if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._stringConstants();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._stringConstants();continue;}
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -567,7 +567,7 @@ HL.prototype._anyCode = function() {
         if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._stringConstants();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._stringConstants();continue;}
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -622,7 +622,7 @@ HL.prototype._d = function() {
         if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._stringConstants();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._stringConstants();continue;}
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -677,7 +677,7 @@ HL.prototype._p = function() {
         if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._stringConstants();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._stringConstants();continue;}
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;

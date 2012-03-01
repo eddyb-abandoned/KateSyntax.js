@@ -37,7 +37,7 @@ HL.prototype._start = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if(/^architecture\s+(&varname;)/i.exec(this.str)) {this._architecture_main();continue;}
         if((m = /^entity/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._entity();continue;}
         if(/^&bos;(package\s+(&varname;)\s+is)&eos;/i.exec(this.str)) {this._package();continue;}
@@ -53,7 +53,7 @@ HL.prototype._package = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^begin/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^&bos;end(\s+package)?(\s+%3)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
         if((m = /^(?:bit|bit_vector|character|boolean|boolean_vector|integer|integer_vector|real|real_vector|time|time_vector|delay_length|string|severity_level|positive|natural|file_open_kind|file_open_status|signed|unsigned|unresolved_unsigned|unresolved_signed|line|text|side|width|std_logic|std_logic_vector|std_ulogic|std_ulogic_vector|x01|x01z|ux01|ux01z|qsim_state|qsim_state_vector|qsim_12state|qsim_12state_vector|qsim_strength|mux_bit|mux_vector|reg_bit|reg_vector|wor_bit|wor_vector)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
@@ -73,7 +73,7 @@ HL.prototype._packagebody = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^begin/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^&bos;end(\s+package)?(\s+%3)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
         if((m = /^(?:bit|bit_vector|character|boolean|boolean_vector|integer|integer_vector|real|real_vector|time|time_vector|delay_length|string|severity_level|positive|natural|file_open_kind|file_open_status|signed|unsigned|unresolved_unsigned|unresolved_signed|line|text|side|width|std_logic|std_logic_vector|std_ulogic|std_ulogic_vector|x01|x01z|ux01|ux01z|qsim_state|qsim_state_vector|qsim_12state|qsim_12state_vector|qsim_strength|mux_bit|mux_vector|reg_bit|reg_vector|wor_bit|wor_vector)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
@@ -92,7 +92,7 @@ HL.prototype._architecture_main = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^architecture\s+(&varname;)\s+of\s+(&varname;)\s+is/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._arch_decl();continue;}
         if((m = /^&bos;end(\s+architecture)?(\s+%1)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._#pop#pop();continue;}
         if((m = /^&bos;end(\s+architecture)?(\s+&varname;)\s*;/i.exec(this.str)) && this.hl(m[0], 'dsError')) {this._#pop#pop();continue;}
@@ -115,7 +115,7 @@ HL.prototype._arch_decl = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^(?:signal|variable|constant|type)\b/i.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._signal();continue;}
         if((m = /^component/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._entity();continue;}
         if((m = /^begin/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
@@ -151,7 +151,7 @@ HL.prototype._generate1 = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^&bos;generate&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._generate2();continue;}
         if((m = /^&bos;%3&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^for/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -172,7 +172,7 @@ HL.prototype._generate2 = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^begin/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^&bos;end\s+generate(\s+&varname;)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._#pop#pop();continue;}
         if(/^&bos;((&varname;)\s*:\s*)(if|for).*\s+generate&eos;/i.exec(this.str)) {this._generate1();continue;}
@@ -194,7 +194,7 @@ HL.prototype._process1 = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^end\s+process(\s+%3)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
         if((m = /^end\s+process(\s+&varname;)?/i.exec(this.str)) && this.hl(m[0], 'dsError')) return;
         if((m = /^process/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -236,7 +236,7 @@ HL.prototype._instance = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^\b%1\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\b%2\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if(this.str[0] == ')' && this.str[1] == ';' && this.hl(');', 'dsNormal')) return;
@@ -275,7 +275,7 @@ HL.prototype._if_start = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^then/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._if();continue;}
         if((m = /^(?:bit|bit_vector|character|boolean|boolean_vector|integer|integer_vector|real|real_vector|time|time_vector|delay_length|string|severity_level|positive|natural|file_open_kind|file_open_status|signed|unsigned|unresolved_unsigned|unresolved_signed|line|text|side|width|std_logic|std_logic_vector|std_ulogic|std_ulogic_vector|x01|x01z|ux01|ux01z|qsim_state|qsim_state_vector|qsim_12state|qsim_12state_vector|qsim_strength|mux_bit|mux_vector|reg_bit|reg_vector|wor_bit|wor_vector)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^(?:signal|variable|constant|type)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._signal();continue;}
@@ -293,7 +293,7 @@ HL.prototype._if = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^&bos;end\s+if(\s+&varname;)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._#pop#pop();continue;}
         if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^&bos;(if)&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._if_start();continue;}
@@ -316,7 +316,7 @@ HL.prototype._case1 = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^is/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._case2();continue;}
         if((m = /^(?:case|when)\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         this.hl(this.str[0], 'dsNormal');
@@ -328,7 +328,7 @@ HL.prototype._case2 = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^&bos;end\s+case(\s+&varname;)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._#pop#pop();continue;}
         if((m = /^when/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._caseWhen();continue;}
         if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -351,7 +351,7 @@ HL.prototype._caseWhen = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if(/^&bos;when&eos;/i.exec(this.str)) return;
         if(/^&bos;end\s+case(\s+&varname;)?\s*;/i.exec(this.str)) return;
         if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -374,7 +374,7 @@ HL.prototype._entity = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^(&varname;)/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._entity_main();continue;}
         if((m = /^(?:bit|bit_vector|character|boolean|boolean_vector|integer|integer_vector|real|real_vector|time|time_vector|delay_length|string|severity_level|positive|natural|file_open_kind|file_open_status|signed|unsigned|unresolved_unsigned|unresolved_signed|line|text|side|width|std_logic|std_logic_vector|std_ulogic|std_ulogic_vector|x01|x01z|ux01|ux01z|qsim_state|qsim_state_vector|qsim_12state|qsim_12state_vector|qsim_strength|mux_bit|mux_vector|reg_bit|reg_vector|wor_bit|wor_vector)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^(?:signal|variable|constant|type)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._signal();continue;}
@@ -392,7 +392,7 @@ HL.prototype._entity_main = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if((m = /^&bos;end(\s+(entity|component))?(\s+%1)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._#pop#pop();continue;}
         if((m = /^&bos;end(\s+(entity|component))?(\s+&varname;)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsError')) {this._#pop#pop();continue;}
         if((m = /^generic/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -413,7 +413,7 @@ HL.prototype._preDetection = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -449,7 +449,7 @@ HL.prototype._attribute = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsBaseN')) {this._quotInAtt();continue;}
         if(this.str[0] == ' ' && this.hl(' ', 'dsNormal')) return;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) return;
         if((m = /^[()=<>]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsBaseN');
@@ -468,7 +468,7 @@ HL.prototype._signal = function() {
         if(this.str[0] == '-' && this.str[1] == '-' && this.hl('--', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^[[&><=:+\\-*\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsBaseN')) {this._attribute();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {this._attribute();continue;}
         if(this.str[0] == ';' && this.hl(';', 'dsNormal')) return;
         if((m = /^(?:bit|bit_vector|character|boolean|boolean_vector|integer|integer_vector|real|real_vector|time|time_vector|delay_length|string|severity_level|positive|natural|file_open_kind|file_open_status|signed|unsigned|unresolved_unsigned|unresolved_signed|line|text|side|width|std_logic|std_logic_vector|std_ulogic|std_ulogic_vector|x01|x01z|ux01|ux01z|qsim_state|qsim_state_vector|qsim_12state|qsim_12state_vector|qsim_strength|mux_bit|mux_vector|reg_bit|reg_vector|wor_bit|wor_vector)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^(?:signal|variable|constant|type)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._signal();continue;}

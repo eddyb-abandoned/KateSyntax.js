@@ -84,8 +84,8 @@ HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsString')) continue;
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
@@ -93,7 +93,7 @@ HL.prototype._string = function() {
 HL.prototype._teXMode = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._contrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._contrSeq();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) {this._mathMode();continue;}
         if((m = /^\\\(/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._mathMode();continue;}
         if((m = /^\betex\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) return;
@@ -139,10 +139,10 @@ HL.prototype._mathMode = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^$$/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-        if(this.str[0] == '\' && this.hl('\', 'dsNormal')) {this._mathContrSeq();continue;}
+        if(this.str[0] == '\\' && this.hl('\\', 'dsNormal')) {this._mathContrSeq();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsNormal')) return;
-        if(this.str[0] == '\' && this.str[1] == ')' && this.hl('\)', 'dsNormal')) return;
-        if(this.str[0] == '\' && this.str[1] == ']' && this.hl('\]', 'dsAlert')) continue;
+        if(this.str[0] == '\\' && this.str[1] == ')' && this.hl('\\)', 'dsNormal')) return;
+        if(this.str[0] == '\\' && this.str[1] == ']' && this.hl('\\]', 'dsAlert')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
 };

@@ -87,10 +87,10 @@ httpGetFile('http://kate-editor.org/syntax/update-3.7.xml', function(data) {
                                 action: ctxAction(rule.attr('context')),
                             };
                             if(name == 'detectchar') {
-                                var c = '\''+rule.attr('char')+'\'';
+                                var c = '\''+rule.attr('char').replace(/[\a\b\e\f\n\r\t\v'\\]/, '\\$&')+'\'';
                                 ret.match = ret.matchHL = 'this.str[0] == '+c, ret.hl = c;
                             } else if(name == 'detect2chars') {
-                                var c1 = rule.attr('char'), c2 = rule.attr('char1');
+                                var c1 = rule.attr('char').replace(/[\a\b\e\f\n\r\t\v'\\]/, '\\$&'), c2 = rule.attr('char1').replace(/[\a\b\e\f\n\r\t\v'\\]/, '\\$&');
                                 ret.match = ret.matchHL = 'this.str[0] == \''+c1+'\' && this.str[1] == \''+c2+'\'', ret.hl = '\''+c1+c2+'\'';
                             } else if(name == 'anychar')
                                 regex = '[' + rule.attr('string').replace(/[\]^-]/g, '\\$&') + ']';

@@ -41,10 +41,10 @@ HL.prototype._normal = function() {
         if((m = /^0[0-7]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^0x[\da-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleQuotedString();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._singleQuotedString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsString')) {this._backtickString();continue;}
-        if(this.str[0] == 'b' && this.str[1] == ''' && this.hl('b'', 'dsChar')) {this._char();continue;}
+        if(this.str[0] == 'b' && this.str[1] == '\'' && this.hl('b\'', 'dsChar')) {this._char();continue;}
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._commentar1();continue;}
         if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentar2();continue;}
         if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar3();continue;}
@@ -71,7 +71,7 @@ HL.prototype._singleQuotedString = function() {
     while(this.pos < this.len) {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsString')) return;
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
@@ -90,7 +90,7 @@ HL.prototype._char = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsChar');
     }
@@ -106,10 +106,10 @@ HL.prototype._subst = function() {
         if((m = /^0[0-7]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^0x[\da-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleQuotedString();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._singleQuotedString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsString')) {this._backtickString();continue;}
-        if(this.str[0] == 'b' && this.str[1] == ''' && this.hl('b'', 'dsChar')) {this._char();continue;}
+        if(this.str[0] == 'b' && this.str[1] == '\'' && this.hl('b\'', 'dsChar')) {this._char();continue;}
         if(this.str[0] == '#' && this.hl('#', 'dsComment')) {this._commentar1();continue;}
         if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentar2();continue;}
         if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar3();continue;}

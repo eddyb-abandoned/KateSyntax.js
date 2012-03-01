@@ -179,7 +179,7 @@ HL.prototype._doctypeMarkupdecl = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '>' && this.hl('>', 'dsDataType')) return;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._doctypeMarkupdeclDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._doctypeMarkupdeclSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._doctypeMarkupdeclSQ();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -196,7 +196,7 @@ HL.prototype._doctypeMarkupdeclDQ = function() {
 HL.prototype._doctypeMarkupdeclSQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^%&name;;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^[&%]/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
@@ -290,7 +290,7 @@ HL.prototype._value = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._valueDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._valueSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._valueSQ();continue;}
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -317,7 +317,7 @@ HL.prototype._valueDQ = function() {
 HL.prototype._valueSQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._#pop#pop();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._#pop#pop();continue;}
         if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^[&<]/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         this.hl(this.str[0], 'dsString');

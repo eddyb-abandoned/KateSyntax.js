@@ -83,7 +83,7 @@ HL.prototype._tagData = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '>' && this.hl('>', 'dsKeyword')) {this._#pop#pop#pop();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) {this._charLiteral();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) {this._charLiteral();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^0[bB][01]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) return;
@@ -133,7 +133,7 @@ HL.prototype._tagCommentData = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '>' && this.hl('>', 'dsComment')) {this._#pop#pop#pop();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsComment')) {this._commentChar();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsComment')) {this._commentChar();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsComment')) {this._commentString();continue;}
         if(this.str[0] == '<' && this.hl('<', 'dsError')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsError')) continue;
@@ -153,7 +153,7 @@ HL.prototype._commentString = function() {
 HL.prototype._commentChar = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsComment')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsComment')) return;
         if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
         this.hl(this.str[0], 'dsComment');
     }
@@ -161,7 +161,7 @@ HL.prototype._commentChar = function() {
 HL.prototype._charLiteral = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) return;
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._charLiteralClosing();continue;}
         if((m = /^./.exec(this.str)) && this.hl(m[0], 'dsChar')) {this._charLiteralClosing();continue;}
         this.hl(this.str[0], 'dsChar');
@@ -170,7 +170,7 @@ HL.prototype._charLiteral = function() {
 HL.prototype._charLiteralClosing = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) {this._#pop#pop();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsError');
     }
 };

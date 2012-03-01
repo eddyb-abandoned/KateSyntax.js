@@ -41,7 +41,7 @@ HL.prototype._normal = function() {
         if((m = /^\b(trace|address)\s*[_\w\d]/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\bprocedure([\s]*expose)?/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\bdo([\s]*forever)?/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string();continue;}
         if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._commentar1();continue;}
         if((m = /^[:!%&()+,\-/.*<=>?[\]{|}~\^;]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\b[_\w][_\w\d]*(?=[\s]*[(:])/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
@@ -52,7 +52,7 @@ HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }

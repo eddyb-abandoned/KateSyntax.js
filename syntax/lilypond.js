@@ -37,13 +37,13 @@ HL.prototype._lilypond = function() {
         if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._connect();continue;}
-        if(this.str[0] == '\') {this._musiccommand();continue;}
+        if(this.str[0] == '\\') {this._musiccommand();continue;}
         if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
         if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -64,13 +64,13 @@ HL.prototype._music = function() {
         if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._connect();continue;}
-        if(this.str[0] == '\') {this._musiccommand();continue;}
+        if(this.str[0] == '\\') {this._musiccommand();continue;}
         if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
         if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -92,7 +92,7 @@ HL.prototype._default = function() {
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -120,7 +120,7 @@ HL.prototype._musiccommand = function() {
         if((m = /^\\(&scripts;)&b;/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\\[()]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^\\[][]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword')) continue;
         if((m = /^\\note(mode|s)&b;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._notemode();continue;}
         if((m = /^\\drum(mode|s)&b;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._drummode();continue;}
         if((m = /^\\chord(mode|s)&b;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._chordmode();continue;}
@@ -142,7 +142,7 @@ HL.prototype._musiccommand = function() {
         if((m = /^\\(translator|newcontext)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._context();continue;}
         if((m = /^\\property&b;/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._override();continue;}
         if((m = /^\\[A-Za-z]+/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
-        if(this.str[0] == '\' && this.hl('\', 'dsError')) continue;
+        if(this.str[0] == '\\' && this.hl('\\', 'dsError')) continue;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -150,7 +150,7 @@ HL.prototype._musiccommand = function() {
 HL.prototype._command = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword')) continue;
         if((m = /^\\note(mode|s)&b;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._notemode();continue;}
         if((m = /^\\drum(mode|s)&b;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._drummode();continue;}
         if((m = /^\\chord(mode|s)&b;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._chordmode();continue;}
@@ -172,7 +172,7 @@ HL.prototype._command = function() {
         if((m = /^\\(translator|newcontext)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._context();continue;}
         if((m = /^\\property&b;/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._override();continue;}
         if((m = /^\\[A-Za-z]+/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
-        if(this.str[0] == '\' && this.hl('\', 'dsError')) continue;
+        if(this.str[0] == '\\' && this.hl('\\', 'dsError')) continue;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -215,13 +215,13 @@ HL.prototype._chord = function() {
         if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._connect();continue;}
-        if(this.str[0] == '\') {this._musiccommand();continue;}
+        if(this.str[0] == '\\') {this._musiccommand();continue;}
         if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
         if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -271,8 +271,8 @@ HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsString')) continue;
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsString')) continue;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -299,7 +299,7 @@ HL.prototype._scheme2 = function() {
         if(this.str[0] == '"' && this.hl('"', 'dsFloat')) {this._schemestring();continue;}
         if(this.str[0] == ';' && this.hl(';', 'dsFloat')) {this._schemecommentline();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsFloat')) {this._schemesub();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsFloat')) {this._schemequote();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsFloat')) {this._schemequote();continue;}
         if(this.str[0] == '#' && this.str[1] == '!' && this.hl('#!', 'dsFloat')) {this._schemecommentblock();continue;}
         if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsFloat')) {this._schemelily();continue;}
         if((m = /^(?:AbsoluteDynamicEvent|AnnotateOutputEvent|ApplyContext|ApplyOutputEvent|ArpeggioEvent|ArticulationEvent|AutoChangeMusic|BarCheck|BassFigureEvent|BeamEvent|BeamForbidEvent|BendAfterEvent|BreathingEvent|ClusterNoteEvent|ContextChange|ContextSpeccedMusic|CrescendoEvent|DecrescendoEvent|Event|EventChord|ExtenderEvent|FingeringEvent|GlissandoEvent|GraceMusic|HarmonicEvent|HyphenEvent|KeyChangeEvent|LabelEvent|LaissezVibrerEvent|LigatureEvent|LineBreakEvent|LyricCombineMusic|LyricEvent|MarkEvent|MultiMeasureRestEvent|MultiMeasureRestMusic|MultiMeasureTextEvent|Music|NoteEvent|NoteGroupingEvent|OverrideProperty|PageBreakEvent|PageTurnEvent|PartCombineMusic|PercentEvent|PercentRepeatedMusic|PesOrFlexaEvent|PhrasingSlurEvent|PropertySet|PropertyUnset|QuoteMusic|RelativeOctaveCheck|RelativeOctaveMusic|RepeatTieEvent|RepeatedMusic|RestEvent|RevertProperty|ScriptEvent|SequentialMusic|SimultaneousMusic|SkipEvent|SkipMusic|SlurEvent|SoloOneEvent|SoloTwoEvent|SostenutoEvent|SpacingSectionEvent|SpanEvent|StaffSpanEvent|StringNumberEvent|StrokeFingerEvent|SustainEvent|TextScriptEvent|TextSpanEvent|TieEvent|TimeScaledMusic|TransposedMusic|TremoloEvent|TremoloRepeatedMusic|TremoloSpanEvent|TrillSpanEvent|TupletSpanEvent|UnaCordaEvent|UnfoldedRepeatedMusic|UnisonoEvent|UnrelativableMusic|VoiceSeparator|VoltaRepeatedMusic)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
@@ -323,7 +323,7 @@ HL.prototype._scheme3 = function() {
         if(this.str[0] == '"' && this.hl('"', 'dsFloat')) {this._schemestring();continue;}
         if(this.str[0] == ';' && this.hl(';', 'dsFloat')) {this._schemecommentline();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsFloat')) {this._schemesub();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsFloat')) {this._schemequote();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsFloat')) {this._schemequote();continue;}
         if(this.str[0] == '#' && this.str[1] == '!' && this.hl('#!', 'dsFloat')) {this._schemecommentblock();continue;}
         if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsFloat')) {this._schemelily();continue;}
         if((m = /^(?:AbsoluteDynamicEvent|AnnotateOutputEvent|ApplyContext|ApplyOutputEvent|ArpeggioEvent|ArticulationEvent|AutoChangeMusic|BarCheck|BassFigureEvent|BeamEvent|BeamForbidEvent|BendAfterEvent|BreathingEvent|ClusterNoteEvent|ContextChange|ContextSpeccedMusic|CrescendoEvent|DecrescendoEvent|Event|EventChord|ExtenderEvent|FingeringEvent|GlissandoEvent|GraceMusic|HarmonicEvent|HyphenEvent|KeyChangeEvent|LabelEvent|LaissezVibrerEvent|LigatureEvent|LineBreakEvent|LyricCombineMusic|LyricEvent|MarkEvent|MultiMeasureRestEvent|MultiMeasureRestMusic|MultiMeasureTextEvent|Music|NoteEvent|NoteGroupingEvent|OverrideProperty|PageBreakEvent|PageTurnEvent|PartCombineMusic|PercentEvent|PercentRepeatedMusic|PesOrFlexaEvent|PhrasingSlurEvent|PropertySet|PropertyUnset|QuoteMusic|RelativeOctaveCheck|RelativeOctaveMusic|RepeatTieEvent|RepeatedMusic|RestEvent|RevertProperty|ScriptEvent|SequentialMusic|SimultaneousMusic|SkipEvent|SkipMusic|SlurEvent|SoloOneEvent|SoloTwoEvent|SostenutoEvent|SpacingSectionEvent|SpanEvent|StaffSpanEvent|StringNumberEvent|StrokeFingerEvent|SustainEvent|TextScriptEvent|TextSpanEvent|TieEvent|TimeScaledMusic|TransposedMusic|TremoloEvent|TremoloRepeatedMusic|TremoloSpanEvent|TrillSpanEvent|TupletSpanEvent|UnaCordaEvent|UnfoldedRepeatedMusic|UnisonoEvent|UnrelativableMusic|VoiceSeparator|VoltaRepeatedMusic)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
@@ -345,7 +345,7 @@ HL.prototype._schemerules = function() {
         if(this.str[0] == '"' && this.hl('"', 'dsFloat')) {this._schemestring();continue;}
         if(this.str[0] == ';' && this.hl(';', 'dsFloat')) {this._schemecommentline();continue;}
         if(this.str[0] == '$' && this.hl('$', 'dsFloat')) {this._schemesub();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsFloat')) {this._schemequote();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsFloat')) {this._schemequote();continue;}
         if(this.str[0] == '#' && this.str[1] == '!' && this.hl('#!', 'dsFloat')) {this._schemecommentblock();continue;}
         if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsFloat')) {this._schemelily();continue;}
         if((m = /^(?:AbsoluteDynamicEvent|AnnotateOutputEvent|ApplyContext|ApplyOutputEvent|ArpeggioEvent|ArticulationEvent|AutoChangeMusic|BarCheck|BassFigureEvent|BeamEvent|BeamForbidEvent|BendAfterEvent|BreathingEvent|ClusterNoteEvent|ContextChange|ContextSpeccedMusic|CrescendoEvent|DecrescendoEvent|Event|EventChord|ExtenderEvent|FingeringEvent|GlissandoEvent|GraceMusic|HarmonicEvent|HyphenEvent|KeyChangeEvent|LabelEvent|LaissezVibrerEvent|LigatureEvent|LineBreakEvent|LyricCombineMusic|LyricEvent|MarkEvent|MultiMeasureRestEvent|MultiMeasureRestMusic|MultiMeasureTextEvent|Music|NoteEvent|NoteGroupingEvent|OverrideProperty|PageBreakEvent|PageTurnEvent|PartCombineMusic|PercentEvent|PercentRepeatedMusic|PesOrFlexaEvent|PhrasingSlurEvent|PropertySet|PropertyUnset|QuoteMusic|RelativeOctaveCheck|RelativeOctaveMusic|RepeatTieEvent|RepeatedMusic|RestEvent|RevertProperty|ScriptEvent|SequentialMusic|SimultaneousMusic|SkipEvent|SkipMusic|SlurEvent|SoloOneEvent|SoloTwoEvent|SostenutoEvent|SpacingSectionEvent|SpanEvent|StaffSpanEvent|StringNumberEvent|StrokeFingerEvent|SustainEvent|TextScriptEvent|TextSpanEvent|TieEvent|TimeScaledMusic|TransposedMusic|TremoloEvent|TremoloRepeatedMusic|TremoloSpanEvent|TrillSpanEvent|TupletSpanEvent|UnaCordaEvent|UnfoldedRepeatedMusic|UnisonoEvent|UnrelativableMusic|VoiceSeparator|VoltaRepeatedMusic)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
@@ -374,13 +374,13 @@ HL.prototype._schemelily = function() {
         if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._connect();continue;}
-        if(this.str[0] == '\') {this._musiccommand();continue;}
+        if(this.str[0] == '\\') {this._musiccommand();continue;}
         if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
         if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -442,13 +442,13 @@ HL.prototype._notemode2 = function() {
         if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._connect();continue;}
-        if(this.str[0] == '\') {this._musiccommand();continue;}
+        if(this.str[0] == '\\') {this._musiccommand();continue;}
         if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
         if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -470,13 +470,13 @@ HL.prototype._noterules = function() {
         if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._connect();continue;}
-        if(this.str[0] == '\') {this._musiccommand();continue;}
+        if(this.str[0] == '\\') {this._musiccommand();continue;}
         if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
         if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -509,13 +509,13 @@ HL.prototype._drummode2 = function() {
         if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._connect();continue;}
-        if(this.str[0] == '\') {this._musiccommand();continue;}
+        if(this.str[0] == '\\') {this._musiccommand();continue;}
         if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
         if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -539,13 +539,13 @@ HL.prototype._drumrules = function() {
         if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._connect();continue;}
-        if(this.str[0] == '\') {this._musiccommand();continue;}
+        if(this.str[0] == '\\') {this._musiccommand();continue;}
         if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
         if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -569,13 +569,13 @@ HL.prototype._drumchord = function() {
         if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._connect();continue;}
-        if(this.str[0] == '\') {this._musiccommand();continue;}
+        if(this.str[0] == '\\') {this._musiccommand();continue;}
         if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
         if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -607,13 +607,13 @@ HL.prototype._chordmode2 = function() {
         if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._connect();continue;}
-        if(this.str[0] == '\') {this._musiccommand();continue;}
+        if(this.str[0] == '\\') {this._musiccommand();continue;}
         if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
         if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -636,13 +636,13 @@ HL.prototype._chordrules = function() {
         if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._connect();continue;}
-        if(this.str[0] == '\') {this._musiccommand();continue;}
+        if(this.str[0] == '\\') {this._musiccommand();continue;}
         if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
         if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -677,7 +677,7 @@ HL.prototype._figuremode2 = function() {
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -698,7 +698,7 @@ HL.prototype._figurerules = function() {
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -743,7 +743,7 @@ HL.prototype._lyricmode2 = function() {
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -784,7 +784,7 @@ HL.prototype._lyricsto3 = function() {
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -807,7 +807,7 @@ HL.prototype._lyricrules = function() {
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -891,7 +891,7 @@ HL.prototype._section2 = function() {
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}
@@ -917,7 +917,7 @@ HL.prototype._sectionrules = function() {
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
         if(this.str[0] == '|' && this.hl('|', 'dsDecVal')) continue;
-        if(this.str[0] == '\') {this._command();continue;}
+        if(this.str[0] == '\\') {this._command();continue;}
         if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsNormal')) {this._commentblock();continue;}
         if(this.str[0] == '%' && this.hl('%', 'dsNormal')) {this._commentline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._string();continue;}

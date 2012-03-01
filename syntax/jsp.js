@@ -96,7 +96,7 @@ HL.prototype._jspStandardDirectiveValue = function() {
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
         if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._jspDoubleQuotedParamValue();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._jspSingleQuotedParamValue();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._jspSingleQuotedParamValue();continue;}
         if(this.str[0] == '%' && this.str[1] == '>' && this.hl('%>', 'dsNormal')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
     }
@@ -108,7 +108,7 @@ HL.prototype._jspXmlDirectiveValue = function() {
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
         if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._jspDoubleQuotedParamValue();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._jspSingleQuotedParamValue();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._jspSingleQuotedParamValue();continue;}
         if((m = /^\s*\/?\s*>/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsString');
     }
@@ -120,7 +120,7 @@ HL.prototype._jspCustomTagValue = function() {
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
         if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsDataType')) {this._jspDoubleQuotedCustomTagValue();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsDataType')) {this._jspSingleQuotedCustomTagValue();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsDataType')) {this._jspSingleQuotedCustomTagValue();continue;}
         if((m = /^\/?>/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -138,7 +138,7 @@ HL.prototype._jspDoubleQuotedParamValue = function() {
 HL.prototype._jspSingleQuotedParamValue = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._#pop#pop();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._#pop#pop();continue;}
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
         if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
@@ -158,7 +158,7 @@ HL.prototype._jspDoubleQuotedCustomTagValue = function() {
 HL.prototype._jspSingleQuotedCustomTagValue = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsDataType')) {this._#pop#pop();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsDataType')) {this._#pop#pop();continue;}
         if((m = /^<%--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._jspComment();continue;}
         if((m = /^<%(!|=)?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._jspScriptlet();continue;}
         if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsNormal')) {this._jspExpression();continue;}
@@ -226,7 +226,7 @@ HL.prototype._javaMultiLineComment = function() {
 HL.prototype._javaString = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsString')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsString')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }

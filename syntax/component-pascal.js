@@ -37,7 +37,7 @@ HL.prototype._normal = function() {
         if((m = /^\(\*\*/.exec(this.str)) && this.hl(m[0], 'dsComment')) {this._comment1();continue;}
         if(this.str[0] == '(' && this.str[1] == '*' && this.hl('(*', 'dsComment')) {this._comment2();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string1();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string2();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string2();continue;}
         if((m = /^PROCEDURE\s/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^ABSTRACT;|EMPTY;|END\s*[A-Za-z][A-Za-z0-9_]*\;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^RECORD/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
@@ -100,7 +100,7 @@ HL.prototype._string1 = function() {
 HL.prototype._string2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
 };

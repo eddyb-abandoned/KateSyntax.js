@@ -94,8 +94,8 @@ HL.prototype._string = function() {
     while(this.pos < this.len) {
         if((m = /^(?:#\\nul|#\\soh|#\\stx|#\\etx|#\\eot|#\\enq|#\\ack|#\\bel|#\\bs|#\\ht|#\\nl|#\\vt|#\\np|#\\cr|#\\so|#\\si|#\\dle|#\\dc1|#\\dc2|#\\dc3|#\\dc4|#\\nak|#\\syn|#\\etb|#\\can|#\\em|#\\sub|#\\esc|#\\fs|#\\gs|#\\rs|#\\us|#\\space|#\\sp|#\\newline|#\\nl|#\\tab|#\\ht|#\\backspace|#\\bs|#\\return|#\\cr|#\\page|#\\np|#\\null|#\\nul)\b/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^#\\./.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsChar')) continue;
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsChar')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsChar')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsChar')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }

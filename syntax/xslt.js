@@ -86,7 +86,7 @@ HL.prototype._doctypeMarkupdecl = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '>' && this.hl('>', 'dsDataType')) return;
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._doctypeMarkupdeclDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._doctypeMarkupdeclSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._doctypeMarkupdeclSQ();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -103,7 +103,7 @@ HL.prototype._doctypeMarkupdeclDQ = function() {
 HL.prototype._doctypeMarkupdeclSQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'undefined')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'undefined')) return;
         if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^%&qname;;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^[&%]/.exec(this.str)) && this.hl(m[0], 'undefined')) continue;
@@ -151,7 +151,7 @@ HL.prototype._attrValue = function() {
         if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsError')) {this._#pop#pop#pop();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsError')) {this._#pop#pop#pop();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._sqstring();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._sqstring();continue;}
         this.hl(this.str[0], 'dsError');
     }
 };
@@ -173,7 +173,7 @@ HL.prototype._xattrValue = function() {
         if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsError')) {this._#pop#pop#pop();continue;}
         if(this.str[0] == '>' && this.hl('>', 'dsError')) {this._#pop#pop#pop();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsOthers')) {this._xpath();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsOthers')) {this._sqxpath();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsOthers')) {this._sqxpath();continue;}
         this.hl(this.str[0], 'dsError');
     }
 };
@@ -190,7 +190,7 @@ HL.prototype._sqstring = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '{' && this.hl('{', 'dsOthers')) {this._sqxpath();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._#pop#pop();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._#pop#pop();continue;}
         if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         this.hl(this.str[0], 'dsString');
     }
@@ -211,7 +211,7 @@ HL.prototype._xpath = function() {
         if((m = /^(?:zero-or-one|replace|namespace-uri-for-prefix|current-grouping-key|seconds-from-duration|resolve-uri|node-kind|minutes-from-dateTime|implicit-timezone|exactly-one|current-time|current-dateTime|unordered|subtract-dates-yielding-dayTimeDuration|string-join|static-base-uri|months-from-duration|input|exists|default-collation|dateTime|current-group|current-date|collection|timezone-from-time|matches|local-name-from-QName|day-from-date|timezone-from-date|round-half-to-even|month-from-dateTime|month-from-date|hours-from-duration|escape-uri|distinct-values|avg|years-from-duration|unparsed-text|unparsed-entity-public-id|subtract-dateTimes-yielding-dayTimeDuration|subtract-dates-yielding-yearMonthDuration|string-to-codepoints|sequence-node-identical|hours-from-time|hours-from-dateTime|format-time|codepoints-to-string|trace|tokenize|subtract-dateTimes-yielding-yearMonthDuration|subsequence|seconds-from-dateTime|regex-group|one-or-more|node-name|namespace-uri-from-QName|min|idref|format-dateTime|format-date|days-from-duration|compare|base-uri|seconds-from-time|in-scope-prefixes|expanded-QName|adjust-date-to-timezone|year-from-date|resolve-QName|remove|QName|minutes-from-time|max|lower-case|index-of|doc|deep-equal|data|minutes-from-duration|adjust-dateTime-to-timezone|abs|timezone-from-dateTime|reverse|error|ends-with|day-from-dateTime|year-from-dateTime|upper-case|root|normalize-unicode|empty|insert-before|document-uri|adjust-time-to-timezone)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(&axisname;)::/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsOthers')) return;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._sqxpathstring();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._sqxpathstring();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsOthers')) {this._#pop#pop();continue;}
         if((m = /^@&qname;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\$&qname;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -229,7 +229,7 @@ HL.prototype._sqxpath = function() {
         if((m = /^(&axisname;)::/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if(this.str[0] == '}' && this.hl('}', 'dsOthers')) return;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._xpathstring();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsOthers')) {this._#pop#pop();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsOthers')) {this._#pop#pop();continue;}
         if((m = /^@&qname;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^\$&qname;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^&qname;/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -241,7 +241,7 @@ HL.prototype._sqxpath = function() {
 HL.prototype._sqxpathstring = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         this.hl(this.str[0], 'dsString');
     }

@@ -37,10 +37,10 @@ HL.prototype._normal = function() {
         if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(/^[a-zA-Z_]/.exec(this.str)) {this._startingLetter();continue;}
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'u' && this.hl('\u', 'dsString')) {this._unicodeShort();continue;}
-        if(this.str[0] == '\' && this.str[1] == 'U' && this.hl('\U', 'dsString')) {this._unicodeLong();continue;}
-        if(this.str[0] == '\' && this.str[1] == '&' && this.hl('\&', 'dsString')) {this._hTMLEntity();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) {this._charLiteral();continue;}
+        if(this.str[0] == '\\' && this.str[1] == 'u' && this.hl('\\u', 'dsString')) {this._unicodeShort();continue;}
+        if(this.str[0] == '\\' && this.str[1] == 'U' && this.hl('\\U', 'dsString')) {this._unicodeLong();continue;}
+        if(this.str[0] == '\\' && this.str[1] == '&' && this.hl('\\&', 'dsString')) {this._hTMLEntity();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) {this._charLiteral();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsString')) {this._bQString();continue;}
         if((m = /^\/\/BEGIN/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) {this._regionMarker();continue;}
@@ -323,7 +323,7 @@ HL.prototype._hexString = function() {
 HL.prototype._charLiteral = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) return;
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._charLiteralClosing();continue;}
         if((m = /^\\(u[\da-fA-F]{4}|U[\da-fA-F]{8}|&[a-zA-Z]\w+;)/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._charLiteralClosing();continue;}
         if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsError')) {this._charLiteralClosing();continue;}
@@ -334,7 +334,7 @@ HL.prototype._charLiteral = function() {
 HL.prototype._charLiteralClosing = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) {this._#pop#pop();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsError');
     }
 };
@@ -346,9 +346,9 @@ HL.prototype._string = function() {
         if(this.str[0] == '"' && this.str[1] == 'w' && this.hl('"w', 'dsString')) return;
         if(this.str[0] == '"' && this.str[1] == 'd' && this.hl('"d', 'dsString')) return;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
-        if(this.str[0] == '\' && this.str[1] == 'u' && this.hl('\u', 'dsString')) {this._unicodeShort();continue;}
-        if(this.str[0] == '\' && this.str[1] == 'U' && this.hl('\U', 'dsString')) {this._unicodeLong();continue;}
-        if(this.str[0] == '\' && this.str[1] == '&' && this.hl('\&', 'dsString')) {this._hTMLEntity();continue;}
+        if(this.str[0] == '\\' && this.str[1] == 'u' && this.hl('\\u', 'dsString')) {this._unicodeShort();continue;}
+        if(this.str[0] == '\\' && this.str[1] == 'U' && this.hl('\\U', 'dsString')) {this._unicodeLong();continue;}
+        if(this.str[0] == '\\' && this.str[1] == '&' && this.hl('\\&', 'dsString')) {this._hTMLEntity();continue;}
         this.hl(this.str[0], 'dsString');
     }
 };

@@ -34,7 +34,7 @@ HL.prototype.hl = function hl(m,s) {
 HL.prototype._default = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string_1();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string_1();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string_2();continue;}
         if((m = /^\binteger[\*]\d{1,2}/i.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^\breal[\*]\d{1,2}/i.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
@@ -130,7 +130,7 @@ HL.prototype._inside_func_paren = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) {this._inside_func_paren();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsNormal')) return;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string_1();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string_1();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string_2();continue;}
         if((m = /^(?:allocate|break|call|case|common|continue|cycle|deallocate|default|forall|where|elsewhere|equivalence|exit|external|for|go|goto|if|implicit|include|interface|intrinsic|namelist|none|nullify|operator|assignment|pause|procedure|pure|elemental|record|recursive|result|return|select|selectcase|stop|to|use|only|entry|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:abs|cabs|dabs|iabs|aimag|aint|dint|anint|dnint|ceiling|cmplx|dcmplx|dimag|floor|nint|idnint|int|idint|ifix|real|float|sngl|dble|dreal|aprime|dconjg|dfloat|ddmim|rand|modulo|conjg|dprod|dim|ddim|idim|max|amax0|amax1|max0|max1|dmax1|min|amin0|amin1|min0|min1|dmin1|mod|amod|dmod|sign|dsign|isign|acos|dacos|asin|dasin|atan|datan|atan2|datan2|cos|ccos|dcos|cosh|dcosh|exp|cexp|dexp|log|alog|dlog|clog|log10|alog10|dlog10|sin|csin|dsin|sinh|dsinh|sqrt|csqrt|dsqrt|tan|dtan|tanh|dtanh|achar|char|iachar|ichar|lge|lgt|lle|llt|adjustl|adjustr|index|len_trim|scan|verify|logical|exponent|fraction|nearest|rrspacing|scale|set_exponent|spacing|btest|iand|ibclr|ibits|ibset|ieor|ior|ishft|ishftc|not|mvbits|merge)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -166,7 +166,7 @@ HL.prototype._find_io_paren = function() {
         if((m = /^(?:unit|end|err|fmt|iostat|status|advance|size|eor)\b/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
         if((m = /^(?:unit|iostat|err|file|exist|opened|number|named|name|access|sequential|direct|form|formatted|unformatted|recl|nextrec|blank|position|action|read|write|readwrite|delim|pad)\b/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
         if((m = /^(?:unit|iostat|err|file|status|access|form|recl|blank|position|action|delim|pad)\b/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string_1();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string_1();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string_2();continue;}
         if((m = /^(?:allocate|break|call|case|common|continue|cycle|deallocate|default|forall|where|elsewhere|equivalence|exit|external|for|go|goto|if|implicit|include|interface|intrinsic|namelist|none|nullify|operator|assignment|pause|procedure|pure|elemental|record|recursive|result|return|select|selectcase|stop|to|use|only|entry|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^(?:abs|cabs|dabs|iabs|aimag|aint|dint|anint|dnint|ceiling|cmplx|dcmplx|dimag|floor|nint|idnint|int|idint|ifix|real|float|sngl|dble|dreal|aprime|dconjg|dfloat|ddmim|rand|modulo|conjg|dprod|dim|ddim|idim|max|amax0|amax1|max0|max1|dmax1|min|amin0|amin1|min0|min1|dmin1|mod|amod|dmod|sign|dsign|isign|acos|dacos|asin|dasin|atan|datan|atan2|datan2|cos|ccos|dcos|cosh|dcosh|exp|cexp|dexp|log|alog|dlog|clog|log10|alog10|dlog10|sin|csin|dsin|sinh|dsinh|sqrt|csqrt|dsqrt|tan|dtan|tanh|dtanh|achar|char|iachar|ichar|lge|lgt|lle|llt|adjustl|adjustr|index|len_trim|scan|verify|logical|exponent|fraction|nearest|rrspacing|scale|set_exponent|spacing|btest|iand|ibclr|ibits|ibset|ieor|ior|ishft|ishftc|not|mvbits|merge)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -193,7 +193,7 @@ HL.prototype._format_stmnt = function() {
         if(this.str[0] == ')' && this.hl(')', 'dsFunction')) return;
         if((m = /^[0-9]*//i.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
         if((m = /^[:]/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string_1();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string_1();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string_2();continue;}
         if(this.str[0] == '*' && this.str[1] == '*' && this.hl('**', 'dsKeyword')) continue;
         if(this.str[0] == '(' && this.str[1] == '/' && this.hl('(/', 'dsKeyword')) continue;
@@ -285,7 +285,7 @@ HL.prototype._find_numbers = function() {
 HL.prototype._find_strings = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string_1();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string_1();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string_2();continue;}
         this.hl(this.str[0], 'dsString');
     }

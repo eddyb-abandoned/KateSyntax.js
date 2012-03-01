@@ -41,8 +41,8 @@ HL.prototype._normal = function() {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == '$' && this.str[1] == '{' && this.hl('${', 'dsChar')) {this._varFromNormal{();continue;}
         if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsChar')) {this._varFromNormal(();continue;}
-        if(this.str[0] == '\' && this.str[1] == '#' && this.hl('\#', 'dsFloat')) continue;
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsFloat')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '#' && this.hl('\\#', 'dsFloat')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsFloat')) continue;
         if((m = /^[+*=%$():\;]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^[@\-]/.exec(this.str)) && this.hl(m[0], 'dsChar')) {this._commands();continue;}
         if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;

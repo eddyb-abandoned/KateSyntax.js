@@ -59,7 +59,7 @@ HL.prototype._normal = function() {
         if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentSlashSlash();continue;}
         if((m = /^'''/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleAString();continue;}
         if((m = /^"""/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleQString();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleAString();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._singleAString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._singleQString();continue;}
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) {this._parenthesised();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsNormal')) return;
@@ -98,7 +98,7 @@ HL.prototype._parenthesised = function() {
         if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentSlashSlash();continue;}
         if((m = /^'''/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleAString();continue;}
         if((m = /^"""/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleQString();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleAString();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._singleAString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._singleQString();continue;}
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) {this._parenthesised();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsNormal')) return;
@@ -137,7 +137,7 @@ HL.prototype._quasiQuotation = function() {
         if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._commentSlashSlash();continue;}
         if((m = /^'''/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleAString();continue;}
         if((m = /^"""/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._trippleQString();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singleAString();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._singleAString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._singleQString();continue;}
         if(this.str[0] == '(' && this.hl('(', 'dsNormal')) {this._parenthesised();continue;}
         if(this.str[0] == ')' && this.hl(')', 'dsNormal')) return;
@@ -215,7 +215,7 @@ HL.prototype._singleAComment = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsComment')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsComment')) return;
         this.hl(this.str[0], 'dsComment');
     }
 };
@@ -233,7 +233,7 @@ HL.prototype._singleAString = function() {
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^%\([a-zA-Z0-9_]+\)[a-zA-Z]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^%[a-zA-Z]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
 };
@@ -253,7 +253,7 @@ HL.prototype._rawAString = function() {
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^%\([a-zA-Z0-9_]+\)[a-zA-Z]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^%[a-zA-Z]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
 };

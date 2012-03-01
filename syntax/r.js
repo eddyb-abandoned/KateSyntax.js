@@ -35,7 +35,7 @@ HL.prototype._level0 = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string2();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string2();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsString')) {this._backquotedsymbol();continue;}
         if((m = /^(?:for|in|next|break|while|repeat|if|else|switch|function)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^(?:TRUE|FALSE|NULL|NA|NA_integer_|NA_real_|NA_complex_|NA_character_|Inf|NaN)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -63,7 +63,7 @@ HL.prototype._ctx0 = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string2();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string2();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsString')) {this._backquotedsymbol();continue;}
         if((m = /^(?:for|in|next|break|while|repeat|if|else|switch|function)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^(?:TRUE|FALSE|NULL|NA|NA_integer_|NA_real_|NA_complex_|NA_character_|Inf|NaN)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -94,7 +94,7 @@ HL.prototype._parenthesis = function() {
         if(this.str[0] == ')' && this.hl(')', 'dsNormal')) return;
         if((m = /^[a-zA-Z_\.][0-9a-zA-Z_\.]*[\s]*=(?=([^=]|$))/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string2();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string2();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsString')) {this._backquotedsymbol();continue;}
         if((m = /^(?:for|in|next|break|while|repeat|if|else|switch|function)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^(?:TRUE|FALSE|NULL|NA|NA_integer_|NA_real_|NA_complex_|NA_character_|Inf|NaN)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -128,7 +128,7 @@ HL.prototype._string = function() {
 HL.prototype._string2 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         this.hl(this.str[0], 'dsString');
     }
@@ -169,7 +169,7 @@ HL.prototype._commonRules = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string2();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string2();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsString')) {this._backquotedsymbol();continue;}
         if((m = /^(?:for|in|next|break|while|repeat|if|else|switch|function)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if((m = /^(?:TRUE|FALSE|NULL|NA|NA_integer_|NA_real_|NA_complex_|NA_character_|Inf|NaN)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;

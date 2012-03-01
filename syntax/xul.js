@@ -121,7 +121,7 @@ HL.prototype._doctypeMarkupdecl = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '>' && this.hl('>', 'dsDataType')) return;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._doctypeMarkupdeclDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._doctypeMarkupdeclSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._doctypeMarkupdeclSQ();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -138,7 +138,7 @@ HL.prototype._doctypeMarkupdeclDQ = function() {
 HL.prototype._doctypeMarkupdeclSQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^%&name;;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^[&%]/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
@@ -192,7 +192,7 @@ HL.prototype._value = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._valueDQ();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._valueSQ();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._valueSQ();continue;}
         if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         this.hl(this.str[0], 'dsNormal');
     }
@@ -209,7 +209,7 @@ HL.prototype._valueDQ = function() {
 HL.prototype._valueSQ = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._#pop#pop#pop();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._#pop#pop#pop();continue;}
         if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if((m = /^[&<]/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
         this.hl(this.str[0], 'dsString');
@@ -233,7 +233,7 @@ HL.prototype._cDATA = function() {
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._string1();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._string1();continue;}
         if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._jSComment();continue;}
         if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {this._multiInlineComment();continue;}
         if((m = /^[=?:]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._(InternalRegexCatch)();continue;}
@@ -259,7 +259,7 @@ HL.prototype._string1 = function() {
     while(this.pos < this.len) {
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsChar');
     }

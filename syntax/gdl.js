@@ -104,7 +104,7 @@ HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._default();continue;}
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsChar')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsChar')) continue;
         if((m = /^\\(n|a|t|b)/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^\\fi(0|1|2)[0-9][0-9]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
         if((m = /^\\f(u|I|b|B|n|[0-9][0-9])/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;

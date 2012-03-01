@@ -65,7 +65,7 @@ HL.prototype._phpsource = function() {
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._doublequotestring();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsString')) {this._backquotestring();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singlequotestring();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._singlequotestring();continue;}
         if((m = /^<<<((EO)?HTML)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._htmlheredoc();continue;}
         if((m = /^<<<((EO)?CSS)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._cssheredoc();continue;}
         if((m = /^<<<((EO)?JAVASCRIPT)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._javascriptheredoc();continue;}
@@ -112,7 +112,7 @@ HL.prototype._ternary = function() {
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._doublequotestring();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsString')) {this._backquotestring();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singlequotestring();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._singlequotestring();continue;}
         if((m = /^<<<((EO)?HTML)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._htmlheredoc();continue;}
         if((m = /^<<<((EO)?CSS)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._cssheredoc();continue;}
         if((m = /^<<<((EO)?JAVASCRIPT)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._javascriptheredoc();continue;}
@@ -159,7 +159,7 @@ HL.prototype._case = function() {
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._doublequotestring();continue;}
         if(this.str[0] == '`' && this.hl('`', 'dsString')) {this._backquotestring();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._singlequotestring();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._singlequotestring();continue;}
         if((m = /^<<<((EO)?HTML)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._htmlheredoc();continue;}
         if((m = /^<<<((EO)?CSS)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._cssheredoc();continue;}
         if((m = /^<<<((EO)?JAVASCRIPT)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._javascriptheredoc();continue;}
@@ -196,13 +196,13 @@ HL.prototype._twolinecomment = function() {
 HL.prototype._doublebackquotestringcommon = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'n' && this.hl('\n', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'r' && this.hl('\r', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 't' && this.hl('\t', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'v' && this.hl('\v', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'f' && this.hl('\f', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == '$' && this.hl('\$', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'n' && this.hl('\\n', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'r' && this.hl('\\r', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 't' && this.hl('\\t', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'v' && this.hl('\\v', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'f' && this.hl('\\f', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '$' && this.hl('\\$', 'dsKeyword')) continue;
         if((m = /^\\[0-7]{1,3}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\\x[0-9A-Fa-f]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -214,19 +214,19 @@ HL.prototype._doublebackquotestringcommon = function() {
 HL.prototype._backquotestring = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'n' && this.hl('\n', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'r' && this.hl('\r', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 't' && this.hl('\t', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'v' && this.hl('\v', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'f' && this.hl('\f', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == '$' && this.hl('\$', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'n' && this.hl('\\n', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'r' && this.hl('\\r', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 't' && this.hl('\\t', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'v' && this.hl('\\v', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'f' && this.hl('\\f', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '$' && this.hl('\\$', 'dsKeyword')) continue;
         if((m = /^\\[0-7]{1,3}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\\x[0-9A-Fa-f]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\$\{[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*\}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\{\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[([0-9]*|"[^"]*"|\$[a-zA-Z]*)|'[^']*'|\])*(->[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*(\[([0-9]*|"[a-zA-Z_]*")|'[a-zA-Z_]*'|\])*)*\}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == '`' && this.hl('\`', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '`' && this.hl('\\`', 'dsKeyword')) continue;
         if(this.str[0] == '`' && this.hl('`', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
@@ -234,19 +234,19 @@ HL.prototype._backquotestring = function() {
 HL.prototype._doublequotestring = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'n' && this.hl('\n', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'r' && this.hl('\r', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 't' && this.hl('\t', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'v' && this.hl('\v', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == 'f' && this.hl('\f', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == '$' && this.hl('\$', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'n' && this.hl('\\n', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'r' && this.hl('\\r', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 't' && this.hl('\\t', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'v' && this.hl('\\v', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == 'f' && this.hl('\\f', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '$' && this.hl('\\$', 'dsKeyword')) continue;
         if((m = /^\\[0-7]{1,3}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\\x[0-9A-Fa-f]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\$\{[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*\}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
         if((m = /^\{\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[([0-9]*|"[^"]*"|\$[a-zA-Z]*)|'[^']*'|\])*(->[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*(\[([0-9]*|"[a-zA-Z_]*")|'[a-zA-Z_]*'|\])*)*\}/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == '"' && this.hl('\"', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsKeyword')) continue;
         if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
@@ -254,9 +254,9 @@ HL.prototype._doublequotestring = function() {
 HL.prototype._singlequotestring = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == '\' && this.str[1] == ''' && this.hl('\'', 'dsKeyword')) continue;
-        if(this.str[0] == '\' && this.str[1] == '\' && this.hl('\\', 'dsKeyword')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\\' && this.str[1] == '\'' && this.hl('\\\'', 'dsKeyword')) continue;
+        if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword')) continue;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         this.hl(this.str[0], 'dsString');
     }
 };

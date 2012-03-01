@@ -44,7 +44,7 @@ HL.prototype._normalText = function() {
         if((m = /^[-+]?\.\d+([BbDdEeSs][-+]?\d+)?/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[-+]?\d+[BbDdEeSs][-+]?\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
         if((m = /^[-+]?\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) continue;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) continue;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsNormal');
     }

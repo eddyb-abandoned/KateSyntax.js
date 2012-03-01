@@ -48,7 +48,7 @@ HL.prototype._normal = function() {
         if((m = /^\??\s*[^"'#-][^:#]*:/.exec(this.str)) && this.hl(m[0], 'dsFunction')) {this._attributePre();continue;}
         if((m = /^\??\s*"[^"#]+"\s*:/.exec(this.str)) && this.hl(m[0], 'dsFunction')) {this._attributePre();continue;}
         if((m = /^\??\s*'[^'#]+'\s*:/.exec(this.str)) && this.hl(m[0], 'dsFunction')) {this._attributePre();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._string();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._string();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._stringx();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -113,7 +113,7 @@ HL.prototype._attributePre = function() {
         if((m = /^!!\S+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if(this.str[0] == '[' && this.hl('[', 'dsKeyword')) {this._list();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {this._hash();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._attributeString();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._attributeString();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._attributeStringx();continue;}
         if((m = /^&\S+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._attribute();continue;}
         if((m = /^\*\S+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._attribute();continue;}
@@ -131,7 +131,7 @@ HL.prototype._attributePreInline = function() {
         if((m = /^!!\S+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if(this.str[0] == '[' && this.hl('[', 'dsKeyword')) {this._list();continue;}
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {this._hash();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._attributeStringInline();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._attributeStringInline();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._attributeStringxInline();continue;}
         if((m = /^&\S+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._attributeInline();continue;}
         if((m = /^\*\S+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._attributeInline();continue;}
@@ -157,7 +157,7 @@ HL.prototype._list = function() {
         if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {this._hash();continue;}
         if((m = /^&\S+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if((m = /^\*\S+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._string();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._string();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsNormal')) {this._stringx();continue;}
         if(this.str[0] == ',' && this.hl(',', 'dsKeyword')) continue;
         this.hl(this.str[0], 'dsNormal');
@@ -179,7 +179,7 @@ HL.prototype._attributeString = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._attributeEnd();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._attributeEnd();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -195,7 +195,7 @@ HL.prototype._attributeStringInline = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) {this._attributeEndInline();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) {this._attributeEndInline();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -226,7 +226,7 @@ HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsNormal')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsNormal')) return;
         this.hl(this.str[0], 'dsNormal');
     }
 };

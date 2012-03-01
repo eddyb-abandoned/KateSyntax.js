@@ -38,7 +38,7 @@ HL.prototype._topLevel = function() {
         if(this.str[0] == '*' && this.hl('*', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {this._comment();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) {this._stringc();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {this._stringc();continue;}
         if((m = /^\.and\./i.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\.or\./i.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
         if((m = /^\.not\./i.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
@@ -85,7 +85,7 @@ HL.prototype._string = function() {
 HL.prototype._stringc = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }

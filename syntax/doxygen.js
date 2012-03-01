@@ -187,7 +187,7 @@ HL.prototype._mL_identifiers = function() {
     while(this.pos < this.len) {
         if(this.str[0] == '*' && this.str[1] == '/') return;
         if((m = /^\s*#?[a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) return;
-        if(this.str[0] == ''' && this.hl(''', 'dsDataType')) {this._mL_types1();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsDataType')) {this._mL_types1();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsDataType')) {this._mL_types2();continue;}
         this.hl(this.str[0], 'dsOthers');
     }
@@ -196,7 +196,7 @@ HL.prototype._mL_types1 = function() {
     var m;
     while(this.pos < this.len) {
         if(this.str[0] == '*' && this.str[1] == '/') return;
-        if(this.str[0] == ''' && this.hl(''', 'dsDataType')) {this._#pop#pop();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsDataType')) {this._#pop#pop();continue;}
         this.hl(this.str[0], 'dsDataType');
     }
 };
@@ -295,7 +295,7 @@ HL.prototype._sL_identifiers = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\s*#?[a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsOthers')) return;
-        if(this.str[0] == ''' && this.hl(''', 'dsDataType')) {this._sL_types1();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsDataType')) {this._sL_types1();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsDataType')) {this._sL_types2();continue;}
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsOthers');
@@ -304,7 +304,7 @@ HL.prototype._sL_identifiers = function() {
 HL.prototype._sL_types1 = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsDataType')) {this._#pop#pop();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsDataType')) {this._#pop#pop();continue;}
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsDataType');
     }

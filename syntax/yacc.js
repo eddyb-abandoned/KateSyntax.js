@@ -108,7 +108,7 @@ HL.prototype._ruleIn = function() {
         if(this.str[0] == ';' && this.hl(';', 'dsNormal')) return;
         if(this.str[0] == '{' && this.hl('{', 'dsNormal')) {this._normalCBloc();continue;}
         if(this.str[0] == '|' && this.hl('|', 'dsNormal')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) {this._char();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) {this._char();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -132,7 +132,7 @@ HL.prototype._percentCommand = function() {
 HL.prototype._percentCommandIn = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) {this._char();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) {this._char();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         if(this.str[0] == '<' && this.hl('<', 'dsDataType')) {this._pCType();continue;}
         this.hl(this.str[0], 'dsNormal');
@@ -170,7 +170,7 @@ HL.prototype._commentSlash = function() {
 HL.prototype._stringOrChar = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) {this._char();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) {this._char();continue;}
         if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
@@ -188,7 +188,7 @@ HL.prototype._char = function() {
     var m;
     while(this.pos < this.len) {
         if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if(this.str[0] == ''' && this.hl(''', 'dsChar')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsChar')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsChar');
     }

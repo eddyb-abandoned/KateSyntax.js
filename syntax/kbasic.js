@@ -39,7 +39,7 @@ HL.prototype._normal = function() {
         if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
         if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
         if(this.str[0] == 'quot;' && this.hl('quot;', 'dsString')) {this._string();continue;}
-        if(this.str[0] == ''' && this.hl(''', 'dsComment')) {this._comment();continue;}
+        if(this.str[0] == '\'' && this.hl('\'', 'dsComment')) {this._comment();continue;}
         this.hl(this.str[0], 'dsNormal');
     }
 };
@@ -53,7 +53,7 @@ HL.prototype._comment = function() {
 HL.prototype._string = function() {
     var m;
     while(this.pos < this.len) {
-        if(this.str[0] == ''' && this.hl(''', 'dsString')) return;
+        if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return;
         if(this.str[0] == '\n') return;
         this.hl(this.str[0], 'dsString');
     }
