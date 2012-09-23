@@ -1,41 +1,12 @@
-var HL = function HL(){};
-HL.prototype.run = function run(str) {
-    this.str = str;
-    this.pos = 0;
-    this.len = str.length;
-    this.main = document.createElement('div');
-    this.hlText = '';
-    this.style = 'dsNormal';
-    this._normalText();
-    this.hl('');
-    return this.main;
-};
-HL.prototype.hl = function hl(m,s) {
-    this.pos += m.length;
-    this.str = this.str.slice(m.length);
-    if(this.style == s)
-        this.hlText += m;
-    else {
-        if(this.hlText) {
-            if(this.style == 'dsNormal')
-                this.main.appendChild(document.createTextNode(this.hlText));
-            else {
-                var span = document.createElement('span');
-                span.appendChild(document.createTextNode(this.hlText));
-                span.className = this.style;
-                this.main.appendChild(span);
-            }
+KateSyntax.langs.alert_indent.syntax = {
+    default: 'alert_indent_normalText',
+    alert_indent_normalText: function alert_indent_normalText(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if((m = /^(?:###|ALERT|BUG|DANGER|DEPRECATED|FIXME|HACK|NOTE|NOTICE|SECURITY|TASK|TEST|TESTING|TODO|WARNING)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
+            if(this.str[0] == '\n') return this.pop();
+            this.hl(this.str[0], 'dsNormal');
         }
-        this.style = s;
-        this.hlText = m;
-    }
-    return true;
-};
-HL.prototype._normalText = function() {
-    var m;
-    while(this.pos < this.len) {
-        if((m = /^(?:###|ALERT|BUG|DANGER|DEPRECATED|FIXME|HACK|NOTE|NOTICE|SECURITY|TASK|TEST|TESTING|TODO|WARNING)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-        if(this.str[0] == '\n') return;
-        this.hl(this.str[0], 'dsNormal');
+        this.pop();
     }
 };

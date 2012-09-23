@@ -1,68 +1,39 @@
-var HL = function HL(){};
-HL.prototype.run = function run(str) {
-    this.str = str;
-    this.pos = 0;
-    this.len = str.length;
-    this.main = document.createElement('div');
-    this.hlText = '';
-    this.style = 'dsNormal';
-    this._context();
-    this.hl('');
-    return this.main;
-};
-HL.prototype.hl = function hl(m,s) {
-    this.pos += m.length;
-    this.str = this.str.slice(m.length);
-    if(this.style == s)
-        this.hlText += m;
-    else {
-        if(this.hlText) {
-            if(this.style == 'dsNormal')
-                this.main.appendChild(document.createTextNode(this.hlText));
-            else {
-                var span = document.createElement('span');
-                span.appendChild(document.createTextNode(this.hlText));
-                span.className = this.style;
-                this.main.appendChild(span);
-            }
+KateSyntax.langs.txt2tags.syntax = {
+    default: 'txt2tags_context',
+    txt2tags_context: function txt2tags_context(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if((m = /^%%date(\(.*\))?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#FF0000;fontStyle:italic')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^%.*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#666666;fontStyle:italic')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^\*\*\/\/(.*)\/\/\*\*/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontStyle:italic;fontWeight:bold')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^\/\/\*\*(.*)\*\*\/\//.exec(this.str)) && this.hl(m[0], 'dsNormal;fontStyle:italic;fontWeight:bold')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^\*\*.*\*\*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#445675;fontWeight:bold')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^\/\/.*\/\//.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#653A39;fontStyle:italic')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^__.*__/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#386742;textDecoration:underline')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^--.*--/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#644A9B;textDecoration:line-through')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^``.*``/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#006600')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^``` .*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#006600')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^ *=[^=].*[^=]=(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#990000')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^ *==[^=].*[^=]==(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#990000')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^ *===[^=].*[^=]===(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#990000')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^ *====[^=].*[^=]====(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#990000')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^ *=====[^=].*[^=]=====(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#990000')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^ *\+[^=].*[^=]\+(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#990000')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^ *\+\+[^=].*[^=]\+\+(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#990000')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^ *\+\+\+[^=].*[^=]\+\+\+(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#990000')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^ *\+\+\+\+[^=].*[^=]\+\+\+\+(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#990000')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^ *\+\+\+\+\+[^=].*[^=]\+\+\+\+\+(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#990000')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^\[.*?]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#0930DE')) continue;
+            if(this.col === 0 && (m = /^ *\|\| .*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#FF0000')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^ *\| .*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#FF0000')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^ *\: .*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#E300EE')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^ *\- .*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#E300EE')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^ *\+ .*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#E300EE')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^\t.*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:brown')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^\s*([_=-]{20,})\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#C0C0C0')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^(?=$|\n)(?=$|\n)/.exec(this.str)) && m[0].length && this.hl(m[0], 'dsNormal')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            this.hl(this.str[0], 'dsNormal');
         }
-        this.style = s;
-        this.hlText = m;
-    }
-    return true;
-};
-HL.prototype._context = function() {
-    var m;
-    while(this.pos < this.len) {
-        if((m = /^%%date(\(.*\))?/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^%.*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^\*\*//(.*)//\*\*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^//\*\*(.*)\*\*///.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^\*\*.*\*\*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^//.*///.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^__.*__/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^--.*--/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^``.*``/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^``` .*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^ *=[^=].*[^=]=(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^ *==[^=].*[^=]==(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^ *===[^=].*[^=]===(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^ *====[^=].*[^=]====(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^ *=====[^=].*[^=]=====(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^ *\+[^=].*[^=]\+(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^ *\+\+[^=].*[^=]\+\+(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^ *\+\+\+[^=].*[^=]\+\+\+(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^ *\+\+\+\+[^=].*[^=]\+\+\+\+(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^ *\+\+\+\+\+[^=].*[^=]\+\+\+\+\+(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^\[.*?]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if((m = /^ *\|\| .*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^ *\| .*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^ *\: .*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^ *\- .*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^ *\+ .*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^\t.*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^\s*([_=-]{20,})\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        if((m = /^$(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {this._context();continue;}
-        this.hl(this.str[0], 'dsNormal');
+        this.pop();
     }
 };

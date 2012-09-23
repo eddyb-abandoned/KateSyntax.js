@@ -1,185 +1,169 @@
-var HL = function HL(){};
-HL.prototype.run = function run(str) {
-    this.str = str;
-    this.pos = 0;
-    this.len = str.length;
-    this.main = document.createElement('div');
-    this.hlText = '';
-    this.style = 'dsNormal';
-    this._normal();
-    this.hl('');
-    return this.main;
-};
-HL.prototype.hl = function hl(m,s) {
-    this.pos += m.length;
-    this.str = this.str.slice(m.length);
-    if(this.style == s)
-        this.hlText += m;
-    else {
-        if(this.hlText) {
-            if(this.style == 'dsNormal')
-                this.main.appendChild(document.createTextNode(this.hlText));
-            else {
-                var span = document.createElement('span');
-                span.appendChild(document.createTextNode(this.hlText));
-                span.className = this.style;
-                this.main.appendChild(span);
-            }
+KateSyntax.langs.diff.syntax = {
+    default: 'diff_normal',
+    diff_normal: function diff_normal(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.col === 0 && (m = /^&chunk;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.diff_chunk())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^\*+(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.diff_rChunk())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^Only in .*:.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
+            if(this.col === 0 && (m = /^diff.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.diff_rFile())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^====.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
+            if(this.col === 0 && (m = /^(\*\*\*|\-\-\-).*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.diff_file())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
+            if(this.col === 0 && (m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
+            if(this.col === 0 && (m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#0000FF')) {if(m = this.diff_added())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF0000')) {if(m = this.diff_removed())return this.pop(), m-1;continue;}
+            if(this.col === 0 && this.str[0] == '!' && this.hl('!', 'dsNormal')) {if(m = this.diff_changedOld())return this.pop(), m-1;continue;}
+            this.hl(this.str[0], 'dsNormal');
         }
-        this.style = s;
-        this.hlText = m;
-    }
-    return true;
-};
-HL.prototype._normal = function() {
-    var m;
-    while(this.pos < this.len) {
-        if((m = /^&chunk;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._chunk();continue;}
-        if((m = /^\*+(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._rChunk();continue;}
-        if((m = /^Only in .*:.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^diff.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._rFile();continue;}
-        if((m = /^====.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^(\*\*\*|\-\-\-).*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {this._file();continue;}
-        if((m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if((m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._added();continue;}
-        if((m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._removed();continue;}
-        if(this.str[0] == '!' && this.hl('!', 'dsNormal')) {this._changedOld();continue;}
-        this.hl(this.str[0], 'dsNormal');
-    }
-};
-HL.prototype._findDiff = function() {
-    var m;
-    while(this.pos < this.len) {
-        if((m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if((m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._added();continue;}
-        if((m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._removed();continue;}
-        this.hl(this.str[0], 'dsNormal');
-    }
-};
-HL.prototype._file = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '\n') return;
-        this.hl(this.str[0], 'dsKeyword');
-    }
-};
-HL.prototype._chunk = function() {
-    var m;
-    while(this.pos < this.len) {
-        if((m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if((m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._added();continue;}
-        if((m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._removed();continue;}
-        if(/^&chunk;/.exec(this.str)) return;
-        if(this.str[0] == '!' && this.hl('!', 'dsString')) {this._changedOld();continue;}
-        this.hl(this.str[0], 'dsNormal');
-    }
-};
-HL.prototype._chunkInFile = function() {
-    var m;
-    while(this.pos < this.len) {
-        if((m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if((m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._added();continue;}
-        if((m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._removed();continue;}
-        if(/^&chunk;/.exec(this.str)) return;
-        if((m = /^&index;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(/^&file;/.exec(this.str)) return;
-        if(this.str[0] == '!' && this.hl('!', 'dsString')) {this._changedOld();continue;}
-        this.hl(this.str[0], 'dsNormal');
-    }
-};
-HL.prototype._rFile = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(/^(diff|Only in .*:).*(?=$|\n)/.exec(this.str)) return;
-        if((m = /^&file;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if((m = /^\*+(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._rChunkInFile();continue;}
-        this.hl(this.str[0], 'dsNormal');
-    }
-};
-HL.prototype._rChunk = function() {
-    var m;
-    while(this.pos < this.len) {
-        if((m = /^\*\*\* .* \*\*\*\*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if((m = /^\-\-\- .* \-\-\-\-(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._rChunkNew();continue;}
-        if((m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if((m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._added();continue;}
-        if((m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._removed();continue;}
-        if(/^&chunk;/.exec(this.str)) return;
-        if(this.str[0] == '!' && this.hl('!', 'dsString')) {this._changedOld();continue;}
-        this.hl(this.str[0], 'dsNormal');
-    }
-};
-HL.prototype._rChunkInFile = function() {
-    var m;
-    while(this.pos < this.len) {
-        if((m = /^\*\*\* .* \*\*\*\*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if((m = /^\-\-\- .* \-\-\-\-(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {this._rChunkInFileNew();continue;}
-        if((m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if((m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._added();continue;}
-        if((m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._removed();continue;}
-        if(/^&chunk;/.exec(this.str)) return;
-        if((m = /^&index;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return;
-        if(/^&file;/.exec(this.str)) return;
-        if(this.str[0] == '!' && this.hl('!', 'dsString')) {this._changedOld();continue;}
-        this.hl(this.str[0], 'dsNormal');
-    }
-};
-HL.prototype._rChunkNew = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(/^&chunk;/.exec(this.str)) {this._#pop#pop();continue;}
-        if(this.str[0] == '!' && this.hl('!', 'dsOthers')) {this._changedNew();continue;}
-        if((m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if((m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._added();continue;}
-        if((m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._removed();continue;}
-        this.hl(this.str[0], 'dsNormal');
-    }
-};
-HL.prototype._rChunkInFileNew = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(/^&chunk;/.exec(this.str)) {this._#pop#pop();continue;}
-        if(/^&file;/.exec(this.str)) {this._#pop#pop();continue;}
-        if(this.str[0] == '!' && this.hl('!', 'dsOthers')) {this._changedNew();continue;}
-        if((m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if((m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {this._added();continue;}
-        if((m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString')) {this._removed();continue;}
-        this.hl(this.str[0], 'dsNormal');
-    }
-};
-HL.prototype._removed = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '\n') return;
-        this.hl(this.str[0], 'dsString');
-    }
-};
-HL.prototype._added = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '\n') return;
-        this.hl(this.str[0], 'dsOthers');
-    }
-};
-HL.prototype._changedOld = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '\n') return;
-        this.hl(this.str[0], 'dsString');
-    }
-};
-HL.prototype._changedNew = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '\n') return;
-        this.hl(this.str[0], 'dsOthers');
+        this.pop();
+    },
+    diff_findDiff: function diff_findDiff(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.col === 0 && (m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
+            if(this.col === 0 && (m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
+            if(this.col === 0 && (m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#0000FF')) {if(m = this.diff_added())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF0000')) {if(m = this.diff_removed())return this.pop(), m-1;continue;}
+            this.hl(this.str[0], 'dsNormal');
+        }
+        this.pop();
+    },
+    diff_file: function diff_file(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '\n') return this.pop();
+            this.hl(this.str[0], 'dsKeyword');
+        }
+        this.pop();
+    },
+    diff_chunk: function diff_chunk(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.col === 0 && (m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
+            if(this.col === 0 && (m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
+            if(this.col === 0 && (m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#0000FF')) {if(m = this.diff_added())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF0000')) {if(m = this.diff_removed())return this.pop(), m-1;continue;}
+            if(this.col === 0 && /^&chunk;/.exec(this.str)) return this.pop();
+            if(this.col === 0 && this.str[0] == '!' && this.hl('!', 'dsString;color:#FF0000')) {if(m = this.diff_changedOld())return this.pop(), m-1;continue;}
+            this.hl(this.str[0], 'dsNormal');
+        }
+        this.pop();
+    },
+    diff_chunkInFile: function diff_chunkInFile(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.col === 0 && (m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
+            if(this.col === 0 && (m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
+            if(this.col === 0 && (m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#0000FF')) {if(m = this.diff_added())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF0000')) {if(m = this.diff_removed())return this.pop(), m-1;continue;}
+            if(this.col === 0 && /^&chunk;/.exec(this.str)) return this.pop();
+            if(this.col === 0 && (m = /^&index;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return this.pop();
+            if(this.col === 0 && /^&file;/.exec(this.str)) return this.pop();
+            if(this.col === 0 && this.str[0] == '!' && this.hl('!', 'dsString;color:#FF0000')) {if(m = this.diff_changedOld())return this.pop(), m-1;continue;}
+            this.hl(this.str[0], 'dsNormal');
+        }
+        this.pop();
+    },
+    diff_rFile: function diff_rFile(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.col === 0 && /^(diff|Only in .*:).*(?=$|\n)/.exec(this.str)) return this.pop();
+            if(this.col === 0 && (m = /^&file;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
+            if(this.col === 0 && (m = /^\*+(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.diff_rChunkInFile())return this.pop(), m-1;continue;}
+            this.hl(this.str[0], 'dsNormal');
+        }
+        this.pop();
+    },
+    diff_rChunk: function diff_rChunk(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.col === 0 && (m = /^\*\*\* .* \*\*\*\*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
+            if(this.col === 0 && (m = /^\-\-\- .* \-\-\-\-(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.diff_rChunkNew())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
+            if(this.col === 0 && (m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
+            if(this.col === 0 && (m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#0000FF')) {if(m = this.diff_added())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF0000')) {if(m = this.diff_removed())return this.pop(), m-1;continue;}
+            if(this.col === 0 && /^&chunk;/.exec(this.str)) return this.pop();
+            if(this.col === 0 && this.str[0] == '!' && this.hl('!', 'dsString;color:#FF0000')) {if(m = this.diff_changedOld())return this.pop(), m-1;continue;}
+            this.hl(this.str[0], 'dsNormal');
+        }
+        this.pop();
+    },
+    diff_rChunkInFile: function diff_rChunkInFile(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.col === 0 && (m = /^\*\*\* .* \*\*\*\*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
+            if(this.col === 0 && (m = /^\-\-\- .* \-\-\-\-(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.diff_rChunkInFileNew())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
+            if(this.col === 0 && (m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
+            if(this.col === 0 && (m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#0000FF')) {if(m = this.diff_added())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF0000')) {if(m = this.diff_removed())return this.pop(), m-1;continue;}
+            if(this.col === 0 && /^&chunk;/.exec(this.str)) return this.pop();
+            if(this.col === 0 && (m = /^&index;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return this.pop();
+            if(this.col === 0 && /^&file;/.exec(this.str)) return this.pop();
+            if(this.col === 0 && this.str[0] == '!' && this.hl('!', 'dsString;color:#FF0000')) {if(m = this.diff_changedOld())return this.pop(), m-1;continue;}
+            this.hl(this.str[0], 'dsNormal');
+        }
+        this.pop();
+    },
+    diff_rChunkNew: function diff_rChunkNew(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.col === 0 && /^&chunk;/.exec(this.str)) return this.pop(), 1;
+            if(this.col === 0 && this.str[0] == '!' && this.hl('!', 'dsOthers;color:#0000FF')) {if(m = this.diff_changedNew())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
+            if(this.col === 0 && (m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
+            if(this.col === 0 && (m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#0000FF')) {if(m = this.diff_added())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF0000')) {if(m = this.diff_removed())return this.pop(), m-1;continue;}
+            this.hl(this.str[0], 'dsNormal');
+        }
+        this.pop();
+    },
+    diff_rChunkInFileNew: function diff_rChunkInFileNew(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.col === 0 && /^&chunk;/.exec(this.str)) return this.pop(), 1;
+            if(this.col === 0 && /^&file;/.exec(this.str)) return this.pop(), 1;
+            if(this.col === 0 && this.str[0] == '!' && this.hl('!', 'dsOthers;color:#0000FF')) {if(m = this.diff_changedNew())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^\-\-\-.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
+            if(this.col === 0 && (m = /^&csep;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
+            if(this.col === 0 && (m = /^[+>]/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#0000FF')) {if(m = this.diff_added())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^[\-<]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF0000')) {if(m = this.diff_removed())return this.pop(), m-1;continue;}
+            this.hl(this.str[0], 'dsNormal');
+        }
+        this.pop();
+    },
+    diff_removed: function diff_removed(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '\n') return this.pop();
+            this.hl(this.str[0], 'dsString;color:#FF0000');
+        }
+        this.pop();
+    },
+    diff_added: function diff_added(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '\n') return this.pop();
+            this.hl(this.str[0], 'dsOthers;color:#0000FF');
+        }
+        this.pop();
+    },
+    diff_changedOld: function diff_changedOld(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '\n') return this.pop();
+            this.hl(this.str[0], 'dsString;color:#FF0000');
+        }
+        this.pop();
+    },
+    diff_changedNew: function diff_changedNew(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '\n') return this.pop();
+            this.hl(this.str[0], 'dsOthers;color:#0000FF');
+        }
+        this.pop();
     }
 };

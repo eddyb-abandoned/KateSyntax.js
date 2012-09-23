@@ -1,110 +1,88 @@
-var HL = function HL(){};
-HL.prototype.run = function run(str) {
-    this.str = str;
-    this.pos = 0;
-    this.len = str.length;
-    this.main = document.createElement('div');
-    this.hlText = '';
-    this.style = 'dsNormal';
-    this._normal();
-    this.hl('');
-    return this.main;
-};
-HL.prototype.hl = function hl(m,s) {
-    this.pos += m.length;
-    this.str = this.str.slice(m.length);
-    if(this.style == s)
-        this.hlText += m;
-    else {
-        if(this.hlText) {
-            if(this.style == 'dsNormal')
-                this.main.appendChild(document.createTextNode(this.hlText));
-            else {
-                var span = document.createElement('span');
-                span.appendChild(document.createTextNode(this.hlText));
-                span.className = this.style;
-                this.main.appendChild(span);
-            }
+KateSyntax.langs.abc.syntax = {
+    default: 'abc_normal',
+    abc_normal: function abc_normal(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if((m = /^\([23456789]:?[23456789]?:?[23456789]?/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#bb00bb')) continue;
+            if((m = /^".*?"/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
+            if((m = /^!.*?!/.exec(this.str)) && this.hl(m[0], 'dsFloat;color:#00bbaa')) continue;
+            if((m = /^\[[ABCGHILMNOQRSTUVZ]:/.exec(this.str)) && this.hl(m[0], 'dsFloat')) {if(m = this.abc_header())return this.pop(), m-1;continue;}
+            if((m = /^[ABCGHILMNOPQRSTUVZ]:/.exec(this.str)) && this.hl(m[0], 'dsFloat')) {if(m = this.abc_header2())return this.pop(), m-1;continue;}
+            if(this.col === 0 && this.str[0] == 'X' && this.str[1] == ':' && this.hl('X:', 'dsFloat')) {if(m = this.abc_header())return this.pop(), m-1;continue;}
+            if((m = /^[|:[]/.exec(this.str)) && this.hl(m[0], 'dsChar;color:#0000ff')) {if(m = this.abc_bar())return this.pop(), m-1;continue;}
+            if(this.str[0] == ']' && this.hl(']', 'dsChar;color:#0000ff')) continue;
+            if((m = /^[()]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
+            if((m = /^[{}]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
+            if(this.str[0] == 'W' && this.str[1] == ':' && this.hl('W:', 'dsDataType;color:#00bb00')) {if(m = this.abc_lyrics())return this.pop(), m-1;continue;}
+            if(this.str[0] == 'w' && this.str[1] == ':' && this.hl('w:', 'dsDataType;color:#00bb00')) {if(m = this.abc_lyrics())return this.pop(), m-1;continue;}
+            if(this.str[0] == '%' && this.str[1] == '%' && this.hl('%%', 'dsString;fontStyle:italic')) {if(m = this.abc_preprocessor())return this.pop(), m-1;continue;}
+            if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.abc_comment())return this.pop(), m-1;continue;}
+            if((m = /^[_|\^]?[_|=|\^][A-Ga-g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#22bb66;fontWeight:bold')) continue;
+            this.hl(this.str[0], 'dsNormal');
         }
-        this.style = s;
-        this.hlText = m;
-    }
-    return true;
-};
-HL.prototype._normal = function() {
-    var m;
-    while(this.pos < this.len) {
-        if((m = /^\([23456789]:?[23456789]?:?[23456789]?/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if((m = /^".*?"/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        if((m = /^!.*?!/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
-        if((m = /^\[[ABCGHILMNOQRSTUVZ]:/.exec(this.str)) && this.hl(m[0], 'dsFloat')) {this._header();continue;}
-        if((m = /^[ABCGHILMNOPQRSTUVZ]:/.exec(this.str)) && this.hl(m[0], 'dsFloat')) {this._header2();continue;}
-        if(this.str[0] == 'X' && this.str[1] == ':' && this.hl('X:', 'dsFloat')) {this._header();continue;}
-        if((m = /^[|:[]/.exec(this.str)) && this.hl(m[0], 'dsChar')) {this._bar();continue;}
-        if(this.str[0] == ']' && this.hl(']', 'dsChar')) continue;
-        if((m = /^[()]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if((m = /^[{}]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if(this.str[0] == 'W' && this.str[1] == ':' && this.hl('W:', 'dsDataType')) {this._lyrics();continue;}
-        if(this.str[0] == 'w' && this.str[1] == ':' && this.hl('w:', 'dsDataType')) {this._lyrics();continue;}
-        if(this.str[0] == '%' && this.str[1] == '%' && this.hl('%%', 'dsString')) {this._preprocessor();continue;}
-        if(this.str[0] == '%' && this.hl('%', 'dsComment')) {this._comment();continue;}
-        if((m = /^[_|\^]?[_|=|\^][A-Ga-g]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        this.hl(this.str[0], 'dsNormal');
-    }
-};
-HL.prototype._preprocessor = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '\n') return;
-        this.hl(this.str[0], 'dsString');
-    }
-};
-HL.prototype._lyrics = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '\n') return;
-        this.hl(this.str[0], 'dsDataType');
-    }
-};
-HL.prototype._part = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '\n') return;
-        this.hl(this.str[0], 'dsFloat');
-    }
-};
-HL.prototype._comment = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '\n') return;
-        this.hl(this.str[0], 'dsComment');
-    }
-};
-HL.prototype._bar = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '"' && this.hl('"', 'dsChar')) return;
-        if((m = /^[A-Ga-gZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) return;
-        if(this.str[0] == ' ' && this.hl(' ', 'dsChar')) return;
-        if((m = /^!.*?!/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
-        if((m = /^[()]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        if((m = /^:*\|*[1-9]|/*\|/.exec(this.str)) && this.hl(m[0], 'dsChar')) return;
-        if(this.str[0] == '\n') return;
-        this.hl(this.str[0], 'dsChar');
-    }
-};
-HL.prototype._header = function() {
-    var m;
-    while(this.pos < this.len) {
-        if((m = /^K:.+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) return;
-        if(this.str[0] == ']' && this.hl(']', 'dsFloat')) return;
-        this.hl(this.str[0], 'dsFloat');
-    }
-};
-HL.prototype._header2 = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '\n') return;
-        this.hl(this.str[0], 'dsFloat');
+        this.pop();
+    },
+    abc_preprocessor: function abc_preprocessor(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '\n') return this.pop();
+            this.hl(this.str[0], 'dsString;fontStyle:italic');
+        }
+        this.pop();
+    },
+    abc_lyrics: function abc_lyrics(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '\n') return this.pop();
+            this.hl(this.str[0], 'dsDataType;color:#00bb00');
+        }
+        this.pop();
+    },
+    abc_part: function abc_part(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '\n') return this.pop();
+            this.hl(this.str[0], 'dsFloat');
+        }
+        this.pop();
+    },
+    abc_comment: function abc_comment(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '\n') return this.pop();
+            this.hl(this.str[0], 'dsComment');
+        }
+        this.pop();
+    },
+    abc_bar: function abc_bar(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '"' && this.hl('"', 'dsChar;color:#0000ff')) return this.pop();
+            if((m = /^[A-Ga-gZz]/.exec(this.str)) && this.hl(m[0], 'dsChar;color:#0000ff')) return this.pop();
+            if(this.str[0] == ' ' && this.hl(' ', 'dsChar;color:#0000ff')) return this.pop();
+            if((m = /^!.*?!/.exec(this.str)) && this.hl(m[0], 'dsFloat;color:#00bbaa')) continue;
+            if((m = /^[()]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
+            if((m = /^:*\|*[1-9]|\/*\|/.exec(this.str)) && this.hl(m[0], 'dsChar;color:#0000ff')) return this.pop();
+            if(this.str[0] == '\n') return this.pop();
+            this.hl(this.str[0], 'dsChar;color:#0000ff');
+        }
+        this.pop();
+    },
+    abc_header: function abc_header(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.col === 0 && (m = /^K:.+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) return this.pop();
+            if(this.str[0] == ']' && this.hl(']', 'dsFloat')) return this.pop();
+            this.hl(this.str[0], 'dsFloat');
+        }
+        this.pop();
+    },
+    abc_header2: function abc_header2(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '\n') return this.pop();
+            this.hl(this.str[0], 'dsFloat');
+        }
+        this.pop();
     }
 };

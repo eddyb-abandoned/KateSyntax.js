@@ -1,47 +1,18 @@
-var HL = function HL(){};
-HL.prototype.run = function run(str) {
-    this.str = str;
-    this.pos = 0;
-    this.len = str.length;
-    this.main = document.createElement('div');
-    this.hlText = '';
-    this.style = 'dsNormal';
-    this._section();
-    this.hl('');
-    return this.main;
-};
-HL.prototype.hl = function hl(m,s) {
-    this.pos += m.length;
-    this.str = this.str.slice(m.length);
-    if(this.style == s)
-        this.hlText += m;
-    else {
-        if(this.hlText) {
-            if(this.style == 'dsNormal')
-                this.main.appendChild(document.createTextNode(this.hlText));
-            else {
-                var span = document.createElement('span');
-                span.appendChild(document.createTextNode(this.hlText));
-                span.className = this.style;
-                this.main.appendChild(span);
-            }
+KateSyntax.langs.mab.syntax = {
+    default: 'mab_section',
+    mab_section: function mab_section(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.col === 0 && (m = /^\*I [a-zA-Z0-9]* /.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#330066;fontStyle:normal;fontWeight:bold')) continue;
+            if(this.col === 0 && (m = /^\*\*\*\**E.*/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#993322;fontStyle:normal;fontWeight:bold')) continue;
+            if(this.col === 0 && (m = /^\*\*\*\**M.*/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#339922;fontStyle:normal;fontWeight:bold')) continue;
+            if(this.col === 0 && (m = /^\*\*\*\* BIBLIOTHECA.*/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#FF3322;fontStyle:normal;fontWeight:bold')) continue;
+            if(this.col === 0 && (m = /^\*M [a-zA-Z0-9]* /.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#003366;fontStyle:normal;fontWeight:bold')) continue;
+            if(this.col === 0 && (m = /^\*X TYP .*/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#3333FF;fontStyle:italic;fontWeight:bold')) continue;
+            if(this.col === 0 && (m = /^\*X DESC .*/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#BB3333;fontStyle:italic;fontWeight:bold')) continue;
+            if(this.col === 0 && (m = /^\*X .*/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#999999;fontStyle:italic;fontWeight:bold')) continue;
+            this.hl(this.str[0], 'dsNormal;color:#FF0022;fontStyle:normal;fontWeight:bold');
         }
-        this.style = s;
-        this.hlText = m;
-    }
-    return true;
-};
-HL.prototype._section = function() {
-    var m;
-    while(this.pos < this.len) {
-        if((m = /^\*I [a-zA-Z0-9]* /.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^\*\*\*\**E.*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^\*\*\*\**M.*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^\*\*\*\* BIBLIOTHECA.*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^\*M [a-zA-Z0-9]* /.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-        if((m = /^\*X TYP .*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if((m = /^\*X DESC .*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        if((m = /^\*X .*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-        this.hl(this.str[0], 'dsNormal');
+        this.pop();
     }
 };

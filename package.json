@@ -1,0 +1,22 @@
+{
+  "name": "KateSyntax.js",
+  "version": "0.1.0",
+  "description": "This is an attempt at using the Kate syntax highlighting definitions for a JavaScript highlighter.",
+  "main": " ",
+  "bin": {
+    "KateSyntax.js": "convert.js"
+  },
+  "dependencies": {
+    "dom-js": "~0.0.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/eddyb/KateSyntax.js.git"
+  },
+  "author": "eddyb",
+  "license": "BSD"
+}

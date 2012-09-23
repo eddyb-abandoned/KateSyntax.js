@@ -1,99 +1,75 @@
-var HL = function HL(){};
-HL.prototype.run = function run(str) {
-    this.str = str;
-    this.pos = 0;
-    this.len = str.length;
-    this.main = document.createElement('div');
-    this.hlText = '';
-    this.style = 'dsNormal';
-    this._normal();
-    this.hl('');
-    return this.main;
-};
-HL.prototype.hl = function hl(m,s) {
-    this.pos += m.length;
-    this.str = this.str.slice(m.length);
-    if(this.style == s)
-        this.hlText += m;
-    else {
-        if(this.hlText) {
-            if(this.style == 'dsNormal')
-                this.main.appendChild(document.createTextNode(this.hlText));
-            else {
-                var span = document.createElement('span');
-                span.appendChild(document.createTextNode(this.hlText));
-                span.className = this.style;
-                this.main.appendChild(span);
-            }
+KateSyntax.langs.json.syntax = {
+    default: 'json_normal',
+    json_normal: function json_normal(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '{' && this.hl('{', 'dsNormal;color:#EF0000;fontWeight:bold')) {if(m = this.json_pair())return this.pop(), m-1;continue;}
+            if(this.str[0] == '[' && this.hl('[', 'dsNormal;color:#0000AF;fontWeight:bold')) {if(m = this.json_array())return this.pop(), m-1;continue;}
+            if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
+            this.hl(this.str[0], 'dsError');
         }
-        this.style = s;
-        this.hlText = m;
-    }
-    return true;
-};
-HL.prototype._normal = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '{' && this.hl('{', 'dsNormal')) {this._pair();continue;}
-        if(this.str[0] == '[' && this.hl('[', 'dsNormal')) {this._array();continue;}
-        if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        this.hl(this.str[0], 'dsError');
-    }
-};
-HL.prototype._pair = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '"' && this.hl('"', 'dsDataType')) {this._string_Key();continue;}
-        if(this.str[0] == ':' && this.hl(':', 'dsNormal')) {this._value();continue;}
-        if(this.str[0] == '}' && this.hl('}', 'dsNormal')) return;
-        if(this.str[0] == ',' && this.hl(',', 'dsNormal')) continue;
-        if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        this.hl(this.str[0], 'dsError');
-    }
-};
-HL.prototype._string_Key = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '"' && this.hl('"', 'dsDataType')) return;
-        if((m = /^\\(?:["\\/bfnrt]|u[0-9a-fA-f]{4})/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-        this.hl(this.str[0], 'dsDataType');
-    }
-};
-HL.prototype._value = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string_Value();continue;}
-        if(this.str[0] == '{' && this.hl('{', 'dsNormal')) {this._pair();continue;}
-        if(this.str[0] == '[' && this.hl('[', 'dsNormal')) {this._array();continue;}
-        if(this.str[0] == '}') return;
-        if(this.str[0] == ',') return;
-        if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if((m = /^(?:null|true|false)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if((m = /^-?(?:[0-9]|[1-9][0-9]+)\.[0-9]+(?:[eE][+-]?[0-9]+)?/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
-        if((m = /^-?(?:[0-9]|[1-9][0-9]+)(?:[eE][+-]?[0-9]+)?/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        this.hl(this.str[0], 'dsError');
-    }
-};
-HL.prototype._string_Value = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == '"' && this.hl('"', 'dsString')) return;
-        if((m = /^\\(?:["\\/bfnrt]|u[0-9a-fA-f]{4})/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
-        this.hl(this.str[0], 'dsString');
-    }
-};
-HL.prototype._array = function() {
-    var m;
-    while(this.pos < this.len) {
-        if(this.str[0] == ',' && this.hl(',', 'dsNormal')) continue;
-        if(this.str[0] == ']' && this.hl(']', 'dsNormal')) return;
-        if(this.str[0] == '{' && this.hl('{', 'dsNormal')) {this._pair();continue;}
-        if(this.str[0] == '[' && this.hl('[', 'dsNormal')) {this._array();continue;}
-        if(this.str[0] == '"' && this.hl('"', 'dsString')) {this._string_Value();continue;}
-        if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-        if((m = /^(?:null|true|false)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        if((m = /^-?(?:[0-9]|[1-9][0-9]+)\.[0-9]+(?:[eE][+-]?[0-9]+)?/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
-        if((m = /^-?(?:[0-9]|[1-9][0-9]+)(?:[eE][+-]?[0-9]+)?/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-        this.hl(this.str[0], 'dsError');
+        this.pop();
+    },
+    json_pair: function json_pair(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '"' && this.hl('"', 'dsDataType')) {if(m = this.json_string_Key())return this.pop(), m-1;continue;}
+            if(this.str[0] == ':' && this.hl(':', 'dsNormal;color:#EF0000;fontWeight:bold')) {if(m = this.json_value())return this.pop(), m-1;continue;}
+            if(this.str[0] == '}' && this.hl('}', 'dsNormal;color:#EF0000;fontWeight:bold')) return this.pop();
+            if(this.str[0] == ',' && this.hl(',', 'dsNormal;color:#EF0000;fontWeight:bold')) continue;
+            if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
+            this.hl(this.str[0], 'dsError');
+        }
+        this.pop();
+    },
+    json_string_Key: function json_string_Key(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '"' && this.hl('"', 'dsDataType')) return this.pop();
+            if((m = /^\\(?:["\\/bfnrt]|u[0-9a-fA-f]{4})/.exec(this.str)) && this.hl(m[0], 'dsDataType;textDecoration:underline')) continue;
+            this.hl(this.str[0], 'dsDataType');
+        }
+        this.pop();
+    },
+    json_value: function json_value(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '"' && this.hl('"', 'dsString;color:#FF00FF')) {if(m = this.json_string_Value())return this.pop(), m-1;continue;}
+            if(this.str[0] == '{' && this.hl('{', 'dsNormal;color:#EF0000;fontWeight:bold')) {if(m = this.json_pair())return this.pop(), m-1;continue;}
+            if(this.str[0] == '[' && this.hl('[', 'dsNormal;color:#0000AF;fontWeight:bold')) {if(m = this.json_array())return this.pop(), m-1;continue;}
+            if(this.str[0] == '}') return this.pop();
+            if(this.str[0] == ',') return this.pop();
+            if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
+            if((m = /^(?:null|true|false)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) continue;
+            if((m = /^-?(?:[0-9]|[1-9][0-9]+)\.[0-9]+(?:[eE][+-]?[0-9]+)?/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
+            if((m = /^-?(?:[0-9]|[1-9][0-9]+)(?:[eE][+-]?[0-9]+)?/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
+            this.hl(this.str[0], 'dsError');
+        }
+        this.pop();
+    },
+    json_string_Value: function json_string_Value(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == '"' && this.hl('"', 'dsString;color:#FF00FF')) return this.pop();
+            if((m = /^\\(?:["\\/bfnrt]|u[0-9a-fA-f]{4})/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF00FF;textDecoration:underline')) continue;
+            this.hl(this.str[0], 'dsString;color:#FF00FF');
+        }
+        this.pop();
+    },
+    json_array: function json_array(m) {
+        this.push();
+        while(this.pos < this.len) {
+            if(this.str[0] == ',' && this.hl(',', 'dsNormal;color:#0000AF;fontWeight:bold')) continue;
+            if(this.str[0] == ']' && this.hl(']', 'dsNormal;color:#0000AF;fontWeight:bold')) return this.pop();
+            if(this.str[0] == '{' && this.hl('{', 'dsNormal;color:#EF0000;fontWeight:bold')) {if(m = this.json_pair())return this.pop(), m-1;continue;}
+            if(this.str[0] == '[' && this.hl('[', 'dsNormal;color:#0000AF;fontWeight:bold')) {if(m = this.json_array())return this.pop(), m-1;continue;}
+            if(this.str[0] == '"' && this.hl('"', 'dsString;color:#FF00FF')) {if(m = this.json_string_Value())return this.pop(), m-1;continue;}
+            if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
+            if((m = /^(?:null|true|false)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) continue;
+            if((m = /^-?(?:[0-9]|[1-9][0-9]+)\.[0-9]+(?:[eE][+-]?[0-9]+)?/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
+            if((m = /^-?(?:[0-9]|[1-9][0-9]+)(?:[eE][+-]?[0-9]+)?/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
+            this.hl(this.str[0], 'dsError');
+        }
+        this.pop();
     }
 };
