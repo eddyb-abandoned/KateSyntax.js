@@ -4,7 +4,7 @@
   "description": "This is an attempt at using the Kate syntax highlighting definitions for a JavaScript highlighter.",
   "main": " ",
   "bin": {
-    "KateSyntax.js": "convert.js"
+    "KateSyntax.js": "bin/convert.js"
   },
   "dependencies": {
     "dom-js": "~0.0.9"
