@@ -4,7 +4,7 @@ KateSyntax.langs.desktop.syntax = {
         this.push();
         while(this.pos < this.len) {
             if(this.col === 0 && (m = /^\[.*\](?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^\[.*\]/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) {if(m = this.desktop_value())return this.pop(), m-1;continue;}
+            if((m = /^\[.*\]/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) {if(m = this.desktop_value())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsComment')) {if(m = this.desktop_comment())return this.pop(), m-1;continue;}
             if(this.str[0] == '=' && this.hl('=', 'dsNormal')) {if(m = this.desktop_value())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsDataType');

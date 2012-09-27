@@ -5,16 +5,16 @@ KateSyntax.langs.mediawiki.syntax = {
         while(this.pos < this.len) {
             if((m = /^<!--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.mediawiki_comment())return this.pop(), m-1;continue;}
             if(this.col === 0 && (m = /^([=]{2,2}[^=]+[=]{2,2}|[=]{3,3}[^=]+[=]{3,3}|[=]{4,4}[^=]+[=]{4,4}|[=]{5,5}[^=]+[=]{5,5})/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^[~]{3,4}/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) continue;
-            if(this.col === 0 && (m = /^[*#;:\s]*[*#:]+/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) continue;
-            if((m = /^[[](?![[])/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) {if(m = this.mediawiki_uRL())return this.pop(), m-1;continue;}
+            if((m = /^[~]{3,4}/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) continue;
+            if(this.col === 0 && (m = /^[*#;:\s]*[*#:]+/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) continue;
+            if((m = /^[[](?![[])/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) {if(m = this.mediawiki_uRL())return this.pop(), m-1;continue;}
             if((m = /^(http:|ftp:|mailto:)[\S]*((?=$|\n)|[\s])/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-            if((m = /^[']{2,}/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) continue;
-            if(this.col === 0 && this.str[0] == '{' && this.str[1] == '|' && this.hl('{|', 'dsDecVal;fontWeight:bold')) {if(m = this.mediawiki_table())return this.pop(), m-1;continue;}
-            if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsDecVal;fontWeight:bold')) {if(m = this.mediawiki_template())return this.pop(), m-1;continue;}
-            if(this.str[0] == '[' && this.str[1] == '[' && this.hl('[[', 'dsDecVal;fontWeight:bold')) {if(m = this.mediawiki_wikiLink())return this.pop(), m-1;continue;}
+            if((m = /^[']{2,}/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) continue;
+            if(this.col === 0 && this.str[0] == '{' && this.str[1] == '|' && this.hl('{|', 'dsDecVal;font-weight:bold')) {if(m = this.mediawiki_table())return this.pop(), m-1;continue;}
+            if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsDecVal;font-weight:bold')) {if(m = this.mediawiki_template())return this.pop(), m-1;continue;}
+            if(this.str[0] == '[' && this.str[1] == '[' && this.hl('[[', 'dsDecVal;font-weight:bold')) {if(m = this.mediawiki_wikiLink())return this.pop(), m-1;continue;}
             if((m = /^&.*?;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if((m = /^<nowiki>/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) {if(m = this.mediawiki_noWiki())return this.pop(), m-1;continue;}
+            if((m = /^<nowiki>/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) {if(m = this.mediawiki_noWiki())return this.pop(), m-1;continue;}
             if((m = /^<pre>/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.mediawiki_pre())return this.pop(), m-1;continue;}
             if((m = /^[<][^>]+[>]/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if(this.col === 0 && (m = /^[\s]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.mediawiki_unformatted())return this.pop(), m-1;continue;}
@@ -27,22 +27,22 @@ KateSyntax.langs.mediawiki.syntax = {
         while(this.pos < this.len) {
             if((m = /^<!--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.mediawiki_comment())return this.pop(), m-1;continue;}
             if(this.col === 0 && (m = /^([=]{2,2}[^=]+[=]{2,2}|[=]{3,3}[^=]+[=]{3,3}|[=]{4,4}[^=]+[=]{4,4}|[=]{5,5}[^=]+[=]{5,5})/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if(this.col === 0 && (m = /^[*#;:\s]*[*#:]+/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) continue;
-            if((m = /^[[](?![[])/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) {if(m = this.mediawiki_uRL())return this.pop(), m-1;continue;}
+            if(this.col === 0 && (m = /^[*#;:\s]*[*#:]+/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) continue;
+            if((m = /^[[](?![[])/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) {if(m = this.mediawiki_uRL())return this.pop(), m-1;continue;}
             if((m = /^(http:|ftp:|mailto:)[\S]*((?=$|\n)|[\s])/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-            if((m = /^[']{2,}/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) continue;
-            if(this.col === 0 && this.str[0] == '|' && this.str[1] == '}' && this.hl('|}', 'dsDecVal;fontWeight:bold')) return this.pop();
-            if(this.str[0] == '|' && this.hl('|', 'dsDecVal;fontWeight:bold')) continue;
-            if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsDecVal;fontWeight:bold')) {if(m = this.mediawiki_template())return this.pop(), m-1;continue;}
-            if(this.str[0] == '[' && this.str[1] == '[' && this.hl('[[', 'dsDecVal;fontWeight:bold')) {if(m = this.mediawiki_wikiLink())return this.pop(), m-1;continue;}
+            if((m = /^[']{2,}/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) continue;
+            if(this.col === 0 && this.str[0] == '|' && this.str[1] == '}' && this.hl('|}', 'dsDecVal;font-weight:bold')) return this.pop();
+            if(this.str[0] == '|' && this.hl('|', 'dsDecVal;font-weight:bold')) continue;
+            if(this.str[0] == '{' && this.str[1] == '{' && this.hl('{{', 'dsDecVal;font-weight:bold')) {if(m = this.mediawiki_template())return this.pop(), m-1;continue;}
+            if(this.str[0] == '[' && this.str[1] == '[' && this.hl('[[', 'dsDecVal;font-weight:bold')) {if(m = this.mediawiki_wikiLink())return this.pop(), m-1;continue;}
             if((m = /^&.*?;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if((m = /^<nowiki>/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) {if(m = this.mediawiki_noWiki())return this.pop(), m-1;continue;}
+            if((m = /^<nowiki>/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) {if(m = this.mediawiki_noWiki())return this.pop(), m-1;continue;}
             if((m = /^<pre>/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.mediawiki_pre())return this.pop(), m-1;continue;}
             if((m = /^[<][^>]+[>]/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if(this.col === 0 && (m = /^[\s]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.mediawiki_unformatted())return this.pop(), m-1;continue;}
-            if((m = /^[~]{3,4}/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) continue;
-            if((m = /^[-]{4,}/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) continue;
-            if(this.col === 0 && this.str[0] == '!' && this.hl('!', 'dsDecVal;fontWeight:bold')) continue;
+            if((m = /^[~]{3,4}/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) continue;
+            if((m = /^[-]{4,}/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) continue;
+            if(this.col === 0 && this.str[0] == '!' && this.hl('!', 'dsDecVal;font-weight:bold')) continue;
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -58,7 +58,7 @@ KateSyntax.langs.mediawiki.syntax = {
     mediawiki_uRL: function mediawiki_uRL(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == ']' && this.hl(']', 'dsDecVal;fontWeight:bold')) return this.pop();
+            if(this.str[0] == ']' && this.hl(']', 'dsDecVal;font-weight:bold')) return this.pop();
             this.hl(this.str[0], 'dsOthers');
         }
         this.pop();
@@ -66,8 +66,8 @@ KateSyntax.langs.mediawiki.syntax = {
     mediawiki_wikiLink: function mediawiki_wikiLink(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '|' && this.hl('|', 'dsDecVal;fontWeight:bold')) {if(m = this.mediawiki_wikiLinkDescription())return this.pop(), m-1;continue;}
-            if(this.str[0] == ']' && this.str[1] == ']' && this.hl(']]', 'dsDecVal;fontWeight:bold')) return this.pop();
+            if(this.str[0] == '|' && this.hl('|', 'dsDecVal;font-weight:bold')) {if(m = this.mediawiki_wikiLinkDescription())return this.pop(), m-1;continue;}
+            if(this.str[0] == ']' && this.str[1] == ']' && this.hl(']]', 'dsDecVal;font-weight:bold')) return this.pop();
             this.hl(this.str[0], 'dsOthers');
         }
         this.pop();
@@ -83,7 +83,7 @@ KateSyntax.langs.mediawiki.syntax = {
     mediawiki_link: function mediawiki_link(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '}' && this.str[1] == '}' && this.hl('}}', 'dsDecVal;fontWeight:bold')) return this.pop();
+            if(this.str[0] == '}' && this.str[1] == '}' && this.hl('}}', 'dsDecVal;font-weight:bold')) return this.pop();
             if((m = /^['[\]]/.exec(this.str)) && this.hl(m[0], 'dsError')) {if(m = this.mediawiki_error())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
@@ -100,7 +100,7 @@ KateSyntax.langs.mediawiki.syntax = {
     mediawiki_template: function mediawiki_template(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '}' && this.str[1] == '}' && this.hl('}}', 'dsDecVal;fontWeight:bold')) return this.pop();
+            if(this.str[0] == '}' && this.str[1] == '}' && this.hl('}}', 'dsDecVal;font-weight:bold')) return this.pop();
             this.hl(this.str[0], 'dsOthers');
         }
         this.pop();
@@ -109,7 +109,7 @@ KateSyntax.langs.mediawiki.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^<!--[^-]*-->/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^<\/nowiki>/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) return this.pop();
+            if((m = /^<\/nowiki>/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) return this.pop();
             if((m = /^[<][^>]+[>]/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^<pre>/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.mediawiki_pre())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
@@ -127,7 +127,7 @@ KateSyntax.langs.mediawiki.syntax = {
     mediawiki_pre: function mediawiki_pre(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^<\/pre>/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) return this.pop();
+            if((m = /^<\/pre>/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) return this.pop();
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();

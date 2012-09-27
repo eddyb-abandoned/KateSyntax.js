@@ -67,7 +67,7 @@ KateSyntax.langs.vhdl.syntax = {
             if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {if(m = this.vhdl_attribute())return this.pop(), m-1;continue;}
             if((m = /^architecture\s+(&varname;)\s+of\s+(&varname;)\s+is/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_arch_decl())return this.pop(), m-1;continue;}
             if((m = /^&bos;end(\s+architecture)?(\s+%1)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) return this.pop(), 1;
-            if((m = /^&bos;end(\s+architecture)?(\s+&varname;)\s*;/i.exec(this.str)) && this.hl(m[0], 'dsError;color:#f00;fontWeight:bold')) return this.pop(), 1;
+            if((m = /^&bos;end(\s+architecture)?(\s+&varname;)\s*;/i.exec(this.str)) && this.hl(m[0], 'dsError;color:#f00;font-weight:bold')) return this.pop(), 1;
             if(/^&bos;((&varname;)\s*:\s*)(if|for).*\s+generate&eos;/i.exec(this.str)) {if(m = this.vhdl_generate1())return this.pop(), m-1;continue;}
             if(/^&bos;((&varname;)\s*:\s*)?process&eos;/i.exec(this.str)) {if(m = this.vhdl_process1())return this.pop(), m-1;continue;}
             if(/^\b(&varname;)\s*:\s*(&varname;)/i.exec(this.str)) {if(m = this.vhdl_instance())return this.pop(), m-1;continue;}
@@ -128,7 +128,7 @@ KateSyntax.langs.vhdl.syntax = {
             if((m = /^[[&><=:+\\\-*\\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {if(m = this.vhdl_attribute())return this.pop(), m-1;continue;}
             if((m = /^&bos;generate&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_generate2())return this.pop(), m-1;continue;}
-            if((m = /^&bos;%3&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;fontWeight:bold')) continue;
+            if((m = /^&bos;%3&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;font-weight:bold')) continue;
             if((m = /^for/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) continue;
             if((m = /^if/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) continue;
             if((m = /^(?:bit|bit_vector|character|boolean|boolean_vector|integer|integer_vector|real|real_vector|time|time_vector|delay_length|string|severity_level|positive|natural|file_open_kind|file_open_status|signed|unsigned|unresolved_unsigned|unresolved_signed|line|text|side|width|std_logic|std_logic_vector|std_ulogic|std_ulogic_vector|x01|x01z|ux01|ux01z|qsim_state|qsim_state_vector|qsim_12state|qsim_12state_vector|qsim_strength|mux_bit|mux_vector|reg_bit|reg_vector|wor_bit|wor_vector)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
@@ -173,10 +173,10 @@ KateSyntax.langs.vhdl.syntax = {
             if((m = /^[[&><=:+\\\-*\\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {if(m = this.vhdl_attribute())return this.pop(), m-1;continue;}
             if((m = /^end\s+process(\s+%3)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#09A')) return this.pop();
-            if((m = /^end\s+process(\s+&varname;)?/i.exec(this.str)) && this.hl(m[0], 'dsError;color:#f00;fontWeight:bold')) return this.pop();
+            if((m = /^end\s+process(\s+&varname;)?/i.exec(this.str)) && this.hl(m[0], 'dsError;color:#f00;font-weight:bold')) return this.pop();
             if((m = /^process/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#09A')) continue;
             if((m = /^begin/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#09A')) continue;
-            if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;fontWeight:bold')) continue;
+            if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;font-weight:bold')) continue;
             if((m = /^&bos;(if)&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_if_start())return this.pop(), m-1;continue;}
             if(/^&bos;(case)&eos;/i.exec(this.str)) {if(m = this.vhdl_case1())return this.pop(), m-1;continue;}
             if((m = /^&bos;&label;((for|while)\s+.+\s+)?loop&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_forOrWhile())return this.pop(), m-1;continue;}
@@ -194,7 +194,7 @@ KateSyntax.langs.vhdl.syntax = {
     vhdl_proc_rules: function vhdl_proc_rules(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;fontWeight:bold')) continue;
+            if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;font-weight:bold')) continue;
             if((m = /^&bos;(if)&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_if_start())return this.pop(), m-1;continue;}
             if(/^&bos;(case)&eos;/i.exec(this.str)) {if(m = this.vhdl_case1())return this.pop(), m-1;continue;}
             if((m = /^&bos;&label;((for|while)\s+.+\s+)?loop&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_forOrWhile())return this.pop(), m-1;continue;}
@@ -216,8 +216,8 @@ KateSyntax.langs.vhdl.syntax = {
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.vhdl_string())return this.pop(), m-1;continue;}
             if((m = /^[[&><=:+\\\-*\\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {if(m = this.vhdl_attribute())return this.pop(), m-1;continue;}
-            if((m = /^\b%1\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;fontWeight:bold')) continue;
-            if((m = /^\b%2\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;fontWeight:bold')) continue;
+            if((m = /^\b%1\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;font-weight:bold')) continue;
+            if((m = /^\b%2\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;font-weight:bold')) continue;
             if(this.str[0] == ')' && this.str[1] == ';' && this.hl(');', 'dsNormal')) return this.pop();
             if((m = /^(?:bit|bit_vector|character|boolean|boolean_vector|integer|integer_vector|real|real_vector|time|time_vector|delay_length|string|severity_level|positive|natural|file_open_kind|file_open_status|signed|unsigned|unresolved_unsigned|unresolved_signed|line|text|side|width|std_logic|std_logic_vector|std_ulogic|std_ulogic_vector|x01|x01z|ux01|ux01z|qsim_state|qsim_state_vector|qsim_12state|qsim_12state_vector|qsim_strength|mux_bit|mux_vector|reg_bit|reg_vector|wor_bit|wor_vector)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^(?:signal|variable|constant|type)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {if(m = this.vhdl_signal())return this.pop(), m-1;continue;}
@@ -235,7 +235,7 @@ KateSyntax.langs.vhdl.syntax = {
         while(this.pos < this.len) {
             if((m = /^&bos;end\s+loop(\s+&varname;)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) return this.pop();
             if((m = /^(?:loop)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) continue;
-            if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;fontWeight:bold')) continue;
+            if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;font-weight:bold')) continue;
             if((m = /^&bos;(if)&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_if_start())return this.pop(), m-1;continue;}
             if(/^&bos;(case)&eos;/i.exec(this.str)) {if(m = this.vhdl_case1())return this.pop(), m-1;continue;}
             if((m = /^&bos;&label;((for|while)\s+.+\s+)?loop&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_forOrWhile())return this.pop(), m-1;continue;}
@@ -277,7 +277,7 @@ KateSyntax.langs.vhdl.syntax = {
             if((m = /^[[&><=:+\\\-*\\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {if(m = this.vhdl_attribute())return this.pop(), m-1;continue;}
             if((m = /^&bos;end\s+if(\s+&varname;)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) return this.pop(), 1;
-            if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;fontWeight:bold')) continue;
+            if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;font-weight:bold')) continue;
             if((m = /^&bos;(if)&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_if_start())return this.pop(), m-1;continue;}
             if(/^&bos;(case)&eos;/i.exec(this.str)) {if(m = this.vhdl_case1())return this.pop(), m-1;continue;}
             if((m = /^&bos;&label;((for|while)\s+.+\s+)?loop&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_forOrWhile())return this.pop(), m-1;continue;}
@@ -315,7 +315,7 @@ KateSyntax.langs.vhdl.syntax = {
             if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {if(m = this.vhdl_attribute())return this.pop(), m-1;continue;}
             if((m = /^&bos;end\s+case(\s+&varname;)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) return this.pop(), 1;
             if((m = /^when/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_caseWhen())return this.pop(), m-1;continue;}
-            if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;fontWeight:bold')) continue;
+            if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;font-weight:bold')) continue;
             if((m = /^&bos;(if)&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_if_start())return this.pop(), m-1;continue;}
             if(/^&bos;(case)&eos;/i.exec(this.str)) {if(m = this.vhdl_case1())return this.pop(), m-1;continue;}
             if((m = /^&bos;&label;((for|while)\s+.+\s+)?loop&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_forOrWhile())return this.pop(), m-1;continue;}
@@ -339,7 +339,7 @@ KateSyntax.langs.vhdl.syntax = {
             if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {if(m = this.vhdl_attribute())return this.pop(), m-1;continue;}
             if(/^&bos;when&eos;/i.exec(this.str)) return this.pop();
             if(/^&bos;end\s+case(\s+&varname;)?\s*;/i.exec(this.str)) return this.pop();
-            if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;fontWeight:bold')) continue;
+            if((m = /^&bos;&varname;(?=\s*:(?!=))/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;font-weight:bold')) continue;
             if((m = /^&bos;(if)&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_if_start())return this.pop(), m-1;continue;}
             if(/^&bos;(case)&eos;/i.exec(this.str)) {if(m = this.vhdl_case1())return this.pop(), m-1;continue;}
             if((m = /^&bos;&label;((for|while)\s+.+\s+)?loop&eos;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) {if(m = this.vhdl_forOrWhile())return this.pop(), m-1;continue;}
@@ -361,7 +361,7 @@ KateSyntax.langs.vhdl.syntax = {
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.vhdl_string())return this.pop(), m-1;continue;}
             if((m = /^[[&><=:+\\\-*\\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {if(m = this.vhdl_attribute())return this.pop(), m-1;continue;}
-            if((m = /^(&varname;)/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;fontWeight:bold')) {if(m = this.vhdl_entity_main())return this.pop(), m-1;continue;}
+            if((m = /^(&varname;)/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#b60;font-weight:bold')) {if(m = this.vhdl_entity_main())return this.pop(), m-1;continue;}
             if((m = /^(?:bit|bit_vector|character|boolean|boolean_vector|integer|integer_vector|real|real_vector|time|time_vector|delay_length|string|severity_level|positive|natural|file_open_kind|file_open_status|signed|unsigned|unresolved_unsigned|unresolved_signed|line|text|side|width|std_logic|std_logic_vector|std_ulogic|std_ulogic_vector|x01|x01z|ux01|ux01z|qsim_state|qsim_state_vector|qsim_12state|qsim_12state_vector|qsim_strength|mux_bit|mux_vector|reg_bit|reg_vector|wor_bit|wor_vector)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^(?:signal|variable|constant|type)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {if(m = this.vhdl_signal())return this.pop(), m-1;continue;}
             if((m = /^(?:to|downto|others)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
@@ -381,7 +381,7 @@ KateSyntax.langs.vhdl.syntax = {
             if((m = /^[[&><=:+\\\-*\\/|\].,]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(this.str[0] == '\'' && this.hl('\'', 'dsBaseN')) {if(m = this.vhdl_attribute())return this.pop(), m-1;continue;}
             if((m = /^&bos;end(\s+(entity|component))?(\s+%1)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) return this.pop(), 1;
-            if((m = /^&bos;end(\s+(entity|component))?(\s+&varname;)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsError;color:#f00;fontWeight:bold')) return this.pop(), 1;
+            if((m = /^&bos;end(\s+(entity|component))?(\s+&varname;)?\s*;/i.exec(this.str)) && this.hl(m[0], 'dsError;color:#f00;font-weight:bold')) return this.pop(), 1;
             if((m = /^generic/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) continue;
             if((m = /^port/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#238')) continue;
             if((m = /^(?:bit|bit_vector|character|boolean|boolean_vector|integer|integer_vector|real|real_vector|time|time_vector|delay_length|string|severity_level|positive|natural|file_open_kind|file_open_status|signed|unsigned|unresolved_unsigned|unresolved_signed|line|text|side|width|std_logic|std_logic_vector|std_ulogic|std_ulogic_vector|x01|x01z|ux01|ux01z|qsim_state|qsim_state_vector|qsim_12state|qsim_12state_vector|qsim_strength|mux_bit|mux_vector|reg_bit|reg_vector|wor_bit|wor_vector)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;

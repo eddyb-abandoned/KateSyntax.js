@@ -13,13 +13,13 @@ KateSyntax.langs.r.syntax = {
             if((m = /^[a-zA-Z_]+[a-zA-Z_\.0-9]*(?=[\s]*[(])/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^\.[a-zA-Z_\.]+[a-zA-Z_\.0-9]*(?=[\s]*[(])/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^\(/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.r_parenthesis())return this.pop(), m-1;continue;}
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#b00000;fontStyle:normal;fontWeight:bold')) {if(m = this.r_headline())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#b00000;font-style:normal;font-weight:bold')) {if(m = this.r_headline())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsComment')) {if(m = this.r_comment())return this.pop(), m-1;continue;}
-            if((m = /^[<]{1,2}\-/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;fontStyle:normal;fontWeight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^\-[>]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;fontStyle:normal;fontWeight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^=(?!=)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;fontStyle:normal;fontWeight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^(\+|\-|\*{1,2}|\/|<=?|>=?|={1,2}|\!=?|\|{1,2}|&{1,2}|:{1,3}|\^|@|\$|~)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;fontStyle:normal;fontWeight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^%[^%]*%/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;fontStyle:normal;fontWeight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^[<]{1,2}\-/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;font-style:normal;font-weight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^\-[>]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;font-style:normal;font-weight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^=(?!=)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;font-style:normal;font-weight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^(\+|\-|\*{1,2}|\/|<=?|>=?|={1,2}|\!=?|\|{1,2}|&{1,2}|:{1,3}|\^|@|\$|~)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;font-style:normal;font-weight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^%[^%]*%/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;font-style:normal;font-weight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
             if(this.str[0] == '{' && this.hl('{', 'dsNormal')) {if(m = this.r_ctx0())return this.pop(), m-1;continue;}
             if(this.str[0] == '[' && this.hl('[', 'dsNormal')) continue;
             if(this.str[0] == ']' && this.hl(']', 'dsNormal')) continue;
@@ -42,13 +42,13 @@ KateSyntax.langs.r.syntax = {
             if((m = /^[a-zA-Z_]+[a-zA-Z_\.0-9]*(?=[\s]*[(])/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^\.[a-zA-Z_\.]+[a-zA-Z_\.0-9]*(?=[\s]*[(])/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^\(/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.r_parenthesis())return this.pop(), m-1;continue;}
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#b00000;fontStyle:normal;fontWeight:bold')) {if(m = this.r_headline())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#b00000;font-style:normal;font-weight:bold')) {if(m = this.r_headline())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsComment')) {if(m = this.r_comment())return this.pop(), m-1;continue;}
-            if((m = /^[<]{1,2}\-/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;fontStyle:normal;fontWeight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^\-[>]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;fontStyle:normal;fontWeight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^=(?!=)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;fontStyle:normal;fontWeight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^(\+|\-|\*{1,2}|\/|<=?|>=?|={1,2}|\!=?|\|{1,2}|&{1,2}|:{1,3}|\^|@|\$|~)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;fontStyle:normal;fontWeight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^%[^%]*%/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;fontStyle:normal;fontWeight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^[<]{1,2}\-/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;font-style:normal;font-weight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^\-[>]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;font-style:normal;font-weight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^=(?!=)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;font-style:normal;font-weight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^(\+|\-|\*{1,2}|\/|<=?|>=?|={1,2}|\!=?|\|{1,2}|&{1,2}|:{1,3}|\^|@|\$|~)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;font-style:normal;font-weight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^%[^%]*%/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;font-style:normal;font-weight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
             if(this.str[0] == '{' && this.hl('{', 'dsNormal')) {if(m = this.r_ctx0())return this.pop(), m-1;continue;}
             if(this.str[0] == '[' && this.hl('[', 'dsNormal')) continue;
             if(this.str[0] == ']' && this.hl(']', 'dsNormal')) continue;
@@ -74,13 +74,13 @@ KateSyntax.langs.r.syntax = {
             if((m = /^[a-zA-Z_]+[a-zA-Z_\.0-9]*(?=[\s]*[(])/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^\.[a-zA-Z_\.]+[a-zA-Z_\.0-9]*(?=[\s]*[(])/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^\(/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.r_parenthesis())return this.pop(), m-1;continue;}
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#b00000;fontStyle:normal;fontWeight:bold')) {if(m = this.r_headline())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#b00000;font-style:normal;font-weight:bold')) {if(m = this.r_headline())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsComment')) {if(m = this.r_comment())return this.pop(), m-1;continue;}
-            if((m = /^[<]{1,2}\-/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;fontStyle:normal;fontWeight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^\-[>]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;fontStyle:normal;fontWeight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^=(?!=)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;fontStyle:normal;fontWeight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^(\+|\-|\*{1,2}|\/|<=?|>=?|={1,2}|\!=?|\|{1,2}|&{1,2}|:{1,3}|\^|@|\$|~)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;fontStyle:normal;fontWeight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^%[^%]*%/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;fontStyle:normal;fontWeight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^[<]{1,2}\-/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;font-style:normal;font-weight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^\-[>]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;font-style:normal;font-weight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^=(?!=)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;font-style:normal;font-weight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^(\+|\-|\*{1,2}|\/|<=?|>=?|={1,2}|\!=?|\|{1,2}|&{1,2}|:{1,3}|\^|@|\$|~)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;font-style:normal;font-weight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^%[^%]*%/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;font-style:normal;font-weight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
             if(this.str[0] == '{' && this.hl('{', 'dsNormal')) {if(m = this.r_ctx0())return this.pop(), m-1;continue;}
             if(this.str[0] == '[' && this.hl('[', 'dsNormal')) continue;
             if(this.str[0] == ']' && this.hl(']', 'dsNormal')) continue;
@@ -119,7 +119,7 @@ KateSyntax.langs.r.syntax = {
     r_operator_rhs: function r_operator_rhs(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#b00000;fontStyle:normal;fontWeight:bold')) {if(m = this.r_headline())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#b00000;font-style:normal;font-weight:bold')) {if(m = this.r_headline())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsComment')) {if(m = this.r_comment())return this.pop(), m-1;continue;}
             if(this.str[0] == ' ' && this.hl(' ', 'dsString')) continue;
             if((m = /^(\*|\/|<|>|\!=|=|\||&|:|\^|@|\$|~)/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
@@ -131,7 +131,7 @@ KateSyntax.langs.r.syntax = {
         this.push();
         while(this.pos < this.len) {
             if(this.str[0] == '\n') return this.pop();
-            this.hl(this.str[0], 'dsNormal;color:#b00000;fontStyle:normal;fontWeight:bold');
+            this.hl(this.str[0], 'dsNormal;color:#b00000;font-style:normal;font-weight:bold');
         }
         this.pop();
     },
@@ -156,13 +156,13 @@ KateSyntax.langs.r.syntax = {
             if((m = /^[a-zA-Z_]+[a-zA-Z_\.0-9]*(?=[\s]*[(])/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^\.[a-zA-Z_\.]+[a-zA-Z_\.0-9]*(?=[\s]*[(])/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^\(/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.r_parenthesis())return this.pop(), m-1;continue;}
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#b00000;fontStyle:normal;fontWeight:bold')) {if(m = this.r_headline())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#b00000;font-style:normal;font-weight:bold')) {if(m = this.r_headline())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsComment')) {if(m = this.r_comment())return this.pop(), m-1;continue;}
-            if((m = /^[<]{1,2}\-/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;fontStyle:normal;fontWeight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^\-[>]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;fontStyle:normal;fontWeight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^=(?!=)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;fontStyle:normal;fontWeight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^(\+|\-|\*{1,2}|\/|<=?|>=?|={1,2}|\!=?|\|{1,2}|&{1,2}|:{1,3}|\^|@|\$|~)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;fontStyle:normal;fontWeight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
-            if((m = /^%[^%]*%/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;fontStyle:normal;fontWeight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^[<]{1,2}\-/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;font-style:normal;font-weight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^\-[>]{1,2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;font-style:normal;font-weight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^=(?!=)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#336366;font-style:normal;font-weight:bold')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^(\+|\-|\*{1,2}|\/|<=?|>=?|={1,2}|\!=?|\|{1,2}|&{1,2}|:{1,3}|\^|@|\$|~)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;font-style:normal;font-weight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
+            if((m = /^%[^%]*%/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#803f00;font-style:normal;font-weight:normal')) {if(m = this.r_operator_rhs())return this.pop(), m-1;continue;}
             if(this.str[0] == '{' && this.hl('{', 'dsNormal')) {if(m = this.r_ctx0())return this.pop(), m-1;continue;}
             if(this.str[0] == '[' && this.hl('[', 'dsNormal')) continue;
             if(this.str[0] == ']' && this.hl(']', 'dsNormal')) continue;

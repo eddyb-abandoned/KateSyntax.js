@@ -8,8 +8,8 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^<%=?/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_rubysource())return this.pop(), m-1;continue;}
             if((m = /^%/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_rubysourceline())return this.pop(), m-1;continue;}
             if((m = /^<!--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.rhtml_comment())return this.pop(), m-1;continue;}
-            if((m = /^<!\[CDATA\[/.exec(this.str)) && this.hl(m[0], 'dsBaseN;fontWeight:bold')) {if(m = this.rhtml_cDATA())return this.pop(), m-1;continue;}
-            if((m = /^<!DOCTYPE\s+/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) {if(m = this.rhtml_doctype())return this.pop(), m-1;continue;}
+            if((m = /^<!\[CDATA\[/.exec(this.str)) && this.hl(m[0], 'dsBaseN;font-weight:bold')) {if(m = this.rhtml_cDATA())return this.pop(), m-1;continue;}
+            if((m = /^<!DOCTYPE\s+/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) {if(m = this.rhtml_doctype())return this.pop(), m-1;continue;}
             if((m = /^<\?[\w:-]*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_pI())return this.pop(), m-1;continue;}
             if((m = /^<style\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_cSS())return this.pop(), m-1;continue;}
             if((m = /^<script\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_jS())return this.pop(), m-1;continue;}
@@ -21,7 +21,7 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^<\/div\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_elClose())return this.pop(), m-1;continue;}
             if((m = /^<\/table\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_elClose())return this.pop(), m-1;continue;}
             if((m = /^<\/&name;/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_elClose())return this.pop(), m-1;continue;}
-            if((m = /^<!(ELEMENT|ENTITY|ATTLIST|NOTATION)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) {if(m = this.rhtml_doctypeMarkupdecl())return this.pop(), m-1;continue;}
+            if((m = /^<!(ELEMENT|ENTITY|ATTLIST|NOTATION)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) {if(m = this.rhtml_doctypeMarkupdecl())return this.pop(), m-1;continue;}
             if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^[&<]/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             this.hl(this.str[0], 'dsNormal');
@@ -36,8 +36,8 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^<%=?/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_rubysource())return this.pop(), m-1;continue;}
             if((m = /^%/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_rubysourceline())return this.pop(), m-1;continue;}
             if((m = /^<!--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.rhtml_comment())return this.pop(), m-1;continue;}
-            if((m = /^<!\[CDATA\[/.exec(this.str)) && this.hl(m[0], 'dsBaseN;fontWeight:bold')) {if(m = this.rhtml_cDATA())return this.pop(), m-1;continue;}
-            if((m = /^<!DOCTYPE\s+/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) {if(m = this.rhtml_doctype())return this.pop(), m-1;continue;}
+            if((m = /^<!\[CDATA\[/.exec(this.str)) && this.hl(m[0], 'dsBaseN;font-weight:bold')) {if(m = this.rhtml_cDATA())return this.pop(), m-1;continue;}
+            if((m = /^<!DOCTYPE\s+/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) {if(m = this.rhtml_doctype())return this.pop(), m-1;continue;}
             if((m = /^<\?[\w:-]*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_pI())return this.pop(), m-1;continue;}
             if((m = /^<style\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_cSS())return this.pop(), m-1;continue;}
             if((m = /^<script\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_jS())return this.pop(), m-1;continue;}
@@ -49,7 +49,7 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^<\/div\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_elClose())return this.pop(), m-1;continue;}
             if((m = /^<\/table\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_elClose())return this.pop(), m-1;continue;}
             if((m = /^<\/&name;/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_elClose())return this.pop(), m-1;continue;}
-            if((m = /^<!(ELEMENT|ENTITY|ATTLIST|NOTATION)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) {if(m = this.rhtml_doctypeMarkupdecl())return this.pop(), m-1;continue;}
+            if((m = /^<!(ELEMENT|ENTITY|ATTLIST|NOTATION)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) {if(m = this.rhtml_doctypeMarkupdecl())return this.pop(), m-1;continue;}
             if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^[&<]/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             this.hl(this.str[0], 'dsNormal');
@@ -88,7 +88,7 @@ KateSyntax.langs.rhtml.syntax = {
     rhtml_findDTDRules: function rhtml_findDTDRules(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^<!(ELEMENT|ENTITY|ATTLIST|NOTATION)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) {if(m = this.rhtml_doctypeMarkupdecl())return this.pop(), m-1;continue;}
+            if((m = /^<!(ELEMENT|ENTITY|ATTLIST|NOTATION)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) {if(m = this.rhtml_doctypeMarkupdecl())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -110,7 +110,7 @@ KateSyntax.langs.rhtml.syntax = {
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^]]>/.exec(this.str)) && this.hl(m[0], 'dsBaseN;fontWeight:bold')) return this.pop();
+            if((m = /^]]>/.exec(this.str)) && this.hl(m[0], 'dsBaseN;font-weight:bold')) return this.pop();
             if((m = /^]]&gt;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             this.hl(this.str[0], 'dsNormal');
         }
@@ -127,8 +127,8 @@ KateSyntax.langs.rhtml.syntax = {
     rhtml_doctype: function rhtml_doctype(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '>' && this.hl('>', 'dsDataType;fontWeight:bold')) return this.pop();
-            if(this.str[0] == '[' && this.hl('[', 'dsDataType;fontWeight:bold')) {if(m = this.rhtml_doctypeInternalSubset())return this.pop(), m-1;continue;}
+            if(this.str[0] == '>' && this.hl('>', 'dsDataType;font-weight:bold')) return this.pop();
+            if(this.str[0] == '[' && this.hl('[', 'dsDataType;font-weight:bold')) {if(m = this.rhtml_doctypeInternalSubset())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -136,8 +136,8 @@ KateSyntax.langs.rhtml.syntax = {
     rhtml_doctypeInternalSubset: function rhtml_doctypeInternalSubset(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == ']' && this.hl(']', 'dsDataType;fontWeight:bold')) return this.pop();
-            if((m = /^<!(ELEMENT|ENTITY|ATTLIST|NOTATION)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) {if(m = this.rhtml_doctypeMarkupdecl())return this.pop(), m-1;continue;}
+            if(this.str[0] == ']' && this.hl(']', 'dsDataType;font-weight:bold')) return this.pop();
+            if((m = /^<!(ELEMENT|ENTITY|ATTLIST|NOTATION)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) {if(m = this.rhtml_doctypeMarkupdecl())return this.pop(), m-1;continue;}
             if((m = /^<!--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.rhtml_comment())return this.pop(), m-1;continue;}
             if((m = /^<\?[\w:-]*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_pI())return this.pop(), m-1;continue;}
             if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -150,7 +150,7 @@ KateSyntax.langs.rhtml.syntax = {
     rhtml_doctypeMarkupdecl: function rhtml_doctypeMarkupdecl(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '>' && this.hl('>', 'dsDataType;fontWeight:bold')) return this.pop();
+            if(this.str[0] == '>' && this.hl('>', 'dsDataType;font-weight:bold')) return this.pop();
             if(this.str[0] == '"' && this.hl('"', 'dsString;color:#a00')) {if(m = this.rhtml_doctypeMarkupdeclDQ())return this.pop(), m-1;continue;}
             if(this.str[0] == '\'' && this.hl('\'', 'dsString;color:#a00')) {if(m = this.rhtml_doctypeMarkupdeclSQ())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
@@ -246,12 +246,12 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^<\/style\b/i.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.rhtml_elClose2())return this.pop(), m-1;continue;}
             if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^@media\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) {if(m = this.css_media())return this.pop(), m-1;continue;}
+            if((m = /^@media\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) {if(m = this.css_media())return this.pop(), m-1;continue;}
             if((m = /^@import\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {if(m = this.css_import())return this.pop(), m-1;continue;}
             if((m = /^@(font-face|charset)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.css_ruleSet())return this.pop(), m-1;continue;}
             if(this.str[0] == '[' && this.hl('[', 'dsChar')) {if(m = this.css_selAttr())return this.pop(), m-1;continue;}
-            if((m = /^#([a-zA-Z0-9\-_]|[\x80-\xFF]|\\[0-9A-Fa-f]{1,6})*/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
+            if((m = /^#([a-zA-Z0-9\-_]|[\x80-\xFF]|\\[0-9A-Fa-f]{1,6})*/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
             if((m = /^\.([a-zA-Z0-9\-_]|[\x80-\xFF]|\\[0-9A-Fa-f]{1,6})*/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^:lang\([\w_-]+\)/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if(this.str[0] == ':' && this.hl(':', 'dsDecVal')) {if(m = this.css_selPseudo())return this.pop(), m-1;continue;}
@@ -293,7 +293,7 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if((m = /^[\])]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if((m = /^(?:break|case|catch|const|continue|debugger|default|delete|do|else|finally|for|function|if|in|instanceof|new|return|switch|this|throw|try|typeof|var|void|while|with)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^(?:class|enum|export|extends|import|super|implements|interface|let|package|private|protected|public|static|yield)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontStyle:italic')) continue;
+            if((m = /^(?:class|enum|export|extends|import|super|implements|interface|let|package|private|protected|public|static|yield)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-style:italic')) continue;
             if((m = /^(?:Infinity|NaN|false|null|true|undefined)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if((m = /^[a-zA-Z_$][\w$]*(?=\s*\.)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {if(m = this.javascript_objectMember())return this.pop(), m-1;continue;}
             if((m = /^[a-zA-Z_$][\w$]*(?=\s*\()/.exec(this.str)) && this.hl(m[0], 'dsFunction')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
@@ -301,8 +301,8 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^[a-zA-Z_$][\w$]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.javascript_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {if(m = this.javascript_stringSQ())return this.pop(), m-1;continue;}
-            if((m = /^\/\/(!|(\/(?=[^/]|(?=$|\n))))<?/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;fontStyle:italic')) {if(m = this.doxygen_lineComment())return this.pop(), m-1;continue;}
-            if((m = /^\/\*(\*[^*/]|!|[*!]<|\*(?=$|\n))/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;fontStyle:italic')) {if(m = this.doxygen_blockComment())return this.pop(), m-1;continue;}
+            if((m = /^\/\/(!|(\/(?=[^/]|(?=$|\n))))<?/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;font-style:italic')) {if(m = this.doxygen_lineComment())return this.pop(), m-1;continue;}
+            if((m = /^\/\*(\*[^*/]|!|[*!]<|\*(?=$|\n))/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;font-style:italic')) {if(m = this.doxygen_blockComment())return this.pop(), m-1;continue;}
             if((m = /^\/\/\s*@\{\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^\/\/\s*@\}\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^\/\*\s*@\{\s*\*\//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
@@ -402,12 +402,12 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^(?:private_class_method|private|protected|public_class_method|public)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0000FF')) continue;
             if((m = /^(?:alias|module|class|def|undef)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^(?:self|super|nil|false|true|caller|__FILE__|__LINE__)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if((m = /^(?:$stdout|$defout|$stderr|$deferr|$stdin)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontWeight:bold')) continue;
+            if((m = /^(?:$stdout|$defout|$stderr|$deferr|$stdin)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-weight:bold')) continue;
             if((m = /^(?:abort|at_exit|autoload|autoload\?|binding|block_given\?|callcc|caller|catch|chomp|chomp!|chop|chop!|eval|exec|exit|exit!|fail|fork|format|getc|gets|global_variables|gsub|gsub!|iterator\?|lambda|load|local_variables|loop|method_missing|open|p|print|printf|proc|putc|puts|raise|rand|readline|readlines|require|scan|select|set_trace_func|sleep|split|sprintf|srand|sub|sub!|syscall|system|test|throw|trace_var|trap|untrace_var|warn|auto_complete_field|auto_complete_result|auto_discovery_link_tag|auto_link|benchmark|button_to|cache|capture|check_box|check_box_tag|collection_select|concat|content_for|content_tag|country_options_for_select|country_select|current_page\?|date_select|datetime_select|debug|define_javascript_functions|distance_of_time_in_words|distance_of_time_in_words_to_now|draggable_element|drop_receiving_element|end_form_tag|error_message_on|error_messages_for|escape_javascript|evaluate_remote_response|excerpt|file_field|file_field_tag|finish_upload_status|form|form_remote_tag|form_tag|form_tag_with_upload_progress|h|hidden_field|hidden_field_tag|highlight|human_size|image_path|image_submit_tag|image_tag|input|javascript_include_tag|javascript_path|javascript_tag|link_image_to|link_to|link_to_function|link_to_if|link_to_image|link_to_remote|link_to_unless|link_to_unless_current|mail_to|markdown|number_to_currency|number_to_human_size|number_to_percentage|number_to_phone|number_with_delimiter|number_with_precision|observe_field|observe_form|option_groups_from_collection_for_select|options_for_select|options_from_collection_for_select|pagination_links|password_field|password_field_tag|periodically_call_remote|pluralize|radio_button|radio_button_tag|register_template_handler|render|render_file|render_template|sanitize|select|select_date|select_datetime|select_day|select_hour|select_minute|select_month|select_second|select_tag|select_time|select_year|simple_format|sortable_element|start_form_tag|strip_links|stylesheet_link_tag|stylesheet_path|submit_tag|submit_to_remote|tag|text_area|text_area_tag|text_field|text_field_tag|text_field_with_auto_complete|textilize|textilize_without_paragraph|time_ago_in_words|time_zone_options_for_select|time_zone_select|truncate|update_element_function|upload_progress_status|upload_progress_text|upload_progress_update_bar_js|upload_status_progress_bar_tag|upload_status_tag|upload_status_text_tag|url_for|visual_effect|word_wrap)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#000080')) continue;
             if((m = /^\$[a-zA-Z_0-9]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000')) continue;
             if((m = /^\$\-[a-zA-z_]\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000')) continue;
-            if((m = /^\$[\d_*`\!:?'/\\\-\&]/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontWeight:bold')) continue;
-            if((m = /^\b[_A-Z]+[A-Z_0-9]+\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#bb1188;fontWeight:bold')) continue;
+            if((m = /^\$[\d_*`\!:?'/\\\-\&]/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-weight:bold')) continue;
+            if((m = /^\b[_A-Z]+[A-Z_0-9]+\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#bb1188;font-weight:bold')) continue;
             if((m = /^\b[A-Z]+_*([0-9]|[a-z])[_a-zA-Z0-9]*\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^\b\-?0[xX][_0-9a-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\b\-?0[bB][_01]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
@@ -479,12 +479,12 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^(?:private_class_method|private|protected|public_class_method|public)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0000FF')) continue;
             if((m = /^(?:alias|module|class|def|undef)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^(?:self|super|nil|false|true|caller|__FILE__|__LINE__)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if((m = /^(?:$stdout|$defout|$stderr|$deferr|$stdin)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontWeight:bold')) continue;
+            if((m = /^(?:$stdout|$defout|$stderr|$deferr|$stdin)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-weight:bold')) continue;
             if((m = /^(?:abort|at_exit|autoload|autoload\?|binding|block_given\?|callcc|caller|catch|chomp|chomp!|chop|chop!|eval|exec|exit|exit!|fail|fork|format|getc|gets|global_variables|gsub|gsub!|iterator\?|lambda|load|local_variables|loop|method_missing|open|p|print|printf|proc|putc|puts|raise|rand|readline|readlines|require|scan|select|set_trace_func|sleep|split|sprintf|srand|sub|sub!|syscall|system|test|throw|trace_var|trap|untrace_var|warn|auto_complete_field|auto_complete_result|auto_discovery_link_tag|auto_link|benchmark|button_to|cache|capture|check_box|check_box_tag|collection_select|concat|content_for|content_tag|country_options_for_select|country_select|current_page\?|date_select|datetime_select|debug|define_javascript_functions|distance_of_time_in_words|distance_of_time_in_words_to_now|draggable_element|drop_receiving_element|end_form_tag|error_message_on|error_messages_for|escape_javascript|evaluate_remote_response|excerpt|file_field|file_field_tag|finish_upload_status|form|form_remote_tag|form_tag|form_tag_with_upload_progress|h|hidden_field|hidden_field_tag|highlight|human_size|image_path|image_submit_tag|image_tag|input|javascript_include_tag|javascript_path|javascript_tag|link_image_to|link_to|link_to_function|link_to_if|link_to_image|link_to_remote|link_to_unless|link_to_unless_current|mail_to|markdown|number_to_currency|number_to_human_size|number_to_percentage|number_to_phone|number_with_delimiter|number_with_precision|observe_field|observe_form|option_groups_from_collection_for_select|options_for_select|options_from_collection_for_select|pagination_links|password_field|password_field_tag|periodically_call_remote|pluralize|radio_button|radio_button_tag|register_template_handler|render|render_file|render_template|sanitize|select|select_date|select_datetime|select_day|select_hour|select_minute|select_month|select_second|select_tag|select_time|select_year|simple_format|sortable_element|start_form_tag|strip_links|stylesheet_link_tag|stylesheet_path|submit_tag|submit_to_remote|tag|text_area|text_area_tag|text_field|text_field_tag|text_field_with_auto_complete|textilize|textilize_without_paragraph|time_ago_in_words|time_zone_options_for_select|time_zone_select|truncate|update_element_function|upload_progress_status|upload_progress_text|upload_progress_update_bar_js|upload_status_progress_bar_tag|upload_status_tag|upload_status_text_tag|url_for|visual_effect|word_wrap)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#000080')) continue;
             if((m = /^\$[a-zA-Z_0-9]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000')) continue;
             if((m = /^\$\-[a-zA-z_]\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000')) continue;
-            if((m = /^\$[\d_*`\!:?'/\\\-\&]/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontWeight:bold')) continue;
-            if((m = /^\b[_A-Z]+[A-Z_0-9]+\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#bb1188;fontWeight:bold')) continue;
+            if((m = /^\$[\d_*`\!:?'/\\\-\&]/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-weight:bold')) continue;
+            if((m = /^\b[_A-Z]+[A-Z_0-9]+\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#bb1188;font-weight:bold')) continue;
             if((m = /^\b[A-Z]+_*([0-9]|[a-z])[_a-zA-Z0-9]*\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^\b\-?0[xX][_0-9a-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\b\-?0[bB][_01]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
@@ -557,12 +557,12 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^(?:private_class_method|private|protected|public_class_method|public)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0000FF')) continue;
             if((m = /^(?:alias|module|class|def|undef)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^(?:self|super|nil|false|true|caller|__FILE__|__LINE__)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if((m = /^(?:$stdout|$defout|$stderr|$deferr|$stdin)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontWeight:bold')) continue;
+            if((m = /^(?:$stdout|$defout|$stderr|$deferr|$stdin)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-weight:bold')) continue;
             if((m = /^(?:abort|at_exit|autoload|autoload\?|binding|block_given\?|callcc|caller|catch|chomp|chomp!|chop|chop!|eval|exec|exit|exit!|fail|fork|format|getc|gets|global_variables|gsub|gsub!|iterator\?|lambda|load|local_variables|loop|method_missing|open|p|print|printf|proc|putc|puts|raise|rand|readline|readlines|require|scan|select|set_trace_func|sleep|split|sprintf|srand|sub|sub!|syscall|system|test|throw|trace_var|trap|untrace_var|warn|auto_complete_field|auto_complete_result|auto_discovery_link_tag|auto_link|benchmark|button_to|cache|capture|check_box|check_box_tag|collection_select|concat|content_for|content_tag|country_options_for_select|country_select|current_page\?|date_select|datetime_select|debug|define_javascript_functions|distance_of_time_in_words|distance_of_time_in_words_to_now|draggable_element|drop_receiving_element|end_form_tag|error_message_on|error_messages_for|escape_javascript|evaluate_remote_response|excerpt|file_field|file_field_tag|finish_upload_status|form|form_remote_tag|form_tag|form_tag_with_upload_progress|h|hidden_field|hidden_field_tag|highlight|human_size|image_path|image_submit_tag|image_tag|input|javascript_include_tag|javascript_path|javascript_tag|link_image_to|link_to|link_to_function|link_to_if|link_to_image|link_to_remote|link_to_unless|link_to_unless_current|mail_to|markdown|number_to_currency|number_to_human_size|number_to_percentage|number_to_phone|number_with_delimiter|number_with_precision|observe_field|observe_form|option_groups_from_collection_for_select|options_for_select|options_from_collection_for_select|pagination_links|password_field|password_field_tag|periodically_call_remote|pluralize|radio_button|radio_button_tag|register_template_handler|render|render_file|render_template|sanitize|select|select_date|select_datetime|select_day|select_hour|select_minute|select_month|select_second|select_tag|select_time|select_year|simple_format|sortable_element|start_form_tag|strip_links|stylesheet_link_tag|stylesheet_path|submit_tag|submit_to_remote|tag|text_area|text_area_tag|text_field|text_field_tag|text_field_with_auto_complete|textilize|textilize_without_paragraph|time_ago_in_words|time_zone_options_for_select|time_zone_select|truncate|update_element_function|upload_progress_status|upload_progress_text|upload_progress_update_bar_js|upload_status_progress_bar_tag|upload_status_tag|upload_status_text_tag|url_for|visual_effect|word_wrap)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#000080')) continue;
             if((m = /^\$[a-zA-Z_0-9]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000')) continue;
             if((m = /^\$\-[a-zA-z_]\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000')) continue;
-            if((m = /^\$[\d_*`\!:?'/\\\-\&]/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontWeight:bold')) continue;
-            if((m = /^\b[_A-Z]+[A-Z_0-9]+\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#bb1188;fontWeight:bold')) continue;
+            if((m = /^\$[\d_*`\!:?'/\\\-\&]/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-weight:bold')) continue;
+            if((m = /^\b[_A-Z]+[A-Z_0-9]+\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#bb1188;font-weight:bold')) continue;
             if((m = /^\b[A-Z]+_*([0-9]|[a-z])[_a-zA-Z0-9]*\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^\b\-?0[xX][_0-9a-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\b\-?0[bB][_01]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
@@ -690,12 +690,12 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^(?:private_class_method|private|protected|public_class_method|public)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0000FF')) continue;
             if((m = /^(?:alias|module|class|def|undef)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^(?:self|super|nil|false|true|caller|__FILE__|__LINE__)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if((m = /^(?:$stdout|$defout|$stderr|$deferr|$stdin)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontWeight:bold')) continue;
+            if((m = /^(?:$stdout|$defout|$stderr|$deferr|$stdin)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-weight:bold')) continue;
             if((m = /^(?:abort|at_exit|autoload|autoload\?|binding|block_given\?|callcc|caller|catch|chomp|chomp!|chop|chop!|eval|exec|exit|exit!|fail|fork|format|getc|gets|global_variables|gsub|gsub!|iterator\?|lambda|load|local_variables|loop|method_missing|open|p|print|printf|proc|putc|puts|raise|rand|readline|readlines|require|scan|select|set_trace_func|sleep|split|sprintf|srand|sub|sub!|syscall|system|test|throw|trace_var|trap|untrace_var|warn|auto_complete_field|auto_complete_result|auto_discovery_link_tag|auto_link|benchmark|button_to|cache|capture|check_box|check_box_tag|collection_select|concat|content_for|content_tag|country_options_for_select|country_select|current_page\?|date_select|datetime_select|debug|define_javascript_functions|distance_of_time_in_words|distance_of_time_in_words_to_now|draggable_element|drop_receiving_element|end_form_tag|error_message_on|error_messages_for|escape_javascript|evaluate_remote_response|excerpt|file_field|file_field_tag|finish_upload_status|form|form_remote_tag|form_tag|form_tag_with_upload_progress|h|hidden_field|hidden_field_tag|highlight|human_size|image_path|image_submit_tag|image_tag|input|javascript_include_tag|javascript_path|javascript_tag|link_image_to|link_to|link_to_function|link_to_if|link_to_image|link_to_remote|link_to_unless|link_to_unless_current|mail_to|markdown|number_to_currency|number_to_human_size|number_to_percentage|number_to_phone|number_with_delimiter|number_with_precision|observe_field|observe_form|option_groups_from_collection_for_select|options_for_select|options_from_collection_for_select|pagination_links|password_field|password_field_tag|periodically_call_remote|pluralize|radio_button|radio_button_tag|register_template_handler|render|render_file|render_template|sanitize|select|select_date|select_datetime|select_day|select_hour|select_minute|select_month|select_second|select_tag|select_time|select_year|simple_format|sortable_element|start_form_tag|strip_links|stylesheet_link_tag|stylesheet_path|submit_tag|submit_to_remote|tag|text_area|text_area_tag|text_field|text_field_tag|text_field_with_auto_complete|textilize|textilize_without_paragraph|time_ago_in_words|time_zone_options_for_select|time_zone_select|truncate|update_element_function|upload_progress_status|upload_progress_text|upload_progress_update_bar_js|upload_status_progress_bar_tag|upload_status_tag|upload_status_text_tag|url_for|visual_effect|word_wrap)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#000080')) continue;
             if((m = /^\$[a-zA-Z_0-9]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000')) continue;
             if((m = /^\$\-[a-zA-z_]\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000')) continue;
-            if((m = /^\$[\d_*`\!:?'/\\\-\&]/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontWeight:bold')) continue;
-            if((m = /^\b[_A-Z]+[A-Z_0-9]+\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#bb1188;fontWeight:bold')) continue;
+            if((m = /^\$[\d_*`\!:?'/\\\-\&]/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-weight:bold')) continue;
+            if((m = /^\b[_A-Z]+[A-Z_0-9]+\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#bb1188;font-weight:bold')) continue;
             if((m = /^\b[A-Z]+_*([0-9]|[a-z])[_a-zA-Z0-9]*\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^\b\-?0[xX][_0-9a-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\b\-?0[bB][_01]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
@@ -1483,12 +1483,12 @@ KateSyntax.langs.rhtml.syntax = {
         while(this.pos < this.len) {
             if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^@media\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) {if(m = this.css_media())return this.pop(), m-1;continue;}
+            if((m = /^@media\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) {if(m = this.css_media())return this.pop(), m-1;continue;}
             if((m = /^@import\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {if(m = this.css_import())return this.pop(), m-1;continue;}
             if((m = /^@(font-face|charset)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.css_ruleSet())return this.pop(), m-1;continue;}
             if(this.str[0] == '[' && this.hl('[', 'dsChar')) {if(m = this.css_selAttr())return this.pop(), m-1;continue;}
-            if((m = /^#([a-zA-Z0-9\-_]|[\x80-\xFF]|\\[0-9A-Fa-f]{1,6})*/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
+            if((m = /^#([a-zA-Z0-9\-_]|[\x80-\xFF]|\\[0-9A-Fa-f]{1,6})*/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
             if((m = /^\.([a-zA-Z0-9\-_]|[\x80-\xFF]|\\[0-9A-Fa-f]{1,6})*/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^:lang\([\w_-]+\)/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if(this.str[0] == ':' && this.hl(':', 'dsDecVal')) {if(m = this.css_selPseudo())return this.pop(), m-1;continue;}
@@ -1504,12 +1504,12 @@ KateSyntax.langs.rhtml.syntax = {
     css_findRuleSets: function css_findRuleSets(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^@media\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) {if(m = this.css_media())return this.pop(), m-1;continue;}
+            if((m = /^@media\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) {if(m = this.css_media())return this.pop(), m-1;continue;}
             if((m = /^@import\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {if(m = this.css_import())return this.pop(), m-1;continue;}
             if((m = /^@(font-face|charset)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.css_ruleSet())return this.pop(), m-1;continue;}
             if(this.str[0] == '[' && this.hl('[', 'dsChar')) {if(m = this.css_selAttr())return this.pop(), m-1;continue;}
-            if((m = /^#([a-zA-Z0-9\-_]|[\x80-\xFF]|\\[0-9A-Fa-f]{1,6})*/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
+            if((m = /^#([a-zA-Z0-9\-_]|[\x80-\xFF]|\\[0-9A-Fa-f]{1,6})*/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
             if((m = /^\.([a-zA-Z0-9\-_]|[\x80-\xFF]|\\[0-9A-Fa-f]{1,6})*/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^:lang\([\w_-]+\)/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if(this.str[0] == ':' && this.hl(':', 'dsDecVal')) {if(m = this.css_selPseudo())return this.pop(), m-1;continue;}
@@ -1554,9 +1554,9 @@ KateSyntax.langs.rhtml.syntax = {
     css_media: function css_media(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '{' && this.hl('{', 'dsDecVal;fontWeight:bold')) {if(m = this.css_media2())return this.pop(), m-1;continue;}
-            if((m = /^(?:all|aural|braille|embossed|handheld|print|projection|screen|tty|tv)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) continue;
-            if(this.str[0] == ',' && this.hl(',', 'dsDecVal;fontWeight:bold')) continue;
+            if(this.str[0] == '{' && this.hl('{', 'dsDecVal;font-weight:bold')) {if(m = this.css_media2())return this.pop(), m-1;continue;}
+            if((m = /^(?:all|aural|braille|embossed|handheld|print|projection|screen|tty|tv)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) continue;
+            if(this.str[0] == ',' && this.hl(',', 'dsDecVal;font-weight:bold')) continue;
             if((m = /^\/\*BEGIN.*\*\//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^\/\*END.*\*\//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {if(m = this.css_comment())return this.pop(), m-1;continue;}
@@ -1568,13 +1568,13 @@ KateSyntax.langs.rhtml.syntax = {
     css_media2: function css_media2(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '}' && this.hl('}', 'dsDecVal;fontWeight:bold')) return this.pop(), 1;
-            if((m = /^@media\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) {if(m = this.css_media())return this.pop(), m-1;continue;}
+            if(this.str[0] == '}' && this.hl('}', 'dsDecVal;font-weight:bold')) return this.pop(), 1;
+            if((m = /^@media\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) {if(m = this.css_media())return this.pop(), m-1;continue;}
             if((m = /^@import\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {if(m = this.css_import())return this.pop(), m-1;continue;}
             if((m = /^@(font-face|charset)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.css_ruleSet())return this.pop(), m-1;continue;}
             if(this.str[0] == '[' && this.hl('[', 'dsChar')) {if(m = this.css_selAttr())return this.pop(), m-1;continue;}
-            if((m = /^#([a-zA-Z0-9\-_]|[\x80-\xFF]|\\[0-9A-Fa-f]{1,6})*/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
+            if((m = /^#([a-zA-Z0-9\-_]|[\x80-\xFF]|\\[0-9A-Fa-f]{1,6})*/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
             if((m = /^\.([a-zA-Z0-9\-_]|[\x80-\xFF]|\\[0-9A-Fa-f]{1,6})*/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^:lang\([\w_-]+\)/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if(this.str[0] == ':' && this.hl(':', 'dsDecVal')) {if(m = this.css_selPseudo())return this.pop(), m-1;continue;}
@@ -1609,7 +1609,7 @@ KateSyntax.langs.rhtml.syntax = {
         this.push();
         while(this.pos < this.len) {
             if(this.str[0] == ';' && this.hl(';', 'dsDecVal')) return this.pop();
-            if((m = /^(?:all|aural|braille|embossed|handheld|print|projection|screen|tty|tv)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) continue;
+            if((m = /^(?:all|aural|braille|embossed|handheld|print|projection|screen|tty|tv)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) continue;
             if((m = /^[-+]?[0-9.]+(em|ex|ch|rem|vw|vh|vm|px|in|cm|mm|pt|pc|deg|rad|grad|turn|ms|s|Hz|kHz)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^[-+]?[0-9.]+[%]?/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^[\w\-]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -1638,7 +1638,7 @@ KateSyntax.langs.rhtml.syntax = {
         while(this.pos < this.len) {
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop();
             if((m = /^(?:azimuth|background|background-attachment|background-color|background-image|background-position|background-repeat|border|border-bottom|border-bottom-color|border-bottom-style|border-bottom-width|border-collapse|border-color|border-left|border-left-color|border-left-style|border-left-width|border-right|border-right-color|border-right-style|border-right-width|border-spacing|border-style|border-top|border-top-color|border-top-style|border-top-width|border-width|bottom|caption-side|clear|clip|color|content|counter-increment|counter-reset|cue|cue-after|cue-before|cursor|direction|display|elevation|empty-cells|float|font|font-family|font-size|font-size-adjust|font-stretch|font-style|font-variant|font-weight|height|left|letter-spacing|line-height|list-style|list-style-image|list-style-keyword|list-style-position|list-style-type|margin|margin-bottom|margin-left|margin-right|margin-top|marker-offset|max-height|max-width|min-height|min-width|orphans|outline|outline-color|outline-style|outline-width|overflow|padding|padding-bottom|padding-left|padding-right|padding-top|page|page-break-after|page-break-before|page-break-inside|pause|pause-after|pause-before|pitch|pitch-range|play-during|position|quotes|richness|right|size|speak|speak-header|speak-numeral|speak-punctuation|speech-rate|stress|table-layout|text-align|text-decoration|text-decoration-color|text-indent|text-shadow|text-transform|top|unicode-bidi|vertical-align|visibility|voice-family|volume|white-space|widows|width|word-spacing|z-index|border-bottom-image|border-bottom-left-image|border-bottom-left-radius|border-bottom-right-image|border-bottom-right-radius|border-corner-image|border-image|border-left-image|border-radius|border-right-image|border-top-image|border-top-left-image|border-top-left-radius|border-top-right-image|border-top-right-radius|box-shadow|box-sizing|opacity|outline-offset|overflow-x|overflow-y|text-overflow|text-shadow|-moz-border-bottom-colors|-moz-border-left-colors|-moz-border-radius|-moz-border-right-colors|-moz-border-top-colors|-moz-box-flex|-o-background-size|-o-text-overflow|-khtml-background-size|konq_bgpos_x|konq_bgpos_y|-webkit-background-size|font-family|font-size|font-stretch|font-style|font-variant|font-weight|unicode-range|units-per-em|src|panose-1|stemv|stemh|slope|cap-height|x-height|ascent|descent|widths|bbox|definition-src|baseline|centerline|mathline|topline)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.css_rule())return this.pop(), m-1;continue;}
-            if((m = /^-?[A-Za-z_-]+(?=\s*:)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontStyle:italic')) {if(m = this.css_rule())return this.pop(), m-1;continue;}
+            if((m = /^-?[A-Za-z_-]+(?=\s*:)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-style:italic')) {if(m = this.css_rule())return this.pop(), m-1;continue;}
             if((m = /^\/\*BEGIN.*\*\//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^\/\*END.*\*\//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {if(m = this.css_comment())return this.pop(), m-1;continue;}
@@ -1747,7 +1747,7 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if((m = /^[\])]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if((m = /^(?:break|case|catch|const|continue|debugger|default|delete|do|else|finally|for|function|if|in|instanceof|new|return|switch|this|throw|try|typeof|var|void|while|with)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^(?:class|enum|export|extends|import|super|implements|interface|let|package|private|protected|public|static|yield)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontStyle:italic')) continue;
+            if((m = /^(?:class|enum|export|extends|import|super|implements|interface|let|package|private|protected|public|static|yield)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-style:italic')) continue;
             if((m = /^(?:Infinity|NaN|false|null|true|undefined)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if((m = /^[a-zA-Z_$][\w$]*(?=\s*\.)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {if(m = this.javascript_objectMember())return this.pop(), m-1;continue;}
             if((m = /^[a-zA-Z_$][\w$]*(?=\s*\()/.exec(this.str)) && this.hl(m[0], 'dsFunction')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
@@ -1755,8 +1755,8 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^[a-zA-Z_$][\w$]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.javascript_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {if(m = this.javascript_stringSQ())return this.pop(), m-1;continue;}
-            if((m = /^\/\/(!|(\/(?=[^/]|(?=$|\n))))<?/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;fontStyle:italic')) {if(m = this.doxygen_lineComment())return this.pop(), m-1;continue;}
-            if((m = /^\/\*(\*[^*/]|!|[*!]<|\*(?=$|\n))/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;fontStyle:italic')) {if(m = this.doxygen_blockComment())return this.pop(), m-1;continue;}
+            if((m = /^\/\/(!|(\/(?=[^/]|(?=$|\n))))<?/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;font-style:italic')) {if(m = this.doxygen_lineComment())return this.pop(), m-1;continue;}
+            if((m = /^\/\*(\*[^*/]|!|[*!]<|\*(?=$|\n))/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;font-style:italic')) {if(m = this.doxygen_blockComment())return this.pop(), m-1;continue;}
             if((m = /^\/\/\s*@\{\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^\/\/\s*@\}\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^\/\*\s*@\{\s*\*\//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
@@ -1809,7 +1809,7 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if((m = /^[\])]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if((m = /^(?:break|case|catch|const|continue|debugger|default|delete|do|else|finally|for|function|if|in|instanceof|new|return|switch|this|throw|try|typeof|var|void|while|with)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^(?:class|enum|export|extends|import|super|implements|interface|let|package|private|protected|public|static|yield)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontStyle:italic')) continue;
+            if((m = /^(?:class|enum|export|extends|import|super|implements|interface|let|package|private|protected|public|static|yield)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-style:italic')) continue;
             if((m = /^(?:Infinity|NaN|false|null|true|undefined)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if((m = /^[a-zA-Z_$][\w$]*(?=\s*\.)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {if(m = this.javascript_objectMember())return this.pop(), m-1;continue;}
             if((m = /^[a-zA-Z_$][\w$]*(?=\s*\()/.exec(this.str)) && this.hl(m[0], 'dsFunction')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
@@ -1817,8 +1817,8 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^[a-zA-Z_$][\w$]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.javascript_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {if(m = this.javascript_stringSQ())return this.pop(), m-1;continue;}
-            if((m = /^\/\/(!|(\/(?=[^/]|(?=$|\n))))<?/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;fontStyle:italic')) {if(m = this.doxygen_lineComment())return this.pop(), m-1;continue;}
-            if((m = /^\/\*(\*[^*/]|!|[*!]<|\*(?=$|\n))/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;fontStyle:italic')) {if(m = this.doxygen_blockComment())return this.pop(), m-1;continue;}
+            if((m = /^\/\/(!|(\/(?=[^/]|(?=$|\n))))<?/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;font-style:italic')) {if(m = this.doxygen_lineComment())return this.pop(), m-1;continue;}
+            if((m = /^\/\*(\*[^*/]|!|[*!]<|\*(?=$|\n))/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;font-style:italic')) {if(m = this.doxygen_blockComment())return this.pop(), m-1;continue;}
             if((m = /^\/\/\s*@\{\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^\/\/\s*@\}\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^\/\*\s*@\{\s*\*\//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
@@ -1848,7 +1848,7 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if((m = /^[\])]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if((m = /^(?:break|case|catch|const|continue|debugger|default|delete|do|else|finally|for|function|if|in|instanceof|new|return|switch|this|throw|try|typeof|var|void|while|with)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^(?:class|enum|export|extends|import|super|implements|interface|let|package|private|protected|public|static|yield)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontStyle:italic')) continue;
+            if((m = /^(?:class|enum|export|extends|import|super|implements|interface|let|package|private|protected|public|static|yield)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-style:italic')) continue;
             if((m = /^(?:Infinity|NaN|false|null|true|undefined)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if((m = /^[a-zA-Z_$][\w$]*(?=\s*\.)/.exec(this.str)) && this.hl(m[0], 'dsOthers')) {if(m = this.javascript_objectMember())return this.pop(), m-1;continue;}
             if((m = /^[a-zA-Z_$][\w$]*(?=\s*\()/.exec(this.str)) && this.hl(m[0], 'dsFunction')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
@@ -1856,8 +1856,8 @@ KateSyntax.langs.rhtml.syntax = {
             if((m = /^[a-zA-Z_$][\w$]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.javascript_noRegExp())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.javascript_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '\'' && this.hl('\'', 'dsString')) {if(m = this.javascript_stringSQ())return this.pop(), m-1;continue;}
-            if((m = /^\/\/(!|(\/(?=[^/]|(?=$|\n))))<?/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;fontStyle:italic')) {if(m = this.doxygen_lineComment())return this.pop(), m-1;continue;}
-            if((m = /^\/\*(\*[^*/]|!|[*!]<|\*(?=$|\n))/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;fontStyle:italic')) {if(m = this.doxygen_blockComment())return this.pop(), m-1;continue;}
+            if((m = /^\/\/(!|(\/(?=[^/]|(?=$|\n))))<?/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;font-style:italic')) {if(m = this.doxygen_lineComment())return this.pop(), m-1;continue;}
+            if((m = /^\/\*(\*[^*/]|!|[*!]<|\*(?=$|\n))/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#0000ff;font-style:italic')) {if(m = this.doxygen_blockComment())return this.pop(), m-1;continue;}
             if((m = /^\/\/\s*@\{\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^\/\/\s*@\}\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^\/\*\s*@\{\s*\*\//.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;

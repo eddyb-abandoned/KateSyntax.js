@@ -14,7 +14,7 @@ KateSyntax.langs.nemerle.syntax = {
             if((m = /^(?:array|bool|byte|char|decimal|double|enum|float|int|list|long|object|sbyte|short|string|uint|ulong|ushort|variant|void)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^(?:_|as|assert|base|catch|checked|do|else|false|finally|for|foreach|fun|get|if|ignore|implements|in|is|lock|match|null|out|params|ref|repeat|set|syntax|this|throw|true|try|typeof|unchecked|unless|when|where|while|with)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^(?:#define|#elif|#else|#endif|#endregion|#error|#if|#line|#region|#undef|#warning|#pragma)\b/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^(?:class|interface|module|struct|type)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#eeb312;fontWeight:bold')) continue;
+            if((m = /^(?:class|interface|module|struct|type)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#eeb312;font-weight:bold')) continue;
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) continue;
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) continue;
             if(this.str[0] == '(' && this.hl('(', 'dsKeyword')) continue;

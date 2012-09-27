@@ -16,19 +16,19 @@ KateSyntax.langs.lua.syntax = {
             if((m = /^\bfunction\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^(?:and|function|in|local|not|or)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^(?:nil|false|true)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^\belse\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#A1A100;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\belseif\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#A1A100;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\bdo\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#A1A100;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\bif\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#A1A100;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\bend\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#A1A100;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^(?:break|do|else|elseif|end|for|if|repeat|return|then|until|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#A1A100;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\belse\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#A1A100;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\belseif\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#A1A100;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\bdo\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#A1A100;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\bif\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#A1A100;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\bend\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#A1A100;font-style:normal;font-weight:normal')) continue;
+            if((m = /^(?:break|do|else|elseif|end|for|if|repeat|return|then|until|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#A1A100;font-style:normal;font-weight:normal')) continue;
             if(this.str[0] == '{' && this.hl('{', 'dsOthers')) continue;
             if(this.str[0] == '}' && this.hl('}', 'dsOthers')) continue;
             if((m = /^\b\d*\.?\d*(e|e\-|e\+)?\d+\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^\b-?0[xX][0-9a-fA-F]+\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^\b[a-zA-Z_][a-zA-Z0-9_]*(?=\s*([({'"]|\[\[))\b/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if((m = /^\b[A-Z_][A-Z0-9_]*\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^\b[a-zA-Z_][a-zA-Z0-9_]*\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#5555FF;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\b[a-zA-Z_][a-zA-Z0-9_]*\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#5555FF;font-style:normal;font-weight:normal')) continue;
             if(this.str[0] == '!' && this.str[1] == '=' && this.hl('!=', 'dsError')) continue;
             if(this.str[0] == '-' && this.str[1] == '=' && this.hl('-=', 'dsError')) continue;
             if(this.str[0] == '+' && this.str[1] == '=' && this.hl('+=', 'dsError')) continue;
@@ -109,12 +109,12 @@ KateSyntax.langs.lua.syntax = {
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^(?:###|ALERT|BUG|DANGER|DEPRECATED|FIXME|HACK|NOTE|NOTICE|SECURITY|TASK|TEST|TESTING|TODO|WARNING)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
-            if((m = /^(?:\\arg|\\attention|\\author|\\callgraph|\\code|\\dot|\\else|\\endcode|\\endcond|\\enddot|\\endhtmlonly|\\endif|\\endlatexonly|\\endlink|\\endmanonly|\\endverbatim|\\endxmlonly|\\f\[|\\f]|\\f$|\\hideinitializer|\\htmlonly|\\interface|\\internal|\\invariant|\\~|\\@|\\$|\\\\|\\#|\\latexonly|\\li|\\manonly|\\n|\\nosubgrouping|\\note|\\only|\\post|\\pre|\\remarks|\\return|\\returns|\\sa|\\see|\\showinitializer|\\since|\\test|\\todo|\\verbatim|\\warning|\\xmlonly|@arg|@attention|@author|@callgraph|@code|@dot|@else|@endcode|@endcond|@enddot|@endhtmlonly|@endif|@endlatexonly|@endlink|@endmanonly|@endverbatim|@endxmlonly|@f\[|@f]|@f$|@hideinitializer|@htmlonly|@interface|@internal|@invariant|@~|@@|@$|@\\|@#|@latexonly|@li|@manonly|@n|@nosubgrouping|@note|@only|@post|@pre|@remarks|@return|@returns|@sa|@see|@showinitializer|@since|@test|@todo|@verbatim|@warning|@xmlonly)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) continue;
-            if((m = /^(?:\\addtogroup|\\a|\\anchor|\\b|\\c|\\class|\\cond|\\copydoc|\\def|\\dontinclude|\\dotfile|\\e|\\elseif|\\em|\\enum|\\example|\\exception|\\exceptions|\\file|\\htmlinclude|\\if|\\ifnot|\\include|\\link|\\namespace|\\p|\\package|\\ref|\\relatesalso|\\relates|\\retval|\\throw|\\throws|\\verbinclude|\\version|\\xrefitem|@addtogroup|@a|@anchor|@b|@c|@class|@cond|@copydoc|@def|@dontinclude|@dotfile|@e|@elseif|@em|@enum|@example|@exception|@exceptions|@file|@htmlinclude|@if|@ifnot|@include|@link|@namespace|@p|@package|@ref|@relatesalso|@relates|@retval|@throw|@throws|@verbinclude|@version|@xrefitem)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_sL_TagWord())return this.pop(), m-1;continue;}
-            if((m = /^(?:\\param|@param)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_sL_TagParam())return this.pop(), m-1;continue;}
-            if((m = /^(?:\\image|@image)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_sL_TagWordWord())return this.pop(), m-1;continue;}
-            if((m = /^(?:\\addindex|\\brief|\\bug|\\date|\\deprecated|\\fn|\\ingroup|\\line|\\mainpage|\\name|\\overload|\\par|\\short|\\skip|\\skipline|\\typedef|\\until|\\var|@addindex|@brief|@bug|@date|@deprecated|@fn|@ingroup|@line|@mainpage|@name|@overload|@par|@short|@skip|@skipline|@typedef|@until|@var)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_sL_TagString())return this.pop(), m-1;continue;}
-            if((m = /^(?:\\defgroup|\\page|\\paragraph|\\section|\\struct|\\subsection|\\subsubsection|\\union|\\weakgroup|@defgroup|@page|@paragraph|@section|@struct|@subsection|@subsubsection|@union|@weakgroup)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_sL_TagWordString())return this.pop(), m-1;continue;}
+            if((m = /^(?:\\arg|\\attention|\\author|\\callgraph|\\code|\\dot|\\else|\\endcode|\\endcond|\\enddot|\\endhtmlonly|\\endif|\\endlatexonly|\\endlink|\\endmanonly|\\endverbatim|\\endxmlonly|\\f\[|\\f]|\\f$|\\hideinitializer|\\htmlonly|\\interface|\\internal|\\invariant|\\~|\\@|\\$|\\\\|\\#|\\latexonly|\\li|\\manonly|\\n|\\nosubgrouping|\\note|\\only|\\post|\\pre|\\remarks|\\return|\\returns|\\sa|\\see|\\showinitializer|\\since|\\test|\\todo|\\verbatim|\\warning|\\xmlonly|@arg|@attention|@author|@callgraph|@code|@dot|@else|@endcode|@endcond|@enddot|@endhtmlonly|@endif|@endlatexonly|@endlink|@endmanonly|@endverbatim|@endxmlonly|@f\[|@f]|@f$|@hideinitializer|@htmlonly|@interface|@internal|@invariant|@~|@@|@$|@\\|@#|@latexonly|@li|@manonly|@n|@nosubgrouping|@note|@only|@post|@pre|@remarks|@return|@returns|@sa|@see|@showinitializer|@since|@test|@todo|@verbatim|@warning|@xmlonly)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) continue;
+            if((m = /^(?:\\addtogroup|\\a|\\anchor|\\b|\\c|\\class|\\cond|\\copydoc|\\def|\\dontinclude|\\dotfile|\\e|\\elseif|\\em|\\enum|\\example|\\exception|\\exceptions|\\file|\\htmlinclude|\\if|\\ifnot|\\include|\\link|\\namespace|\\p|\\package|\\ref|\\relatesalso|\\relates|\\retval|\\throw|\\throws|\\verbinclude|\\version|\\xrefitem|@addtogroup|@a|@anchor|@b|@c|@class|@cond|@copydoc|@def|@dontinclude|@dotfile|@e|@elseif|@em|@enum|@example|@exception|@exceptions|@file|@htmlinclude|@if|@ifnot|@include|@link|@namespace|@p|@package|@ref|@relatesalso|@relates|@retval|@throw|@throws|@verbinclude|@version|@xrefitem)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_sL_TagWord())return this.pop(), m-1;continue;}
+            if((m = /^(?:\\param|@param)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_sL_TagParam())return this.pop(), m-1;continue;}
+            if((m = /^(?:\\image|@image)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_sL_TagWordWord())return this.pop(), m-1;continue;}
+            if((m = /^(?:\\addindex|\\brief|\\bug|\\date|\\deprecated|\\fn|\\ingroup|\\line|\\mainpage|\\name|\\overload|\\par|\\short|\\skip|\\skipline|\\typedef|\\until|\\var|@addindex|@brief|@bug|@date|@deprecated|@fn|@ingroup|@line|@mainpage|@name|@overload|@par|@short|@skip|@skipline|@typedef|@until|@var)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_sL_TagString())return this.pop(), m-1;continue;}
+            if((m = /^(?:\\defgroup|\\page|\\paragraph|\\section|\\struct|\\subsection|\\subsubsection|\\union|\\weakgroup|@defgroup|@page|@paragraph|@section|@struct|@subsection|@subsubsection|@union|@weakgroup)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_sL_TagWordString())return this.pop(), m-1;continue;}
             if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^<!--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.doxygenlua_sL_htmlcomment())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsComment')) continue;
@@ -132,14 +132,14 @@ KateSyntax.langs.lua.syntax = {
             if((m = /^(?:###|ALERT|BUG|DANGER|DEPRECATED|FIXME|HACK|NOTE|NOTICE|SECURITY|TASK|TEST|TESTING|TODO|WARNING)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
             if(this.str[0] == '@' && this.str[1] == '{' && this.hl('@{', 'dsRegionMarker')) continue;
             if(this.str[0] == '@' && this.str[1] == '}' && this.hl('@}', 'dsRegionMarker')) continue;
-            if((m = /^(?:\\arg|\\attention|\\author|\\callgraph|\\code|\\dot|\\else|\\endcode|\\endcond|\\enddot|\\endhtmlonly|\\endif|\\endlatexonly|\\endlink|\\endmanonly|\\endverbatim|\\endxmlonly|\\f\[|\\f]|\\f$|\\hideinitializer|\\htmlonly|\\interface|\\internal|\\invariant|\\~|\\@|\\$|\\\\|\\#|\\latexonly|\\li|\\manonly|\\n|\\nosubgrouping|\\note|\\only|\\post|\\pre|\\remarks|\\return|\\returns|\\sa|\\see|\\showinitializer|\\since|\\test|\\todo|\\verbatim|\\warning|\\xmlonly|@arg|@attention|@author|@callgraph|@code|@dot|@else|@endcode|@endcond|@enddot|@endhtmlonly|@endif|@endlatexonly|@endlink|@endmanonly|@endverbatim|@endxmlonly|@f\[|@f]|@f$|@hideinitializer|@htmlonly|@interface|@internal|@invariant|@~|@@|@$|@\\|@#|@latexonly|@li|@manonly|@n|@nosubgrouping|@note|@only|@post|@pre|@remarks|@return|@returns|@sa|@see|@showinitializer|@since|@test|@todo|@verbatim|@warning|@xmlonly)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) continue;
-            if((m = /^(?:\\addtogroup|\\a|\\anchor|\\b|\\c|\\class|\\cond|\\copydoc|\\def|\\dontinclude|\\dotfile|\\e|\\elseif|\\em|\\enum|\\example|\\exception|\\exceptions|\\file|\\htmlinclude|\\if|\\ifnot|\\include|\\link|\\namespace|\\p|\\package|\\ref|\\relatesalso|\\relates|\\retval|\\throw|\\throws|\\verbinclude|\\version|\\xrefitem|@addtogroup|@a|@anchor|@b|@c|@class|@cond|@copydoc|@def|@dontinclude|@dotfile|@e|@elseif|@em|@enum|@example|@exception|@exceptions|@file|@htmlinclude|@if|@ifnot|@include|@link|@namespace|@p|@package|@ref|@relatesalso|@relates|@retval|@throw|@throws|@verbinclude|@version|@xrefitem)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_mL_TagWord())return this.pop(), m-1;continue;}
-            if((m = /^(?:\\param|@param)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_mL_TagParam())return this.pop(), m-1;continue;}
-            if((m = /^(?:\\image|@image)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_mL_TagWordWord())return this.pop(), m-1;continue;}
-            if((m = /^(?:\\addindex|\\brief|\\bug|\\date|\\deprecated|\\fn|\\ingroup|\\line|\\mainpage|\\name|\\overload|\\par|\\short|\\skip|\\skipline|\\typedef|\\until|\\var|@addindex|@brief|@bug|@date|@deprecated|@fn|@ingroup|@line|@mainpage|@name|@overload|@par|@short|@skip|@skipline|@typedef|@until|@var)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_mL_TagString())return this.pop(), m-1;continue;}
-            if((m = /^(?:\\defgroup|\\page|\\paragraph|\\section|\\struct|\\subsection|\\subsubsection|\\union|\\weakgroup|@defgroup|@page|@paragraph|@section|@struct|@subsection|@subsubsection|@union|@weakgroup)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_mL_TagWordString())return this.pop(), m-1;continue;}
+            if((m = /^(?:\\arg|\\attention|\\author|\\callgraph|\\code|\\dot|\\else|\\endcode|\\endcond|\\enddot|\\endhtmlonly|\\endif|\\endlatexonly|\\endlink|\\endmanonly|\\endverbatim|\\endxmlonly|\\f\[|\\f]|\\f$|\\hideinitializer|\\htmlonly|\\interface|\\internal|\\invariant|\\~|\\@|\\$|\\\\|\\#|\\latexonly|\\li|\\manonly|\\n|\\nosubgrouping|\\note|\\only|\\post|\\pre|\\remarks|\\return|\\returns|\\sa|\\see|\\showinitializer|\\since|\\test|\\todo|\\verbatim|\\warning|\\xmlonly|@arg|@attention|@author|@callgraph|@code|@dot|@else|@endcode|@endcond|@enddot|@endhtmlonly|@endif|@endlatexonly|@endlink|@endmanonly|@endverbatim|@endxmlonly|@f\[|@f]|@f$|@hideinitializer|@htmlonly|@interface|@internal|@invariant|@~|@@|@$|@\\|@#|@latexonly|@li|@manonly|@n|@nosubgrouping|@note|@only|@post|@pre|@remarks|@return|@returns|@sa|@see|@showinitializer|@since|@test|@todo|@verbatim|@warning|@xmlonly)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) continue;
+            if((m = /^(?:\\addtogroup|\\a|\\anchor|\\b|\\c|\\class|\\cond|\\copydoc|\\def|\\dontinclude|\\dotfile|\\e|\\elseif|\\em|\\enum|\\example|\\exception|\\exceptions|\\file|\\htmlinclude|\\if|\\ifnot|\\include|\\link|\\namespace|\\p|\\package|\\ref|\\relatesalso|\\relates|\\retval|\\throw|\\throws|\\verbinclude|\\version|\\xrefitem|@addtogroup|@a|@anchor|@b|@c|@class|@cond|@copydoc|@def|@dontinclude|@dotfile|@e|@elseif|@em|@enum|@example|@exception|@exceptions|@file|@htmlinclude|@if|@ifnot|@include|@link|@namespace|@p|@package|@ref|@relatesalso|@relates|@retval|@throw|@throws|@verbinclude|@version|@xrefitem)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_mL_TagWord())return this.pop(), m-1;continue;}
+            if((m = /^(?:\\param|@param)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_mL_TagParam())return this.pop(), m-1;continue;}
+            if((m = /^(?:\\image|@image)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_mL_TagWordWord())return this.pop(), m-1;continue;}
+            if((m = /^(?:\\addindex|\\brief|\\bug|\\date|\\deprecated|\\fn|\\ingroup|\\line|\\mainpage|\\name|\\overload|\\par|\\short|\\skip|\\skipline|\\typedef|\\until|\\var|@addindex|@brief|@bug|@date|@deprecated|@fn|@ingroup|@line|@mainpage|@name|@overload|@par|@short|@skip|@skipline|@typedef|@until|@var)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_mL_TagString())return this.pop(), m-1;continue;}
+            if((m = /^(?:\\defgroup|\\page|\\paragraph|\\section|\\struct|\\subsection|\\subsubsection|\\union|\\weakgroup|@defgroup|@page|@paragraph|@section|@struct|@subsection|@subsubsection|@union|@weakgroup)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_mL_TagWordString())return this.pop(), m-1;continue;}
             if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-            if((m = /^\\(<|>)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) continue;
+            if((m = /^\\(<|>)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsComment')) continue;
             if((m = /^<\s*\/?\s*[a-zA-Z_:][a-zA-Z0-9._:-]*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.doxygenlua_mL_htmltag())return this.pop(), m-1;continue;}
             if((m = /^<!--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.doxygenlua_mL_htmlcomment())return this.pop(), m-1;continue;}
@@ -153,8 +153,8 @@ KateSyntax.langs.lua.syntax = {
             if(this.str[0] == '*' && this.str[1] == '/') return this.pop();
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if(/^(?:\\addtogroup|\\a|\\anchor|\\b|\\c|\\class|\\cond|\\copydoc|\\def|\\dontinclude|\\dotfile|\\e|\\elseif|\\em|\\enum|\\example|\\exception|\\exceptions|\\file|\\htmlinclude|\\if|\\ifnot|\\include|\\link|\\namespace|\\p|\\package|\\ref|\\relatesalso|\\relates|\\retval|\\throw|\\throws|\\verbinclude|\\version|\\xrefitem|@addtogroup|@a|@anchor|@b|@c|@class|@cond|@copydoc|@def|@dontinclude|@dotfile|@e|@elseif|@em|@enum|@example|@exception|@exceptions|@file|@htmlinclude|@if|@ifnot|@include|@link|@namespace|@p|@package|@ref|@relatesalso|@relates|@retval|@throw|@throws|@verbinclude|@version|@xrefitem)\b/.exec(this.str)) return this.pop();
-            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) return this.pop();
-            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) continue;
+            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) return this.pop();
+            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '\n') return this.pop();
             this.hl(this.str[0], 'dsComment');
         }
@@ -165,11 +165,11 @@ KateSyntax.langs.lua.syntax = {
         while(this.pos < this.len) {
             if(this.str[0] == '*' && this.str[1] == '/') return this.pop();
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-            if((m = /^\[in]/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_mL_Tag2ndWord())return this.pop(), m-1;continue;}
-            if((m = /^\[out]/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_mL_Tag2ndWord())return this.pop(), m-1;continue;}
-            if((m = /^\[in,out]/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_mL_Tag2ndWord())return this.pop(), m-1;continue;}
-            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) return this.pop();
-            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) continue;
+            if((m = /^\[in]/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_mL_Tag2ndWord())return this.pop(), m-1;continue;}
+            if((m = /^\[out]/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_mL_Tag2ndWord())return this.pop(), m-1;continue;}
+            if((m = /^\[in,out]/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_mL_Tag2ndWord())return this.pop(), m-1;continue;}
+            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) return this.pop();
+            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '\n') return this.pop();
             this.hl(this.str[0], 'dsComment');
         }
@@ -180,8 +180,8 @@ KateSyntax.langs.lua.syntax = {
         while(this.pos < this.len) {
             if(this.str[0] == '*' && this.str[1] == '/') return this.pop();
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_mL_Tag2ndWord())return this.pop(), m-1;continue;}
-            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) continue;
+            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_mL_Tag2ndWord())return this.pop(), m-1;continue;}
+            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '\n') return this.pop();
             this.hl(this.str[0], 'dsComment');
         }
@@ -192,8 +192,8 @@ KateSyntax.langs.lua.syntax = {
         while(this.pos < this.len) {
             if(this.str[0] == '*' && this.str[1] == '/') return this.pop(), 1;
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) return this.pop(), 1;
-            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) continue;
+            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) return this.pop(), 1;
+            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '\n') return this.pop(), 1;
             this.hl(this.str[0], 'dsComment');
         }
@@ -218,8 +218,8 @@ KateSyntax.langs.lua.syntax = {
         while(this.pos < this.len) {
             if(this.str[0] == '*' && this.str[1] == '/') return this.pop();
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) return this.pop();
-            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) continue;
+            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) return this.pop();
+            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '\n') return this.pop();
             this.hl(this.str[0], 'dsComment');
         }
@@ -280,8 +280,8 @@ KateSyntax.langs.lua.syntax = {
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if(/^(?:\\addtogroup|\\a|\\anchor|\\b|\\c|\\class|\\cond|\\copydoc|\\def|\\dontinclude|\\dotfile|\\e|\\elseif|\\em|\\enum|\\example|\\exception|\\exceptions|\\file|\\htmlinclude|\\if|\\ifnot|\\include|\\link|\\namespace|\\p|\\package|\\ref|\\relatesalso|\\relates|\\retval|\\throw|\\throws|\\verbinclude|\\version|\\xrefitem|@addtogroup|@a|@anchor|@b|@c|@class|@cond|@copydoc|@def|@dontinclude|@dotfile|@e|@elseif|@em|@enum|@example|@exception|@exceptions|@file|@htmlinclude|@if|@ifnot|@include|@link|@namespace|@p|@package|@ref|@relatesalso|@relates|@retval|@throw|@throws|@verbinclude|@version|@xrefitem)\b/.exec(this.str)) return this.pop();
-            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) return this.pop();
-            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) continue;
+            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) return this.pop();
+            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '\n') return this.pop();
             this.hl(this.str[0], 'dsComment');
         }
@@ -291,11 +291,11 @@ KateSyntax.langs.lua.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-            if((m = /^\[in]/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_sL_Tag2ndWord())return this.pop(), m-1;continue;}
-            if((m = /^\[out]/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_sL_Tag2ndWord())return this.pop(), m-1;continue;}
-            if((m = /^\[in,out]/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_sL_Tag2ndWord())return this.pop(), m-1;continue;}
-            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) return this.pop();
-            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) continue;
+            if((m = /^\[in]/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_sL_Tag2ndWord())return this.pop(), m-1;continue;}
+            if((m = /^\[out]/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_sL_Tag2ndWord())return this.pop(), m-1;continue;}
+            if((m = /^\[in,out]/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ca60ca;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_sL_Tag2ndWord())return this.pop(), m-1;continue;}
+            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) return this.pop();
+            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '\n') return this.pop();
             this.hl(this.str[0], 'dsComment');
         }
@@ -305,8 +305,8 @@ KateSyntax.langs.lua.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) {if(m = this.doxygenlua_sL_Tag2ndWord())return this.pop(), m-1;continue;}
-            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) continue;
+            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) {if(m = this.doxygenlua_sL_Tag2ndWord())return this.pop(), m-1;continue;}
+            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '\n') return this.pop();
             this.hl(this.str[0], 'dsComment');
         }
@@ -316,8 +316,8 @@ KateSyntax.langs.lua.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) return this.pop(), 1;
-            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) continue;
+            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) return this.pop(), 1;
+            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '\n') return this.pop(), 1;
             this.hl(this.str[0], 'dsComment');
         }
@@ -340,8 +340,8 @@ KateSyntax.langs.lua.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
-            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) return this.pop();
-            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;fontStyle:normal;fontWeight:bold')) continue;
+            if((m = /^\S(?=&wordsep;)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) return this.pop();
+            if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0095ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '\n') return this.pop();
             this.hl(this.str[0], 'dsComment');
         }

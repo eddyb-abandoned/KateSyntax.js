@@ -176,71 +176,71 @@ KateSyntax.langs.perl.syntax = {
     perl_string: function perl_string(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal')) continue;
             if(this.str[0] == '\\' && this.str[1] == '\'' && this.hl('\\\'', 'dsChar')) continue;
             if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsChar')) continue;
             if(this.str[0] == '\'' && this.hl('\'', 'dsKeyword;color:#008000')) return this.pop();
-            this.hl(this.str[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal');
+            this.hl(this.str[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal');
         }
         this.pop();
     },
     perl_string_2: function perl_string_2(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal')) continue;
             if(this.str[0] == '\\' && this.str[1] == ')' && this.hl('\\)', 'dsChar')) continue;
             if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsChar')) continue;
-            if((m = /^\(.*?\)/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\(.*?\)/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal')) continue;
             if(this.str[0] == ')' && this.hl(')', 'dsKeyword;color:#008000')) return this.pop(), 1;
-            this.hl(this.str[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal');
+            this.hl(this.str[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal');
         }
         this.pop();
     },
     perl_string_3: function perl_string_3(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal')) continue;
             if(this.str[0] == '\\' && this.str[1] == '}' && this.hl('\\}', 'dsChar')) continue;
             if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsChar')) continue;
-            if((m = /^\{.*?\}/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\{.*?\}/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal')) continue;
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword;color:#008000')) return this.pop(), 1;
-            this.hl(this.str[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal');
+            this.hl(this.str[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal');
         }
         this.pop();
     },
     perl_string_4: function perl_string_4(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal')) continue;
             if(this.str[0] == '\\' && this.str[1] == ']' && this.hl('\\]', 'dsChar')) continue;
             if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsChar')) continue;
-            if((m = /^\[.*?]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\[.*?]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal')) continue;
             if(this.str[0] == ']' && this.hl(']', 'dsKeyword;color:#008000')) return this.pop(), 1;
-            this.hl(this.str[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal');
+            this.hl(this.str[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal');
         }
         this.pop();
     },
     perl_string_5: function perl_string_5(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal')) continue;
             if(this.str[0] == '\\' && this.str[1] == '<' && this.hl('\\<', 'dsChar')) continue;
             if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsChar')) continue;
-            if(this.str[0] == '\\' && this.str[1] == '>' && this.hl('\\>', 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^<.*?>/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal')) continue;
+            if(this.str[0] == '\\' && this.str[1] == '>' && this.hl('\\>', 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal')) continue;
+            if((m = /^<.*?>/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal')) continue;
             if(this.str[0] == '>' && this.hl('>', 'dsKeyword;color:#008000')) return this.pop(), 1;
-            this.hl(this.str[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal');
+            this.hl(this.str[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal');
         }
         this.pop();
     },
     perl_string_6: function perl_string_6(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal')) continue;
             if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsChar')) continue;
             if((m = /^\%1/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
             if(this.str[0] == '1' && this.hl('1', 'dsKeyword;color:#008000')) return this.pop(), 1;
-            this.hl(this.str[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal');
+            this.hl(this.str[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal');
         }
         this.pop();
     },
@@ -264,7 +264,7 @@ KateSyntax.langs.perl.syntax = {
             if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^\\[anDdSsWw]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\\[ABbEGLlNUuQdQZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(/^[$@][^\]\s{}()|>']/.exec(this.str)) {if(m = this.perl_find_variable_unsafe())return this.pop(), m-1;continue;}
             if(this.str[0] == '(' && this.str[1] == '?' && this.hl('(?', 'dsChar')) {if(m = this.perl_pat_ext())return this.pop(), m-1;continue;}
@@ -320,7 +320,7 @@ KateSyntax.langs.perl.syntax = {
             if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^\\[anDdSsWw]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\\[ABbEGLlNUuQdQZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(/^[$@][^\]\s{}()|>']/.exec(this.str)) {if(m = this.perl_find_variable_unsafe())return this.pop(), m-1;continue;}
             if(this.str[0] == '(' && this.str[1] == '?' && this.hl('(?', 'dsChar')) {if(m = this.perl_pat_ext())return this.pop(), m-1;continue;}
@@ -354,7 +354,7 @@ KateSyntax.langs.perl.syntax = {
             if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^\\[anDdSsWw]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\\[ABbEGLlNUuQdQZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(/^[$@][^\]\s{}()|>']/.exec(this.str)) {if(m = this.perl_find_variable_unsafe())return this.pop(), m-1;continue;}
             if(this.str[0] == '(' && this.str[1] == '?' && this.hl('(?', 'dsChar')) {if(m = this.perl_pat_ext())return this.pop(), m-1;continue;}
@@ -389,7 +389,7 @@ KateSyntax.langs.perl.syntax = {
             if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^\\[anDdSsWw]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\\[ABbEGLlNUuQdQZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(/^[$@][^\]\s{}()|>']/.exec(this.str)) {if(m = this.perl_find_variable_unsafe())return this.pop(), m-1;continue;}
             if(this.str[0] == '(' && this.str[1] == '?' && this.hl('(?', 'dsChar')) {if(m = this.perl_pat_ext())return this.pop(), m-1;continue;}
@@ -421,7 +421,7 @@ KateSyntax.langs.perl.syntax = {
             if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^\\[anDdSsWw]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\\[ABbEGLlNUuQdQZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(this.str[0] == '(' && this.str[1] == '?' && this.hl('(?', 'dsChar')) {if(m = this.perl_pat_ext())return this.pop(), m-1;continue;}
             if(this.str[0] == '[' && this.hl('[', 'dsChar')) {if(m = this.perl_pat_char_class())return this.pop(), m-1;continue;}
@@ -438,7 +438,7 @@ KateSyntax.langs.perl.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^'[cegimosx]*/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#008000')) return this.pop(), 2;
-            this.hl(this.str[0], 'dsString;color:#FF6C6C;fontStyle:normal;fontWeight:normal');
+            this.hl(this.str[0], 'dsString;color:#FF6C6C;font-style:normal;font-weight:normal');
         }
         this.pop();
     },
@@ -473,7 +473,7 @@ KateSyntax.langs.perl.syntax = {
             if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^\\[anDdSsWw]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\\[ABbEGLlNUuQdQZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(/^[$@][^\]\s{}()|>']/.exec(this.str)) {if(m = this.perl_find_variable_unsafe())return this.pop(), m-1;continue;}
             if(this.str[0] == '(' && this.str[1] == '?' && this.hl('(?', 'dsChar')) {if(m = this.perl_pat_ext())return this.pop(), m-1;continue;}
@@ -495,7 +495,7 @@ KateSyntax.langs.perl.syntax = {
             if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^\\[anDdSsWw]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\\[ABbEGLlNUuQdQZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(/^[$@][^\]\s{}()|>']/.exec(this.str)) {if(m = this.perl_find_variable_unsafe())return this.pop(), m-1;continue;}
             if(this.str[0] == '(' && this.str[1] == '?' && this.hl('(?', 'dsChar')) {if(m = this.perl_pat_ext())return this.pop(), m-1;continue;}
@@ -516,7 +516,7 @@ KateSyntax.langs.perl.syntax = {
             if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^\\[anDdSsWw]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\\[ABbEGLlNUuQdQZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(/^[$@][^\]\s{}()|>']/.exec(this.str)) {if(m = this.perl_find_variable_unsafe())return this.pop(), m-1;continue;}
             if(this.str[0] == '(' && this.str[1] == '?' && this.hl('(?', 'dsChar')) {if(m = this.perl_pat_ext())return this.pop(), m-1;continue;}
@@ -536,7 +536,7 @@ KateSyntax.langs.perl.syntax = {
             if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^\\[anDdSsWw]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\\[ABbEGLlNUuQdQZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(/^[$@][^\]\s{}()|>']/.exec(this.str)) {if(m = this.perl_find_variable_unsafe())return this.pop(), m-1;continue;}
             if(this.str[0] == '(' && this.str[1] == '?' && this.hl('(?', 'dsChar')) {if(m = this.perl_pat_ext())return this.pop(), m-1;continue;}
@@ -556,7 +556,7 @@ KateSyntax.langs.perl.syntax = {
             if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^\\[anDdSsWw]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\\[ABbEGLlNUuQdQZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(/^[$@][^\]\s{}()|>']/.exec(this.str)) {if(m = this.perl_find_variable_unsafe())return this.pop(), m-1;continue;}
             if(this.str[0] == '(' && this.str[1] == '?' && this.hl('(?', 'dsChar')) {if(m = this.perl_pat_ext())return this.pop(), m-1;continue;}
@@ -576,7 +576,7 @@ KateSyntax.langs.perl.syntax = {
             if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^\\[anDdSsWw]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\\[ABbEGLlNUuQdQZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(this.str[0] == '(' && this.str[1] == '?' && this.hl('(?', 'dsChar')) {if(m = this.perl_pat_ext())return this.pop(), m-1;continue;}
             if(this.str[0] == '[' && this.hl('[', 'dsChar')) {if(m = this.perl_pat_char_class())return this.pop(), m-1;continue;}
@@ -594,7 +594,7 @@ KateSyntax.langs.perl.syntax = {
             if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^\\[anDdSsWw]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\\[ABbEGLlNUuQdQZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             this.hl(this.str[0], 'dsNormal');
         }
@@ -619,7 +619,7 @@ KateSyntax.langs.perl.syntax = {
             if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^\\[anDdSsWw]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\\[ABbEGLlNUuQdQZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(this.str[0] == '(' && this.str[1] == '?' && this.hl('(?', 'dsChar')) {if(m = this.perl_pat_ext())return this.pop(), m-1;continue;}
             if(this.str[0] == '[' && this.hl('[', 'dsChar')) {if(m = this.perl_pat_char_class())return this.pop(), m-1;continue;}
@@ -637,7 +637,7 @@ KateSyntax.langs.perl.syntax = {
             if((m = /^#.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if((m = /^\\[anDdSsWw]/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\\[ABbEGLlNUuQdQZz]/.exec(this.str)) && this.hl(m[0], 'dsChar')) continue;
-            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\\[\d]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^\\./.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(/^[$@][^\]\s{}()|>']/.exec(this.str)) {if(m = this.perl_find_variable_unsafe())return this.pop(), m-1;continue;}
             if(this.str[0] == '(' && this.str[1] == '?' && this.hl('(?', 'dsChar')) {if(m = this.perl_pat_ext())return this.pop(), m-1;continue;}
@@ -675,17 +675,17 @@ KateSyntax.langs.perl.syntax = {
     perl_find_variable: function perl_find_variable(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^\$[0-9]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) {if(m = this.perl_var_detect())return this.pop(), m-1;continue;}
-            if((m = /^[@\$](?:[\+\-_]\B|ARGV\b|INC\b)/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) {if(m = this.perl_var_detect())return this.pop(), m-1;continue;}
-            if((m = /^[%\$](?:INC\b|ENV\b|SIG\b)/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) {if(m = this.perl_var_detect())return this.pop(), m-1;continue;}
+            if((m = /^\$[0-9]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) {if(m = this.perl_var_detect())return this.pop(), m-1;continue;}
+            if((m = /^[@\$](?:[\+\-_]\B|ARGV\b|INC\b)/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) {if(m = this.perl_var_detect())return this.pop(), m-1;continue;}
+            if((m = /^[%\$](?:INC\b|ENV\b|SIG\b)/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) {if(m = this.perl_var_detect())return this.pop(), m-1;continue;}
             if((m = /^\$\$[\$\w_]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.perl_var_detect())return this.pop(), m-1;continue;}
             if((m = /^\$[#_][\w_]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.perl_var_detect())return this.pop(), m-1;continue;}
             if((m = /^\$+::/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.perl_var_detect())return this.pop(), m-1;continue;}
-            if((m = /^\$[^a-zA-Z0-9\s{][A-Z]?/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) {if(m = this.perl_var_detect())return this.pop(), m-1;continue;}
+            if((m = /^\$[^a-zA-Z0-9\s{][A-Z]?/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) {if(m = this.perl_var_detect())return this.pop(), m-1;continue;}
             if((m = /^[\$@%]\{[\w_]+\}/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.perl_var_detect())return this.pop(), m-1;continue;}
             if((m = /^[$@%]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.perl_var_detect())return this.pop(), m-1;continue;}
             if((m = /^\*[a-zA-Z_]+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.perl_var_detect())return this.pop(), m-1;continue;}
-            if((m = /^\*[^a-zA-Z0-9\s{][A-Z]?/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\*[^a-zA-Z0-9\s{][A-Z]?/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^[$@%*]/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#008000')) return this.pop();
             return this.pop();
         }
@@ -694,13 +694,13 @@ KateSyntax.langs.perl.syntax = {
     perl_find_variable_unsafe: function perl_find_variable_unsafe(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^\$[0-9]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) {if(m = this.perl_var_detect_unsafe())return this.pop(), m-1;continue;}
-            if((m = /^[@\$](?:[\+\-_]\B|ARGV\b|INC\b)/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) {if(m = this.perl_var_detect_unsafe())return this.pop(), m-1;continue;}
-            if((m = /^[%\$](?:INC\b|ENV\b|SIG\b)/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) {if(m = this.perl_var_detect_unsafe())return this.pop(), m-1;continue;}
+            if((m = /^\$[0-9]+/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) {if(m = this.perl_var_detect_unsafe())return this.pop(), m-1;continue;}
+            if((m = /^[@\$](?:[\+\-_]\B|ARGV\b|INC\b)/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) {if(m = this.perl_var_detect_unsafe())return this.pop(), m-1;continue;}
+            if((m = /^[%\$](?:INC\b|ENV\b|SIG\b)/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) {if(m = this.perl_var_detect_unsafe())return this.pop(), m-1;continue;}
             if((m = /^\$\$[\$\w_]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.perl_var_detect_unsafe())return this.pop(), m-1;continue;}
             if((m = /^\$[#_][\w_]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.perl_var_detect_unsafe())return this.pop(), m-1;continue;}
             if((m = /^\$+::/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.perl_var_detect_unsafe())return this.pop(), m-1;continue;}
-            if((m = /^\$[^a-zA-Z0-9\s{][A-Z]?/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\$[^a-zA-Z0-9\s{][A-Z]?/.exec(this.str)) && this.hl(m[0], 'dsDataType;color:#C00000;font-style:normal;font-weight:normal')) continue;
             if((m = /^[\$@%]\{[\w_]+\}/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.perl_var_detect_unsafe())return this.pop(), m-1;continue;}
             if((m = /^[\$@%]/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.perl_var_detect_unsafe())return this.pop(), m-1;continue;}
             if((m = /^\*\w+/.exec(this.str)) && this.hl(m[0], 'dsDataType')) {if(m = this.perl_var_detect_unsafe())return this.pop(), m-1;continue;}

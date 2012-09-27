@@ -4,11 +4,11 @@ KateSyntax.langs.pig.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^(?:load|store|filter|foreach|order|arrange|distinct|cogroup|join|cross|union|onschema|split|into|if|all|any|as|by|using|inner|outer|parallel|group|continuously|window|tuples|generate|eval|define|returns|input|output|ship|cache|stream|through|seconds|minutes|hours|asc|desc|null|left|right|full)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^(?:and|is|not|or|eq|neq|gt|lt|gte|lte|matches)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
+            if((m = /^(?:and|is|not|or|eq|neq|gt|lt|gte|lte|matches)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
             if((m = /^(?:chararray|bytearray|int|long|float|double|tuple|bag|map)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-            if((m = /^(?:cat|cd|cp|copyFromLocal|copyToLocal|define|dump|illustrate|describe|explain|exec|help|kill|ls|mv|mkdir|pwd|quit|register|import|rm|set)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#BA8200;fontStyle:normal;fontWeight:bold')) continue;
-            if((m = /^(?:flatten|sum|count|min|max|avg|arity|tokenize|diff|size|concat|BinStorage|PigStorage|TextLoader|PigDump|IsEmpty)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^[%](declare|default)/.exec(this.str)) && this.hl(m[0], 'dsOthers;fontWeight:bold')) continue;
+            if((m = /^(?:cat|cd|cp|copyFromLocal|copyToLocal|define|dump|illustrate|describe|explain|exec|help|kill|ls|mv|mkdir|pwd|quit|register|import|rm|set)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#BA8200;font-style:normal;font-weight:bold')) continue;
+            if((m = /^(?:flatten|sum|count|min|max|avg|arity|tokenize|diff|size|concat|BinStorage|PigStorage|TextLoader|PigDump|IsEmpty)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^[%](declare|default)/.exec(this.str)) && this.hl(m[0], 'dsOthers;font-weight:bold')) continue;
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^0x[\da-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^0[0-7]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;

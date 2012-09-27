@@ -3,9 +3,9 @@ KateSyntax.langs.lilypond.syntax = {
     lilypond_lilypond: function lilypond_lilypond(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;fontWeight:bold')) continue;
-            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
+            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;font-weight:bold')) continue;
+            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
             if(this.str[0] == '\\') {if(m = this.lilypond_musiccommand())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
             if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
@@ -17,8 +17,8 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
-            if(this.str[0] == '<' && this.hl('<', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '<' && this.hl('<', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
             if(this.str[0] == '>' && this.hl('>', 'dsError')) continue;
             if((m = /^[a-z]+\d+\.*[,']+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             if((m = /^(&rest;|&pitch;)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_pitch())return this.pop(), m-1;continue;}
@@ -31,9 +31,9 @@ KateSyntax.langs.lilypond.syntax = {
     lilypond_music: function lilypond_music(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;fontWeight:bold')) continue;
-            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
+            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;font-weight:bold')) continue;
+            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
             if(this.str[0] == '\\') {if(m = this.lilypond_musiccommand())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
             if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
@@ -45,8 +45,8 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
-            if(this.str[0] == '<' && this.hl('<', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '<' && this.hl('<', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
             if(this.str[0] == '>' && this.hl('>', 'dsError')) continue;
             if((m = /^[a-z]+\d+\.*[,']+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             if((m = /^(&rest;|&pitch;)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_pitch())return this.pop(), m-1;continue;}
@@ -68,7 +68,7 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -80,7 +80,7 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -88,11 +88,11 @@ KateSyntax.langs.lilypond.syntax = {
     lilypond_musiccommand: function lilypond_musiccommand(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^\\(&dynamics;)&b;/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) continue;
-            if((m = /^\\[<!>]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) continue;
-            if((m = /^\\(&scripts;)&b;/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) continue;
-            if((m = /^\\[()]/.exec(this.str)) && this.hl(m[0], 'dsChar;fontWeight:bold')) continue;
-            if((m = /^\\[\][]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
+            if((m = /^\\(&dynamics;)&b;/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) continue;
+            if((m = /^\\[<!>]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) continue;
+            if((m = /^\\(&scripts;)&b;/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) continue;
+            if((m = /^\\[()]/.exec(this.str)) && this.hl(m[0], 'dsChar;font-weight:bold')) continue;
+            if((m = /^\\[\][]/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
             if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword')) continue;
             if((m = /^\\note(mode|s)&b;/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0094e4')) {if(m = this.lilypond_notemode())return this.pop(), m-1;continue;}
             if((m = /^\\drum(mode|s)&b;/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0094e4')) {if(m = this.lilypond_drummode())return this.pop(), m-1;continue;}
@@ -105,10 +105,10 @@ KateSyntax.langs.lilypond.syntax = {
             if((m = /^\\(new|context|change)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.lilypond_context())return this.pop(), m-1;continue;}
             if((m = /^\\(un)?set\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.lilypond_set())return this.pop(), m-1;continue;}
             if((m = /^\\(override(Property)?|revert)&b;/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.lilypond_override())return this.pop(), m-1;continue;}
-            if((m = /^\\skip&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction;fontWeight:bold')) {if(m = this.lilypond_duration())return this.pop(), m-1;continue;}
-            if((m = /^\\tempo&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction;fontWeight:bold')) {if(m = this.lilypond_tempo())return this.pop(), m-1;continue;}
+            if((m = /^\\skip&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction;font-weight:bold')) {if(m = this.lilypond_duration())return this.pop(), m-1;continue;}
+            if((m = /^\\tempo&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction;font-weight:bold')) {if(m = this.lilypond_tempo())return this.pop(), m-1;continue;}
             if((m = /^\\(&keywords;)&b;/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^\\(&commands;)&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction;fontWeight:bold')) continue;
+            if((m = /^\\(&commands;)&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction;font-weight:bold')) continue;
             if((m = /^\\(&toplevelvars;)&b;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^\\(&deprecatedkeywords;)&b;/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^\\(&deprecatedcommands;)&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
@@ -135,10 +135,10 @@ KateSyntax.langs.lilypond.syntax = {
             if((m = /^\\(new|context|change)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.lilypond_context())return this.pop(), m-1;continue;}
             if((m = /^\\(un)?set\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.lilypond_set())return this.pop(), m-1;continue;}
             if((m = /^\\(override(Property)?|revert)&b;/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.lilypond_override())return this.pop(), m-1;continue;}
-            if((m = /^\\skip&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction;fontWeight:bold')) {if(m = this.lilypond_duration())return this.pop(), m-1;continue;}
-            if((m = /^\\tempo&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction;fontWeight:bold')) {if(m = this.lilypond_tempo())return this.pop(), m-1;continue;}
+            if((m = /^\\skip&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction;font-weight:bold')) {if(m = this.lilypond_duration())return this.pop(), m-1;continue;}
+            if((m = /^\\tempo&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction;font-weight:bold')) {if(m = this.lilypond_tempo())return this.pop(), m-1;continue;}
             if((m = /^\\(&keywords;)&b;/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^\\(&commands;)&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction;fontWeight:bold')) continue;
+            if((m = /^\\(&commands;)&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction;font-weight:bold')) continue;
             if((m = /^\\(&toplevelvars;)&b;/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^\\(&deprecatedkeywords;)&b;/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
             if((m = /^\\(&deprecatedcommands;)&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
@@ -185,12 +185,12 @@ KateSyntax.langs.lilypond.syntax = {
     lilypond_chord: function lilypond_chord(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '>' && this.hl('>', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_chordend())return this.pop(), m-1;continue;}
+            if(this.str[0] == '>' && this.hl('>', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_chordend())return this.pop(), m-1;continue;}
             if((m = /^&pitch;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_chordpitch())return this.pop(), m-1;continue;}
             if((m = /^[<{}srR]/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
-            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;fontWeight:bold')) continue;
-            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
+            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;font-weight:bold')) continue;
+            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
             if(this.str[0] == '\\') {if(m = this.lilypond_musiccommand())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
             if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
@@ -202,8 +202,8 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
-            if(this.str[0] == '<' && this.hl('<', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '<' && this.hl('<', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
             if(this.str[0] == '>' && this.hl('>', 'dsError')) continue;
             if((m = /^[a-z]+\d+\.*[,']+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             if((m = /^(&rest;|&pitch;)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_pitch())return this.pop(), m-1;continue;}
@@ -263,7 +263,7 @@ KateSyntax.langs.lilypond.syntax = {
     lilypond_connect: function lilypond_connect(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[.\-+|>\^_12345]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) return this.pop();
+            if((m = /^[.\-+|>\^_12345]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) return this.pop();
             return this.pop();
         }
         this.pop();
@@ -279,22 +279,22 @@ KateSyntax.langs.lilypond.syntax = {
     lilypond_scheme2: function lilypond_scheme2(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsFloat;fontWeight:bold')) {if(m = this.lilypond_scheme3())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsFloat;font-weight:bold')) {if(m = this.lilypond_scheme3())return this.pop(), m-1;continue;}
             if(this.str[0] == '(' && this.hl('(', 'dsFloat')) {if(m = this.lilypond_schemerules())return this.pop(), m-1;continue;}
             if(this.str[0] == ')' && this.hl(')', 'dsFloat')) return this.pop();
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_schemestring())return this.pop(), m-1;continue;}
             if(this.str[0] == ';' && this.hl(';', 'dsComment')) {if(m = this.lilypond_schemecommentline())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             if(this.str[0] == '\'' && this.hl('\'', 'dsFloat')) {if(m = this.lilypond_schemequote())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.str[1] == '!' && this.hl('#!', 'dsComment')) {if(m = this.lilypond_schemecommentblock())return this.pop(), m-1;continue;}
-            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsFloat;fontWeight:bold')) {if(m = this.lilypond_schemelily())return this.pop(), m-1;continue;}
-            if((m = /^(?:AbsoluteDynamicEvent|AnnotateOutputEvent|ApplyContext|ApplyOutputEvent|ArpeggioEvent|ArticulationEvent|AutoChangeMusic|BarCheck|BassFigureEvent|BeamEvent|BeamForbidEvent|BendAfterEvent|BreathingEvent|ClusterNoteEvent|ContextChange|ContextSpeccedMusic|CrescendoEvent|DecrescendoEvent|Event|EventChord|ExtenderEvent|FingeringEvent|GlissandoEvent|GraceMusic|HarmonicEvent|HyphenEvent|KeyChangeEvent|LabelEvent|LaissezVibrerEvent|LigatureEvent|LineBreakEvent|LyricCombineMusic|LyricEvent|MarkEvent|MultiMeasureRestEvent|MultiMeasureRestMusic|MultiMeasureTextEvent|Music|NoteEvent|NoteGroupingEvent|OverrideProperty|PageBreakEvent|PageTurnEvent|PartCombineMusic|PercentEvent|PercentRepeatedMusic|PesOrFlexaEvent|PhrasingSlurEvent|PropertySet|PropertyUnset|QuoteMusic|RelativeOctaveCheck|RelativeOctaveMusic|RepeatTieEvent|RepeatedMusic|RestEvent|RevertProperty|ScriptEvent|SequentialMusic|SimultaneousMusic|SkipEvent|SkipMusic|SlurEvent|SoloOneEvent|SoloTwoEvent|SostenutoEvent|SpacingSectionEvent|SpanEvent|StaffSpanEvent|StringNumberEvent|StrokeFingerEvent|SustainEvent|TextScriptEvent|TextSpanEvent|TieEvent|TimeScaledMusic|TransposedMusic|TremoloEvent|TremoloRepeatedMusic|TremoloSpanEvent|TrillSpanEvent|TupletSpanEvent|UnaCordaEvent|UnfoldedRepeatedMusic|UnisonoEvent|UnrelativableMusic|VoiceSeparator|VoltaRepeatedMusic)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
-            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
-            if((m = /^(?:Accidental|AccidentalCautionary|AccidentalPlacement|AccidentalSuggestion|Ambitus|AmbitusAccidental|AmbitusLine|AmbitusNoteHead|Arpeggio|BalloonTextItem|BarLine|BarNumber|BassFigure|BassFigureAlignment|BassFigureAlignmentPositioning|BassFigureBracket|BassFigureContinuation|BassFigureLine|Beam|BendAfter|BreakAlignGroup|BreakAlignment|BreathingSign|ChordName|Clef|ClusterSpanner|ClusterSpannerBeacon|CombineTextScript|Custos|DotColumn|Dots|DoublePercentRepeat|DoublePercentRepeatCounter|DynamicLineSpanner|DynamicText|DynamicTextSpanner|Episema|Fingering|FretBoard|Glissando|GraceSpacing|GridLine|GridPoint|Hairpin|HarmonicParenthesesItem|HorizontalBracket|InstrumentName|InstrumentSwitch|KeyCancellation|KeySignature|LaissezVibrerTie|LaissezVibrerTieColumn|LedgerLineSpanner|LeftEdge|LigatureBracket|LyricExtender|LyricHyphen|LyricSpace|LyricText|MeasureGrouping|MelodyItem|MensuralLigature|MetronomeMark|MultiMeasureRest|MultiMeasureRestNumber|MultiMeasureRestText|NonMusicalPaperColumn|NoteCollision|NoteColumn|NoteHead|NoteName|NoteSpacing|OctavateEight|OttavaBracket|PaperColumn|ParenthesesItem|PercentRepeat|PercentRepeatCounter|PhrasingSlur|PianoPedalBracket|RehearsalMark|RepeatSlash|RepeatTie|RepeatTieColumn|Rest|RestCollision|Script|ScriptColumn|ScriptRow|SeparationItem|Slur|SostenutoPedal|SostenutoPedalLineSpanner|SpacingSpanner|SpanBar|StaffGrouper|StaffSpacing|StaffSymbol|StanzaNumber|Stem|StemTremolo|StringNumber|StrokeFinger|SustainPedal|SustainPedalLineSpanner|System|SystemStartBar|SystemStartBrace|SystemStartBracket|SystemStartSquare|TabNoteHead|TextScript|TextSpanner|Tie|TieColumn|TimeSignature|TrillPitchAccidental|TrillPitchGroup|TrillPitchHead|TrillSpanner|TupletBracket|TupletNumber|UnaCordaPedal|UnaCordaPedalLineSpanner|VaticanaLigature|VerticalAlignment|VerticalAxisGroup|VoiceFollower|VoltaBracket|VoltaBracketSpanner)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
+            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsFloat;font-weight:bold')) {if(m = this.lilypond_schemelily())return this.pop(), m-1;continue;}
+            if((m = /^(?:AbsoluteDynamicEvent|AnnotateOutputEvent|ApplyContext|ApplyOutputEvent|ArpeggioEvent|ArticulationEvent|AutoChangeMusic|BarCheck|BassFigureEvent|BeamEvent|BeamForbidEvent|BendAfterEvent|BreathingEvent|ClusterNoteEvent|ContextChange|ContextSpeccedMusic|CrescendoEvent|DecrescendoEvent|Event|EventChord|ExtenderEvent|FingeringEvent|GlissandoEvent|GraceMusic|HarmonicEvent|HyphenEvent|KeyChangeEvent|LabelEvent|LaissezVibrerEvent|LigatureEvent|LineBreakEvent|LyricCombineMusic|LyricEvent|MarkEvent|MultiMeasureRestEvent|MultiMeasureRestMusic|MultiMeasureTextEvent|Music|NoteEvent|NoteGroupingEvent|OverrideProperty|PageBreakEvent|PageTurnEvent|PartCombineMusic|PercentEvent|PercentRepeatedMusic|PesOrFlexaEvent|PhrasingSlurEvent|PropertySet|PropertyUnset|QuoteMusic|RelativeOctaveCheck|RelativeOctaveMusic|RepeatTieEvent|RepeatedMusic|RestEvent|RevertProperty|ScriptEvent|SequentialMusic|SimultaneousMusic|SkipEvent|SkipMusic|SlurEvent|SoloOneEvent|SoloTwoEvent|SostenutoEvent|SpacingSectionEvent|SpanEvent|StaffSpanEvent|StringNumberEvent|StrokeFingerEvent|SustainEvent|TextScriptEvent|TextSpanEvent|TieEvent|TimeScaledMusic|TransposedMusic|TremoloEvent|TremoloRepeatedMusic|TremoloSpanEvent|TrillSpanEvent|TupletSpanEvent|UnaCordaEvent|UnfoldedRepeatedMusic|UnisonoEvent|UnrelativableMusic|VoiceSeparator|VoltaRepeatedMusic)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
+            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
+            if((m = /^(?:Accidental|AccidentalCautionary|AccidentalPlacement|AccidentalSuggestion|Ambitus|AmbitusAccidental|AmbitusLine|AmbitusNoteHead|Arpeggio|BalloonTextItem|BarLine|BarNumber|BassFigure|BassFigureAlignment|BassFigureAlignmentPositioning|BassFigureBracket|BassFigureContinuation|BassFigureLine|Beam|BendAfter|BreakAlignGroup|BreakAlignment|BreathingSign|ChordName|Clef|ClusterSpanner|ClusterSpannerBeacon|CombineTextScript|Custos|DotColumn|Dots|DoublePercentRepeat|DoublePercentRepeatCounter|DynamicLineSpanner|DynamicText|DynamicTextSpanner|Episema|Fingering|FretBoard|Glissando|GraceSpacing|GridLine|GridPoint|Hairpin|HarmonicParenthesesItem|HorizontalBracket|InstrumentName|InstrumentSwitch|KeyCancellation|KeySignature|LaissezVibrerTie|LaissezVibrerTieColumn|LedgerLineSpanner|LeftEdge|LigatureBracket|LyricExtender|LyricHyphen|LyricSpace|LyricText|MeasureGrouping|MelodyItem|MensuralLigature|MetronomeMark|MultiMeasureRest|MultiMeasureRestNumber|MultiMeasureRestText|NonMusicalPaperColumn|NoteCollision|NoteColumn|NoteHead|NoteName|NoteSpacing|OctavateEight|OttavaBracket|PaperColumn|ParenthesesItem|PercentRepeat|PercentRepeatCounter|PhrasingSlur|PianoPedalBracket|RehearsalMark|RepeatSlash|RepeatTie|RepeatTieColumn|Rest|RestCollision|Script|ScriptColumn|ScriptRow|SeparationItem|Slur|SostenutoPedal|SostenutoPedalLineSpanner|SpacingSpanner|SpanBar|StaffGrouper|StaffSpacing|StaffSymbol|StanzaNumber|Stem|StemTremolo|StringNumber|StrokeFinger|SustainPedal|SustainPedalLineSpanner|System|SystemStartBar|SystemStartBrace|SystemStartBracket|SystemStartSquare|TabNoteHead|TextScript|TextSpanner|Tie|TieColumn|TimeSignature|TrillPitchAccidental|TrillPitchGroup|TrillPitchHead|TrillSpanner|TupletBracket|TupletNumber|UnaCordaPedal|UnaCordaPedalLineSpanner|VaticanaLigature|VerticalAlignment|VerticalAxisGroup|VoiceFollower|VoltaBracket|VoltaBracketSpanner)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
             if((m = /^[-+]?(\d+(\.\d+)?|\.\d+)/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^#(t|f|b[-+]?[01.]+|o[-+]?[0-7.]+|d[-+]?[0-9.]+|x[-+]?[0-9a-f.]+)/i.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^[+-](inf|nan)\.0/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if((m = /^&schemefunc;/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
+            if((m = /^&schemefunc;/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
             if((m = /^&schemename;/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if(/^[^\S\n]+/.exec(this.str)) return this.pop(), 1;
             if(this.str[0] == '\n') return this.pop(), 1;
@@ -305,22 +305,22 @@ KateSyntax.langs.lilypond.syntax = {
     lilypond_scheme3: function lilypond_scheme3(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == ')' && this.hl(')', 'dsFloat;fontWeight:bold')) return this.pop(), 2;
+            if(this.str[0] == ')' && this.hl(')', 'dsFloat;font-weight:bold')) return this.pop(), 2;
             if(this.str[0] == '(' && this.hl('(', 'dsFloat')) {if(m = this.lilypond_schemerules())return this.pop(), m-1;continue;}
             if(this.str[0] == ')' && this.hl(')', 'dsFloat')) return this.pop();
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_schemestring())return this.pop(), m-1;continue;}
             if(this.str[0] == ';' && this.hl(';', 'dsComment')) {if(m = this.lilypond_schemecommentline())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             if(this.str[0] == '\'' && this.hl('\'', 'dsFloat')) {if(m = this.lilypond_schemequote())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.str[1] == '!' && this.hl('#!', 'dsComment')) {if(m = this.lilypond_schemecommentblock())return this.pop(), m-1;continue;}
-            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsFloat;fontWeight:bold')) {if(m = this.lilypond_schemelily())return this.pop(), m-1;continue;}
-            if((m = /^(?:AbsoluteDynamicEvent|AnnotateOutputEvent|ApplyContext|ApplyOutputEvent|ArpeggioEvent|ArticulationEvent|AutoChangeMusic|BarCheck|BassFigureEvent|BeamEvent|BeamForbidEvent|BendAfterEvent|BreathingEvent|ClusterNoteEvent|ContextChange|ContextSpeccedMusic|CrescendoEvent|DecrescendoEvent|Event|EventChord|ExtenderEvent|FingeringEvent|GlissandoEvent|GraceMusic|HarmonicEvent|HyphenEvent|KeyChangeEvent|LabelEvent|LaissezVibrerEvent|LigatureEvent|LineBreakEvent|LyricCombineMusic|LyricEvent|MarkEvent|MultiMeasureRestEvent|MultiMeasureRestMusic|MultiMeasureTextEvent|Music|NoteEvent|NoteGroupingEvent|OverrideProperty|PageBreakEvent|PageTurnEvent|PartCombineMusic|PercentEvent|PercentRepeatedMusic|PesOrFlexaEvent|PhrasingSlurEvent|PropertySet|PropertyUnset|QuoteMusic|RelativeOctaveCheck|RelativeOctaveMusic|RepeatTieEvent|RepeatedMusic|RestEvent|RevertProperty|ScriptEvent|SequentialMusic|SimultaneousMusic|SkipEvent|SkipMusic|SlurEvent|SoloOneEvent|SoloTwoEvent|SostenutoEvent|SpacingSectionEvent|SpanEvent|StaffSpanEvent|StringNumberEvent|StrokeFingerEvent|SustainEvent|TextScriptEvent|TextSpanEvent|TieEvent|TimeScaledMusic|TransposedMusic|TremoloEvent|TremoloRepeatedMusic|TremoloSpanEvent|TrillSpanEvent|TupletSpanEvent|UnaCordaEvent|UnfoldedRepeatedMusic|UnisonoEvent|UnrelativableMusic|VoiceSeparator|VoltaRepeatedMusic)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
-            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
-            if((m = /^(?:Accidental|AccidentalCautionary|AccidentalPlacement|AccidentalSuggestion|Ambitus|AmbitusAccidental|AmbitusLine|AmbitusNoteHead|Arpeggio|BalloonTextItem|BarLine|BarNumber|BassFigure|BassFigureAlignment|BassFigureAlignmentPositioning|BassFigureBracket|BassFigureContinuation|BassFigureLine|Beam|BendAfter|BreakAlignGroup|BreakAlignment|BreathingSign|ChordName|Clef|ClusterSpanner|ClusterSpannerBeacon|CombineTextScript|Custos|DotColumn|Dots|DoublePercentRepeat|DoublePercentRepeatCounter|DynamicLineSpanner|DynamicText|DynamicTextSpanner|Episema|Fingering|FretBoard|Glissando|GraceSpacing|GridLine|GridPoint|Hairpin|HarmonicParenthesesItem|HorizontalBracket|InstrumentName|InstrumentSwitch|KeyCancellation|KeySignature|LaissezVibrerTie|LaissezVibrerTieColumn|LedgerLineSpanner|LeftEdge|LigatureBracket|LyricExtender|LyricHyphen|LyricSpace|LyricText|MeasureGrouping|MelodyItem|MensuralLigature|MetronomeMark|MultiMeasureRest|MultiMeasureRestNumber|MultiMeasureRestText|NonMusicalPaperColumn|NoteCollision|NoteColumn|NoteHead|NoteName|NoteSpacing|OctavateEight|OttavaBracket|PaperColumn|ParenthesesItem|PercentRepeat|PercentRepeatCounter|PhrasingSlur|PianoPedalBracket|RehearsalMark|RepeatSlash|RepeatTie|RepeatTieColumn|Rest|RestCollision|Script|ScriptColumn|ScriptRow|SeparationItem|Slur|SostenutoPedal|SostenutoPedalLineSpanner|SpacingSpanner|SpanBar|StaffGrouper|StaffSpacing|StaffSymbol|StanzaNumber|Stem|StemTremolo|StringNumber|StrokeFinger|SustainPedal|SustainPedalLineSpanner|System|SystemStartBar|SystemStartBrace|SystemStartBracket|SystemStartSquare|TabNoteHead|TextScript|TextSpanner|Tie|TieColumn|TimeSignature|TrillPitchAccidental|TrillPitchGroup|TrillPitchHead|TrillSpanner|TupletBracket|TupletNumber|UnaCordaPedal|UnaCordaPedalLineSpanner|VaticanaLigature|VerticalAlignment|VerticalAxisGroup|VoiceFollower|VoltaBracket|VoltaBracketSpanner)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
+            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsFloat;font-weight:bold')) {if(m = this.lilypond_schemelily())return this.pop(), m-1;continue;}
+            if((m = /^(?:AbsoluteDynamicEvent|AnnotateOutputEvent|ApplyContext|ApplyOutputEvent|ArpeggioEvent|ArticulationEvent|AutoChangeMusic|BarCheck|BassFigureEvent|BeamEvent|BeamForbidEvent|BendAfterEvent|BreathingEvent|ClusterNoteEvent|ContextChange|ContextSpeccedMusic|CrescendoEvent|DecrescendoEvent|Event|EventChord|ExtenderEvent|FingeringEvent|GlissandoEvent|GraceMusic|HarmonicEvent|HyphenEvent|KeyChangeEvent|LabelEvent|LaissezVibrerEvent|LigatureEvent|LineBreakEvent|LyricCombineMusic|LyricEvent|MarkEvent|MultiMeasureRestEvent|MultiMeasureRestMusic|MultiMeasureTextEvent|Music|NoteEvent|NoteGroupingEvent|OverrideProperty|PageBreakEvent|PageTurnEvent|PartCombineMusic|PercentEvent|PercentRepeatedMusic|PesOrFlexaEvent|PhrasingSlurEvent|PropertySet|PropertyUnset|QuoteMusic|RelativeOctaveCheck|RelativeOctaveMusic|RepeatTieEvent|RepeatedMusic|RestEvent|RevertProperty|ScriptEvent|SequentialMusic|SimultaneousMusic|SkipEvent|SkipMusic|SlurEvent|SoloOneEvent|SoloTwoEvent|SostenutoEvent|SpacingSectionEvent|SpanEvent|StaffSpanEvent|StringNumberEvent|StrokeFingerEvent|SustainEvent|TextScriptEvent|TextSpanEvent|TieEvent|TimeScaledMusic|TransposedMusic|TremoloEvent|TremoloRepeatedMusic|TremoloSpanEvent|TrillSpanEvent|TupletSpanEvent|UnaCordaEvent|UnfoldedRepeatedMusic|UnisonoEvent|UnrelativableMusic|VoiceSeparator|VoltaRepeatedMusic)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
+            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
+            if((m = /^(?:Accidental|AccidentalCautionary|AccidentalPlacement|AccidentalSuggestion|Ambitus|AmbitusAccidental|AmbitusLine|AmbitusNoteHead|Arpeggio|BalloonTextItem|BarLine|BarNumber|BassFigure|BassFigureAlignment|BassFigureAlignmentPositioning|BassFigureBracket|BassFigureContinuation|BassFigureLine|Beam|BendAfter|BreakAlignGroup|BreakAlignment|BreathingSign|ChordName|Clef|ClusterSpanner|ClusterSpannerBeacon|CombineTextScript|Custos|DotColumn|Dots|DoublePercentRepeat|DoublePercentRepeatCounter|DynamicLineSpanner|DynamicText|DynamicTextSpanner|Episema|Fingering|FretBoard|Glissando|GraceSpacing|GridLine|GridPoint|Hairpin|HarmonicParenthesesItem|HorizontalBracket|InstrumentName|InstrumentSwitch|KeyCancellation|KeySignature|LaissezVibrerTie|LaissezVibrerTieColumn|LedgerLineSpanner|LeftEdge|LigatureBracket|LyricExtender|LyricHyphen|LyricSpace|LyricText|MeasureGrouping|MelodyItem|MensuralLigature|MetronomeMark|MultiMeasureRest|MultiMeasureRestNumber|MultiMeasureRestText|NonMusicalPaperColumn|NoteCollision|NoteColumn|NoteHead|NoteName|NoteSpacing|OctavateEight|OttavaBracket|PaperColumn|ParenthesesItem|PercentRepeat|PercentRepeatCounter|PhrasingSlur|PianoPedalBracket|RehearsalMark|RepeatSlash|RepeatTie|RepeatTieColumn|Rest|RestCollision|Script|ScriptColumn|ScriptRow|SeparationItem|Slur|SostenutoPedal|SostenutoPedalLineSpanner|SpacingSpanner|SpanBar|StaffGrouper|StaffSpacing|StaffSymbol|StanzaNumber|Stem|StemTremolo|StringNumber|StrokeFinger|SustainPedal|SustainPedalLineSpanner|System|SystemStartBar|SystemStartBrace|SystemStartBracket|SystemStartSquare|TabNoteHead|TextScript|TextSpanner|Tie|TieColumn|TimeSignature|TrillPitchAccidental|TrillPitchGroup|TrillPitchHead|TrillSpanner|TupletBracket|TupletNumber|UnaCordaPedal|UnaCordaPedalLineSpanner|VaticanaLigature|VerticalAlignment|VerticalAxisGroup|VoiceFollower|VoltaBracket|VoltaBracketSpanner)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
             if((m = /^[-+]?(\d+(\.\d+)?|\.\d+)/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^#(t|f|b[-+]?[01.]+|o[-+]?[0-7.]+|d[-+]?[0-9.]+|x[-+]?[0-9a-f.]+)/i.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^[+-](inf|nan)\.0/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if((m = /^&schemefunc;/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
+            if((m = /^&schemefunc;/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
             if((m = /^&schemename;/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             this.hl(this.str[0], 'dsFloat');
         }
@@ -333,17 +333,17 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == ')' && this.hl(')', 'dsFloat')) return this.pop();
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_schemestring())return this.pop(), m-1;continue;}
             if(this.str[0] == ';' && this.hl(';', 'dsComment')) {if(m = this.lilypond_schemecommentline())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             if(this.str[0] == '\'' && this.hl('\'', 'dsFloat')) {if(m = this.lilypond_schemequote())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.str[1] == '!' && this.hl('#!', 'dsComment')) {if(m = this.lilypond_schemecommentblock())return this.pop(), m-1;continue;}
-            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsFloat;fontWeight:bold')) {if(m = this.lilypond_schemelily())return this.pop(), m-1;continue;}
-            if((m = /^(?:AbsoluteDynamicEvent|AnnotateOutputEvent|ApplyContext|ApplyOutputEvent|ArpeggioEvent|ArticulationEvent|AutoChangeMusic|BarCheck|BassFigureEvent|BeamEvent|BeamForbidEvent|BendAfterEvent|BreathingEvent|ClusterNoteEvent|ContextChange|ContextSpeccedMusic|CrescendoEvent|DecrescendoEvent|Event|EventChord|ExtenderEvent|FingeringEvent|GlissandoEvent|GraceMusic|HarmonicEvent|HyphenEvent|KeyChangeEvent|LabelEvent|LaissezVibrerEvent|LigatureEvent|LineBreakEvent|LyricCombineMusic|LyricEvent|MarkEvent|MultiMeasureRestEvent|MultiMeasureRestMusic|MultiMeasureTextEvent|Music|NoteEvent|NoteGroupingEvent|OverrideProperty|PageBreakEvent|PageTurnEvent|PartCombineMusic|PercentEvent|PercentRepeatedMusic|PesOrFlexaEvent|PhrasingSlurEvent|PropertySet|PropertyUnset|QuoteMusic|RelativeOctaveCheck|RelativeOctaveMusic|RepeatTieEvent|RepeatedMusic|RestEvent|RevertProperty|ScriptEvent|SequentialMusic|SimultaneousMusic|SkipEvent|SkipMusic|SlurEvent|SoloOneEvent|SoloTwoEvent|SostenutoEvent|SpacingSectionEvent|SpanEvent|StaffSpanEvent|StringNumberEvent|StrokeFingerEvent|SustainEvent|TextScriptEvent|TextSpanEvent|TieEvent|TimeScaledMusic|TransposedMusic|TremoloEvent|TremoloRepeatedMusic|TremoloSpanEvent|TrillSpanEvent|TupletSpanEvent|UnaCordaEvent|UnfoldedRepeatedMusic|UnisonoEvent|UnrelativableMusic|VoiceSeparator|VoltaRepeatedMusic)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
-            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
-            if((m = /^(?:Accidental|AccidentalCautionary|AccidentalPlacement|AccidentalSuggestion|Ambitus|AmbitusAccidental|AmbitusLine|AmbitusNoteHead|Arpeggio|BalloonTextItem|BarLine|BarNumber|BassFigure|BassFigureAlignment|BassFigureAlignmentPositioning|BassFigureBracket|BassFigureContinuation|BassFigureLine|Beam|BendAfter|BreakAlignGroup|BreakAlignment|BreathingSign|ChordName|Clef|ClusterSpanner|ClusterSpannerBeacon|CombineTextScript|Custos|DotColumn|Dots|DoublePercentRepeat|DoublePercentRepeatCounter|DynamicLineSpanner|DynamicText|DynamicTextSpanner|Episema|Fingering|FretBoard|Glissando|GraceSpacing|GridLine|GridPoint|Hairpin|HarmonicParenthesesItem|HorizontalBracket|InstrumentName|InstrumentSwitch|KeyCancellation|KeySignature|LaissezVibrerTie|LaissezVibrerTieColumn|LedgerLineSpanner|LeftEdge|LigatureBracket|LyricExtender|LyricHyphen|LyricSpace|LyricText|MeasureGrouping|MelodyItem|MensuralLigature|MetronomeMark|MultiMeasureRest|MultiMeasureRestNumber|MultiMeasureRestText|NonMusicalPaperColumn|NoteCollision|NoteColumn|NoteHead|NoteName|NoteSpacing|OctavateEight|OttavaBracket|PaperColumn|ParenthesesItem|PercentRepeat|PercentRepeatCounter|PhrasingSlur|PianoPedalBracket|RehearsalMark|RepeatSlash|RepeatTie|RepeatTieColumn|Rest|RestCollision|Script|ScriptColumn|ScriptRow|SeparationItem|Slur|SostenutoPedal|SostenutoPedalLineSpanner|SpacingSpanner|SpanBar|StaffGrouper|StaffSpacing|StaffSymbol|StanzaNumber|Stem|StemTremolo|StringNumber|StrokeFinger|SustainPedal|SustainPedalLineSpanner|System|SystemStartBar|SystemStartBrace|SystemStartBracket|SystemStartSquare|TabNoteHead|TextScript|TextSpanner|Tie|TieColumn|TimeSignature|TrillPitchAccidental|TrillPitchGroup|TrillPitchHead|TrillSpanner|TupletBracket|TupletNumber|UnaCordaPedal|UnaCordaPedalLineSpanner|VaticanaLigature|VerticalAlignment|VerticalAxisGroup|VoiceFollower|VoltaBracket|VoltaBracketSpanner)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
+            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsFloat;font-weight:bold')) {if(m = this.lilypond_schemelily())return this.pop(), m-1;continue;}
+            if((m = /^(?:AbsoluteDynamicEvent|AnnotateOutputEvent|ApplyContext|ApplyOutputEvent|ArpeggioEvent|ArticulationEvent|AutoChangeMusic|BarCheck|BassFigureEvent|BeamEvent|BeamForbidEvent|BendAfterEvent|BreathingEvent|ClusterNoteEvent|ContextChange|ContextSpeccedMusic|CrescendoEvent|DecrescendoEvent|Event|EventChord|ExtenderEvent|FingeringEvent|GlissandoEvent|GraceMusic|HarmonicEvent|HyphenEvent|KeyChangeEvent|LabelEvent|LaissezVibrerEvent|LigatureEvent|LineBreakEvent|LyricCombineMusic|LyricEvent|MarkEvent|MultiMeasureRestEvent|MultiMeasureRestMusic|MultiMeasureTextEvent|Music|NoteEvent|NoteGroupingEvent|OverrideProperty|PageBreakEvent|PageTurnEvent|PartCombineMusic|PercentEvent|PercentRepeatedMusic|PesOrFlexaEvent|PhrasingSlurEvent|PropertySet|PropertyUnset|QuoteMusic|RelativeOctaveCheck|RelativeOctaveMusic|RepeatTieEvent|RepeatedMusic|RestEvent|RevertProperty|ScriptEvent|SequentialMusic|SimultaneousMusic|SkipEvent|SkipMusic|SlurEvent|SoloOneEvent|SoloTwoEvent|SostenutoEvent|SpacingSectionEvent|SpanEvent|StaffSpanEvent|StringNumberEvent|StrokeFingerEvent|SustainEvent|TextScriptEvent|TextSpanEvent|TieEvent|TimeScaledMusic|TransposedMusic|TremoloEvent|TremoloRepeatedMusic|TremoloSpanEvent|TrillSpanEvent|TupletSpanEvent|UnaCordaEvent|UnfoldedRepeatedMusic|UnisonoEvent|UnrelativableMusic|VoiceSeparator|VoltaRepeatedMusic)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
+            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
+            if((m = /^(?:Accidental|AccidentalCautionary|AccidentalPlacement|AccidentalSuggestion|Ambitus|AmbitusAccidental|AmbitusLine|AmbitusNoteHead|Arpeggio|BalloonTextItem|BarLine|BarNumber|BassFigure|BassFigureAlignment|BassFigureAlignmentPositioning|BassFigureBracket|BassFigureContinuation|BassFigureLine|Beam|BendAfter|BreakAlignGroup|BreakAlignment|BreathingSign|ChordName|Clef|ClusterSpanner|ClusterSpannerBeacon|CombineTextScript|Custos|DotColumn|Dots|DoublePercentRepeat|DoublePercentRepeatCounter|DynamicLineSpanner|DynamicText|DynamicTextSpanner|Episema|Fingering|FretBoard|Glissando|GraceSpacing|GridLine|GridPoint|Hairpin|HarmonicParenthesesItem|HorizontalBracket|InstrumentName|InstrumentSwitch|KeyCancellation|KeySignature|LaissezVibrerTie|LaissezVibrerTieColumn|LedgerLineSpanner|LeftEdge|LigatureBracket|LyricExtender|LyricHyphen|LyricSpace|LyricText|MeasureGrouping|MelodyItem|MensuralLigature|MetronomeMark|MultiMeasureRest|MultiMeasureRestNumber|MultiMeasureRestText|NonMusicalPaperColumn|NoteCollision|NoteColumn|NoteHead|NoteName|NoteSpacing|OctavateEight|OttavaBracket|PaperColumn|ParenthesesItem|PercentRepeat|PercentRepeatCounter|PhrasingSlur|PianoPedalBracket|RehearsalMark|RepeatSlash|RepeatTie|RepeatTieColumn|Rest|RestCollision|Script|ScriptColumn|ScriptRow|SeparationItem|Slur|SostenutoPedal|SostenutoPedalLineSpanner|SpacingSpanner|SpanBar|StaffGrouper|StaffSpacing|StaffSymbol|StanzaNumber|Stem|StemTremolo|StringNumber|StrokeFinger|SustainPedal|SustainPedalLineSpanner|System|SystemStartBar|SystemStartBrace|SystemStartBracket|SystemStartSquare|TabNoteHead|TextScript|TextSpanner|Tie|TieColumn|TimeSignature|TrillPitchAccidental|TrillPitchGroup|TrillPitchHead|TrillSpanner|TupletBracket|TupletNumber|UnaCordaPedal|UnaCordaPedalLineSpanner|VaticanaLigature|VerticalAlignment|VerticalAxisGroup|VoiceFollower|VoltaBracket|VoltaBracketSpanner)\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
             if((m = /^[-+]?(\d+(\.\d+)?|\.\d+)/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^#(t|f|b[-+]?[01.]+|o[-+]?[0-7.]+|d[-+]?[0-9.]+|x[-+]?[0-9a-f.]+)/i.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^[+-](inf|nan)\.0/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if((m = /^&schemefunc;/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) continue;
+            if((m = /^&schemefunc;/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) continue;
             if((m = /^&schemename;/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             this.hl(this.str[0], 'dsFloat');
         }
@@ -360,10 +360,10 @@ KateSyntax.langs.lilypond.syntax = {
     lilypond_schemelily: function lilypond_schemelily(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '#' && this.str[1] == '}' && this.hl('#}', 'dsFloat;fontWeight:bold')) return this.pop();
-            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;fontWeight:bold')) continue;
-            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
+            if(this.str[0] == '#' && this.str[1] == '}' && this.hl('#}', 'dsFloat;font-weight:bold')) return this.pop();
+            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;font-weight:bold')) continue;
+            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
             if(this.str[0] == '\\') {if(m = this.lilypond_musiccommand())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
             if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
@@ -375,8 +375,8 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
-            if(this.str[0] == '<' && this.hl('<', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '<' && this.hl('<', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
             if(this.str[0] == '>' && this.hl('>', 'dsError')) continue;
             if((m = /^[a-z]+\d+\.*[,']+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             if((m = /^(&rest;|&pitch;)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_pitch())return this.pop(), m-1;continue;}
@@ -407,7 +407,7 @@ KateSyntax.langs.lilypond.syntax = {
     lilypond_schemesub: function lilypond_schemesub(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^&schemename;/.exec(this.str)) && this.hl(m[0], 'dsDecVal;fontWeight:bold')) return this.pop();
+            if((m = /^&schemename;/.exec(this.str)) && this.hl(m[0], 'dsDecVal;font-weight:bold')) return this.pop();
             return this.pop();
         }
         this.pop();
@@ -436,9 +436,9 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop(), 1;
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.lilypond_noterules())return this.pop(), m-1;continue;}
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop();
-            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;fontWeight:bold')) continue;
-            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
+            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;font-weight:bold')) continue;
+            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
             if(this.str[0] == '\\') {if(m = this.lilypond_musiccommand())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
             if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
@@ -450,8 +450,8 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
-            if(this.str[0] == '<' && this.hl('<', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '<' && this.hl('<', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
             if(this.str[0] == '>' && this.hl('>', 'dsError')) continue;
             if((m = /^[a-z]+\d+\.*[,']+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             if((m = /^(&rest;|&pitch;)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_pitch())return this.pop(), m-1;continue;}
@@ -465,9 +465,9 @@ KateSyntax.langs.lilypond.syntax = {
         while(this.pos < this.len) {
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.lilypond_noterules())return this.pop(), m-1;continue;}
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop();
-            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;fontWeight:bold')) continue;
-            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
+            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;font-weight:bold')) continue;
+            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
             if(this.str[0] == '\\') {if(m = this.lilypond_musiccommand())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
             if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
@@ -479,8 +479,8 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
-            if(this.str[0] == '<' && this.hl('<', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '<' && this.hl('<', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
             if(this.str[0] == '>' && this.hl('>', 'dsError')) continue;
             if((m = /^[a-z]+\d+\.*[,']+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             if((m = /^(&rest;|&pitch;)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_pitch())return this.pop(), m-1;continue;}
@@ -504,11 +504,11 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop(), 1;
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.lilypond_drumrules())return this.pop(), m-1;continue;}
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop();
-            if((m = /^<(?!<)/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_drumchord())return this.pop(), m-1;continue;}
+            if((m = /^<(?!<)/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) {if(m = this.lilypond_drumchord())return this.pop(), m-1;continue;}
             if((m = /^(?:acousticbassdrum|acousticsnare|agh|agl|bassdrum|bd|bda|boh|bohm|boho|bol|bolm|bolo|cab|cabasa|cb|cgh|cghm|cgho|cgl|cglm|cglo|chinesecymbal|cl|claves|closedhihat|cowbell|crashcymbal|crashcymbala|crashcymbalb|cuim|cuio|cymc|cymca|cymcb|cymch|cymr|cymra|cymrb|cyms|da|db|dc|dd|de|electricsnare|fivedown|fiveup|fourdown|fourup|gui|guil|guiro|guis|halfopenhihat|handclap|hc|hh|hhc|hhho|hho|hhp|hiagogo|hibongo|hiconga|highfloortom|hightom|hihat|himidtom|hisidestick|hitimbale|hiwoodblock|loagogo|lobongo|loconga|longguiro|longwhistle|losidestick|lotimbale|lowfloortom|lowmidtom|lowoodblock|lowtom|mar|maracas|mutecuica|mutehibongo|mutehiconga|mutelobongo|muteloconga|mutetriangle|onedown|oneup|opencuica|openhibongo|openhiconga|openhihat|openlobongo|openloconga|opentriangle|pedalhihat|rb|ridebell|ridecymbal|ridecymbala|ridecymbalb|shortguiro|shortwhistle|sidestick|sn|sna|snare|sne|splashcymbal|ss|ssh|ssl|tamb|tambourine|tamtam|threedown|threeup|timh|timl|tomfh|tomfl|tomh|toml|tommh|tomml|tri|triangle|trim|trio|tt|twodown|twoup|ua|ub|uc|ud|ue|vibraslap|vibs|wbh|wbl|whl|whs)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#0094e4')) {if(m = this.lilypond_duration())return this.pop(), m-1;continue;}
-            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;fontWeight:bold')) continue;
-            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
+            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;font-weight:bold')) continue;
+            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
             if(this.str[0] == '\\') {if(m = this.lilypond_musiccommand())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
             if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
@@ -520,8 +520,8 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
-            if(this.str[0] == '<' && this.hl('<', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '<' && this.hl('<', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
             if(this.str[0] == '>' && this.hl('>', 'dsError')) continue;
             if((m = /^[a-z]+\d+\.*[,']+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             if((m = /^(&rest;|&pitch;)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_pitch())return this.pop(), m-1;continue;}
@@ -535,11 +535,11 @@ KateSyntax.langs.lilypond.syntax = {
         while(this.pos < this.len) {
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.lilypond_drumrules())return this.pop(), m-1;continue;}
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop();
-            if((m = /^<(?!<)/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_drumchord())return this.pop(), m-1;continue;}
+            if((m = /^<(?!<)/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) {if(m = this.lilypond_drumchord())return this.pop(), m-1;continue;}
             if((m = /^(?:acousticbassdrum|acousticsnare|agh|agl|bassdrum|bd|bda|boh|bohm|boho|bol|bolm|bolo|cab|cabasa|cb|cgh|cghm|cgho|cgl|cglm|cglo|chinesecymbal|cl|claves|closedhihat|cowbell|crashcymbal|crashcymbala|crashcymbalb|cuim|cuio|cymc|cymca|cymcb|cymch|cymr|cymra|cymrb|cyms|da|db|dc|dd|de|electricsnare|fivedown|fiveup|fourdown|fourup|gui|guil|guiro|guis|halfopenhihat|handclap|hc|hh|hhc|hhho|hho|hhp|hiagogo|hibongo|hiconga|highfloortom|hightom|hihat|himidtom|hisidestick|hitimbale|hiwoodblock|loagogo|lobongo|loconga|longguiro|longwhistle|losidestick|lotimbale|lowfloortom|lowmidtom|lowoodblock|lowtom|mar|maracas|mutecuica|mutehibongo|mutehiconga|mutelobongo|muteloconga|mutetriangle|onedown|oneup|opencuica|openhibongo|openhiconga|openhihat|openlobongo|openloconga|opentriangle|pedalhihat|rb|ridebell|ridecymbal|ridecymbala|ridecymbalb|shortguiro|shortwhistle|sidestick|sn|sna|snare|sne|splashcymbal|ss|ssh|ssl|tamb|tambourine|tamtam|threedown|threeup|timh|timl|tomfh|tomfl|tomh|toml|tommh|tomml|tri|triangle|trim|trio|tt|twodown|twoup|ua|ub|uc|ud|ue|vibraslap|vibs|wbh|wbl|whl|whs)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#0094e4')) {if(m = this.lilypond_duration())return this.pop(), m-1;continue;}
-            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;fontWeight:bold')) continue;
-            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
+            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;font-weight:bold')) continue;
+            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
             if(this.str[0] == '\\') {if(m = this.lilypond_musiccommand())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
             if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
@@ -551,8 +551,8 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
-            if(this.str[0] == '<' && this.hl('<', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '<' && this.hl('<', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
             if(this.str[0] == '>' && this.hl('>', 'dsError')) continue;
             if((m = /^[a-z]+\d+\.*[,']+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             if((m = /^(&rest;|&pitch;)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_pitch())return this.pop(), m-1;continue;}
@@ -565,12 +565,12 @@ KateSyntax.langs.lilypond.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^(?:acousticbassdrum|acousticsnare|agh|agl|bassdrum|bd|bda|boh|bohm|boho|bol|bolm|bolo|cab|cabasa|cb|cgh|cghm|cgho|cgl|cglm|cglo|chinesecymbal|cl|claves|closedhihat|cowbell|crashcymbal|crashcymbala|crashcymbalb|cuim|cuio|cymc|cymca|cymcb|cymch|cymr|cymra|cymrb|cyms|da|db|dc|dd|de|electricsnare|fivedown|fiveup|fourdown|fourup|gui|guil|guiro|guis|halfopenhihat|handclap|hc|hh|hhc|hhho|hho|hhp|hiagogo|hibongo|hiconga|highfloortom|hightom|hihat|himidtom|hisidestick|hitimbale|hiwoodblock|loagogo|lobongo|loconga|longguiro|longwhistle|losidestick|lotimbale|lowfloortom|lowmidtom|lowoodblock|lowtom|mar|maracas|mutecuica|mutehibongo|mutehiconga|mutelobongo|muteloconga|mutetriangle|onedown|oneup|opencuica|openhibongo|openhiconga|openhihat|openlobongo|openloconga|opentriangle|pedalhihat|rb|ridebell|ridecymbal|ridecymbala|ridecymbalb|shortguiro|shortwhistle|sidestick|sn|sna|snare|sne|splashcymbal|ss|ssh|ssl|tamb|tambourine|tamtam|threedown|threeup|timh|timl|tomfh|tomfl|tomh|toml|tommh|tomml|tri|triangle|trim|trio|tt|twodown|twoup|ua|ub|uc|ud|ue|vibraslap|vibs|wbh|wbl|whl|whs)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#0094e4')) continue;
-            if(this.str[0] == '>' && this.hl('>', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_chordend())return this.pop(), m-1;continue;}
+            if(this.str[0] == '>' && this.hl('>', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_chordend())return this.pop(), m-1;continue;}
             if((m = /^&pitch;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_chordpitch())return this.pop(), m-1;continue;}
             if((m = /^[<{}srR]/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
-            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;fontWeight:bold')) continue;
-            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
+            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;font-weight:bold')) continue;
+            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
             if(this.str[0] == '\\') {if(m = this.lilypond_musiccommand())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
             if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
@@ -582,8 +582,8 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
-            if(this.str[0] == '<' && this.hl('<', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '<' && this.hl('<', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
             if(this.str[0] == '>' && this.hl('>', 'dsError')) continue;
             if((m = /^[a-z]+\d+\.*[,']+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             if((m = /^(&rest;|&pitch;)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_pitch())return this.pop(), m-1;continue;}
@@ -608,9 +608,9 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.lilypond_chordrules())return this.pop(), m-1;continue;}
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop();
             if((m = /^:?([\.^]?\d+[-+]?|(m|dim|aug|maj|sus)&b;)*(\/\+?&pitch;)?/.exec(this.str)) && m[0].length && this.hl(m[0], 'dsNormal;color:#0094e4')) continue;
-            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;fontWeight:bold')) continue;
-            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
+            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;font-weight:bold')) continue;
+            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
             if(this.str[0] == '\\') {if(m = this.lilypond_musiccommand())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
             if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
@@ -622,8 +622,8 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
-            if(this.str[0] == '<' && this.hl('<', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '<' && this.hl('<', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
             if(this.str[0] == '>' && this.hl('>', 'dsError')) continue;
             if((m = /^[a-z]+\d+\.*[,']+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             if((m = /^(&rest;|&pitch;)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_pitch())return this.pop(), m-1;continue;}
@@ -638,9 +638,9 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.lilypond_chordrules())return this.pop(), m-1;continue;}
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop();
             if((m = /^:?([\.^]?\d+[-+]?|(m|dim|aug|maj|sus)&b;)*(\/\+?&pitch;)?/.exec(this.str)) && m[0].length && this.hl(m[0], 'dsNormal;color:#0094e4')) continue;
-            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;fontWeight:bold')) continue;
-            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;fontWeight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
+            if((m = /^[()~]/.exec(this.str)) && this.hl(m[0], 'dsChar;font-weight:bold')) continue;
+            if((m = /^[[\]]/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^[\-_\^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#ee5000;font-weight:bold')) {if(m = this.lilypond_connect())return this.pop(), m-1;continue;}
             if(this.str[0] == '\\') {if(m = this.lilypond_musiccommand())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
             if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
@@ -652,8 +652,8 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
-            if(this.str[0] == '<' && this.hl('<', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '<' && this.hl('<', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_chord())return this.pop(), m-1;continue;}
             if(this.str[0] == '>' && this.hl('>', 'dsError')) continue;
             if((m = /^[a-z]+\d+\.*[,']+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             if((m = /^(&rest;|&pitch;)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_pitch())return this.pop(), m-1;continue;}
@@ -677,7 +677,7 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop(), 1;
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.lilypond_figurerules())return this.pop(), m-1;continue;}
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop();
-            if(this.str[0] == '<' && this.hl('<', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_figure())return this.pop(), m-1;continue;}
+            if(this.str[0] == '<' && this.hl('<', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_figure())return this.pop(), m-1;continue;}
             if((m = /^&rest;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_duration())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
             if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
@@ -689,7 +689,7 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -699,7 +699,7 @@ KateSyntax.langs.lilypond.syntax = {
         while(this.pos < this.len) {
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.lilypond_figurerules())return this.pop(), m-1;continue;}
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop();
-            if(this.str[0] == '<' && this.hl('<', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_figure())return this.pop(), m-1;continue;}
+            if(this.str[0] == '<' && this.hl('<', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_figure())return this.pop(), m-1;continue;}
             if((m = /^&rest;/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.lilypond_duration())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsKeyword')) continue;
             if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsKeyword')) continue;
@@ -711,7 +711,7 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -719,14 +719,14 @@ KateSyntax.langs.lilypond.syntax = {
     lilypond_figure: function lilypond_figure(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '>' && this.hl('>', 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_chordend())return this.pop(), m-1;continue;}
+            if(this.str[0] == '>' && this.hl('>', 'dsDataType;font-weight:bold')) {if(m = this.lilypond_chordend())return this.pop(), m-1;continue;}
             if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsComment')) {if(m = this.lilypond_commentblock())return this.pop(), m-1;continue;}
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             if((m = /^\\markup(lines)?&b;/.exec(this.str)) && this.hl(m[0], 'dsBaseN;color:#009817')) {if(m = this.lilypond_markup())return this.pop(), m-1;continue;}
-            if((m = /^\\skip&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction;fontWeight:bold')) {if(m = this.lilypond_duration())return this.pop(), m-1;continue;}
+            if((m = /^\\skip&b;/.exec(this.str)) && this.hl(m[0], 'dsFunction;font-weight:bold')) {if(m = this.lilypond_duration())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -759,7 +759,7 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             if((m = /^\S+\}/.exec(this.str)) && this.hl(m[0], 'dsError')) return this.pop();
             this.hl(this.str[0], 'dsNormal;color:#007010');
         }
@@ -803,7 +803,7 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             if((m = /^\S+\}/.exec(this.str)) && this.hl(m[0], 'dsError')) return this.pop();
             this.hl(this.str[0], 'dsNormal;color:#007010');
         }
@@ -827,7 +827,7 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             if((m = /^\S+\}/.exec(this.str)) && this.hl(m[0], 'dsError')) return this.pop();
             this.hl(this.str[0], 'dsNormal;color:#007010');
         }
@@ -861,7 +861,7 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -879,7 +879,7 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -899,8 +899,8 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop(), 1;
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop();
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.lilypond_sectionrules())return this.pop(), m-1;continue;}
-            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^(?:InnerChoirStaff|InnerStaffGroup)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
+            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^(?:InnerChoirStaff|InnerStaffGroup)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
             if((m = /^("?)\b(&engravers;)\b\1/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^(?:Accidental|AccidentalCautionary|AccidentalPlacement|AccidentalSuggestion|Ambitus|AmbitusAccidental|AmbitusLine|AmbitusNoteHead|Arpeggio|BalloonTextItem|BarLine|BarNumber|BassFigure|BassFigureAlignment|BassFigureAlignmentPositioning|BassFigureBracket|BassFigureContinuation|BassFigureLine|Beam|BendAfter|BreakAlignGroup|BreakAlignment|BreathingSign|ChordName|Clef|ClusterSpanner|ClusterSpannerBeacon|CombineTextScript|Custos|DotColumn|Dots|DoublePercentRepeat|DoublePercentRepeatCounter|DynamicLineSpanner|DynamicText|DynamicTextSpanner|Episema|Fingering|FretBoard|Glissando|GraceSpacing|GridLine|GridPoint|Hairpin|HarmonicParenthesesItem|HorizontalBracket|InstrumentName|InstrumentSwitch|KeyCancellation|KeySignature|LaissezVibrerTie|LaissezVibrerTieColumn|LedgerLineSpanner|LeftEdge|LigatureBracket|LyricExtender|LyricHyphen|LyricSpace|LyricText|MeasureGrouping|MelodyItem|MensuralLigature|MetronomeMark|MultiMeasureRest|MultiMeasureRestNumber|MultiMeasureRestText|NonMusicalPaperColumn|NoteCollision|NoteColumn|NoteHead|NoteName|NoteSpacing|OctavateEight|OttavaBracket|PaperColumn|ParenthesesItem|PercentRepeat|PercentRepeatCounter|PhrasingSlur|PianoPedalBracket|RehearsalMark|RepeatSlash|RepeatTie|RepeatTieColumn|Rest|RestCollision|Script|ScriptColumn|ScriptRow|SeparationItem|Slur|SostenutoPedal|SostenutoPedalLineSpanner|SpacingSpanner|SpanBar|StaffGrouper|StaffSpacing|StaffSymbol|StanzaNumber|Stem|StemTremolo|StringNumber|StrokeFinger|SustainPedal|SustainPedalLineSpanner|System|SystemStartBar|SystemStartBrace|SystemStartBracket|SystemStartSquare|TabNoteHead|TextScript|TextSpanner|Tie|TieColumn|TimeSignature|TrillPitchAccidental|TrillPitchGroup|TrillPitchHead|TrillSpanner|TupletBracket|TupletNumber|UnaCordaPedal|UnaCordaPedalLineSpanner|VaticanaLigature|VerticalAlignment|VerticalAxisGroup|VoiceFollower|VoltaBracket|VoltaBracketSpanner)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^(?:aDueText|alignAboveContext|alignBassFigureAccidentals|alignBelowContext|allowBeamBreak|associatedVoice|autoAccidentals|autoBeamCheck|autoBeamSettings|autoBeaming|autoCautionaries|automaticBars|barAlways|barCheckSynchronize|barNumberVisibility|baseMoment|bassFigureFormatFunction|bassStaffProperties|beamExceptions|beatGrouping|beatLength|beatStructure|chordChanges|chordNameExceptions|chordNameExceptionsFull|chordNameExceptionsPartial|chordNameFunction|chordNameSeparator|chordNoteNamer|chordPrefixSpacer|chordRootNamer|clefGlyph|clefOctavation|clefPosition|connectArpeggios|countPercentRepeats|createKeyOnClefChange|createSpacing|crescendoSpanner|crescendoText|currentBarNumber|decrescendoSpanner|decrescendoText|defaultBarType|doubleSlurs|doubleRepeatType|drumPitchTable|drumStyleTable|dynamicAbsoluteVolumeFunction|explicitClefVisibility|explicitKeySignatureVisibility|extendersOverRests|extraNatural|figuredBassAlterationDirection|figuredBassCenterContinuations|figuredBassFormatter|figuredBassPlusDirection|fingeringOrientations|firstClef|followVoice|fontSize|forbidBreak|forceClef|gridInterval|hairpinToBarline|harmonicAccidentals|highStringOne|ignoreBarChecks|ignoreFiguredBassRest|ignoreMelismata|implicitBassFigures|implicitTimeSignatureVisibility|instrumentCueName|instrumentEqualizer|instrumentName|instrumentTransposition|internalBarNumber|keepAliveInterfaces|keyAlterationOrder|keySignature|lyricMelismaAlignment|majorSevenSymbol|markFormatter|maximumFretStretch|measureLength|measurePosition|melismaBusyProperties|metronomeMarkFormatter|middleCClefPosition|middleCOffset|middleCPosition|midiInstrument|midiMaximumVolume|midiMinimumVolume|minimumFret|minimumPageTurnLength|minimumRepeatLengthForPageTurn|noteToFretFunction|ottavation|output|pedalSostenutoStrings|pedalSostenutoStyle|pedalSustainStrings|pedalSustainStyle|pedalUnaCordaStrings|pedalUnaCordaStyle|printKeyCancellation|printOctaveNames|printPartCombineTexts|proportionalNotationDuration|recordEventSequence|rehearsalMark|repeatCommands|restNumberThreshold|scriptDefinitions|shapeNoteStyles|shortInstrumentName|shortVocalName|skipBars|skipTypesetting|soloIIText|soloText|squashedPosition|staffLineLayoutFunction|stanza|stemLeftBeamCount|stemRightBeamCount|stringNumberOrientations|stringOneTopmost|stringTunings|strokeFingerOrientations|subdivideBeams|suggestAccidentals|systemStartDelimiter|systemStartDelimiterHierarchy|tablatureFormat|tempoUnitCount|tempoUnitDuration|tempoWholesPerMinute|tieWaitForNote|timeSignatureFraction|timing|tonic|topLevelAlignment|trebleStaffProperties|tremoloFlags|tupletFullLength|tupletFullLengthNote|tupletSpannerDuration|useBassFigureExtenders|verticallySpacedContexts|vocalName|voltaOnThisStaff|voltaSpannerDuration|whichBar)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
@@ -916,7 +916,7 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -926,8 +926,8 @@ KateSyntax.langs.lilypond.syntax = {
         while(this.pos < this.len) {
             if(this.str[0] == '}' && this.hl('}', 'dsKeyword')) return this.pop();
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.lilypond_sectionrules())return this.pop(), m-1;continue;}
-            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^(?:InnerChoirStaff|InnerStaffGroup)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
+            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^(?:InnerChoirStaff|InnerStaffGroup)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
             if((m = /^("?)\b(&engravers;)\b\1/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^(?:Accidental|AccidentalCautionary|AccidentalPlacement|AccidentalSuggestion|Ambitus|AmbitusAccidental|AmbitusLine|AmbitusNoteHead|Arpeggio|BalloonTextItem|BarLine|BarNumber|BassFigure|BassFigureAlignment|BassFigureAlignmentPositioning|BassFigureBracket|BassFigureContinuation|BassFigureLine|Beam|BendAfter|BreakAlignGroup|BreakAlignment|BreathingSign|ChordName|Clef|ClusterSpanner|ClusterSpannerBeacon|CombineTextScript|Custos|DotColumn|Dots|DoublePercentRepeat|DoublePercentRepeatCounter|DynamicLineSpanner|DynamicText|DynamicTextSpanner|Episema|Fingering|FretBoard|Glissando|GraceSpacing|GridLine|GridPoint|Hairpin|HarmonicParenthesesItem|HorizontalBracket|InstrumentName|InstrumentSwitch|KeyCancellation|KeySignature|LaissezVibrerTie|LaissezVibrerTieColumn|LedgerLineSpanner|LeftEdge|LigatureBracket|LyricExtender|LyricHyphen|LyricSpace|LyricText|MeasureGrouping|MelodyItem|MensuralLigature|MetronomeMark|MultiMeasureRest|MultiMeasureRestNumber|MultiMeasureRestText|NonMusicalPaperColumn|NoteCollision|NoteColumn|NoteHead|NoteName|NoteSpacing|OctavateEight|OttavaBracket|PaperColumn|ParenthesesItem|PercentRepeat|PercentRepeatCounter|PhrasingSlur|PianoPedalBracket|RehearsalMark|RepeatSlash|RepeatTie|RepeatTieColumn|Rest|RestCollision|Script|ScriptColumn|ScriptRow|SeparationItem|Slur|SostenutoPedal|SostenutoPedalLineSpanner|SpacingSpanner|SpanBar|StaffGrouper|StaffSpacing|StaffSymbol|StanzaNumber|Stem|StemTremolo|StringNumber|StrokeFinger|SustainPedal|SustainPedalLineSpanner|System|SystemStartBar|SystemStartBrace|SystemStartBracket|SystemStartSquare|TabNoteHead|TextScript|TextSpanner|Tie|TieColumn|TimeSignature|TrillPitchAccidental|TrillPitchGroup|TrillPitchHead|TrillSpanner|TupletBracket|TupletNumber|UnaCordaPedal|UnaCordaPedalLineSpanner|VaticanaLigature|VerticalAlignment|VerticalAxisGroup|VoiceFollower|VoltaBracket|VoltaBracketSpanner)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
             if((m = /^(?:aDueText|alignAboveContext|alignBassFigureAccidentals|alignBelowContext|allowBeamBreak|associatedVoice|autoAccidentals|autoBeamCheck|autoBeamSettings|autoBeaming|autoCautionaries|automaticBars|barAlways|barCheckSynchronize|barNumberVisibility|baseMoment|bassFigureFormatFunction|bassStaffProperties|beamExceptions|beatGrouping|beatLength|beatStructure|chordChanges|chordNameExceptions|chordNameExceptionsFull|chordNameExceptionsPartial|chordNameFunction|chordNameSeparator|chordNoteNamer|chordPrefixSpacer|chordRootNamer|clefGlyph|clefOctavation|clefPosition|connectArpeggios|countPercentRepeats|createKeyOnClefChange|createSpacing|crescendoSpanner|crescendoText|currentBarNumber|decrescendoSpanner|decrescendoText|defaultBarType|doubleSlurs|doubleRepeatType|drumPitchTable|drumStyleTable|dynamicAbsoluteVolumeFunction|explicitClefVisibility|explicitKeySignatureVisibility|extendersOverRests|extraNatural|figuredBassAlterationDirection|figuredBassCenterContinuations|figuredBassFormatter|figuredBassPlusDirection|fingeringOrientations|firstClef|followVoice|fontSize|forbidBreak|forceClef|gridInterval|hairpinToBarline|harmonicAccidentals|highStringOne|ignoreBarChecks|ignoreFiguredBassRest|ignoreMelismata|implicitBassFigures|implicitTimeSignatureVisibility|instrumentCueName|instrumentEqualizer|instrumentName|instrumentTransposition|internalBarNumber|keepAliveInterfaces|keyAlterationOrder|keySignature|lyricMelismaAlignment|majorSevenSymbol|markFormatter|maximumFretStretch|measureLength|measurePosition|melismaBusyProperties|metronomeMarkFormatter|middleCClefPosition|middleCOffset|middleCPosition|midiInstrument|midiMaximumVolume|midiMinimumVolume|minimumFret|minimumPageTurnLength|minimumRepeatLengthForPageTurn|noteToFretFunction|ottavation|output|pedalSostenutoStrings|pedalSostenutoStyle|pedalSustainStrings|pedalSustainStyle|pedalUnaCordaStrings|pedalUnaCordaStyle|printKeyCancellation|printOctaveNames|printPartCombineTexts|proportionalNotationDuration|recordEventSequence|rehearsalMark|repeatCommands|restNumberThreshold|scriptDefinitions|shapeNoteStyles|shortInstrumentName|shortVocalName|skipBars|skipTypesetting|soloIIText|soloText|squashedPosition|staffLineLayoutFunction|stanza|stemLeftBeamCount|stemRightBeamCount|stringNumberOrientations|stringOneTopmost|stringTunings|strokeFingerOrientations|subdivideBeams|suggestAccidentals|systemStartDelimiter|systemStartDelimiterHierarchy|tablatureFormat|tempoUnitCount|tempoUnitDuration|tempoWholesPerMinute|tieWaitForNote|timeSignatureFraction|timing|tonic|topLevelAlignment|trebleStaffProperties|tremoloFlags|tupletFullLength|tupletFullLengthNote|tupletSpannerDuration|useBassFigureExtenders|verticallySpacedContexts|vocalName|voltaOnThisStaff|voltaSpannerDuration|whichBar)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
@@ -943,7 +943,7 @@ KateSyntax.langs.lilypond.syntax = {
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -952,8 +952,8 @@ KateSyntax.langs.lilypond.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_context2())return this.pop(), m-1;continue;}
-            if((m = /^(?:InnerChoirStaff|InnerStaffGroup)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) {if(m = this.lilypond_context2())return this.pop(), m-1;continue;}
+            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) {if(m = this.lilypond_context2())return this.pop(), m-1;continue;}
+            if((m = /^(?:InnerChoirStaff|InnerStaffGroup)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) {if(m = this.lilypond_context2())return this.pop(), m-1;continue;}
             if((m = /^[A-Za-z]+/.exec(this.str)) && this.hl(m[0], 'dsFunction')) {if(m = this.lilypond_context2())return this.pop(), m-1;continue;}
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.lilypond_section2())return this.pop(), m-1;continue;}
             return this.pop();
@@ -973,8 +973,8 @@ KateSyntax.langs.lilypond.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^(?:InnerChoirStaff|InnerStaffGroup)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
+            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^(?:InnerChoirStaff|InnerStaffGroup)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
             if(this.str[0] == '.' && this.hl('.', 'dsNormal')) continue;
             if((m = /^(?:aDueText|alignAboveContext|alignBassFigureAccidentals|alignBelowContext|allowBeamBreak|associatedVoice|autoAccidentals|autoBeamCheck|autoBeamSettings|autoBeaming|autoCautionaries|automaticBars|barAlways|barCheckSynchronize|barNumberVisibility|baseMoment|bassFigureFormatFunction|bassStaffProperties|beamExceptions|beatGrouping|beatLength|beatStructure|chordChanges|chordNameExceptions|chordNameExceptionsFull|chordNameExceptionsPartial|chordNameFunction|chordNameSeparator|chordNoteNamer|chordPrefixSpacer|chordRootNamer|clefGlyph|clefOctavation|clefPosition|connectArpeggios|countPercentRepeats|createKeyOnClefChange|createSpacing|crescendoSpanner|crescendoText|currentBarNumber|decrescendoSpanner|decrescendoText|defaultBarType|doubleSlurs|doubleRepeatType|drumPitchTable|drumStyleTable|dynamicAbsoluteVolumeFunction|explicitClefVisibility|explicitKeySignatureVisibility|extendersOverRests|extraNatural|figuredBassAlterationDirection|figuredBassCenterContinuations|figuredBassFormatter|figuredBassPlusDirection|fingeringOrientations|firstClef|followVoice|fontSize|forbidBreak|forceClef|gridInterval|hairpinToBarline|harmonicAccidentals|highStringOne|ignoreBarChecks|ignoreFiguredBassRest|ignoreMelismata|implicitBassFigures|implicitTimeSignatureVisibility|instrumentCueName|instrumentEqualizer|instrumentName|instrumentTransposition|internalBarNumber|keepAliveInterfaces|keyAlterationOrder|keySignature|lyricMelismaAlignment|majorSevenSymbol|markFormatter|maximumFretStretch|measureLength|measurePosition|melismaBusyProperties|metronomeMarkFormatter|middleCClefPosition|middleCOffset|middleCPosition|midiInstrument|midiMaximumVolume|midiMinimumVolume|minimumFret|minimumPageTurnLength|minimumRepeatLengthForPageTurn|noteToFretFunction|ottavation|output|pedalSostenutoStrings|pedalSostenutoStyle|pedalSustainStrings|pedalSustainStyle|pedalUnaCordaStrings|pedalUnaCordaStyle|printKeyCancellation|printOctaveNames|printPartCombineTexts|proportionalNotationDuration|recordEventSequence|rehearsalMark|repeatCommands|restNumberThreshold|scriptDefinitions|shapeNoteStyles|shortInstrumentName|shortVocalName|skipBars|skipTypesetting|soloIIText|soloText|squashedPosition|staffLineLayoutFunction|stanza|stemLeftBeamCount|stemRightBeamCount|stringNumberOrientations|stringOneTopmost|stringTunings|strokeFingerOrientations|subdivideBeams|suggestAccidentals|systemStartDelimiter|systemStartDelimiterHierarchy|tablatureFormat|tempoUnitCount|tempoUnitDuration|tempoWholesPerMinute|tieWaitForNote|timeSignatureFraction|timing|tonic|topLevelAlignment|trebleStaffProperties|tremoloFlags|tupletFullLength|tupletFullLengthNote|tupletSpannerDuration|useBassFigureExtenders|verticallySpacedContexts|vocalName|voltaOnThisStaff|voltaSpannerDuration|whichBar)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) return this.pop();
             if((m = /^(?:barNumberAlignSymbol|centralCPosition|extraVerticalExtent|fingerHorizontalDirection|instr|instrument|keyAccidentalOrder|minimumVerticalExtent|rehearsalMarkAlignSymbol|soloADue|tupletNumberFormatFunction|vocNam)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) return this.pop();
@@ -987,8 +987,8 @@ KateSyntax.langs.lilypond.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
-            if((m = /^(?:InnerChoirStaff|InnerStaffGroup)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) continue;
+            if((m = /^(?:ChoirStaff|ChordNames|CueVoice|Devnull|DrumStaff|DrumVoice|Dynamics|FiguredBass|FretBoards|Global|GrandStaff|GregorianTranscriptionStaff|GregorianTranscriptionVoice|Lyrics|MensuralStaff|MensuralVoice|NoteNames|PianoStaff|RhythmicStaff|Score|Staff|StaffGroup|TabStaff|TabVoice|Timing|VaticanaStaff|VaticanaVoice|Voice)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
+            if((m = /^(?:InnerChoirStaff|InnerStaffGroup)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) continue;
             if(this.str[0] == '.' && this.hl('.', 'dsNormal')) continue;
             if((m = /^(?:Accidental|AccidentalCautionary|AccidentalPlacement|AccidentalSuggestion|Ambitus|AmbitusAccidental|AmbitusLine|AmbitusNoteHead|Arpeggio|BalloonTextItem|BarLine|BarNumber|BassFigure|BassFigureAlignment|BassFigureAlignmentPositioning|BassFigureBracket|BassFigureContinuation|BassFigureLine|Beam|BendAfter|BreakAlignGroup|BreakAlignment|BreathingSign|ChordName|Clef|ClusterSpanner|ClusterSpannerBeacon|CombineTextScript|Custos|DotColumn|Dots|DoublePercentRepeat|DoublePercentRepeatCounter|DynamicLineSpanner|DynamicText|DynamicTextSpanner|Episema|Fingering|FretBoard|Glissando|GraceSpacing|GridLine|GridPoint|Hairpin|HarmonicParenthesesItem|HorizontalBracket|InstrumentName|InstrumentSwitch|KeyCancellation|KeySignature|LaissezVibrerTie|LaissezVibrerTieColumn|LedgerLineSpanner|LeftEdge|LigatureBracket|LyricExtender|LyricHyphen|LyricSpace|LyricText|MeasureGrouping|MelodyItem|MensuralLigature|MetronomeMark|MultiMeasureRest|MultiMeasureRestNumber|MultiMeasureRestText|NonMusicalPaperColumn|NoteCollision|NoteColumn|NoteHead|NoteName|NoteSpacing|OctavateEight|OttavaBracket|PaperColumn|ParenthesesItem|PercentRepeat|PercentRepeatCounter|PhrasingSlur|PianoPedalBracket|RehearsalMark|RepeatSlash|RepeatTie|RepeatTieColumn|Rest|RestCollision|Script|ScriptColumn|ScriptRow|SeparationItem|Slur|SostenutoPedal|SostenutoPedalLineSpanner|SpacingSpanner|SpanBar|StaffGrouper|StaffSpacing|StaffSymbol|StanzaNumber|Stem|StemTremolo|StringNumber|StrokeFinger|SustainPedal|SustainPedalLineSpanner|System|SystemStartBar|SystemStartBrace|SystemStartBracket|SystemStartSquare|TabNoteHead|TextScript|TextSpanner|Tie|TieColumn|TimeSignature|TrillPitchAccidental|TrillPitchGroup|TrillPitchHead|TrillSpanner|TupletBracket|TupletNumber|UnaCordaPedal|UnaCordaPedalLineSpanner|VaticanaLigature|VerticalAlignment|VerticalAxisGroup|VoiceFollower|VoltaBracket|VoltaBracketSpanner)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) return this.pop();
             if((m = /^[A-Za-z]+(?=\s*\.)/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
@@ -1001,13 +1001,13 @@ KateSyntax.langs.lilypond.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\markup(lines)?&b;/.exec(this.str)) && this.hl(m[0], 'dsBaseN;color:#009817')) {if(m = this.lilypond_markup())return this.pop(), m-1;continue;}
-            if((m = /^\d+\.*\s*=\s*\d+/.exec(this.str)) && this.hl(m[0], 'dsFunction;fontWeight:bold')) return this.pop();
+            if((m = /^\d+\.*\s*=\s*\d+/.exec(this.str)) && this.hl(m[0], 'dsFunction;font-weight:bold')) return this.pop();
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if(this.str[0] == '%' && this.str[1] == '{' && this.hl('%{', 'dsComment')) {if(m = this.lilypond_commentblock())return this.pop(), m-1;continue;}
             if(this.str[0] == '%' && this.hl('%', 'dsComment')) {if(m = this.lilypond_commentline())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.lilypond_string())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.hl('#', 'dsFloat')) {if(m = this.lilypond_scheme())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;fontWeight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsDecVal;font-weight:bold')) {if(m = this.lilypond_schemesub())return this.pop(), m-1;continue;}
             return this.pop();
         }
         this.pop();

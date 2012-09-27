@@ -99,12 +99,12 @@ function makeStyle(s, def) {
     // HACK upper-case properties required because of non-strict mode.
     var r = s.DEFSTYLENUM || def;
     s.COLOR && (r += ';color:'+s.COLOR);
-    s.ITALIC && (r += ';fontStyle:'+(safeBool(s.ITALIC) ? 'italic' : 'normal'));
-    s.BOLD && (r += ';fontWeight:'+(safeBool(s.BOLD) ? 'bold' : 'normal'));
+    s.ITALIC && (r += ';font-style:'+(safeBool(s.ITALIC) ? 'italic' : 'normal'));
+    s.BOLD && (r += ';font-weight:'+(safeBool(s.BOLD) ? 'bold' : 'normal'));
     if(s.UNDERLINE || s.STRIKEOUT) {
         var decoration = safeBool(s.UNDERLINE) ? 'underline' : '';
         safeBool(s.STRIKEOUT) && (decoration += (decoration ? ' ' : '')+'line-through');
-        r += ';textDecoration:'+(decoration || 'none');
+        r += ';text-decoration:'+(decoration || 'none');
     }
     return r;
 }

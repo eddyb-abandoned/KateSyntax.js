@@ -4,8 +4,8 @@ KateSyntax.langs.mergetagtext.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
-            if(this.str[0] == '!' && this.str[1] == '{' && this.hl('!{', 'dsComment;color:#404040;fontStyle:normal')) {if(m = this.mergetagtext_secComment())return this.pop(), m-1;continue;}
-            if(this.str[0] == '!' && this.str[1] == '<' && this.hl('!<', 'dsComment;color:#404040;fontStyle:normal')) {if(m = this.mergetagtext_tagCommentType())return this.pop(), m-1;continue;}
+            if(this.str[0] == '!' && this.str[1] == '{' && this.hl('!{', 'dsComment;color:#404040;font-style:normal')) {if(m = this.mergetagtext_secComment())return this.pop(), m-1;continue;}
+            if(this.str[0] == '!' && this.str[1] == '<' && this.hl('!<', 'dsComment;color:#404040;font-style:normal')) {if(m = this.mergetagtext_tagCommentType())return this.pop(), m-1;continue;}
             if(this.str[0] == '{' && this.hl('{', 'dsKeyword')) {if(m = this.mergetagtext_sectionIdentifier())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.hl('<', 'dsKeyword;color:#008040')) {if(m = this.mergetagtext_tagType())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsError');
@@ -23,8 +23,8 @@ KateSyntax.langs.mergetagtext.syntax = {
     mergetagtext_secComment: function mergetagtext_secComment(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '}' && this.hl('}', 'dsComment;color:#404040;fontStyle:normal')) return this.pop();
-            if(this.str[0] == '{' && this.hl('{', 'dsComment;color:#404040;fontStyle:normal')) {if(m = this.mergetagtext_secComment())return this.pop(), m-1;continue;}
+            if(this.str[0] == '}' && this.hl('}', 'dsComment;color:#404040;font-style:normal')) return this.pop();
+            if(this.str[0] == '{' && this.hl('{', 'dsComment;color:#404040;font-style:normal')) {if(m = this.mergetagtext_secComment())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsComment');
         }
         this.pop();
@@ -86,7 +86,7 @@ KateSyntax.langs.mergetagtext.syntax = {
     mergetagtext_tagCommentType: function mergetagtext_tagCommentType(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '|' && this.hl('|', 'dsComment;color:#404040;fontStyle:normal')) {if(m = this.mergetagtext_tagCommentID())return this.pop(), m-1;continue;}
+            if(this.str[0] == '|' && this.hl('|', 'dsComment;color:#404040;font-style:normal')) {if(m = this.mergetagtext_tagCommentID())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.hl('<', 'dsError')) continue;
             if(this.str[0] == '|' && this.hl('|', 'dsError')) continue;
             if(this.str[0] == '=' && this.hl('=', 'dsError')) continue;
@@ -98,7 +98,7 @@ KateSyntax.langs.mergetagtext.syntax = {
     mergetagtext_tagCommentID: function mergetagtext_tagCommentID(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '=' && this.hl('=', 'dsComment;color:#404040;fontStyle:normal')) {if(m = this.mergetagtext_tagCommentData())return this.pop(), m-1;continue;}
+            if(this.str[0] == '=' && this.hl('=', 'dsComment;color:#404040;font-style:normal')) {if(m = this.mergetagtext_tagCommentData())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.hl('<', 'dsError')) continue;
             if(this.str[0] == '|' && this.hl('|', 'dsError')) continue;
             if(this.str[0] == '=' && this.hl('=', 'dsError')) continue;
@@ -110,7 +110,7 @@ KateSyntax.langs.mergetagtext.syntax = {
     mergetagtext_tagCommentData: function mergetagtext_tagCommentData(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '>' && this.hl('>', 'dsComment;color:#404040;fontStyle:normal')) return this.pop(), 2;
+            if(this.str[0] == '>' && this.hl('>', 'dsComment;color:#404040;font-style:normal')) return this.pop(), 2;
             if(this.str[0] == '\'' && this.hl('\'', 'dsComment')) {if(m = this.mergetagtext_commentChar())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsComment')) {if(m = this.mergetagtext_commentString())return this.pop(), m-1;continue;}
             if(this.str[0] == '<' && this.hl('<', 'dsError')) continue;

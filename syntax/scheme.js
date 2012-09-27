@@ -3,7 +3,7 @@ KateSyntax.langs.scheme.syntax = {
     scheme_level0: function scheme_level0(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
             if((m = /^;+\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^;+\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
@@ -18,7 +18,7 @@ KateSyntax.langs.scheme.syntax = {
             if((m = /^#[tf]/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -40,7 +40,7 @@ KateSyntax.langs.scheme.syntax = {
             if((m = /^#[tf]/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -85,8 +85,8 @@ KateSyntax.langs.scheme.syntax = {
     scheme_level1: function scheme_level1(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff8800;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level2())return this.pop(), m-1;continue;}
-            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:bold')) return this.pop();
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff8800;font-style:normal;font-weight:bold')) {if(m = this.scheme_level2())return this.pop(), m-1;continue;}
+            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#ff0000;font-style:normal;font-weight:bold')) return this.pop();
             if((m = /^;+\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^;+\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
@@ -101,7 +101,7 @@ KateSyntax.langs.scheme.syntax = {
             if((m = /^#[tf]/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -109,8 +109,8 @@ KateSyntax.langs.scheme.syntax = {
     scheme_level2: function scheme_level2(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#888800;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level3())return this.pop(), m-1;continue;}
-            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#ff8800;fontStyle:normal;fontWeight:bold')) return this.pop();
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#888800;font-style:normal;font-weight:bold')) {if(m = this.scheme_level3())return this.pop(), m-1;continue;}
+            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#ff8800;font-style:normal;font-weight:bold')) return this.pop();
             if((m = /^;+\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^;+\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
@@ -125,7 +125,7 @@ KateSyntax.langs.scheme.syntax = {
             if((m = /^#[tf]/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -133,8 +133,8 @@ KateSyntax.langs.scheme.syntax = {
     scheme_level3: function scheme_level3(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#008800;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level4())return this.pop(), m-1;continue;}
-            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#888800;fontStyle:normal;fontWeight:bold')) return this.pop();
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#008800;font-style:normal;font-weight:bold')) {if(m = this.scheme_level4())return this.pop(), m-1;continue;}
+            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#888800;font-style:normal;font-weight:bold')) return this.pop();
             if((m = /^;+\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^;+\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
@@ -149,7 +149,7 @@ KateSyntax.langs.scheme.syntax = {
             if((m = /^#[tf]/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -157,8 +157,8 @@ KateSyntax.langs.scheme.syntax = {
     scheme_level4: function scheme_level4(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#000088;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level5())return this.pop(), m-1;continue;}
-            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#008800;fontStyle:normal;fontWeight:bold')) return this.pop();
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#000088;font-style:normal;font-weight:bold')) {if(m = this.scheme_level5())return this.pop(), m-1;continue;}
+            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#008800;font-style:normal;font-weight:bold')) return this.pop();
             if((m = /^;+\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^;+\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
@@ -173,7 +173,7 @@ KateSyntax.langs.scheme.syntax = {
             if((m = /^#[tf]/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -181,8 +181,8 @@ KateSyntax.langs.scheme.syntax = {
     scheme_level5: function scheme_level5(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#880088;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level6())return this.pop(), m-1;continue;}
-            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#000088;fontStyle:normal;fontWeight:bold')) return this.pop();
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#880088;font-style:normal;font-weight:bold')) {if(m = this.scheme_level6())return this.pop(), m-1;continue;}
+            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#000088;font-style:normal;font-weight:bold')) return this.pop();
             if((m = /^;+\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^;+\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
@@ -197,7 +197,7 @@ KateSyntax.langs.scheme.syntax = {
             if((m = /^#[tf]/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -205,8 +205,8 @@ KateSyntax.langs.scheme.syntax = {
     scheme_level6: function scheme_level6(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
-            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#880088;fontStyle:normal;fontWeight:bold')) return this.pop();
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#880088;font-style:normal;font-weight:bold')) return this.pop();
             if((m = /^;+\s*BEGIN.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^;+\s*END.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsRegionMarker')) continue;
             if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
@@ -221,7 +221,7 @@ KateSyntax.langs.scheme.syntax = {
             if((m = /^#[tf]/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:bold')) {if(m = this.scheme_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();

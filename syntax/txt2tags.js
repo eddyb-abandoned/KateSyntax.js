@@ -3,14 +3,14 @@ KateSyntax.langs.txt2tags.syntax = {
     txt2tags_context: function txt2tags_context(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^%%date(\(.*\))?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#FF0000;fontStyle:italic')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
-            if((m = /^%.*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#666666;fontStyle:italic')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
-            if((m = /^\*\*\/\/(.*)\/\/\*\*/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontStyle:italic;fontWeight:bold')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
-            if((m = /^\/\/\*\*(.*)\*\*\/\//.exec(this.str)) && this.hl(m[0], 'dsNormal;fontStyle:italic;fontWeight:bold')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
-            if((m = /^\*\*.*\*\*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#445675;fontWeight:bold')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
-            if((m = /^\/\/.*\/\//.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#653A39;fontStyle:italic')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
-            if((m = /^__.*__/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#386742;textDecoration:underline')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
-            if((m = /^--.*--/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#644A9B;textDecoration:line-through')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^%%date(\(.*\))?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#FF0000;font-style:italic')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^%.*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#666666;font-style:italic')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^\*\*\/\/(.*)\/\/\*\*/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-style:italic;font-weight:bold')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^\/\/\*\*(.*)\*\*\/\//.exec(this.str)) && this.hl(m[0], 'dsNormal;font-style:italic;font-weight:bold')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^\*\*.*\*\*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#445675;font-weight:bold')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^\/\/.*\/\//.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#653A39;font-style:italic')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^__.*__/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#386742;text-decoration:underline')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
+            if((m = /^--.*--/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#644A9B;text-decoration:line-through')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
             if((m = /^``.*``/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#006600')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
             if((m = /^``` .*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#006600')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}
             if(this.col === 0 && (m = /^ *=[^=].*[^=]=(\[.*\])?\s*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#990000')) {if(m = this.txt2tags_context())return this.pop(), m-1;continue;}

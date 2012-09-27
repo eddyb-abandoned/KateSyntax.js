@@ -51,13 +51,13 @@ KateSyntax.langs.d.syntax = {
             if((m = /^(?:macro|template)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#008000')) continue;
             if((m = /^(?:module|import)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#008000')) {if(m = this.d_moduleName())return this.pop(), m-1;continue;}
             if((m = /^(?:typeof|void|bool|byte|ubyte|short|ushort|int|uint|long|ulong|cent|ucent|float|double|real|ireal|ifloat|idouble|creal|cfloat|cdouble|char|wchar|dchar)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType')) continue;
-            if((m = /^(?:size_t|ptrdiff_t|hash_t|Error|Exception|Object|TypeInfo|ClassInfo|ModuleInfo|Interface|OffsetTypeInfo|TypeInfo_Typedef|TypeInfo_Enum|TypeInfo_Pointer|TypeInfo_Array|TypeInfo_StaticArray|TypeInfo_AssociativeArray|TypeInfo_Function|TypeInfo_Delegate|TypeInfo_Class|TypeInfo_Interface|TypeInfo_Struct|TypeInfo_Tuple|string|wstring|dstring|bit|TypeInfo_Const|TypeInfo_Invariant)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontStyle:italic')) continue;
+            if((m = /^(?:size_t|ptrdiff_t|hash_t|Error|Exception|Object|TypeInfo|ClassInfo|ModuleInfo|Interface|OffsetTypeInfo|TypeInfo_Typedef|TypeInfo_Enum|TypeInfo_Pointer|TypeInfo_Array|TypeInfo_StaticArray|TypeInfo_AssociativeArray|TypeInfo_Function|TypeInfo_Delegate|TypeInfo_Class|TypeInfo_Interface|TypeInfo_Struct|TypeInfo_Tuple|string|wstring|dstring|bit|TypeInfo_Const|TypeInfo_Invariant)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-style:italic')) continue;
             if((m = /^(?:extern)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#808000')) {if(m = this.d_linkage())return this.pop(), m-1;continue;}
             if((m = /^(?:__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__VENDOR__|__VERSION__|__EOF__)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#00aa00')) continue;
             if((m = /^(?:debug|unittest)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#ff00ff')) continue;
             if((m = /^(?:pragma)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#00aa00')) {if(m = this.d_pragma())return this.pop(), m-1;continue;}
             if((m = /^(?:version)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#808000')) {if(m = this.d_version())return this.pop(), m-1;continue;}
-            if((m = /^(?:deprecated|volatile)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#800080;textDecoration:line-through')) continue;
+            if((m = /^(?:deprecated|volatile)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#800080;text-decoration:line-through')) continue;
             if(this.str[0] == 'r' && this.str[1] == '"' && this.hl('r"', 'dsString;color:#a100a1')) {if(m = this.d_rawString())return this.pop(), m-1;continue;}
             if(this.str[0] == 'x' && this.str[1] == '"' && this.hl('x"', 'dsString;color:#a10022')) {if(m = this.d_hexString())return this.pop(), m-1;continue;}
             if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
@@ -166,8 +166,8 @@ KateSyntax.langs.d.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^C\+\+/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) return this.pop(), 1;
-            if((m = /^(?:C|D|Windows|Pascal|System)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) return this.pop(), 1;
+            if((m = /^C\+\+/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) return this.pop(), 1;
+            if((m = /^(?:C|D|Windows|Pascal|System)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) return this.pop(), 1;
             if((m = /^\/{3,}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.d_ddocLine())return this.pop(), m-1;continue;}
             if((m = /^\/\*{2,}(?!\/)/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.d_ddocBlock())return this.pop(), m-1;continue;}
             if((m = /^\/\+{2,}(?!\/)/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.d_ddocNested())return this.pop(), m-1;continue;}
@@ -201,7 +201,7 @@ KateSyntax.langs.d.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^(?:DigitalMars|X86|X86_64|Windows|Win32|Win64|linux|LittleEndian|BigEndian|D_Coverage|D_InlineAsm_X86|unittest|D_Version2|none|all)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) return this.pop(), 1;
+            if((m = /^(?:DigitalMars|X86|X86_64|Windows|Win32|Win64|linux|LittleEndian|BigEndian|D_Coverage|D_InlineAsm_X86|unittest|D_Version2|none|all)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) return this.pop(), 1;
             if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return this.pop(), 1;
             if((m = /^\d+[\d_]*(L[uU]?|[uU]L?)?/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) return this.pop(), 1;
             if((m = /^\/{3,}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.d_ddocLine())return this.pop(), m-1;continue;}
@@ -268,7 +268,7 @@ KateSyntax.langs.d.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#00aa00')) continue;
-            if((m = /^(?:msg|lib)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) return this.pop(), 1;
+            if((m = /^(?:msg|lib)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) return this.pop(), 1;
             if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return this.pop(), 1;
             if((m = /^\/{3,}/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.d_ddocLine())return this.pop(), m-1;continue;}
             if((m = /^\/\*{2,}(?!\/)/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.d_ddocBlock())return this.pop(), m-1;continue;}
@@ -411,8 +411,8 @@ KateSyntax.langs.d.syntax = {
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#7f7fff')) continue;
             if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#7f7fff')) continue;
-            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;fontStyle:normal;fontWeight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
-            if((m = /^[\w_]+:((?=$|\n)|\s)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#7f7fff;fontWeight:bold')) continue;
+            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;font-style:normal;font-weight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
+            if((m = /^[\w_]+:((?=$|\n)|\s)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#7f7fff;font-weight:bold')) continue;
             if((m = /^(?:###|ALERT|BUG|DANGER|DEPRECATED|FIXME|HACK|NOTE|NOTICE|SECURITY|TASK|TEST|TESTING|TODO|WARNING)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
             if(this.str[0] == '\n') return this.pop();
             this.hl(this.str[0], 'dsComment;color:#7f7fff');
@@ -426,8 +426,8 @@ KateSyntax.langs.d.syntax = {
             if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#7f7fff')) continue;
             if((m = /^\*+\//.exec(this.str)) && this.hl(m[0], 'dsComment')) return this.pop();
             if(this.str[0] == '*' && this.hl('*', 'dsComment')) continue;
-            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;fontStyle:normal;fontWeight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
-            if((m = /^[\w_]+:((?=$|\n)|\s)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#7f7fff;fontWeight:bold')) continue;
+            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;font-style:normal;font-weight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
+            if((m = /^[\w_]+:((?=$|\n)|\s)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#7f7fff;font-weight:bold')) continue;
             if((m = /^(?:###|ALERT|BUG|DANGER|DEPRECATED|FIXME|HACK|NOTE|NOTICE|SECURITY|TASK|TEST|TESTING|TODO|WARNING)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
             if((m = /^[^-]-{3,}/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#7f7fff')) continue;
             if((m = /^-{3,}((?=$|\n)|\s)/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.d_ddocBlockCode())return this.pop(), m-1;continue;}
@@ -443,8 +443,8 @@ KateSyntax.langs.d.syntax = {
             if(this.str[0] == '/' && this.str[1] == '+' && this.hl('/+', 'dsComment;color:#7f7fff')) {if(m = this.d_ddocNested2())return this.pop(), m-1;continue;}
             if((m = /^\++\//.exec(this.str)) && this.hl(m[0], 'dsComment')) return this.pop();
             if(this.str[0] == '+' && this.hl('+', 'dsComment')) continue;
-            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;fontStyle:normal;fontWeight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
-            if((m = /^[\w_]+:((?=$|\n)|\s)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#7f7fff;fontWeight:bold')) continue;
+            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;font-style:normal;font-weight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
+            if((m = /^[\w_]+:((?=$|\n)|\s)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#7f7fff;font-weight:bold')) continue;
             if((m = /^(?:###|ALERT|BUG|DANGER|DEPRECATED|FIXME|HACK|NOTE|NOTICE|SECURITY|TASK|TEST|TESTING|TODO|WARNING)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
             if((m = /^[^-]-{3,}/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#7f7fff')) continue;
             if((m = /^-{3,}((?=$|\n)|\s)/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.d_ddocNestedCode())return this.pop(), m-1;continue;}
@@ -463,8 +463,8 @@ KateSyntax.langs.d.syntax = {
             if(this.str[0] == '/' && this.str[1] == '+' && this.hl('/+', 'dsComment;color:#7f7fff')) {if(m = this.d_ddocNested2())return this.pop(), m-1;continue;}
             if((m = /^\++\//.exec(this.str)) && this.hl(m[0], 'dsComment')) return this.pop();
             if(this.str[0] == '+' && this.hl('+', 'dsComment')) continue;
-            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;fontStyle:normal;fontWeight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
-            if((m = /^[\w_]+:((?=$|\n)|\s)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#7f7fff;fontWeight:bold')) continue;
+            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;font-style:normal;font-weight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
+            if((m = /^[\w_]+:((?=$|\n)|\s)/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#7f7fff;font-weight:bold')) continue;
             if((m = /^(?:###|ALERT|BUG|DANGER|DEPRECATED|FIXME|HACK|NOTE|NOTICE|SECURITY|TASK|TEST|TESTING|TODO|WARNING)\b/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
             if((m = /^[^-]-{3,}/.exec(this.str)) && this.hl(m[0], 'dsComment;color:#7f7fff')) continue;
             if((m = /^-{3,}((?=$|\n)|\s)/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.d_ddocNestedCode())return this.pop(), m-1;continue;}
@@ -475,12 +475,12 @@ KateSyntax.langs.d.syntax = {
     d_ddocMacro: function d_ddocMacro(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#bf7fff;fontStyle:normal;fontWeight:normal')) continue;
-            if(this.str[0] == ')' && this.hl(')', 'dsOthers;color:#bf5fbf;fontStyle:normal;fontWeight:bold')) return this.pop();
-            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;fontStyle:normal;fontWeight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#bf7fff;fontStyle:normal;fontWeight:normal')) {if(m = this.d_ddocMacro3())return this.pop(), m-1;continue;}
+            if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#bf7fff;font-style:normal;font-weight:normal')) continue;
+            if(this.str[0] == ')' && this.hl(')', 'dsOthers;color:#bf5fbf;font-style:normal;font-weight:bold')) return this.pop();
+            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;font-style:normal;font-weight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#bf7fff;font-style:normal;font-weight:normal')) {if(m = this.d_ddocMacro3())return this.pop(), m-1;continue;}
             if(this.str[0] == '*' && this.hl('*', 'dsComment')) continue;
-            if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#bf5fbf;fontStyle:normal;fontWeight:bold')) {if(m = this.d_ddocMacro2())return this.pop(), m-1;continue;}
+            if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#bf5fbf;font-style:normal;font-weight:bold')) {if(m = this.d_ddocMacro2())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsError');
         }
         this.pop();
@@ -488,44 +488,44 @@ KateSyntax.langs.d.syntax = {
     d_ddocMacro2: function d_ddocMacro2(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == ')' && this.hl(')', 'dsOthers;color:#bf5fbf;fontStyle:normal;fontWeight:bold')) return this.pop(), 1;
-            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;fontStyle:normal;fontWeight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#bf7fff;fontStyle:normal;fontWeight:normal')) {if(m = this.d_ddocMacro3())return this.pop(), m-1;continue;}
+            if(this.str[0] == ')' && this.hl(')', 'dsOthers;color:#bf5fbf;font-style:normal;font-weight:bold')) return this.pop(), 1;
+            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;font-style:normal;font-weight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#bf7fff;font-style:normal;font-weight:normal')) {if(m = this.d_ddocMacro3())return this.pop(), m-1;continue;}
             if(this.str[0] == '*' && this.hl('*', 'dsComment')) continue;
-            this.hl(this.str[0], 'dsNormal;color:#bf7fff;fontStyle:normal;fontWeight:normal');
+            this.hl(this.str[0], 'dsNormal;color:#bf7fff;font-style:normal;font-weight:normal');
         }
         this.pop();
     },
     d_ddocMacro3: function d_ddocMacro3(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#bf7fff;fontStyle:normal;fontWeight:normal')) return this.pop();
-            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;fontStyle:normal;fontWeight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#bf7fff;fontStyle:normal;fontWeight:normal')) {if(m = this.d_ddocMacro3())return this.pop(), m-1;continue;}
+            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#bf7fff;font-style:normal;font-weight:normal')) return this.pop();
+            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;font-style:normal;font-weight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#bf7fff;font-style:normal;font-weight:normal')) {if(m = this.d_ddocMacro3())return this.pop(), m-1;continue;}
             if(this.str[0] == '*' && this.hl('*', 'dsComment')) continue;
-            this.hl(this.str[0], 'dsNormal;color:#bf7fff;fontStyle:normal;fontWeight:normal');
+            this.hl(this.str[0], 'dsNormal;color:#bf7fff;font-style:normal;font-weight:normal');
         }
         this.pop();
     },
     d_macroRules: function d_macroRules(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;fontStyle:normal;fontWeight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#bf7fff;fontStyle:normal;fontWeight:normal')) {if(m = this.d_ddocMacro3())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.str[1] == '(' && this.hl('$(', 'dsOthers;color:#bf5fbf;font-style:normal;font-weight:bold')) {if(m = this.d_ddocMacro())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#bf7fff;font-style:normal;font-weight:normal')) {if(m = this.d_ddocMacro3())return this.pop(), m-1;continue;}
             if(this.str[0] == '*' && this.hl('*', 'dsComment')) continue;
-            this.hl(this.str[0], 'dsNormal;color:#bf7fff;fontStyle:normal;fontWeight:normal');
+            this.hl(this.str[0], 'dsNormal;color:#bf7fff;font-style:normal;font-weight:normal');
         }
         this.pop();
     },
     d_ddocBlockCode: function d_ddocBlockCode(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontStyle:italic')) continue;
+            if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-style:italic')) continue;
             if((m = /^\*+\//.exec(this.str)) && this.hl(m[0], 'dsComment')) return this.pop(), 1;
             if(this.str[0] == '*' && this.hl('*', 'dsComment')) continue;
-            if((m = /^[^-]-{3,}/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontStyle:italic')) continue;
+            if((m = /^[^-]-{3,}/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-style:italic')) continue;
             if((m = /^-{3,}((?=$|\n)|\s)/.exec(this.str)) && this.hl(m[0], 'dsComment')) return this.pop();
-            if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontStyle:italic')) continue;
+            if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-style:italic')) continue;
             if(/^[a-zA-Z_]/.exec(this.str)) {if(m = this.d_startingLetter())return this.pop(), m-1;continue;}
             if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsString;color:#00aa88')) continue;
             if(this.str[0] == '\\' && this.str[1] == 'u' && this.hl('\\u', 'dsString;color:#00aa88')) {if(m = this.d_unicodeShort())return this.pop(), m-1;continue;}
@@ -551,19 +551,19 @@ KateSyntax.langs.d.syntax = {
             if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
             if(this.str[0] == '}' && this.hl('}', 'dsNormal')) continue;
             if((m = /^[:!%&()+,\-/.*<=>?[\]|~\^;]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            this.hl(this.str[0], 'dsNormal;fontStyle:italic');
+            this.hl(this.str[0], 'dsNormal;font-style:italic');
         }
         this.pop();
     },
     d_ddocNestedCode: function d_ddocNestedCode(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontStyle:italic')) continue;
+            if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-style:italic')) continue;
             if((m = /^\++\//.exec(this.str)) && this.hl(m[0], 'dsComment')) return this.pop(), 1;
             if(this.str[0] == '+' && this.hl('+', 'dsComment')) continue;
-            if((m = /^[^-]-{3,}/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontStyle:italic')) continue;
+            if((m = /^[^-]-{3,}/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-style:italic')) continue;
             if((m = /^-{3,}((?=$|\n)|\s)/.exec(this.str)) && this.hl(m[0], 'dsComment')) return this.pop();
-            if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontStyle:italic')) continue;
+            if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-style:italic')) continue;
             if(/^[a-zA-Z_]/.exec(this.str)) {if(m = this.d_startingLetter())return this.pop(), m-1;continue;}
             if((m = /^\\([abefnrtv"'?\\]|x[\da-fA-F]{2}|0?[0-7]{1,2})/.exec(this.str)) && this.hl(m[0], 'dsString;color:#00aa88')) continue;
             if(this.str[0] == '\\' && this.str[1] == 'u' && this.hl('\\u', 'dsString;color:#00aa88')) {if(m = this.d_unicodeShort())return this.pop(), m-1;continue;}
@@ -589,7 +589,7 @@ KateSyntax.langs.d.syntax = {
             if(this.str[0] == '{' && this.hl('{', 'dsNormal')) continue;
             if(this.str[0] == '}' && this.hl('}', 'dsNormal')) continue;
             if((m = /^[:!%&()+,\-/.*<=>?[\]|~\^;]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            this.hl(this.str[0], 'dsNormal;fontStyle:italic');
+            this.hl(this.str[0], 'dsNormal;font-style:italic');
         }
         this.pop();
     },

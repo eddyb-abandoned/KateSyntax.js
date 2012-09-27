@@ -4,11 +4,11 @@ KateSyntax.langs.velocity.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^(?:#set|#foreach|#end|#if|#else|#elseif|#parse|#macro|#stop|#include)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\.\-]*(\[[a-zA-Z0-9_]*\])*/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#5555FF;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\$\{[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\.\-]*(\[[a-zA-Z0-9_]*\])*\}/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#5555FF;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\$!\{[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\.\-]*(\[[a-zA-Z0-9_]*\])*\}./.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#5555FF;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\{\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\.\-]*(\[([0-9]*|"[a-zA-Z_]*")|'[a-zA-Z_]*'|\])*(->[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*(\[([0-9]*|"[a-zA-Z_]*")|'[a-zA-Z_]*'|\])*)*\}/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#5555FF;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\-]*(\[[a-zA-Z0-9_]*\])*\.[a-zA-Z0-9_\x7f-\xff\-]*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#8AC6FF;fontStyle:italic;fontWeight:normal')) continue;
+            if((m = /^\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\.\-]*(\[[a-zA-Z0-9_]*\])*/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#5555FF;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\$\{[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\.\-]*(\[[a-zA-Z0-9_]*\])*\}/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#5555FF;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\$!\{[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\.\-]*(\[[a-zA-Z0-9_]*\])*\}./.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#5555FF;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\{\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\.\-]*(\[([0-9]*|"[a-zA-Z_]*")|'[a-zA-Z_]*'|\])*(->[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_]*\])*(\[([0-9]*|"[a-zA-Z_]*")|'[a-zA-Z_]*'|\])*)*\}/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#5555FF;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\-]*(\[[a-zA-Z0-9_]*\])*\.[a-zA-Z0-9_\x7f-\xff\-]*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#8AC6FF;font-style:italic;font-weight:normal')) continue;
             if((m = /^[(),[\]]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if(this.str[0] == '#' && this.str[1] == '#' && this.hl('##', 'dsComment')) {if(m = this.velocity_singlelineComment())return this.pop(), m-1;continue;}
             if(this.str[0] == '#' && this.str[1] == '*' && this.hl('#*', 'dsComment')) {if(m = this.velocity_multilinecomment())return this.pop(), m-1;continue;}

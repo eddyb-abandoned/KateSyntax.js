@@ -43,7 +43,7 @@ KateSyntax.langs.relaxng.syntax = {
         while(this.pos < this.len) {
             if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsError')) return this.pop(), 2;
             if(this.str[0] == '>' && this.hl('>', 'dsError')) return this.pop(), 2;
-            if(this.str[0] == '"' && this.hl('"', 'dsString;color:#800000;fontStyle:normal;fontWeight:normal')) {if(m = this.relaxng_string())return this.pop(), m-1;continue;}
+            if(this.str[0] == '"' && this.hl('"', 'dsString;color:#800000;font-style:normal;font-weight:normal')) {if(m = this.relaxng_string())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsError');
         }
         this.pop();
@@ -51,9 +51,9 @@ KateSyntax.langs.relaxng.syntax = {
     relaxng_string: function relaxng_string(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '"' && this.hl('"', 'dsString;color:#800000;fontStyle:normal;fontWeight:normal')) return this.pop(), 1;
-            if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsString;color:#800000;fontStyle:normal;fontWeight:normal')) continue;
-            this.hl(this.str[0], 'dsString;color:#800000;fontStyle:normal;fontWeight:normal');
+            if(this.str[0] == '"' && this.hl('"', 'dsString;color:#800000;font-style:normal;font-weight:normal')) return this.pop(), 1;
+            if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsString;color:#800000;font-style:normal;font-weight:normal')) continue;
+            this.hl(this.str[0], 'dsString;color:#800000;font-style:normal;font-weight:normal');
         }
         this.pop();
     },

@@ -8,10 +8,10 @@ KateSyntax.langs.sed.syntax = {
             if((m = /^(\/)/.exec(this.str)) && this.hl(m[0], 'dsString;color:#00F')) {if(m = this.sed_firstAddressRegex())return this.pop(), m-1;continue;}
             if((m = /^\\(\S)/.exec(this.str)) && this.hl(m[0], 'dsString;color:#00F')) {if(m = this.sed_firstAddressRegex())return this.pop(), m-1;continue;}
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {if(m = this.sed_afterFirstAddress())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsOthers;color:#808;fontWeight:bold')) {if(m = this.sed_afterFirstAddress())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsOthers;color:#808;font-weight:bold')) {if(m = this.sed_afterFirstAddress())return this.pop(), m-1;continue;}
             if(this.str[0] == '}' && this.hl('}', 'dsNormal')) {if(m = this.sed_afterCommand())return this.pop(), m-1;continue;}
             if(this.str[0] == ':' && this.hl(':', 'dsFunction')) {if(m = this.sed_label())return this.pop(), m-1;continue;}
-            if(this.str[0] == '!' && this.hl('!', 'dsOthers;color:#808;fontWeight:bold')) {if(m = this.sed_command())return this.pop(), m-1;continue;}
+            if(this.str[0] == '!' && this.hl('!', 'dsOthers;color:#808;font-weight:bold')) {if(m = this.sed_command())return this.pop(), m-1;continue;}
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if(this.str[0] == 's' && this.hl('s', 'dsKeyword')) {if(m = this.sed_sCommand())return this.pop(), m-1;continue;}
             if(this.str[0] == 'y' && this.hl('y', 'dsKeyword')) {if(m = this.sed_yCommand())return this.pop(), m-1;continue;}
@@ -75,7 +75,7 @@ KateSyntax.langs.sed.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if(this.str[0] == '!' && this.hl('!', 'dsOthers;color:#808;fontWeight:bold')) {if(m = this.sed_command())return this.pop(), m-1;continue;}
+            if(this.str[0] == '!' && this.hl('!', 'dsOthers;color:#808;font-weight:bold')) {if(m = this.sed_command())return this.pop(), m-1;continue;}
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if(this.str[0] == ',' && this.hl(',', 'dsNormal')) {if(m = this.sed_secondAddress())return this.pop(), m-1;continue;}
             if(this.str[0] == '~' && this.hl('~', 'dsNormal')) {if(m = this.sed_step())return this.pop(), m-1;continue;}
@@ -127,7 +127,7 @@ KateSyntax.langs.sed.syntax = {
             if((m = /^(\/)/.exec(this.str)) && this.hl(m[0], 'dsString;color:#00F')) {if(m = this.sed_secondAddressRegex())return this.pop(), m-1;continue;}
             if((m = /^\\(\S)/.exec(this.str)) && this.hl(m[0], 'dsString;color:#00F')) {if(m = this.sed_secondAddressRegex())return this.pop(), m-1;continue;}
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) {if(m = this.sed_afterSecondAddress())return this.pop(), m-1;continue;}
-            if(this.str[0] == '$' && this.hl('$', 'dsOthers;color:#808;fontWeight:bold')) {if(m = this.sed_afterSecondAddress())return this.pop(), m-1;continue;}
+            if(this.str[0] == '$' && this.hl('$', 'dsOthers;color:#808;font-weight:bold')) {if(m = this.sed_afterSecondAddress())return this.pop(), m-1;continue;}
             if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsError')) {if(m = this.sed_error())return this.pop(), m-1;continue;}
             if(this.str[0] == '\n') return this.pop(), this.sed_error();
             this.hl(this.str[0], 'dsNormal');
@@ -181,7 +181,7 @@ KateSyntax.langs.sed.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if(this.str[0] == '!' && this.hl('!', 'dsOthers;color:#808;fontWeight:bold')) {if(m = this.sed_command())return this.pop(), m-1;continue;}
+            if(this.str[0] == '!' && this.hl('!', 'dsOthers;color:#808;font-weight:bold')) {if(m = this.sed_command())return this.pop(), m-1;continue;}
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if(this.str[0] == 's' && this.hl('s', 'dsKeyword')) {if(m = this.sed_sCommand())return this.pop(), m-1;continue;}
             if(this.str[0] == 'y' && this.hl('y', 'dsKeyword')) {if(m = this.sed_yCommand())return this.pop(), m-1;continue;}
@@ -362,7 +362,7 @@ KateSyntax.langs.sed.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#000;fontWeight:bold')) {if(m = this.sed_literalText())return this.pop(), m-1;continue;}
+            if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#000;font-weight:bold')) {if(m = this.sed_literalText())return this.pop(), m-1;continue;}
             if((m = /^\S/.exec(this.str)) && this.hl(m[0], 'dsError')) {if(m = this.sed_error())return this.pop(), m-1;continue;}
             if(this.str[0] == '\n') return this.pop(), this.sed_error();
             this.hl(this.str[0], 'dsNormal');
@@ -372,11 +372,11 @@ KateSyntax.langs.sed.syntax = {
     sed_literalText: function sed_literalText(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsOthers;color:#0A0;fontStyle:italic')) {if(m = this.sed_literalText())return this.pop(), m-1;continue;}
-            if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#000;fontWeight:bold')) {if(m = this.sed_literalText())return this.pop(), m-1;continue;}
+            if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsOthers;color:#0A0;font-style:italic')) {if(m = this.sed_literalText())return this.pop(), m-1;continue;}
+            if((m = /^\\\n/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#000;font-weight:bold')) {if(m = this.sed_literalText())return this.pop(), m-1;continue;}
             if(this.str[0] == '\\' && this.hl('\\', 'dsError')) {if(m = this.sed_error())return this.pop(), m-1;continue;}
             if(this.str[0] == '\n') return this.pop(), this.sed_beginningOfLine();
-            this.hl(this.str[0], 'dsOthers;color:#080;fontStyle:italic');
+            this.hl(this.str[0], 'dsOthers;color:#080;font-style:italic');
         }
         this.pop();
     },

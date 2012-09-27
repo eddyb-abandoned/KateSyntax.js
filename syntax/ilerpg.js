@@ -16,11 +16,11 @@ KateSyntax.langs.ilerpg.syntax = {
     ilerpg_cControlLevel: function ilerpg_cControlLevel(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^\ {2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cIndicators())return this.pop(), m-1;continue;}
-            if((m = /^[L|l][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cIndicators())return this.pop(), m-1;continue;}
-            if((m = /^[O|o|L|l|S|s][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cIndicators())return this.pop(), m-1;continue;}
-            if((m = /^[A|a][N|n]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cIndicators())return this.pop(), m-1;continue;}
-            if((m = /^[L|l|S|s][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cIndicators())return this.pop(), m-1;continue;}
+            if((m = /^\ {2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cIndicators())return this.pop(), m-1;continue;}
+            if((m = /^[L|l][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cIndicators())return this.pop(), m-1;continue;}
+            if((m = /^[O|o|L|l|S|s][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cIndicators())return this.pop(), m-1;continue;}
+            if((m = /^[A|a][N|n]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cIndicators())return this.pop(), m-1;continue;}
+            if((m = /^[L|l|S|s][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cIndicators())return this.pop(), m-1;continue;}
             if((m = /^.{2}/.exec(this.str)) && this.hl(m[0], 'dsAlert')) {if(m = this.ilerpg_cIndicators())return this.pop(), m-1;continue;}
             if(this.str[0] == '\n') return this.pop();
             this.hl(this.str[0], 'dsNormal');
@@ -30,17 +30,17 @@ KateSyntax.langs.ilerpg.syntax = {
     ilerpg_cIndicators: function ilerpg_cIndicators(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^\ {3}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
-            if((m = /^[\ |N|n][0-9]{2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
-            if((m = /^[\ |N|n][K|k][A-N|p-y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
-            if((m = /^[\ |N|n][K|k][P-Y|p-y]}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
-            if((m = /^[\ |N|n][L|l][1-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
-            if((m = /^[\ |N|n][L|l|M|m][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
-            if((m = /^[\ |N|n][R|r][T|t]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
-            if((m = /^[\ |N|n][U|u][1-8]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
-            if((m = /^[\ |N|n][O|o][A-G|a-g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
-            if((m = /^[\ |N|n][O|o][V|v]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
-            if((m = /^[\ |N|n][H|h][1-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
+            if((m = /^\ {3}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
+            if((m = /^[\ |N|n][0-9]{2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
+            if((m = /^[\ |N|n][K|k][A-N|p-y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
+            if((m = /^[\ |N|n][K|k][P-Y|p-y]}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
+            if((m = /^[\ |N|n][L|l][1-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
+            if((m = /^[\ |N|n][L|l|M|m][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
+            if((m = /^[\ |N|n][R|r][T|t]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
+            if((m = /^[\ |N|n][U|u][1-8]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
+            if((m = /^[\ |N|n][O|o][A-G|a-g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
+            if((m = /^[\ |N|n][O|o][V|v]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
+            if((m = /^[\ |N|n][H|h][1-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
             if((m = /^.{3}/.exec(this.str)) && this.hl(m[0], 'dsAlert')) {if(m = this.ilerpg_cFactor1())return this.pop(), m-1;continue;}
             if(this.str[0] == '\n') return this.pop(), 1;
             this.hl(this.str[0], 'dsNormal');
@@ -137,43 +137,43 @@ KateSyntax.langs.ilerpg.syntax = {
         this.push();
         while(this.pos < this.len) {
             if(this.str[0] == '%' && this.hl('%', 'dsKeyword')) {if(m = this.ilerpg_biffs())return this.pop(), m-1;continue;}
-            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
+            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -240,43 +240,43 @@ KateSyntax.langs.ilerpg.syntax = {
         this.push();
         while(this.pos < this.len) {
             if(this.str[0] == '%' && this.hl('%', 'dsKeyword')) {if(m = this.ilerpg_biffs())return this.pop(), m-1;continue;}
-            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
+            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -289,43 +289,43 @@ KateSyntax.langs.ilerpg.syntax = {
         this.push();
         while(this.pos < this.len) {
             if(this.str[0] == '%' && this.hl('%', 'dsKeyword')) {if(m = this.ilerpg_biffs())return this.pop(), m-1;continue;}
-            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
+            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -336,9 +336,9 @@ KateSyntax.langs.ilerpg.syntax = {
     ilerpg_comments: function ilerpg_comments(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^\(*(FIXME|TODO)\)*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CD853F;fontStyle:italic;fontWeight:bold')) continue;
-            if((m = /^\(*(NOTE:)\)*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CD853F;fontStyle:italic;fontWeight:bold')) continue;
-            if((m = /^-|=/.exec(this.str)) && this.hl(m[0], 'dsComment;fontWeight:bold')) continue;
+            if((m = /^\(*(FIXME|TODO)\)*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CD853F;font-style:italic;font-weight:bold')) continue;
+            if((m = /^\(*(NOTE:)\)*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CD853F;font-style:italic;font-weight:bold')) continue;
+            if((m = /^-|=/.exec(this.str)) && this.hl(m[0], 'dsComment;font-weight:bold')) continue;
             if(this.str[0] == '\n') return this.pop();
             this.hl(this.str[0], 'dsComment');
         }
@@ -347,9 +347,9 @@ KateSyntax.langs.ilerpg.syntax = {
     ilerpg_stringConstants: function ilerpg_stringConstants(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;fontStyle:normal;fontWeight:normal')) return this.pop();
+            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;font-style:normal;font-weight:normal')) return this.pop();
             if(this.str[0] == '\n') return this.pop();
-            this.hl(this.str[0], 'dsNormal;color:#DD0022;fontStyle:normal;fontWeight:normal');
+            this.hl(this.str[0], 'dsNormal;color:#DD0022;font-style:normal;font-weight:normal');
         }
         this.pop();
     },
@@ -386,43 +386,43 @@ KateSyntax.langs.ilerpg.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^[POIHFDC ]?\/[E|e][N|n][D|d]-[F|f][R|r][E|e][E|e]/.exec(this.str)) && this.hl(m[0], 'dsOthers')) return this.pop();
-            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
+            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -454,43 +454,43 @@ KateSyntax.langs.ilerpg.syntax = {
     ilerpg_commonCode: function ilerpg_commonCode(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
+            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -501,14 +501,14 @@ KateSyntax.langs.ilerpg.syntax = {
     ilerpg_indicators: function ilerpg_indicators(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -516,34 +516,34 @@ KateSyntax.langs.ilerpg.syntax = {
     ilerpg_reservedWords: function ilerpg_reservedWords(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -551,43 +551,43 @@ KateSyntax.langs.ilerpg.syntax = {
     ilerpg_anyCode: function ilerpg_anyCode(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
+            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -600,50 +600,50 @@ KateSyntax.langs.ilerpg.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^(?:EXTPROC|EXTPGM|OPDESC|DATFMT|DIM|LIKEDS|LIKEREC|LIKE|PROCPTR|TIMFMT|VARYING|ASCEND|CONST|NOOPT|OPTIONS|VALUE|QUALIFIED|INZ|BASED)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^\*[N|n][O|o][P|p][A|a][S|s]{2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[O|o][M|m][I|i][T|t]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[V|v][A|a][R|r][S|s][I|i][Z|z][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[R|r][I|i][G|g][H|h][T|t][A|a][D|d][J|j]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[S|s][T|t][R|r][I|i][N|n][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[T|t][R|r][I|i][M|m]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\*[N|n][O|o][P|p][A|a][S|s]{2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[O|o][M|m][I|i][T|t]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[V|v][A|a][R|r][S|s][I|i][Z|z][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[R|r][I|i][G|g][H|h][T|t][A|a][D|d][J|j]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[S|s][T|t][R|r][I|i][N|n][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[T|t][R|r][I|i][M|m]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
             if(this.str[0] == '%' && this.hl('%', 'dsKeyword')) {if(m = this.ilerpg_biffs())return this.pop(), m-1;continue;}
-            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
+            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -656,50 +656,50 @@ KateSyntax.langs.ilerpg.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^(?:EXTPROC|EXTPGM|OPDESC|DATFMT|DIM|LIKEDS|LIKEREC|LIKE|PROCPTR|TIMFMT|VARYING|ASCEND|CONST|NOOPT|OPTIONS|VALUE|QUALIFIED|INZ|BASED)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^\*[N|n][O|o][P|p][A|a][S|s]{2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[O|o][M|m][I|i][T|t]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[V|v][A|a][R|r][S|s][I|i][Z|z][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[R|r][I|i][G|g][H|h][T|t][A|a][D|d][J|j]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[S|s][T|t][R|r][I|i][N|n][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[T|t][R|r][I|i][M|m]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^\*[N|n][O|o][P|p][A|a][S|s]{2}/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[O|o][M|m][I|i][T|t]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[V|v][A|a][R|r][S|s][I|i][Z|z][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[R|r][I|i][G|g][H|h][T|t][A|a][D|d][J|j]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[S|s][T|t][R|r][I|i][N|n][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[T|t][R|r][I|i][M|m]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
             if(this.str[0] == '%' && this.hl('%', 'dsKeyword')) {if(m = this.ilerpg_biffs())return this.pop(), m-1;continue;}
-            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;fontStyle:normal;fontWeight:normal')) continue;
-            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;fontStyle:normal;fontWeight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
+            if((m = /^[\*|U|u][D|d][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][M|m][O|o][N|n][T|t][H|h]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][Y|y][E|e][A|a][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^[\*|U|u][D|d][A|a][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\ [P|p][A|a][G|g][E|e][1-7]?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([A|a][A|l]{2}[X|x|G|g]?|[B|b][L|l][A|a][N|n][K|k][S|s]?|[O|o][N|n]|[O|o][F|f]{2}|[N|n][U|u][L|l]{2}|[Z|z][E|e][R|r][O|o][S|s]?|[H|h][I|i][V|v][A|a][L|l]|[L|l][O|o][V|v][A|a][L|l]|[P|p][S|s]{2}[R|r]|[E|e][N|n][D|d]|[S|s][T|t][A|a][R|r][T|t])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC2222;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[D|d][M|m][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][U|u][R|r]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[H|h][M|m][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][S|s][O|o]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][I|i][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[J|j][O|o][B|b]([R|r][U|u][N|n])?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*([L|l][O|o][N|n][G|g])?[J|j][U|u][L|l]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[M|m][D|d][Y|y]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[S|s][Y|y][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[U|u][S|s][A|a]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[Y|y][M|m][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[A|a][L|l][T|t][S|s][E|e][Q|q]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[E|e][Q|q][U|u][A|a][T|t][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][I|i][L|l][E|e]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[F|f][T|t][R|r][A|a][N|n][S|s]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][L|l][E|e][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][B|b][N|n][D|d][R|r][P|p][G|g]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[C|c][R|r][T|t][R|r][P|p][G|g][M|m][O|o][D|d]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[V|v][0-9][R|r][0-9][M|m][0-9]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#BB1133;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[0-9][0-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?1[P|p]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[H|h|L|l][1-9]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[L|l|M|m][R|r]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[O|o][A-G|a-g|V|v]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[U|u][1-8]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[K|k][A-N|a-n|P-Y|p-y]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if((m = /^\*[I|i][N|n]\(?[R|r][T|t]\)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#CC0000;font-style:normal;font-weight:normal')) continue;
+            if(this.str[0] == '\'' && this.hl('\'', 'dsNormal;color:#DD0022;font-style:normal;font-weight:normal')) {if(m = this.ilerpg_stringConstants())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^[Xx]'[0-9a-fA-F]{2,}'/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;

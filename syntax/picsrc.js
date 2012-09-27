@@ -5,9 +5,9 @@ KateSyntax.langs.picsrc.syntax = {
         while(this.pos < this.len) {
             if((m = /^(?:__BADRAM|__CONFIG|__IDLOCS|__MAXRAM|cblock|constant|da|data|db|de|dt|dw|endc|endm|equ|error|errorlevel|exitm|fill|list|local|macro|messg|noexpand|nolist|org|page|processor|radix|res|set|space|subtitle|title|variable|end|CBLOCK|CONSTANT|DA|DATA|DB|DE|DT|DW|ENDC|ENDM|EQU|ERROR|ERRORLEVEL|EXITM|FILL|LIST|LOCAL|MACRO|MESSG|NOEXPAND|NOLIST|ORG|PAGE|PROCESSOR|RADIX|RES|SET|SPACE|SUBTITLE|TITLE|VARIABLE|END)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if((m = /^(?:addlw|addwf|addwfc|andlw|andwf|bc|bcf|bn|bnc|bnov|bnz|bov|bra|bsf|btg|bz|btfsc|btfss|call|clrf|clrw|clrwdt|comf|cpfseq|cpfslt|cpfsgt|daw|decf|dcfsnz|decfsz|goto|incf|incfsz|infsnz|iorlw|iorwf|lfsr|movf|movff|movlb|movlw|movwf|mullw|mulwf|negf|nop|option|pop|push|rcall|reset|retfie|retlw|return|rlcf|rlf|rlncf|rrcf|rrf|rrncf|setf|sleep|subfwb|sublw|subwf|subwfb|swapf|tblrd|tblwt|tstfsz|xorlw|xorwf|ADDLW|ADDWF|ADDWFC|ANDLW|ANDWF|BC|BCF|BN|BNC|BNOV|BNZ|BOV|BRA|BSF|BTG|BZ|BTFSC|BTFSS|CALL|CLRF|CLRW|CLRWDT|COMF|CPFSEQ|CPFSLT|CPFSGT|DAW|DCFSNZ|DECF|DECFSZ|GOTO|INCF|INCFSZ|INFSNZ|IORLW|IORWF|LFSR|MOVF|MOVFF|MOVLB|MOVLW|MOVWF|MULLW|MULWF|NEGF|NOP|OPTION|POP|PUSH|RCALL|RESET|RETFIE|RETLW|RETURN|RLCF|RLF|RLNCF|RRCF|RRF|RRNCF|SETF|SLEEP|SUBFWB|SUBLW|SUBWF|SUBWFB|SWAPF|TBLRD|TBLWT|TSTFSZ|XORLW|XORWF)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^(?:A|ACCESS|BANKED|W|F)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#000080;fontStyle:italic;fontWeight:normal')) continue;
+            if((m = /^(?:A|ACCESS|BANKED|W|F)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#000080;font-style:italic;font-weight:normal')) continue;
             if((m = /^(?:if|else|idef|ifndef|endif|while|include|endw|\{|\})\b/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
-            if((m = /^(?:addcf|b|clrc|clrz|setc|setz|movfw|skpc|skpz|skpnc|skpnz|subcf|tstf|ADDCF|B|CLRC|CLRZ|SETC|SETZ|MOVFW|SKPC|SKPZ|SKPNC|SKPNZ|SUBCF|TSTF)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#000000;fontStyle:italic;fontWeight:bold')) continue;
+            if((m = /^(?:addcf|b|clrc|clrz|setc|setz|movfw|skpc|skpz|skpnc|skpnz|subcf|tstf|ADDCF|B|CLRC|CLRZ|SETC|SETZ|MOVFW|SKPC|SKPZ|SKPNC|SKPNZ|SUBCF|TSTF)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#000000;font-style:italic;font-weight:bold')) continue;
             if((m = /^0x[\da-fA-F]+/.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^([ \t,][0-9A-F]+H[ \t,])/i.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
             if((m = /^([ \t,][0-9A-F]+H)(?=$|\n)/i.exec(this.str)) && this.hl(m[0], 'dsBaseN')) continue;
@@ -28,7 +28,7 @@ KateSyntax.langs.picsrc.syntax = {
             if(this.str[0] == 'd' && this.str[1] == '\'' && this.hl('d\'', 'dsBaseN')) {if(m = this.picsrc_decimalDigits())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.picsrc_string())return this.pop(), m-1;continue;}
             if(this.str[0] == ';' && this.hl(';', 'dsComment')) {if(m = this.picsrc_comment())return this.pop(), m-1;continue;}
-            if((m = /^[\-/*%+=><&|\^!~]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#FF0000;fontStyle:normal;fontWeight:normal')) continue;
+            if((m = /^[\-/*%+=><&|\^!~]/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#FF0000;font-style:normal;font-weight:normal')) continue;
             if((m = /^#define/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if((m = /^#undefine/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;
             if((m = /^#v/.exec(this.str)) && this.hl(m[0], 'dsOthers')) continue;

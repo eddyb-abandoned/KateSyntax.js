@@ -3,8 +3,8 @@ KateSyntax.langs.rest.syntax = {
     rest_normal: function rest_normal(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^&inlinestart;\*\*[^\s].*\*\*&inlineend;/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^&inlinestart;\*[^\s].*\*&inlineend;/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontStyle:italic')) continue;
+            if((m = /^&inlinestart;\*\*[^\s].*\*\*&inlineend;/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^&inlinestart;\*[^\s].*\*&inlineend;/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-style:italic')) continue;
             if((m = /^&inlinestart;``[^\s].*``&inlineend;/.exec(this.str)) && this.hl(m[0], 'dsString')) continue;
             if((m = /^&inlinestart;\|[^\s].*\|&inlineend;/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;
             if((m = /^&inlinestart;_`[^\s].*`&inlineend;/.exec(this.str)) && this.hl(m[0], 'dsFunction')) continue;

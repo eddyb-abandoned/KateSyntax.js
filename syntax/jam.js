@@ -4,37 +4,37 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
             if((m = /^(?:\})\b/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
-            if((m = /^actions/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_actionDefinition())return this.pop(), m-1;continue;}
-            if((m = /^rule/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_ruleDefinition())return this.pop(), m-1;continue;}
-            if((m = /^for/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_forStatement())return this.pop(), m-1;continue;}
-            if((m = /^if/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_ifStatement())return this.pop(), m-1;continue;}
-            if((m = /^while/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_ifStatement())return this.pop(), m-1;continue;}
-            if((m = /^include/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
-            if((m = /^on/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_onPreStment())return this.pop(), m-1;continue;}
-            if((m = /^return/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
-            if((m = /^case/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_caseCond())return this.pop(), m-1;continue;}
-            if((m = /^(?:local)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_varAssign())return this.pop(), m-1;continue;}
-            if((m = /^(?:actions|break|continue|for|in|if|else|include|local|on|return|rule|switch|case|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) continue;
-            if((m = /^(?:\{)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_block())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^actions/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_actionDefinition())return this.pop(), m-1;continue;}
+            if((m = /^rule/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_ruleDefinition())return this.pop(), m-1;continue;}
+            if((m = /^for/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_forStatement())return this.pop(), m-1;continue;}
+            if((m = /^if/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_ifStatement())return this.pop(), m-1;continue;}
+            if((m = /^while/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_ifStatement())return this.pop(), m-1;continue;}
+            if((m = /^include/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
+            if((m = /^on/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_onPreStment())return this.pop(), m-1;continue;}
+            if((m = /^return/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
+            if((m = /^case/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_caseCond())return this.pop(), m-1;continue;}
+            if((m = /^(?:local)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_varAssign())return this.pop(), m-1;continue;}
+            if((m = /^(?:actions|break|continue|for|in|if|else|include|local|on|return|rule|switch|case|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) continue;
+            if((m = /^(?:\{)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_block())return this.pop(), m-1;continue;}
             if(/^[^\t ]+[\t ]*[\+\?]?=/.exec(this.str)) {if(m = this.jam_varAssign())return this.pop(), m-1;continue;}
             if(/^[^\t ]+[\t ]+on/.exec(this.str)) {if(m = this.jam_varAssign())return this.pop(), m-1;continue;}
-            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^(?:;)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^(?:\()\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^(?:\))\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^([^\t ][^\t ]+|[^\{\}\t ])/.exec(this.str)) && this.hl(m[0], 'dsFunction;color:black;textDecoration:underline')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
+            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^(?:;)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^(?:\()\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^(?:\))\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^([^\t ][^\t ]+|[^\{\}\t ])/.exec(this.str)) && this.hl(m[0], 'dsFunction;color:black;text-decoration:underline')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -43,37 +43,37 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
-            if((m = /^(?:\})\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) return this.pop();
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?:\})\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) return this.pop();
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
-            if((m = /^actions/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_actionDefinition())return this.pop(), m-1;continue;}
-            if((m = /^rule/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_ruleDefinition())return this.pop(), m-1;continue;}
-            if((m = /^for/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_forStatement())return this.pop(), m-1;continue;}
-            if((m = /^if/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_ifStatement())return this.pop(), m-1;continue;}
-            if((m = /^while/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_ifStatement())return this.pop(), m-1;continue;}
-            if((m = /^include/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
-            if((m = /^on/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_onPreStment())return this.pop(), m-1;continue;}
-            if((m = /^return/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
-            if((m = /^case/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_caseCond())return this.pop(), m-1;continue;}
-            if((m = /^(?:local)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_varAssign())return this.pop(), m-1;continue;}
-            if((m = /^(?:actions|break|continue|for|in|if|else|include|local|on|return|rule|switch|case|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) continue;
-            if((m = /^(?:\{)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_block())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^actions/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_actionDefinition())return this.pop(), m-1;continue;}
+            if((m = /^rule/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_ruleDefinition())return this.pop(), m-1;continue;}
+            if((m = /^for/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_forStatement())return this.pop(), m-1;continue;}
+            if((m = /^if/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_ifStatement())return this.pop(), m-1;continue;}
+            if((m = /^while/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_ifStatement())return this.pop(), m-1;continue;}
+            if((m = /^include/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
+            if((m = /^on/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_onPreStment())return this.pop(), m-1;continue;}
+            if((m = /^return/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
+            if((m = /^case/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_caseCond())return this.pop(), m-1;continue;}
+            if((m = /^(?:local)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_varAssign())return this.pop(), m-1;continue;}
+            if((m = /^(?:actions|break|continue|for|in|if|else|include|local|on|return|rule|switch|case|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) continue;
+            if((m = /^(?:\{)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_block())return this.pop(), m-1;continue;}
             if(/^[^\t ]+[\t ]*[\+\?]?=/.exec(this.str)) {if(m = this.jam_varAssign())return this.pop(), m-1;continue;}
             if(/^[^\t ]+[\t ]+on/.exec(this.str)) {if(m = this.jam_varAssign())return this.pop(), m-1;continue;}
-            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^(?:;)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^(?:\()\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^(?:\))\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^([^\t ][^\t ]+|[^\{\}\t ])/.exec(this.str)) && this.hl(m[0], 'dsFunction;color:black;textDecoration:underline')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
+            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^(?:;)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^(?:\()\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^(?:\))\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^([^\t ][^\t ]+|[^\{\}\t ])/.exec(this.str)) && this.hl(m[0], 'dsFunction;color:black;text-decoration:underline')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -82,30 +82,30 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
-            if((m = /^actions/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_actionDefinition())return this.pop(), m-1;continue;}
-            if((m = /^rule/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_ruleDefinition())return this.pop(), m-1;continue;}
-            if((m = /^for/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_forStatement())return this.pop(), m-1;continue;}
-            if((m = /^if/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_ifStatement())return this.pop(), m-1;continue;}
-            if((m = /^while/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_ifStatement())return this.pop(), m-1;continue;}
-            if((m = /^include/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
-            if((m = /^on/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_onPreStment())return this.pop(), m-1;continue;}
-            if((m = /^return/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
-            if((m = /^case/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_caseCond())return this.pop(), m-1;continue;}
-            if((m = /^(?:local)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_varAssign())return this.pop(), m-1;continue;}
-            if((m = /^(?:actions|break|continue|for|in|if|else|include|local|on|return|rule|switch|case|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) continue;
-            if((m = /^(?:\{)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_block())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^actions/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_actionDefinition())return this.pop(), m-1;continue;}
+            if((m = /^rule/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_ruleDefinition())return this.pop(), m-1;continue;}
+            if((m = /^for/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_forStatement())return this.pop(), m-1;continue;}
+            if((m = /^if/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_ifStatement())return this.pop(), m-1;continue;}
+            if((m = /^while/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_ifStatement())return this.pop(), m-1;continue;}
+            if((m = /^include/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
+            if((m = /^on/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_onPreStment())return this.pop(), m-1;continue;}
+            if((m = /^return/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
+            if((m = /^case/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_caseCond())return this.pop(), m-1;continue;}
+            if((m = /^(?:local)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_varAssign())return this.pop(), m-1;continue;}
+            if((m = /^(?:actions|break|continue|for|in|if|else|include|local|on|return|rule|switch|case|while)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) continue;
+            if((m = /^(?:\{)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_block())return this.pop(), m-1;continue;}
             if(/^[^\t ]+[\t ]*[\+\?]?=/.exec(this.str)) {if(m = this.jam_varAssign())return this.pop(), m-1;continue;}
             if(/^[^\t ]+[\t ]+on/.exec(this.str)) {if(m = this.jam_varAssign())return this.pop(), m-1;continue;}
-            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^(?:;)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^(?:\()\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^(?:\))\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^([^\t ][^\t ]+|[^\{\}\t ])/.exec(this.str)) && this.hl(m[0], 'dsFunction;color:black;textDecoration:underline')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
+            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^(?:;)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^(?:\()\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^(?:\))\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^([^\t ][^\t ]+|[^\{\}\t ])/.exec(this.str)) && this.hl(m[0], 'dsFunction;color:black;text-decoration:underline')) {if(m = this.jam_rule())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -114,13 +114,13 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
-            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^(?:;)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) return this.pop();
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^(?:;)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) return this.pop();
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -129,12 +129,12 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
-            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) return this.pop();
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) return this.pop();
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -143,11 +143,11 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
             if((m = /^[^\t ]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) return this.pop();
             if(/^./.exec(this.str)) return this.pop();
             this.hl(this.str[0], 'dsNormal');
@@ -158,15 +158,15 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
             if(/^[^\t ]+[\t ]*[\+\?]?=/.exec(this.str)) {if(m = this.jam_assigment())return this.pop(), m-1;continue;}
             if(/^[^\t ]+[\t ]+on/.exec(this.str)) {if(m = this.jam_assigment())return this.pop(), m-1;continue;}
             if(/^[\+\?]?=/.exec(this.str)) {if(m = this.jam_assigment())return this.pop(), m-1;continue;}
-            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
+            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
             if(/^(?:;)\b/.exec(this.str)) return this.pop();
             this.hl(this.str[0], 'dsNormal;color:darkgreen');
         }
@@ -176,15 +176,15 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
-            if((m = /^on/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^=/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_assigment2())return this.pop(), m-1;continue;}
-            if((m = /^\+=/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_assigment2())return this.pop(), m-1;continue;}
-            if((m = /^\?=/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_assigment2())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^on/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^=/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_assigment2())return this.pop(), m-1;continue;}
+            if((m = /^\+=/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_assigment2())return this.pop(), m-1;continue;}
+            if((m = /^\?=/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_assigment2())return this.pop(), m-1;continue;}
             if(/^(?:;)\b/.exec(this.str)) return this.pop(), 1;
             if((m = /^[^\t ]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:darkgreen')) continue;
             this.hl(this.str[0], 'dsNormal');
@@ -195,12 +195,12 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
-            if((m = /^(?:;)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) return this.pop(), 2;
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?:;)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) return this.pop(), 2;
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -209,14 +209,14 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
-            if((m = /^on/.exec(this.str)) && this.hl(m[0], 'dsKeyword;fontWeight:bold')) {if(m = this.jam_onPreStment())return this.pop(), m-1;continue;}
-            if((m = /^[^\t ]+/.exec(this.str)) && this.hl(m[0], 'dsFunction;color:black;textDecoration:underline')) {if(m = this.jam_subRule())return this.pop(), m-1;continue;}
-            if((m = /^(?:])\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) return this.pop();
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^on/.exec(this.str)) && this.hl(m[0], 'dsKeyword;font-weight:bold')) {if(m = this.jam_onPreStment())return this.pop(), m-1;continue;}
+            if((m = /^[^\t ]+/.exec(this.str)) && this.hl(m[0], 'dsFunction;color:black;text-decoration:underline')) {if(m = this.jam_subRule())return this.pop(), m-1;continue;}
+            if((m = /^(?:])\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) return this.pop();
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -225,13 +225,13 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
-            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^(?:])\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) return this.pop(), 1;
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^(?:])\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) return this.pop(), 1;
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -240,14 +240,14 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
             if((m = /^(?:bind)\b/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
-            if((m = /^(?:existing|ignore|piecemeal|quietly|together|updated)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontStyle:italic')) continue;
-            if((m = /^\{/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_actionBody())return this.pop(), m-1;continue;}
+            if((m = /^(?:existing|ignore|piecemeal|quietly|together|updated)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-style:italic')) continue;
+            if((m = /^\{/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_actionBody())return this.pop(), m-1;continue;}
             if((m = /^[^\t ]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.jam_actionDefinitionFull())return this.pop(), m-1;continue;}
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             this.hl(this.str[0], 'dsNormal');
@@ -258,14 +258,14 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if(/^\{/.exec(this.str)) return this.pop();
-            if((m = /^(?:bind)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontStyle:italic')) {if(m = this.jam_actionDefinitionBind())return this.pop(), m-1;continue;}
+            if((m = /^(?:bind)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-style:italic')) {if(m = this.jam_actionDefinitionBind())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsError');
         }
         this.pop();
@@ -274,13 +274,13 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
             if(/^\{/.exec(this.str)) return this.pop();
-            if((m = /^[^\t ]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:darkgreen;fontStyle:italic')) continue;
+            if((m = /^[^\t ]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:darkgreen;font-style:italic')) continue;
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -290,7 +290,7 @@ KateSyntax.langs.jam.syntax = {
         while(this.pos < this.len) {
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
-            if((m = /^\}/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) return this.pop(), 1;
+            if((m = /^\}/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) return this.pop(), 1;
             if(this.str[0] == '#' && this.hl('#', 'dsComment')) {if(m = this.bash_comment())return this.pop(), m-1;continue;}
             if((m = /^[\s;](?=#)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.bash_comment())return this.pop(), m-1;continue;}
             if(this.str[0] == '(' && this.str[1] == '(' && this.hl('((', 'dsKeyword')) {if(m = this.bash_exprDblParen())return this.pop(), m-1;continue;}
@@ -355,14 +355,14 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
             if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             if(/^(?:\{)\b/.exec(this.str)) return this.pop();
-            if((m = /^[^\t ]+/.exec(this.str)) && this.hl(m[0], 'dsFunction;color:black;textDecoration:underline')) {if(m = this.jam_varnameList())return this.pop(), m-1;continue;}
+            if((m = /^[^\t ]+/.exec(this.str)) && this.hl(m[0], 'dsFunction;color:black;text-decoration:underline')) {if(m = this.jam_varnameList())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -371,11 +371,11 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if(/^(?::)\b/.exec(this.str)) {if(m = this.jam_varnameList())return this.pop(), m-1;continue;}
             if(/^(?:\{)\b/.exec(this.str)) return this.pop();
@@ -387,14 +387,14 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
-            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_varnameList())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?::)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_varnameList())return this.pop(), m-1;continue;}
             if(/^(?:\{)\b/.exec(this.str)) return this.pop();
-            if((m = /^[^\t ]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:darkgreen;fontStyle:italic')) continue;
+            if((m = /^[^\t ]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:darkgreen;font-style:italic')) continue;
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -403,13 +403,13 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
-            if((m = /^in/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_forList())return this.pop(), m-1;continue;}
-            if((m = /^[^\t ]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:darkgreen;fontStyle:italic')) continue;
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^in/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_forList())return this.pop(), m-1;continue;}
+            if((m = /^[^\t ]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:darkgreen;font-style:italic')) continue;
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -418,11 +418,11 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
             if(/^(?:\{)\b/.exec(this.str)) return this.pop(), 1;
             this.hl(this.str[0], 'dsNormal');
         }
@@ -432,23 +432,23 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
-            if((m = /^=/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^!=/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^</.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^<=/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^>/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^>=/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^in/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^!/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^&&/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^\|\|/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^(?:\()\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
-            if((m = /^(?:\))\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^=/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^!=/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^</.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^<=/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^>/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^>=/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^in/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^!/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^&&/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^\|\|/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^(?:\()\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
+            if((m = /^(?:\))\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
             if(/^(?:\{)\b/.exec(this.str)) return this.pop();
             this.hl(this.str[0], 'dsNormal');
         }
@@ -458,11 +458,11 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^\\("|\w)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;fontWeight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
+            if((m = /^##/.exec(this.str)) && this.hl(m[0], 'dsComment;color:darkorange;font-weight:bold')) {if(m = this.jam_commentTitle())return this.pop(), m-1;continue;}
             if((m = /^#/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.jam_comment())return this.pop(), m-1;continue;}
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
             if((m = /^"/.exec(this.str)) && this.hl(m[0], 'dsString;color:red')) {if(m = this.jam_string())return this.pop(), m-1;continue;}
-            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
+            if((m = /^(?:\[)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) {if(m = this.jam_subStatement())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -513,7 +513,7 @@ KateSyntax.langs.jam.syntax = {
         while(this.pos < this.len) {
             if((m = /^(FIXME|TODO)/.exec(this.str)) && this.hl(m[0], 'dsAlert')) continue;
             if(this.str[0] == '\n') return this.pop();
-            this.hl(this.str[0], 'dsComment;color:darkorange;fontWeight:bold');
+            this.hl(this.str[0], 'dsComment;color:darkorange;font-weight:bold');
         }
         this.pop();
     },
@@ -521,8 +521,8 @@ KateSyntax.langs.jam.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^$\(/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:blue')) {if(m = this.jam_variable())return this.pop(), m-1;continue;}
-            if((m = /^\\"/.exec(this.str)) && this.hl(m[0], 'dsString;color:purple;fontWeight:bold')) continue;
-            if((m = /^\\/.exec(this.str)) && this.hl(m[0], 'dsString;color:purple;fontWeight:bold')) continue;
+            if((m = /^\\"/.exec(this.str)) && this.hl(m[0], 'dsString;color:purple;font-weight:bold')) continue;
+            if((m = /^\\/.exec(this.str)) && this.hl(m[0], 'dsString;color:purple;font-weight:bold')) continue;
             if(this.str[0] == '"' && this.hl('"', 'dsString;color:red')) return this.pop();
             if(this.str[0] == '\n') return this.pop(), this.jam_error();
             this.hl(this.str[0], 'dsString;color:red');

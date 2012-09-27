@@ -22,17 +22,17 @@ KateSyntax.langs.tads3.syntax = {
     tads3_string: function tads3_string(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == 'n' && this.hl('\\n', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == 'r' && this.hl('\\r', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == 't' && this.hl('\\t', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == 'b' && this.hl('\\b', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == '^' && this.hl('\\^', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == 'v' && this.hl('\\v', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == ' ' && this.hl('\\ ', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsNormal;color:#000000;fontStyle:italic;fontWeight:normal')) {if(m = this.tads3_embedded())return this.pop(), m-1;continue;}
-            if(this.str[0] == '<' && this.hl('<', 'dsKeyword;color:#0F0F8F;fontStyle:italic;fontWeight:normal')) {if(m = this.tads3_htmltag())return this.pop(), m-1;continue;}
+            if(this.str[0] == '\\' && this.str[1] == '"' && this.hl('\\"', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == 'n' && this.hl('\\n', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == 'r' && this.hl('\\r', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == 't' && this.hl('\\t', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == 'b' && this.hl('\\b', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == '^' && this.hl('\\^', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == 'v' && this.hl('\\v', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == ' ' && this.hl('\\ ', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '<' && this.str[1] == '<' && this.hl('<<', 'dsNormal;color:#000000;font-style:italic;font-weight:normal')) {if(m = this.tads3_embedded())return this.pop(), m-1;continue;}
+            if(this.str[0] == '<' && this.hl('<', 'dsKeyword;color:#0F0F8F;font-style:italic;font-weight:normal')) {if(m = this.tads3_htmltag())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) return this.pop();
             this.hl(this.str[0], 'dsString');
         }
@@ -41,16 +41,16 @@ KateSyntax.langs.tads3.syntax = {
     tads3_valString: function tads3_valString(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '\\' && this.str[1] == '\'' && this.hl('\\\'', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == 'n' && this.hl('\\n', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == 'r' && this.hl('\\r', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == 't' && this.hl('\\t', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == 'b' && this.hl('\\b', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == '^' && this.hl('\\^', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == 'v' && this.hl('\\v', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '\\' && this.str[1] == ' ' && this.hl('\\ ', 'dsKeyword;color:#0F0F8F;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '<' && this.hl('<', 'dsKeyword;color:#0F0F8F;fontStyle:italic;fontWeight:normal')) {if(m = this.tads3_htmltag())return this.pop(), m-1;continue;}
+            if(this.str[0] == '\\' && this.str[1] == '\'' && this.hl('\\\'', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == '\\' && this.hl('\\\\', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == 'n' && this.hl('\\n', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == 'r' && this.hl('\\r', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == 't' && this.hl('\\t', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == 'b' && this.hl('\\b', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == '^' && this.hl('\\^', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == 'v' && this.hl('\\v', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '\\' && this.str[1] == ' ' && this.hl('\\ ', 'dsKeyword;color:#0F0F8F;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '<' && this.hl('<', 'dsKeyword;color:#0F0F8F;font-style:italic;font-weight:normal')) {if(m = this.tads3_htmltag())return this.pop(), m-1;continue;}
             if(this.str[0] == '\'' && this.hl('\'', 'dsString')) return this.pop();
             this.hl(this.str[0], 'dsString');
         }
@@ -99,17 +99,17 @@ KateSyntax.langs.tads3.syntax = {
     tads3_embedded: function tads3_embedded(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsNormal;color:#000000;fontStyle:italic;fontWeight:normal')) return this.pop();
-            this.hl(this.str[0], 'dsNormal;color:#000000;fontStyle:italic;fontWeight:normal');
+            if(this.str[0] == '>' && this.str[1] == '>' && this.hl('>>', 'dsNormal;color:#000000;font-style:italic;font-weight:normal')) return this.pop();
+            this.hl(this.str[0], 'dsNormal;color:#000000;font-style:italic;font-weight:normal');
         }
         this.pop();
     },
     tads3_htmltag: function tads3_htmltag(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword;color:#0F0F8F;fontStyle:italic;fontWeight:normal')) return this.pop();
-            if(this.str[0] == '>' && this.hl('>', 'dsKeyword;color:#0F0F8F;fontStyle:italic;fontWeight:normal')) return this.pop();
-            this.hl(this.str[0], 'dsKeyword;color:#0F0F8F;fontStyle:italic;fontWeight:normal');
+            if(this.str[0] == '/' && this.str[1] == '>' && this.hl('/>', 'dsKeyword;color:#0F0F8F;font-style:italic;font-weight:normal')) return this.pop();
+            if(this.str[0] == '>' && this.hl('>', 'dsKeyword;color:#0F0F8F;font-style:italic;font-weight:normal')) return this.pop();
+            this.hl(this.str[0], 'dsKeyword;color:#0F0F8F;font-style:italic;font-weight:normal');
         }
         this.pop();
     }

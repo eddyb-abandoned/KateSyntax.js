@@ -4,11 +4,11 @@ KateSyntax.langs.mup.syntax = {
         this.push();
         while(this.pos < this.len) {
             if((m = /^(?:score|music|header|header2|footer|footer2|top|top2|bottom|bottom2|staff|voice|grids|music|headshapes|block)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
-            if((m = /^\blyrics\b/.exec(this.str)) && this.hl(m[0], 'dsBaseN;fontWeight:bold')) continue;
+            if((m = /^\blyrics\b/.exec(this.str)) && this.hl(m[0], 'dsBaseN;font-weight:bold')) continue;
             if((m = /^\b((dashed|dotted)\s+)?(bar|endbar|dblbar|invisbar|repeatstart|repeatboth|repeatend|restart)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;color:#c62')) {if(m = this.mup_barline())return this.pop(), m-1;continue;}
-            if((m = /^\bnew(score|page)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;color:#c62;fontWeight:bold')) continue;
-            if((m = /^\bmultirest\s+[0-9]+\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;color:#c62;fontWeight:bold')) continue;
-            if((m = /^\bunset\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;fontWeight:bold')) {if(m = this.mup_unset())return this.pop(), m-1;continue;}
+            if((m = /^\bnew(score|page)\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;color:#c62;font-weight:bold')) continue;
+            if((m = /^\bmultirest\s+[0-9]+\b/.exec(this.str)) && this.hl(m[0], 'dsDecVal;color:#c62;font-weight:bold')) continue;
+            if((m = /^\bunset\b/.exec(this.str)) && this.hl(m[0], 'dsFloat;font-weight:bold')) {if(m = this.mup_unset())return this.pop(), m-1;continue;}
             if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {if(m = this.mup_comment())return this.pop(), m-1;continue;}
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.mup_string())return this.pop(), m-1;continue;}
             if((m = /^\\(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) continue;
@@ -29,9 +29,9 @@ KateSyntax.langs.mup.syntax = {
             if((m = /^;\s*(?=[~=<]|\b(bm|es?bm|dashed|dotted|tie|slur|alt|hs|ifn?def|else|elseif|endif)\b)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.mup_note())return this.pop(), m-1;continue;}
             if((m = /^(1\/4|1\/2|1|2|4|8|16|32|64|128|256)?mu?[rs]+\s*(?=;)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if((m = /^m\s*rpt\s*(?=;)/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^=([a-z]|_[a-z][a-z_0-9]*)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;fontWeight:bold')) continue;
-            if((m = /^([a-z]|_[a-z][a-z_0-9]*)\.[xynews]\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;fontWeight:bold')) {if(m = this.mup_location())return this.pop(), m-1;continue;}
-            if((m = /^([a-z]|_[a-z][a-z_0-9]*)\.(?=[A-Z])/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;fontWeight:normal')) continue;
+            if((m = /^=([a-z]|_[a-z][a-z_0-9]*)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;font-weight:bold')) continue;
+            if((m = /^([a-z]|_[a-z][a-z_0-9]*)\.[xynews]\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;font-weight:bold')) {if(m = this.mup_location())return this.pop(), m-1;continue;}
+            if((m = /^([a-z]|_[a-z][a-z_0-9]*)\.(?=[A-Z])/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;font-weight:normal')) continue;
             if((m = /^[(,]\s*(?=([h-qt-z]|_[a-z][a-z_0-9]*)\s*[,)])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.mup_locationProbably())return this.pop(), m-1;continue;}
             if((m = /^[(,]\s*(?=[a-grs]\s*[,)])/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.mup_noteProbably())return this.pop(), m-1;continue;}
             if((m = /^(?:define|ifdef|ifndef)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#11F')) continue;
@@ -112,7 +112,7 @@ KateSyntax.langs.mup.syntax = {
             if((m = /^\bnum\s*=\s*[0-9]+/.exec(this.str)) && this.hl(m[0], 'dsDecVal;color:#c62')) continue;
             if((m = /^\blet\s*=\s*("[A-Z]{1,2}")?/.exec(this.str)) && this.hl(m[0], 'dsDecVal;color:#c62')) continue;
             if((m = /^\bpad\s+[0-9]+/.exec(this.str)) && this.hl(m[0], 'dsDecVal;color:#c62')) continue;
-            if((m = /^=([a-z]|_[a-z][a-z_0-9]*)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;fontWeight:bold')) continue;
+            if((m = /^=([a-z]|_[a-z][a-z_0-9]*)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;font-weight:bold')) continue;
             if((m = /^(?:define|ifdef|ifndef)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#11F')) continue;
             if((m = /^(?:@|endif)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#11F')) continue;
             if((m = /^(?:else|include|undef)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#11F')) continue;
@@ -143,12 +143,12 @@ KateSyntax.langs.mup.syntax = {
     mup_note: function mup_note(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^(\bdashed\s+|\bdotted\s+)?(<(\/n|\\n|n\/|n\\|[a-g]([+-]*|[0-7]))?>|tie|slur|[~])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;fontStyle:italic')) continue;
-            if((m = /^(\/|[a-g]([+-]*|[0-7]))/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;fontStyle:italic')) continue;
-            if((m = /^\bbm\b(\s+with\s+staff\s+(below|above)\b)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;fontStyle:italic')) continue;
-            if((m = /^\bes?bm\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;fontStyle:italic')) continue;
-            if((m = /^\balt\s+[1-9]\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;fontStyle:italic')) continue;
-            if((m = /^\bhs\s+/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;fontStyle:italic')) continue;
+            if((m = /^(\bdashed\s+|\bdotted\s+)?(<(\/n|\\n|n\/|n\\|[a-g]([+-]*|[0-7]))?>|tie|slur|[~])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;font-style:italic')) continue;
+            if((m = /^(\/|[a-g]([+-]*|[0-7]))/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;font-style:italic')) continue;
+            if((m = /^\bbm\b(\s+with\s+staff\s+(below|above)\b)?/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;font-style:italic')) continue;
+            if((m = /^\bes?bm\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;font-style:italic')) continue;
+            if((m = /^\balt\s+[1-9]\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;font-style:italic')) continue;
+            if((m = /^\bhs\s+/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;font-style:italic')) continue;
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.mup_string())return this.pop(), m-1;continue;}
             if((m = /^(?:define|ifdef|ifndef)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#11F')) continue;
             if((m = /^(?:@|endif)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#11F')) continue;
@@ -165,11 +165,11 @@ KateSyntax.langs.mup.syntax = {
         while(this.pos < this.len) {
             if(this.str[0] == ']' && this.hl(']', 'dsKeyword')) return this.pop();
             if((m = /^[\s;,]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^\b(grace|xnote|cue|diam|up|down)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;fontStyle:italic')) continue;
-            if((m = /^\b(slash|len|pad|ho|dist)\s*[0-9.+-]*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;fontStyle:italic')) continue;
-            if((m = /^\bwith\s*(?=[A-Z"^>.-])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;fontStyle:italic')) {if(m = this.mup_bracketWith())return this.pop(), m-1;continue;}
-            if((m = /^\bhs\s*(?=[A-Z"])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;fontStyle:italic')) {if(m = this.mup_bracketHs())return this.pop(), m-1;continue;}
-            if((m = /^=([a-z]|_[a-z][a-z_0-9]*)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;fontWeight:bold')) continue;
+            if((m = /^\b(grace|xnote|cue|diam|up|down)\b/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;font-style:italic')) continue;
+            if((m = /^\b(slash|len|pad|ho|dist)\s*[0-9.+-]*/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;font-style:italic')) continue;
+            if((m = /^\bwith\s*(?=[A-Z"^>.-])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;font-style:italic')) {if(m = this.mup_bracketWith())return this.pop(), m-1;continue;}
+            if((m = /^\bhs\s*(?=[A-Z"])/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;font-style:italic')) {if(m = this.mup_bracketHs())return this.pop(), m-1;continue;}
+            if((m = /^=([a-z]|_[a-z][a-z_0-9]*)\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;font-weight:bold')) continue;
             if((m = /^\bc\b/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if((m = /^(?:define|ifdef|ifndef)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#11F')) continue;
             if((m = /^(?:@|endif)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#11F')) continue;
@@ -185,7 +185,7 @@ KateSyntax.langs.mup.syntax = {
         this.push();
         while(this.pos < this.len) {
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.mup_string())return this.pop(), m-1;continue;}
-            if((m = /^[>.^-]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;fontStyle:italic')) continue;
+            if((m = /^[>.^-]+/.exec(this.str)) && this.hl(m[0], 'dsNormal;color:#07b;font-style:italic')) continue;
             if((m = /^[\s,]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if((m = /^(?:define|ifdef|ifndef)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#11F')) continue;
             if((m = /^(?:@|endif)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#11F')) continue;
@@ -232,7 +232,7 @@ KateSyntax.langs.mup.syntax = {
         while(this.pos < this.len) {
             if((m = /^[+-\s]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^\btime\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;fontWeight:bold')) continue;
+            if((m = /^\btime\b/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;font-weight:bold')) continue;
             if((m = /^(?:define|ifdef|ifndef)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#11F')) continue;
             if((m = /^(?:@|endif)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#11F')) continue;
             if((m = /^(?:else|include|undef)\b/.exec(this.str)) && this.hl(m[0], 'dsOthers;color:#11F')) continue;
@@ -246,7 +246,7 @@ KateSyntax.langs.mup.syntax = {
     mup_locationProbably: function mup_locationProbably(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^[h-qt-z]|_[a-z][a-z_0-9]*/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;fontWeight:normal')) return this.pop();
+            if((m = /^[h-qt-z]|_[a-z][a-z_0-9]*/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;font-weight:normal')) return this.pop();
             return this.pop();
         }
         this.pop();
@@ -264,11 +264,11 @@ KateSyntax.langs.mup.syntax = {
         this.push();
         while(this.pos < this.len) {
             if(this.str[0] == '"' && this.hl('"', 'dsString')) return this.pop();
-            if((m = /^[\\][\][{}%#"nb|^:,\\/ ]/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
-            if((m = /^\\\(/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) {if(m = this.mup_specialChar())return this.pop(), m-1;continue;}
-            if((m = /^\\f\(/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) {if(m = this.mup_fontName())return this.pop(), m-1;continue;}
-            if((m = /^\\s\(/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) {if(m = this.mup_fontSize())return this.pop(), m-1;continue;}
-            if((m = /^\\v\(-?[0-9]{1,3}\)/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
+            if((m = /^[\\][\][{}%#"nb|^:,\\/ ]/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
+            if((m = /^\\\(/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) {if(m = this.mup_specialChar())return this.pop(), m-1;continue;}
+            if((m = /^\\f\(/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) {if(m = this.mup_fontName())return this.pop(), m-1;continue;}
+            if((m = /^\\s\(/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) {if(m = this.mup_fontSize())return this.pop(), m-1;continue;}
+            if((m = /^\\v\(-?[0-9]{1,3}\)/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
             if((m = /^[~<>|^]/.exec(this.str)) && this.hl(m[0], 'dsString;color:#800')) continue;
             if((m = /^[-+]?[0-9]+\|/.exec(this.str)) && this.hl(m[0], 'dsString;color:#800')) continue;
             this.hl(this.str[0], 'dsString');
@@ -278,16 +278,16 @@ KateSyntax.langs.mup.syntax = {
     mup_specialChar: function mup_specialChar(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == ')' && this.hl(')', 'dsString;fontWeight:bold')) return this.pop();
-            if((m = /^(?:exclamdown|questiondown|sterling|yen|cent|quotedblbase|quotedblleft|``|quotedblright|''|guillemotleft|<<|guillemotright|>>|guildsinglleft|guilsinglright|dagger|daggerdbl|grave|acute|macron|breve|dotaccent|dieresis|ring|cedilla|hungarumlaut|ogonek|caron|emdash|AE|ae|ordfeminine|ordmasculine|Lslash|L\/|lslash|l\/|Oslash|O\/|oslash|o\/|OE|oe|dotlessi|germandbls|ss|Aacute|A'|aacute|a'|Acircumflex|A\^|acircumflex|a\^|Adieresis|A:|adieresis|a:|Agrave|A`|agrave|a`|Aring|Ao|aring|ao|Atilde|A~|atilde|a~|Ccedilla|C,|ccedilla|c,|Eacute|E'|eacute|e'|Ecircumflex|E\^|ecircumflex|e\^|Edieresis|E:|edieresis|e:|Egrave|E`|egrave|e`|Iacute|I'|iacute|i'|Icircumflex|I\^|icircumflex|i\^|Idieresis|i:|idieresis|i:|Igrave|I`|igrave|i`|Ntilde|N~|ntilde|n~|Oacute|O'|oacute|o'|Ocircumflex|O\^|ocircumflex|o\^|Odieresis|O:|odieresis|o:|Ograve|O`|ograve|o`|Otilde|O~|otilde|o~|Scaron|Sv|scaron|sv|Uacute|U'|uacute|u'|Ucircumflex|U\^|ucircumflex|u\^|Udieresis|U:|udieresis|u:|Ugrave|U`|ugrave|u`|Ydieresis|Y:|ydieresis|y:|Zcaron|Zv|zcaron|zv|bullet|space)\b/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
-            if((m = /^(?:gclef|fclef|cclef|com|cut|flat|dblflat|sharp|dblsharp|nat|4n|2n|1n|dblwhole|xnote|diamond|filldiamond|dwhdiamond|dn2n|dn4n|dn8n|dn16n|dn32n|dn64n|dn128n|dn256n|up2n|up4n|up8n|up16n|up32n|up64n|up128n|up256n|upflag|dnflag|qwhrest|dwhrest|1rest|2rest|4rest|8rest|16rest|32rest|64rest|128rest|256rest|begped|endped|pedal|tr|mor|invmor|turn|invturn|ferm|uferm|acc_gt|acc_hat|acc_uhat|leg|dot|wedge|uwedge|sign|coda|upbow|dnbow|rr|measrpt|copyright|dim|halfdim|triangle|smgclef|smfclef|smcclef|smcom|smcut|smflat|smdblflat|smsharp|smdblsharp|smnat|sm4n|sm2n|sm1n|smdblwhole|smxnote|smdiamond|smfilldiamond|smdwhdiamond|smdn2n|smdn4n|smdn8n|smdn16n|smdn32n|smdn64n|smdn128n|smdn256n|smup2n|smup4n|smup8n|smup16n|smup32n|smup64n|smup128n|smup256n|smupflag|smdnflag|smqwhrest|smdwhrest|sm1rest|sm2rest|sm4rest|sm8rest|sm16rest|sm32rest|sm64rest|sm128rest|sm256rest|smbegped|smendped|smpedal|smtr|smmor|sminvmor|smturn|sminvturn|smferm|smuferm|smacc_gt|smacc_hat|smacc_uhat|smleg|smdot|smwedge|smuwedge|smsign|smcoda|smupbow|smdnbow|smrr|smmeasrpt|smcopyright|smdim|smhalfdim|smtriangle)\b/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
-            if((m = /^[AaEeOo]['`:^~](?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
-            if((m = /^[IiUu]['`:^](?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
-            if((m = /^[Nn]~(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
-            if((m = /^[Yy]:(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
-            if((m = /^[LlOo]\/(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
-            if((m = /^[Cc],(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
-            if((m = /^(>>|<<|``|'')(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
+            if(this.str[0] == ')' && this.hl(')', 'dsString;font-weight:bold')) return this.pop();
+            if((m = /^(?:exclamdown|questiondown|sterling|yen|cent|quotedblbase|quotedblleft|``|quotedblright|''|guillemotleft|<<|guillemotright|>>|guildsinglleft|guilsinglright|dagger|daggerdbl|grave|acute|macron|breve|dotaccent|dieresis|ring|cedilla|hungarumlaut|ogonek|caron|emdash|AE|ae|ordfeminine|ordmasculine|Lslash|L\/|lslash|l\/|Oslash|O\/|oslash|o\/|OE|oe|dotlessi|germandbls|ss|Aacute|A'|aacute|a'|Acircumflex|A\^|acircumflex|a\^|Adieresis|A:|adieresis|a:|Agrave|A`|agrave|a`|Aring|Ao|aring|ao|Atilde|A~|atilde|a~|Ccedilla|C,|ccedilla|c,|Eacute|E'|eacute|e'|Ecircumflex|E\^|ecircumflex|e\^|Edieresis|E:|edieresis|e:|Egrave|E`|egrave|e`|Iacute|I'|iacute|i'|Icircumflex|I\^|icircumflex|i\^|Idieresis|i:|idieresis|i:|Igrave|I`|igrave|i`|Ntilde|N~|ntilde|n~|Oacute|O'|oacute|o'|Ocircumflex|O\^|ocircumflex|o\^|Odieresis|O:|odieresis|o:|Ograve|O`|ograve|o`|Otilde|O~|otilde|o~|Scaron|Sv|scaron|sv|Uacute|U'|uacute|u'|Ucircumflex|U\^|ucircumflex|u\^|Udieresis|U:|udieresis|u:|Ugrave|U`|ugrave|u`|Ydieresis|Y:|ydieresis|y:|Zcaron|Zv|zcaron|zv|bullet|space)\b/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
+            if((m = /^(?:gclef|fclef|cclef|com|cut|flat|dblflat|sharp|dblsharp|nat|4n|2n|1n|dblwhole|xnote|diamond|filldiamond|dwhdiamond|dn2n|dn4n|dn8n|dn16n|dn32n|dn64n|dn128n|dn256n|up2n|up4n|up8n|up16n|up32n|up64n|up128n|up256n|upflag|dnflag|qwhrest|dwhrest|1rest|2rest|4rest|8rest|16rest|32rest|64rest|128rest|256rest|begped|endped|pedal|tr|mor|invmor|turn|invturn|ferm|uferm|acc_gt|acc_hat|acc_uhat|leg|dot|wedge|uwedge|sign|coda|upbow|dnbow|rr|measrpt|copyright|dim|halfdim|triangle|smgclef|smfclef|smcclef|smcom|smcut|smflat|smdblflat|smsharp|smdblsharp|smnat|sm4n|sm2n|sm1n|smdblwhole|smxnote|smdiamond|smfilldiamond|smdwhdiamond|smdn2n|smdn4n|smdn8n|smdn16n|smdn32n|smdn64n|smdn128n|smdn256n|smup2n|smup4n|smup8n|smup16n|smup32n|smup64n|smup128n|smup256n|smupflag|smdnflag|smqwhrest|smdwhrest|sm1rest|sm2rest|sm4rest|sm8rest|sm16rest|sm32rest|sm64rest|sm128rest|sm256rest|smbegped|smendped|smpedal|smtr|smmor|sminvmor|smturn|sminvturn|smferm|smuferm|smacc_gt|smacc_hat|smacc_uhat|smleg|smdot|smwedge|smuwedge|smsign|smcoda|smupbow|smdnbow|smrr|smmeasrpt|smcopyright|smdim|smhalfdim|smtriangle)\b/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
+            if((m = /^[AaEeOo]['`:^~](?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
+            if((m = /^[IiUu]['`:^](?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
+            if((m = /^[Nn]~(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
+            if((m = /^[Yy]:(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
+            if((m = /^[LlOo]\/(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
+            if((m = /^[Cc],(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
+            if((m = /^(>>|<<|``|'')(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
             if((m = /^[^)"]+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             return this.pop();
         }
@@ -296,10 +296,10 @@ KateSyntax.langs.mup.syntax = {
     mup_fontName: function mup_fontName(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == ')' && this.hl(')', 'dsString;fontWeight:bold')) return this.pop();
-            if((m = /^[ABCHNPT][RBIX](?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
-            if((m = /^(?:avantgarde|bookman|courier|helvetica|newcentury|palatino|times)\b/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) {if(m = this.mup_fontStyle())return this.pop(), m-1;continue;}
-            if((m = /^(PV|previous)(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
+            if(this.str[0] == ')' && this.hl(')', 'dsString;font-weight:bold')) return this.pop();
+            if((m = /^[ABCHNPT][RBIX](?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
+            if((m = /^(?:avantgarde|bookman|courier|helvetica|newcentury|palatino|times)\b/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) {if(m = this.mup_fontStyle())return this.pop(), m-1;continue;}
+            if((m = /^(PV|previous)(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
             if((m = /^[^ )"]+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             return this.pop();
         }
@@ -308,8 +308,8 @@ KateSyntax.langs.mup.syntax = {
     mup_fontStyle: function mup_fontStyle(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
-            if((m = /^(?:rom|bold|ital|boldital)\b/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
+            if((m = /^\s+/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
+            if((m = /^(?:rom|bold|ital|boldital)\b/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
             if((m = /^[^ )"]+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             return this.pop();
         }
@@ -318,9 +318,9 @@ KateSyntax.langs.mup.syntax = {
     mup_fontSize: function mup_fontSize(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == ')' && this.hl(')', 'dsString;fontWeight:bold')) return this.pop();
-            if((m = /^[-+]?[0-9]+(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
-            if((m = /^(PV|previous)(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;fontWeight:bold')) continue;
+            if(this.str[0] == ')' && this.hl(')', 'dsString;font-weight:bold')) return this.pop();
+            if((m = /^[-+]?[0-9]+(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
+            if((m = /^(PV|previous)(?=\))/.exec(this.str)) && this.hl(m[0], 'dsString;font-weight:bold')) continue;
             if((m = /^[^ )"]+/.exec(this.str)) && this.hl(m[0], 'dsError')) continue;
             return this.pop();
         }
@@ -343,7 +343,7 @@ KateSyntax.langs.mup.syntax = {
     mup_macroLocation: function mup_macroLocation(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^../.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;fontWeight:normal')) return this.pop();
+            if((m = /^../.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#0C4;font-weight:normal')) return this.pop();
             return this.pop();
         }
         this.pop();

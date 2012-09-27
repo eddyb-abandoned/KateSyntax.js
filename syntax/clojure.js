@@ -3,14 +3,14 @@ KateSyntax.langs.clojure.syntax = {
     clojure_level0: function clojure_level0(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
-            if(this.str[0] == '#' && this.str[1] == '(' && this.hl('#(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '#' && this.str[1] == '(' && this.hl('#(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
             if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if(this.str[0] == '#' && this.str[1] == '_' && this.hl('#_', 'dsComment')) continue;
             if((m = /^[@~]\S+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#800000')) continue;
             if((m = /^::?[a-zA-Z0-9\-]+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#555555')) continue;
-            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
+            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '{' && this.hl('{', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '}' && this.hl('}', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '[' && this.hl('[', 'dsNormal;color:#3333ff')) continue;
@@ -24,7 +24,7 @@ KateSyntax.langs.clojure.syntax = {
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.clojure_string())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -36,8 +36,8 @@ KateSyntax.langs.clojure.syntax = {
             if(this.str[0] == '#' && this.str[1] == '_' && this.hl('#_', 'dsComment')) continue;
             if((m = /^[@~]\S+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#800000')) continue;
             if((m = /^::?[a-zA-Z0-9\-]+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#555555')) continue;
-            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
+            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '{' && this.hl('{', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '}' && this.hl('}', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '[' && this.hl('[', 'dsNormal;color:#3333ff')) continue;
@@ -51,7 +51,7 @@ KateSyntax.langs.clojure.syntax = {
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.clojure_string())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -89,15 +89,15 @@ KateSyntax.langs.clojure.syntax = {
     clojure_level1: function clojure_level1(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff8800;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level2())return this.pop(), m-1;continue;}
-            if(this.str[0] == '#' && this.str[1] == '(' && this.hl('#(', 'dsNormal;color:#ff8800;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level2())return this.pop(), m-1;continue;}
-            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:normal')) return this.pop();
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff8800;font-style:normal;font-weight:normal')) {if(m = this.clojure_level2())return this.pop(), m-1;continue;}
+            if(this.str[0] == '#' && this.str[1] == '(' && this.hl('#(', 'dsNormal;color:#ff8800;font-style:normal;font-weight:normal')) {if(m = this.clojure_level2())return this.pop(), m-1;continue;}
+            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#ff0000;font-style:normal;font-weight:normal')) return this.pop();
             if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if(this.str[0] == '#' && this.str[1] == '_' && this.hl('#_', 'dsComment')) continue;
             if((m = /^[@~]\S+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#800000')) continue;
             if((m = /^::?[a-zA-Z0-9\-]+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#555555')) continue;
-            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
+            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '{' && this.hl('{', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '}' && this.hl('}', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '[' && this.hl('[', 'dsNormal;color:#3333ff')) continue;
@@ -111,7 +111,7 @@ KateSyntax.langs.clojure.syntax = {
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.clojure_string())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -119,15 +119,15 @@ KateSyntax.langs.clojure.syntax = {
     clojure_level2: function clojure_level2(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#888800;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level3())return this.pop(), m-1;continue;}
-            if(this.str[0] == '#' && this.str[1] == '(' && this.hl('#(', 'dsNormal;color:#888800;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level3())return this.pop(), m-1;continue;}
-            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#ff8800;fontStyle:normal;fontWeight:normal')) return this.pop();
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#888800;font-style:normal;font-weight:normal')) {if(m = this.clojure_level3())return this.pop(), m-1;continue;}
+            if(this.str[0] == '#' && this.str[1] == '(' && this.hl('#(', 'dsNormal;color:#888800;font-style:normal;font-weight:normal')) {if(m = this.clojure_level3())return this.pop(), m-1;continue;}
+            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#ff8800;font-style:normal;font-weight:normal')) return this.pop();
             if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if(this.str[0] == '#' && this.str[1] == '_' && this.hl('#_', 'dsComment')) continue;
             if((m = /^[@~]\S+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#800000')) continue;
             if((m = /^::?[a-zA-Z0-9\-]+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#555555')) continue;
-            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
+            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '{' && this.hl('{', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '}' && this.hl('}', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '[' && this.hl('[', 'dsNormal;color:#3333ff')) continue;
@@ -141,7 +141,7 @@ KateSyntax.langs.clojure.syntax = {
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.clojure_string())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -149,15 +149,15 @@ KateSyntax.langs.clojure.syntax = {
     clojure_level3: function clojure_level3(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#008800;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level4())return this.pop(), m-1;continue;}
-            if(this.str[0] == '#' && this.str[1] == '(' && this.hl('#(', 'dsNormal;color:#008800;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level4())return this.pop(), m-1;continue;}
-            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#888800;fontStyle:normal;fontWeight:normal')) return this.pop();
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#008800;font-style:normal;font-weight:normal')) {if(m = this.clojure_level4())return this.pop(), m-1;continue;}
+            if(this.str[0] == '#' && this.str[1] == '(' && this.hl('#(', 'dsNormal;color:#008800;font-style:normal;font-weight:normal')) {if(m = this.clojure_level4())return this.pop(), m-1;continue;}
+            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#888800;font-style:normal;font-weight:normal')) return this.pop();
             if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if(this.str[0] == '#' && this.str[1] == '_' && this.hl('#_', 'dsComment')) continue;
             if((m = /^[@~]\S+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#800000')) continue;
             if((m = /^::?[a-zA-Z0-9\-]+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#555555')) continue;
-            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
+            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '{' && this.hl('{', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '}' && this.hl('}', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '[' && this.hl('[', 'dsNormal;color:#3333ff')) continue;
@@ -171,7 +171,7 @@ KateSyntax.langs.clojure.syntax = {
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.clojure_string())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -179,15 +179,15 @@ KateSyntax.langs.clojure.syntax = {
     clojure_level4: function clojure_level4(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#000088;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level5())return this.pop(), m-1;continue;}
-            if(this.str[0] == '#' && this.str[1] == '(' && this.hl('#(', 'dsNormal;color:#000088;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level5())return this.pop(), m-1;continue;}
-            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#008800;fontStyle:normal;fontWeight:normal')) return this.pop();
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#000088;font-style:normal;font-weight:normal')) {if(m = this.clojure_level5())return this.pop(), m-1;continue;}
+            if(this.str[0] == '#' && this.str[1] == '(' && this.hl('#(', 'dsNormal;color:#000088;font-style:normal;font-weight:normal')) {if(m = this.clojure_level5())return this.pop(), m-1;continue;}
+            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#008800;font-style:normal;font-weight:normal')) return this.pop();
             if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if(this.str[0] == '#' && this.str[1] == '_' && this.hl('#_', 'dsComment')) continue;
             if((m = /^[@~]\S+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#800000')) continue;
             if((m = /^::?[a-zA-Z0-9\-]+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#555555')) continue;
-            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
+            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '{' && this.hl('{', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '}' && this.hl('}', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '[' && this.hl('[', 'dsNormal;color:#3333ff')) continue;
@@ -201,7 +201,7 @@ KateSyntax.langs.clojure.syntax = {
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.clojure_string())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -209,15 +209,15 @@ KateSyntax.langs.clojure.syntax = {
     clojure_level5: function clojure_level5(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#880088;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level6())return this.pop(), m-1;continue;}
-            if(this.str[0] == '#' && this.str[1] == '(' && this.hl('#(', 'dsNormal;color:#880088;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level6())return this.pop(), m-1;continue;}
-            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#000088;fontStyle:normal;fontWeight:normal')) return this.pop();
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#880088;font-style:normal;font-weight:normal')) {if(m = this.clojure_level6())return this.pop(), m-1;continue;}
+            if(this.str[0] == '#' && this.str[1] == '(' && this.hl('#(', 'dsNormal;color:#880088;font-style:normal;font-weight:normal')) {if(m = this.clojure_level6())return this.pop(), m-1;continue;}
+            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#000088;font-style:normal;font-weight:normal')) return this.pop();
             if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if(this.str[0] == '#' && this.str[1] == '_' && this.hl('#_', 'dsComment')) continue;
             if((m = /^[@~]\S+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#800000')) continue;
             if((m = /^::?[a-zA-Z0-9\-]+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#555555')) continue;
-            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
+            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '{' && this.hl('{', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '}' && this.hl('}', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '[' && this.hl('[', 'dsNormal;color:#3333ff')) continue;
@@ -231,7 +231,7 @@ KateSyntax.langs.clojure.syntax = {
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.clojure_string())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -239,15 +239,15 @@ KateSyntax.langs.clojure.syntax = {
     clojure_level6: function clojure_level6(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
-            if(this.str[0] == '#' && this.str[1] == '(' && this.hl('#(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
-            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#880088;fontStyle:normal;fontWeight:normal')) return this.pop();
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '#' && this.str[1] == '(' && this.hl('#(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == ')' && this.hl(')', 'dsNormal;color:#880088;font-style:normal;font-weight:normal')) return this.pop();
             if((m = /^;.*(?=$|\n)/.exec(this.str)) && this.hl(m[0], 'dsComment')) continue;
             if(this.str[0] == '#' && this.str[1] == '_' && this.hl('#_', 'dsComment')) continue;
             if((m = /^[@~]\S+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#800000')) continue;
             if((m = /^::?[a-zA-Z0-9\-]+/.exec(this.str)) && this.hl(m[0], 'dsKeyword;color:#555555')) continue;
-            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
-            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;fontStyle:normal;fontWeight:bold')) continue;
+            if(this.str[0] == '#' && this.str[1] == '{' && this.hl('#{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
+            if(this.str[0] == '^' && this.str[1] == '{' && this.hl('^{', 'dsNormal;color:#0000ff;font-style:normal;font-weight:bold')) continue;
             if(this.str[0] == '{' && this.hl('{', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '}' && this.hl('}', 'dsNormal;color:#206620')) continue;
             if(this.str[0] == '[' && this.hl('[', 'dsNormal;color:#3333ff')) continue;
@@ -261,7 +261,7 @@ KateSyntax.langs.clojure.syntax = {
             if(this.str[0] == '"' && this.hl('"', 'dsString')) {if(m = this.clojure_string())return this.pop(), m-1;continue;}
             if((m = /^\d*\.\d+/.exec(this.str)) && this.hl(m[0], 'dsFloat')) continue;
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
-            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;fontStyle:normal;fontWeight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
+            if(this.str[0] == '(' && this.hl('(', 'dsNormal;color:#ff0000;font-style:normal;font-weight:normal')) {if(m = this.clojure_level1())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();

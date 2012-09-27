@@ -5,8 +5,8 @@ KateSyntax.langs.xml.syntax = {
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if((m = /^<!--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.xml_comment())return this.pop(), m-1;continue;}
-            if((m = /^<!\[CDATA\[/.exec(this.str)) && this.hl(m[0], 'dsBaseN;fontWeight:bold')) {if(m = this.xml_cDATA())return this.pop(), m-1;continue;}
-            if((m = /^<!DOCTYPE\s+/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) {if(m = this.xml_doctype())return this.pop(), m-1;continue;}
+            if((m = /^<!\[CDATA\[/.exec(this.str)) && this.hl(m[0], 'dsBaseN;font-weight:bold')) {if(m = this.xml_cDATA())return this.pop(), m-1;continue;}
+            if((m = /^<!DOCTYPE\s+/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) {if(m = this.xml_doctype())return this.pop(), m-1;continue;}
             if((m = /^<\?[\w:_-]*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.xml_pI())return this.pop(), m-1;continue;}
             if((m = /^<&name;/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.xml_element())return this.pop(), m-1;continue;}
             if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -21,8 +21,8 @@ KateSyntax.langs.xml.syntax = {
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if((m = /^<!--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.xml_comment())return this.pop(), m-1;continue;}
-            if((m = /^<!\[CDATA\[/.exec(this.str)) && this.hl(m[0], 'dsBaseN;fontWeight:bold')) {if(m = this.xml_cDATA())return this.pop(), m-1;continue;}
-            if((m = /^<!DOCTYPE\s+/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) {if(m = this.xml_doctype())return this.pop(), m-1;continue;}
+            if((m = /^<!\[CDATA\[/.exec(this.str)) && this.hl(m[0], 'dsBaseN;font-weight:bold')) {if(m = this.xml_cDATA())return this.pop(), m-1;continue;}
+            if((m = /^<!DOCTYPE\s+/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) {if(m = this.xml_doctype())return this.pop(), m-1;continue;}
             if((m = /^<\?[\w:_-]*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.xml_pI())return this.pop(), m-1;continue;}
             if((m = /^<&name;/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.xml_element())return this.pop(), m-1;continue;}
             if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -68,7 +68,7 @@ KateSyntax.langs.xml.syntax = {
         while(this.pos < this.len) {
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if((m = /^[a-zA-Z][a-zA-Z0-9]*/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
-            if((m = /^]]>/.exec(this.str)) && this.hl(m[0], 'dsBaseN;fontWeight:bold')) return this.pop();
+            if((m = /^]]>/.exec(this.str)) && this.hl(m[0], 'dsBaseN;font-weight:bold')) return this.pop();
             if((m = /^]]&gt;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             this.hl(this.str[0], 'dsNormal');
         }
@@ -85,8 +85,8 @@ KateSyntax.langs.xml.syntax = {
     xml_doctype: function xml_doctype(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '>' && this.hl('>', 'dsDataType;fontWeight:bold')) return this.pop();
-            if(this.str[0] == '[' && this.hl('[', 'dsDataType;fontWeight:bold')) {if(m = this.xml_doctypeInternalSubset())return this.pop(), m-1;continue;}
+            if(this.str[0] == '>' && this.hl('>', 'dsDataType;font-weight:bold')) return this.pop();
+            if(this.str[0] == '[' && this.hl('[', 'dsDataType;font-weight:bold')) {if(m = this.xml_doctypeInternalSubset())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
         }
         this.pop();
@@ -94,8 +94,8 @@ KateSyntax.langs.xml.syntax = {
     xml_doctypeInternalSubset: function xml_doctypeInternalSubset(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == ']' && this.hl(']', 'dsDataType;fontWeight:bold')) return this.pop();
-            if((m = /^<!(ELEMENT|ENTITY|ATTLIST|NOTATION)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) {if(m = this.xml_doctypeMarkupdecl())return this.pop(), m-1;continue;}
+            if(this.str[0] == ']' && this.hl(']', 'dsDataType;font-weight:bold')) return this.pop();
+            if((m = /^<!(ELEMENT|ENTITY|ATTLIST|NOTATION)\b/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) {if(m = this.xml_doctypeMarkupdecl())return this.pop(), m-1;continue;}
             if((m = /^<!--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.xml_comment())return this.pop(), m-1;continue;}
             if((m = /^<\?[\w:_-]*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.xml_pI())return this.pop(), m-1;continue;}
             if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
@@ -108,7 +108,7 @@ KateSyntax.langs.xml.syntax = {
     xml_doctypeMarkupdecl: function xml_doctypeMarkupdecl(m) {
         this.push();
         while(this.pos < this.len) {
-            if(this.str[0] == '>' && this.hl('>', 'dsDataType;fontWeight:bold')) return this.pop();
+            if(this.str[0] == '>' && this.hl('>', 'dsDataType;font-weight:bold')) return this.pop();
             if(this.str[0] == '"' && this.hl('"', 'dsString;color:#a00')) {if(m = this.xml_doctypeMarkupdeclDQ())return this.pop(), m-1;continue;}
             if(this.str[0] == '\'' && this.hl('\'', 'dsString;color:#a00')) {if(m = this.xml_doctypeMarkupdeclSQ())return this.pop(), m-1;continue;}
             this.hl(this.str[0], 'dsNormal');
@@ -155,8 +155,8 @@ KateSyntax.langs.xml.syntax = {
             if((m = /^<\/&name;/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.xml_elEnd())return this.pop(), m-1;continue;}
             if((m = /^[^\S\n]+/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             if((m = /^<!--/.exec(this.str)) && this.hl(m[0], 'dsComment')) {if(m = this.xml_comment())return this.pop(), m-1;continue;}
-            if((m = /^<!\[CDATA\[/.exec(this.str)) && this.hl(m[0], 'dsBaseN;fontWeight:bold')) {if(m = this.xml_cDATA())return this.pop(), m-1;continue;}
-            if((m = /^<!DOCTYPE\s+/.exec(this.str)) && this.hl(m[0], 'dsDataType;fontWeight:bold')) {if(m = this.xml_doctype())return this.pop(), m-1;continue;}
+            if((m = /^<!\[CDATA\[/.exec(this.str)) && this.hl(m[0], 'dsBaseN;font-weight:bold')) {if(m = this.xml_cDATA())return this.pop(), m-1;continue;}
+            if((m = /^<!DOCTYPE\s+/.exec(this.str)) && this.hl(m[0], 'dsDataType;font-weight:bold')) {if(m = this.xml_doctype())return this.pop(), m-1;continue;}
             if((m = /^<\?[\w:_-]*/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.xml_pI())return this.pop(), m-1;continue;}
             if((m = /^<&name;/.exec(this.str)) && this.hl(m[0], 'dsKeyword')) {if(m = this.xml_element())return this.pop(), m-1;continue;}
             if((m = /^&entref;/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;

@@ -22,9 +22,9 @@ KateSyntax.langs.cg.syntax = {
             if((m = /^\d+/.exec(this.str)) && this.hl(m[0], 'dsDecVal')) continue;
             if(this.str[0] == '/' && this.str[1] == '/' && this.hl('//', 'dsComment')) {if(m = this.cg_commentar1())return this.pop(), m-1;continue;}
             if(this.str[0] == '/' && this.str[1] == '*' && this.hl('/*', 'dsComment')) {if(m = this.cg_commentar2())return this.pop(), m-1;continue;}
-            if((m = /^(?:abs|acos|all|any|asin|atan|atan2|ceil|clamp|cos|cosh|cross|degrees|determinant|dot|exp|exp2|floor|fmod|frac|frexp|isfinite|isinf|isnan|ldexp|lerp|lit|log|log2|log10|max|min|modf|mul|noise|pow|radians|round|rsqrt|saturate|sign|sin|sincos|sinh|smoothstep|step|sqrt|tan|tanh|transpose|distance|faceforward|length|normalize|reflect|refract|tex1D|tex1Dproj|tex2D|tex2Dproj|texRECT|texRECTproj|tex3D|tex3Dproj|texCUBE|texCUBEproj|ddx|ddy|debug|pack_2half|unpack_2half|pack_2ushort|unpack_2ushort|pack_4byte|unpack_4byte|pack_4ubyte|unpack_4ubyte)\b/.exec(this.str)) && this.hl(m[0], 'dsFunction;fontWeight:bold')) continue;
-            if((m = /^\b[_\w][_\w\d]*(?=[\s]*[(])/.exec(this.str)) && this.hl(m[0], 'dsFunction;fontWeight:normal')) continue;
-            if((m = /^[.]{1,1}[rgbaxyzw]+(?=[\s/*-+<>])/.exec(this.str)) && this.hl(m[0], 'dsNormal;fontWeight:bold')) continue;
+            if((m = /^(?:abs|acos|all|any|asin|atan|atan2|ceil|clamp|cos|cosh|cross|degrees|determinant|dot|exp|exp2|floor|fmod|frac|frexp|isfinite|isinf|isnan|ldexp|lerp|lit|log|log2|log10|max|min|modf|mul|noise|pow|radians|round|rsqrt|saturate|sign|sin|sincos|sinh|smoothstep|step|sqrt|tan|tanh|transpose|distance|faceforward|length|normalize|reflect|refract|tex1D|tex1Dproj|tex2D|tex2Dproj|texRECT|texRECTproj|tex3D|tex3Dproj|texCUBE|texCUBEproj|ddx|ddy|debug|pack_2half|unpack_2half|pack_2ushort|unpack_2ushort|pack_4byte|unpack_4byte|pack_4ubyte|unpack_4ubyte)\b/.exec(this.str)) && this.hl(m[0], 'dsFunction;font-weight:bold')) continue;
+            if((m = /^\b[_\w][_\w\d]*(?=[\s]*[(])/.exec(this.str)) && this.hl(m[0], 'dsFunction;font-weight:normal')) continue;
+            if((m = /^[.]{1,1}[rgbaxyzw]+(?=[\s/*-+<>])/.exec(this.str)) && this.hl(m[0], 'dsNormal;font-weight:bold')) continue;
             if((m = /^[.]{1,1}/.exec(this.str)) && this.hl(m[0], 'dsNormal')) {if(m = this.cg_member())return this.pop(), m-1;continue;}
             if((m = /^[:!%&()+,\-/.*<=>?[\]|~\^;]/.exec(this.str)) && this.hl(m[0], 'dsNormal')) continue;
             this.hl(this.str[0], 'dsNormal');
@@ -34,7 +34,7 @@ KateSyntax.langs.cg.syntax = {
     cg_member: function cg_member(m) {
         this.push();
         while(this.pos < this.len) {
-            if((m = /^\b[_\w][_\w\d]*(?=[\s]*)/.exec(this.str)) && this.hl(m[0], 'dsFunction;fontWeight:normal')) return this.pop();
+            if((m = /^\b[_\w][_\w\d]*(?=[\s]*)/.exec(this.str)) && this.hl(m[0], 'dsFunction;font-weight:normal')) return this.pop();
             return this.pop();
         }
         this.pop();
